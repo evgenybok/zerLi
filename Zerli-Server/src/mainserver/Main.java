@@ -4,7 +4,10 @@ import controllers.ServerController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-
+/*
+ * 
+ * 
+ */
 public class Main extends Application {
     public static Stage mainStage;
 
