@@ -4,12 +4,7 @@ import controllers.ServerController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/*
- * 
-LOPDSOPDSOSDPDSOSDPSDOPDSPDSOSD
- */
-//O
-//SECTION ONE OF TWO PLEASE COMMIT RIGHT NOW PLEASE PLEASE PLEASE
+
 public class Main extends Application {
 	public static Stage mainStage;
 
