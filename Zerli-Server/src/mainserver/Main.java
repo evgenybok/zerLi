@@ -8,6 +8,7 @@ import javafx.stage.Stage;
  * 
 LOPDSOPDSOSDPDSOSDPSDOPDSPDSOSD
  */
+//OK SHMULIK
 public class Main extends Application {
 	public static Stage mainStage;
 
