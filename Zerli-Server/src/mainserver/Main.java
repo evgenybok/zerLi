@@ -6,22 +6,21 @@ import javafx.stage.Stage;
 
 /*
  * 
- * Evgeny smells like poo
- * and alek is a poopy head
+LOPDSOPDSOSDPDSOSDPSDOPDSPDSOSD
  */
 public class Main extends Application {
-    public static Stage mainStage;
+	public static Stage mainStage;
 
-    @Override
+	@Override
 
-    public void start(Stage primaryStage) throws Exception {
-        mainStage = primaryStage;
-        ServerController controller = new ServerController();
-        controller.start(primaryStage);
-    }
+	public void start(Stage primaryStage) throws Exception {
+		mainStage = primaryStage;
+		ServerController controller = new ServerController();
+		controller.start(primaryStage);
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 }
