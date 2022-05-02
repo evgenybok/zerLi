@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@גגגגגג.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="198.0" layoutY="21.0" text="Choose Store" underline="true">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="38.0" layoutY="506.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Back">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="359.0" layoutY="506.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="212.0" layoutY="249.0" prefHeight="38.0" prefWidth="173.0" />
+      <Text layoutX="25.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Store:" wrappingWidth="187.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="25.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Area:" wrappingWidth="173.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <ComboBox layoutX="212.0" layoutY="151.0" prefHeight="35.0" prefWidth="173.0" />
+      <CheckBox layoutX="98.0" layoutY="385.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="144.0" text="Delivery">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="310.0" layoutY="397.0" mnemonicParsing="false" text="Pick Up">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>
