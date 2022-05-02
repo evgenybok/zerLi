@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 /*
  * 
  * Evgeny smells like poo
+ * and alek is a poopy head
  */
 public class Main extends Application {
     public static Stage mainStage;
