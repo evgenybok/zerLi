@@ -19,7 +19,6 @@ public class ChatClient extends AbstractClient {
 		try {
 			openConnection();
 		} catch (IOException e) {
-			System.out.println("HHH");
 			e.printStackTrace();
 		}
 	}

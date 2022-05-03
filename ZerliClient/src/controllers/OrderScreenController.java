@@ -98,7 +98,7 @@ public class OrderScreenController {
 		chat.accept(new Message(MessageType.LOGOUT, null));
 
 		Parent parent = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/controllers/CustomerScreen.fxml")));
+				.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LoginStage.setTitle("Login Screen");
