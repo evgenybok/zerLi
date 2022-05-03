@@ -101,8 +101,6 @@ public class OrderScreenController {
 		if (event.getClickCount() == 2) {
 			ObservableList<Order> orderList;
 			orderList = Orders.getSelectionModel().getSelectedItems();
-
-			// System.out.println(orderList.get(0).getOrderNumber());
 			int orderNumber = orderList.get(0).getOrderNumber();
 			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
 
