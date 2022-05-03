@@ -1,9 +1,2 @@
-/clientanalyze/
-/common/
-/controllers/
 /fxml/
-<<<<<<< HEAD
-=======
-/images/
-/main/
->>>>>>> refs/remotes/origin/master
+/controllers/
