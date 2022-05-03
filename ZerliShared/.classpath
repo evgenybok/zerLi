@@ -6,7 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ZerliClient"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Zerli-Server"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
