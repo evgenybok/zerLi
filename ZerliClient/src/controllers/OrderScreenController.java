@@ -26,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import logic.Order;
 
@@ -105,19 +106,12 @@ public class OrderScreenController {
 			int orderNumber = orderList.get(0).getOrderNumber();
 			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
 
-			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderDetails.fxml")));
-			Scene scene = new Scene(parent);
-			Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			LoginStage.setTitle("Order Details");
-			LoginStage.setScene(scene);
-			LoginStage.show();
-
-			/*
-			 * String data = AnalyzeMessageFromServer.getData(); if (!data.equals("ERROR"))
-			 * { data.split("#", 3);
-			 * 
-			 * }
-			 */
+			FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource(("/fxml/OrderDetails.fxml")));
+			Parent root1=(Parent) fxmlLoader.load();
+			Stage stage=new Stage();
+			stage.setTitle("Order Details");
+			stage.setScene((new Scene(root1)));
+			stage.show();
 		}
 
 	}

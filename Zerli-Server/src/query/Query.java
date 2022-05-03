@@ -3,6 +3,8 @@ package query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import ocsf.server.ConnectionToClient;
 
@@ -151,24 +153,69 @@ public class Query {
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
+			res.append(orderNumber);
+			res.append("#");
 			while (rs.next()) {
 				int OrderID = rs.getInt("orderID");
 				int itemID = rs.getInt("itemID");
 				int amount = rs.getInt("amount");
 				if (orderNumber == OrderID) {
-					res.append(OrderID);
-					res.append("#");
 					res.append(itemID);
 					res.append("#");
 					res.append(amount);
 					res.append("#");
 				}
 			}
+			// ordernum, itemid, amount, itemid, amout
+			res.append("@");
+			if (res.toString().equals("@"))
+				return null; // no details
+			return res.toString();
+		} catch (SQLException e) {
+			return "Error";
+		}
+	}
+
+	public static String getItemName(String data) {
+		String query = ("SELECT * FROM zerli.item;");
+		HashMap<String, ArrayList<String>> map = new HashMap<>();
+		String[] arr;
+		arr=data.split("#",2);
+		StringBuilder res = new StringBuilder();
+		res.append("Order Number:" + arr[0] + "#");
+		data=arr[1];
+		while (!data.equals("@")) {
+			arr = data.split("#", 3);
+			if (!map.containsKey(arr[0]))
+				map.put(String.valueOf(arr[0]), new ArrayList<String>());
+			map.get(String.valueOf(arr[0])).add(" Amount: " + arr[1]);
+			data = arr[2];
+		}
+
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int OrderID = rs.getInt("ID");
+				String imgSrc = rs.getString("imgSrc");
+				String Name = rs.getString("Name");
+				double price = rs.getDouble("Price");
+				String Color = rs.getString("Color");
+				String Type = rs.getString("Type");
+				if (map.containsKey(String.valueOf(OrderID))) {
+					map.get(String.valueOf(OrderID)).add("Name: " + Name);
+					map.get(String.valueOf(OrderID)).add("Price: " + String.valueOf(price));
+					map.get(String.valueOf(OrderID)).add("Color: " + Color);
+					map.get(String.valueOf(OrderID)).add("Type: " + Type);
+				}
+			}
+			for (String key : map.keySet()) {
+				res.append(map.get(key) + "#");
+			}
 			res.append("@");
 			return res.toString();
 		} catch (SQLException e) {
 			return "Error";
-
 		}
 	}
 }

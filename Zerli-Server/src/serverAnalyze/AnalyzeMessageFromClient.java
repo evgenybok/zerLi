@@ -54,7 +54,9 @@ public class AnalyzeMessageFromClient {
 						receivedMessage.getMessageData());
 			}
 		case GET_SELECTED_ORDER:
+			//int ordnum=(int) receivedMessage.getMessageData();
 			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
+			order=Query.getItemName(order);
 			if (order.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				return new Message(MessageType.GET_SELECTED_ORDER, receivedMessage.getMessageAnswer(), null); // Not
