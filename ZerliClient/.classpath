@@ -9,5 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ZerliShared"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
