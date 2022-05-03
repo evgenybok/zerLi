@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1061.0" prefWidth="1214.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="1060.0" fitWidth="1214.0" pickOnBounds="true">
+         <image>
+            <Image url="@../074c98d738286b384fb05842c05dc66d.jpg" />
+         </image>
+      </ImageView>
+      <ComboBox layoutX="43.0" layoutY="108.0" prefWidth="150.0" promptText="Choose Store" />
+      <ComboBox layoutX="701.0" layoutY="108.0" prefWidth="150.0" promptText="Choose Store" />
+      <StackedAreaChart layoutX="23.0" layoutY="265.0">
+        <xAxis>
+          <NumberAxis autoRanging="false" label="Months" prefHeight="41.0" prefWidth="444.0" side="BOTTOM" tickLabelFill="#ff0505" tickLabelGap="1.0" tickLength="3.0" tickUnit="1.0" upperBound="4.0">
+               <tickLabelFont>
+                  <Font size="14.0" />
+               </tickLabelFont></NumberAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis autoRanging="false" prefHeight="325.0" prefWidth="31.0" side="LEFT" tickLabelFill="#f20606" tickUnit="5000.0" upperBound="25000.0">
+               <tickLabelFont>
+                  <Font size="14.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </StackedAreaChart>
+      <StackedAreaChart layoutX="662.0" layoutY="265.0">
+        <xAxis>
+          <NumberAxis autoRanging="false" label="Months" side="BOTTOM" tickLabelFill="RED" tickUnit="1.0" upperBound="4.0">
+               <tickLabelFont>
+                  <Font size="14.0" />
+               </tickLabelFont></NumberAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis autoRanging="false" side="LEFT" tickLabelFill="#ff0202" tickUnit="5000.0" upperBound="25000.0">
+               <tickLabelFont>
+                  <Font size="14.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </StackedAreaChart>
+      <TextArea layoutX="62.0" layoutY="671.0" prefHeight="294.0" prefWidth="1103.0" />
+      <ComboBox layoutX="43.0" layoutY="161.0" prefWidth="150.0" promptText="Quarter" />
+      <ComboBox layoutX="43.0" layoutY="214.0" prefWidth="150.0" promptText="Year" />
+      <ComboBox layoutX="701.0" layoutY="161.0" prefWidth="150.0" promptText="Quarter" />
+      <ComboBox layoutX="701.0" layoutY="214.0" prefWidth="150.0" promptText="Year" />
+      <Label layoutX="423.0" layoutY="66.0" text="Quarterly Income Report" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Button layoutX="30.0" layoutY="986.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="88.0" text="Back">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button layoutX="242.0" layoutY="107.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="131.0" text="Open Report">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="895.0" layoutY="107.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="131.0" text="Open Report">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -91,14 +91,44 @@ public class OrderScreenController {
 
 	public static ObservableList<Order> orders = FXCollections.observableArrayList();
 
+	/**
+	 * @param event double click on any order to view its details
+	 * @throws IOException
+	 */
+	@FXML
+	void openOrderInfo(MouseEvent event) throws IOException {
+		if (event.getClickCount() == 2) {
+			ObservableList<Order> orderList;
+			orderList = Orders.getSelectionModel().getSelectedItems();
+
+			// System.out.println(orderList.get(0).getOrderNumber());
+			int orderNumber = orderList.get(0).getOrderNumber();
+			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
+
+			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderDetails.fxml")));
+			Scene scene = new Scene(parent);
+			Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			LoginStage.setTitle("Order Details");
+			LoginStage.setScene(scene);
+			LoginStage.show();
+
+			/*
+			 * String data = AnalyzeMessageFromServer.getData(); if (!data.equals("ERROR"))
+			 * { data.split("#", 3);
+			 * 
+			 * }
+			 */
+		}
+
+	}
+
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		this.getOrders().getItems().clear();
 		chat.accept(new Message(MessageType.LOGOUT, null));
 
-		Parent parent = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LoginStage.setTitle("Login Screen");
@@ -113,7 +143,8 @@ public class OrderScreenController {
 		String Color = txtColor.getText();
 		String Date = txtDate.getText();
 		if (orderNumber.equals("")) {
-			JOptionPane.showMessageDialog(null, "Please enter a valid order number!", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Please enter a valid order number!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		} else {
 			StringBuilder str = new StringBuilder();
 			str.append(orderNumber);

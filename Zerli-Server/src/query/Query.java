@@ -40,11 +40,10 @@ public class Query {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int ID = rs.getInt("id");
-					String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
-					st.executeUpdate(query1);
-				}
-		}
-		catch (SQLException e) {
+				String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
+				st.executeUpdate(query1);
+			}
+		} catch (SQLException e) {
 		}
 	}
 
@@ -146,4 +145,30 @@ public class Query {
 		return false;
 	}
 
+	public static String getSelectedOrder(int orderNumber) {
+		String query = ("SELECT * FROM zerli.iteminorder;");
+		StringBuilder res = new StringBuilder();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int OrderID = rs.getInt("orderID");
+				int itemID = rs.getInt("itemID");
+				int amount = rs.getInt("amount");
+				if (orderNumber == OrderID) {
+					res.append(OrderID);
+					res.append("#");
+					res.append(itemID);
+					res.append("#");
+					res.append(amount);
+					res.append("#");
+				}
+			}
+			res.append("@");
+			return res.toString();
+		} catch (SQLException e) {
+			return "Error";
+
+		}
+	}
 }

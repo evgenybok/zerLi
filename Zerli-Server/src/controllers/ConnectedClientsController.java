@@ -1,8 +1,8 @@
 package controllers;
 
-import ocsf.server.ConnectionToClient;
 import communication.Message;
 import communication.MessageAnswer;
+import ocsf.server.ConnectionToClient;
 
 public class ConnectedClientsController {
 
@@ -16,7 +16,7 @@ public class ConnectedClientsController {
                 clientDoc.setStatus("Connected");
                 ServerController.clients.remove(indexOfClient);
                 ServerController.clients.add(clientDoc);
-            } else {
+            } else {	
                 message.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
                 return;
             }

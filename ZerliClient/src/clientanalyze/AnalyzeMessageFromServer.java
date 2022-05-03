@@ -62,7 +62,22 @@ public class AnalyzeMessageFromServer {
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = (String) receivedMessage.getMessageData();
 			}
+			else
+			{
+				//Not implemented yet
+			}
 			return;
+			
+		case GET_SELECTED_ORDER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = (String) receivedMessage.getMessageData();
+			}
+			else 
+			{
+				//Not implemented yet
+			}
+			return;
+			
 		default:
 			break;
 

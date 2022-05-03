@@ -42,15 +42,31 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			String str = Query.GetOrders();
-			if (str == "ERROR")
+			String orders = Query.GetOrders();
+			if (orders.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			else {
+				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); // Not implemented
+																										// yet
+			} else {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-				receivedMessage.setMessageData(str);
+				receivedMessage.setMessageData(orders);
 				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 						receivedMessage.getMessageData());
 			}
+		case GET_SELECTED_ORDER:
+			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
+			if (order.equals("ERROR")) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				return new Message(MessageType.GET_SELECTED_ORDER, receivedMessage.getMessageAnswer(), null); // Not
+																												// implemented
+																												// yet
+			} else {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(order);
+				return new Message(MessageType.GET_SELECTED_ORDER, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+			}
+
 		default:
 			return new Message(MessageType.ERROR, null);
 		}
