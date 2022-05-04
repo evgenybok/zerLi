@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PreMadeItemsController">
    <children>
       <ImageView fitHeight="497.0" fitWidth="978.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true">
          <image>
             <Image url="@fxml%20project/fxml%20project/flowers%20background4444.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="21.0" layoutY="80.0" prefHeight="315.0" prefWidth="928.0">
+      <TableView fx:id="preMadeItemsTable" layoutX="21.0" layoutY="80.0" prefHeight="315.0" prefWidth="928.0">
         <columns>
             <TableColumn prefWidth="78.0" text="Serial" />
           <TableColumn prefWidth="167.0" text="Picture" />
@@ -33,11 +33,11 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="829.0" layoutY="420.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Add item">
+      <Button fx:id="addItem" layoutX="829.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#btnAddItem" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Add item">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="420.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="104.0" style="-fx-background-radius: 10;" text="Back">
+      <Button fx:id="back" layoutX="21.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="59.0" prefWidth="104.0" style="-fx-background-radius: 10;" text="Back">
          <font>
             <Font size="21.0" />
          </font>
@@ -52,8 +52,8 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="364.0" layoutY="438.0" prefHeight="18.0" prefWidth="58.0" promptText="From" />
-      <Label layoutX="251.0" layoutY="437.0" prefHeight="26.0" prefWidth="107.0" text="Price Range:">
+      <TextField fx:id="fromPrice" layoutX="286.0" layoutY="437.0" prefHeight="18.0" prefWidth="58.0" promptText="From" />
+      <Label layoutX="173.0" layoutY="436.0" prefHeight="26.0" prefWidth="107.0" text="Price Range:">
          <font>
             <Font size="19.0" />
          </font>
@@ -63,12 +63,17 @@
             <Font size="34.0" />
          </font>
       </Label>
-      <TextField layoutX="436.0" layoutY="438.0" prefHeight="18.0" prefWidth="58.0" promptText="To" />
-      <Label layoutX="521.0" layoutY="436.0" prefHeight="17.0" prefWidth="58.0" text="Color:">
+      <TextField fx:id="toPrice" layoutX="358.0" layoutY="437.0" prefHeight="18.0" prefWidth="58.0" promptText="To" />
+      <Label layoutX="443.0" layoutY="435.0" prefHeight="17.0" prefWidth="58.0" text="Color:">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <ComboBox layoutX="579.0" layoutY="438.0" prefHeight="26.0" prefWidth="86.0" />
+      <ComboBox fx:id="color" layoutX="501.0" layoutY="437.0" prefHeight="26.0" prefWidth="86.0" />
+      <Button fx:id="update" layoutX="619.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#btnUpdate" prefHeight="52.0" prefWidth="104.0" style="-fx-background-radius: 10;" text="Update">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
