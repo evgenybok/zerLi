@@ -44,7 +44,7 @@
    <children>
       <ImageView fitHeight="406.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Downloads/payment1.jpg" />
+            <Image url="@../../images/images/payment1.jpg" />
          </image>
       </ImageView>
       <Text layoutX="263.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment" wrappingWidth="174.0">

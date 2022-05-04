@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="497.0" fitWidth="978.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true">
          <image>
-            <Image url="@fxml%20project/fxml%20project/flowers%20background4444.jpg" />
+            <Image url="@../../images/images/catalogitems.jpg" />
          </image>
       </ImageView>
       <TableView fx:id="preMadeItemsTable" layoutX="21.0" layoutY="80.0" prefHeight="315.0" prefWidth="928.0">

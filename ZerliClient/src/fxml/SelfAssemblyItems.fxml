@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="490.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../fxml%20project/fxml%20project/flowers%20background4444.jpg" />
+            <Image url="@../../images/images/catalogitems.jpg" />
          </image>
       </ImageView>
       <Label layoutX="364.0" layoutY="32.0" text="Self Assembly Items" underline="true">
