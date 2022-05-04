@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -47,6 +48,10 @@ public class SelfAssemblyItemsController {
     private Button back;
 
     @FXML
+    private ImageView toCart;
+
+
+    @FXML
     void btnAddItem(MouseEvent event) {
 
     }
@@ -57,7 +62,7 @@ public class SelfAssemblyItemsController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Catalog Type Screen");
+		LoginStage.setTitle("Catalog Type");
 		LoginStage.setScene(scene);
 		LoginStage.show();
     }
@@ -68,8 +73,19 @@ public class SelfAssemblyItemsController {
     }
 
     @FXML
+    void imgToCart(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CheckoutScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LoginStage.setTitle("Checkout");
+		LoginStage.setScene(scene);
+		LoginStage.show();
+    }
+
+    @FXML
     void initialize() {
         assert addItem != null : "fx:id=\"addItem\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
+        assert toCart != null : "fx:id=\"toCart\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
         assert selfAssItemsTable != null : "fx:id=\"selfAssItemsTable\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
         assert fromPrice != null : "fx:id=\"fromPrice\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
         assert toPrice != null : "fx:id=\"toPrice\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";

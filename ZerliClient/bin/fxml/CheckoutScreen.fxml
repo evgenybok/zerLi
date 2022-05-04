@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CheckoutScreenController">
    <children>
       <ImageView fitHeight="490.0" fitWidth="995.0" pickOnBounds="true">
          <image>
@@ -21,7 +21,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TableView layoutX="32.0" layoutY="84.0" prefHeight="315.0" prefWidth="928.0">
+      <TableView fx:id="checkoutTable" layoutX="32.0" layoutY="84.0" prefHeight="315.0" prefWidth="928.0">
          <columns>
             <TableColumn prefWidth="27.0" text="#" />
             <TableColumn prefWidth="249.0" text="Picture" />
@@ -31,17 +31,17 @@
             <TableColumn prefWidth="100.0" text="Type" />
          </columns>
       </TableView>
-      <Button layoutX="794.0" layoutY="415.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="162.0" text="Choose Store">
+      <Button fx:id="chooseStore" layoutX="794.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#btnChooseStore" prefHeight="55.0" prefWidth="162.0" text="Choose Store">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="601.0" layoutY="415.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="162.0" text="Add Greeting">
+      <Button fx:id="addGreeting" layoutX="601.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#btnAddGreeting" prefHeight="55.0" prefWidth="162.0" text="Add Greeting">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="32.0" layoutY="415.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="96.0" text="Back">
+      <Button fx:id="back" layoutX="32.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="55.0" prefWidth="96.0" text="Back">
          <font>
             <Font size="21.0" />
          </font>
@@ -51,12 +51,12 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="269.0" layoutY="420.0" prefHeight="45.0" prefWidth="125.0" text="(Total Sum)">
+      <Label fx:id="totalSum" layoutX="269.0" layoutY="420.0" prefHeight="45.0" prefWidth="125.0" text="(Total Sum)">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button layoutX="453.0" layoutY="414.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="112.0" text="Remove">
+      <Button fx:id="remove" layoutX="453.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#btnRemove" prefHeight="55.0" prefWidth="112.0" text="Remove">
          <font>
             <Font size="21.0" />
          </font>

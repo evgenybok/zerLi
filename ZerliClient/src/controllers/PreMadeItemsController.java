@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -33,6 +34,10 @@ public class PreMadeItemsController {
 
     @FXML
     private Button back;
+
+    @FXML
+    private ImageView toCart;
+
 
     @FXML
     private TextField fromPrice;
@@ -57,7 +62,7 @@ public class PreMadeItemsController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Catalog Type Screen");
+		LoginStage.setTitle("Catalog Type");
 		LoginStage.setScene(scene);
 		LoginStage.show();
     }
@@ -68,10 +73,21 @@ public class PreMadeItemsController {
     }
 
     @FXML
+    void imgToCart(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CheckoutScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LoginStage.setTitle("Checkout");
+		LoginStage.setScene(scene);
+		LoginStage.show();
+    }
+
+    @FXML
     void initialize() {
         assert preMadeItemsTable != null : "fx:id=\"preMadeItemsTable\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert addItem != null : "fx:id=\"addItem\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
+        assert toCart != null : "fx:id=\"toCart\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert fromPrice != null : "fx:id=\"fromPrice\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert toPrice != null : "fx:id=\"toPrice\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'PreMadeItems.fxml'.";

@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddGreetingController">
    <children>
       <ImageView fitHeight="714.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,17 +20,12 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="25.0" layoutY="627.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Back">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <TextArea layoutX="95.0" layoutY="98.0" prefHeight="500.0" prefWidth="359.0" promptText="Please enter here a greeting">
+      <TextArea fx:id="txtGreeting" layoutX="95.0" layoutY="98.0" prefHeight="500.0" prefWidth="359.0" promptText="Please enter here a greeting">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <Button layoutX="405.0" layoutY="627.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
+      <Button fx:id="done" layoutX="205.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
          <font>
             <Font size="21.0" />
          </font>
