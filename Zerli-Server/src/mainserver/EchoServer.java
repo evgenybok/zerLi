@@ -18,7 +18,7 @@ import serverAnalyze.AnalyzeMessageFromClient;
  * @author Paul Holden
  * @version July 2000
  */
-@SuppressWarnings("unused")
+
 public class EchoServer extends AbstractServer {
     // Class variables *************************************************
 
