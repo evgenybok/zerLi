@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="640.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@גגגגגג.jpg" />
+            <Image url="@../../images/images/choosestore.jpg" />
          </image>
       </ImageView>
       <Label layoutX="198.0" layoutY="21.0" text="Choose Store" underline="true">

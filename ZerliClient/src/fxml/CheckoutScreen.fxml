@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="490.0" fitWidth="995.0" pickOnBounds="true">
          <image>
-            <Image url="@fxml%20project/fxml%20project/flowers%20background4444.jpg" />
+            <Image url="@../../images/images/checkout.jpg" />
          </image>
       </ImageView>
       <Label layoutX="423.0" layoutY="20.0" text="Checkout" underline="true">

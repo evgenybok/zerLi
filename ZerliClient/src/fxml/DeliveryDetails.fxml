@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="500.0" fitWidth="670.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@DELIVERY.jpg" />
+            <Image url="@../../images/images/deliverydetails.jpg" />
          </image>
       </ImageView>
       <Button fx:id="done" layoutX="494.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
