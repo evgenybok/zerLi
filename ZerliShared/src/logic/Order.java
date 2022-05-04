@@ -1,9 +1,12 @@
 package logic;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Order implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4476848811757027097L;
 	private int orderNumber;
 	private double price;
 	private String greetingCard;

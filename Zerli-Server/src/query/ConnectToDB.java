@@ -11,6 +11,10 @@ import mainserver.EchoServer;
 
 public class ConnectToDB extends ServerController{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2568961513728853135L;
 	public static Connection conn;
 
 	public static Connection connect(String UserName, String Password) throws Exception {

@@ -52,7 +52,6 @@ public class LoginScreenController {
 
 	}
 
-	@SuppressWarnings("null")
 	@FXML
 	void btnLogin(ActionEvent event) throws IOException {
 		StringBuilder login = new StringBuilder();
