@@ -28,7 +28,7 @@
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="294.0" text="View Catalog">
+                  <Button fx:id="viewCatalog" mnemonicParsing="false" onMouseClicked="#btnViewCatalog" prefHeight="44.0" prefWidth="294.0" text="View Catalog">
                      <font>
                         <Font size="21.0" />
                      </font>

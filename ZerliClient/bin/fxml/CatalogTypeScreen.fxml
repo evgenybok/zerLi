@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogTypeScreenController">
    <children>
       <ImageView fitHeight="666.0" fitWidth="720.0" layoutX="-5.0" pickOnBounds="true">
          <image>
-            <Image url="@123.jpg" />
+            <Image url="@../../images/images/catalogtype.jpg" />
          </image>
       </ImageView>
       <VBox layoutX="144.0" layoutY="110.0" prefHeight="497.0" prefWidth="425.0" spacing="70.0">
@@ -24,12 +24,12 @@
             <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
          </padding>
          <children>
-            <Button mnemonicParsing="false" prefHeight="87.0" prefWidth="208.0" style="-fx-background-radius: 10;" text="Pre-made">
+            <Button fx:id="preMade" mnemonicParsing="false" onMouseClicked="#btnPreMade" prefHeight="87.0" prefWidth="208.0" style="-fx-background-radius: 10;" text="Pre-made">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="87.0" prefWidth="208.0" style="-fx-background-radius: 10;" text="Self assembly">
+            <Button fx:id="selfAss" mnemonicParsing="false" onMouseClicked="#btnSelfAss" prefHeight="87.0" prefWidth="208.0" style="-fx-background-radius: 10;" text="Self assembly">
                <font>
                   <Font size="22.0" />
                </font>
@@ -41,12 +41,12 @@
             <Font name="Californian FB" size="61.0" />
          </font>
       </Label>
-      <Button layoutX="26.0" layoutY="595.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="104.0" style="-fx-background-radius: 20;" text="Back">
+      <Button fx:id="back" layoutX="26.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="59.0" prefWidth="104.0" style="-fx-background-radius: 20;" text="Back">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="569.0" layoutY="595.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="116.0" style="-fx-background-radius: 20;" text="Checkout">
+      <Button fx:id="checkout" layoutX="569.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="59.0" prefWidth="116.0" style="-fx-background-radius: 20;" text="Checkout">
          <font>
             <Font size="21.0" />
          </font>

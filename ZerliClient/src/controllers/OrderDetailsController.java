@@ -4,8 +4,11 @@ import java.net.URL;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class OrderDetailsController {
 
@@ -18,6 +21,14 @@ public class OrderDetailsController {
 	@FXML
 	private Label Title;
 
+    @FXML
+    private Button done;
+
+    @FXML
+    void btnDone(MouseEvent event) {
+        Stage stage = (Stage) done.getScene().getWindow();
+        stage.close();
+    }
 	@FXML
 	void initialize() {
 		String data = AnalyzeMessageFromServer.getData();

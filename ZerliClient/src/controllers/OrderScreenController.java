@@ -117,12 +117,12 @@ public class OrderScreenController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		this.getOrders().getItems().clear();
-		chat.accept(new Message(MessageType.LOGOUT, null));
+		//chat.accept(new Message(MessageType.LOGOUT, null)); //???????????
 
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Login Screen");
+		LoginStage.setTitle("Customer Screen");
 		LoginStage.setScene(scene);
 		LoginStage.show();
 

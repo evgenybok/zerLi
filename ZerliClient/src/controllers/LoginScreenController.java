@@ -54,6 +54,7 @@ public class LoginScreenController {
 
 	@FXML
 	void btnLogin(ActionEvent event) throws IOException {
+		
 		StringBuilder login = new StringBuilder();
 		String truelogin = null;
 		if (Username.getText().equals("") || Password.getText().equals("")) {
@@ -73,7 +74,7 @@ public class LoginScreenController {
 
 		}
 		;
-
+		
 		Parent parent = FXMLLoader
 				.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);

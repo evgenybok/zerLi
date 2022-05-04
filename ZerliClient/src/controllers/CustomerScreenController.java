@@ -22,6 +22,9 @@ import javafx.stage.Stage;
 public class CustomerScreenController {
 
     @FXML
+    private Button viewCatalog;
+    
+    @FXML
     private ResourceBundle resources;
 
     @FXML
@@ -68,12 +71,23 @@ public class CustomerScreenController {
     }
 
     @FXML
+    void btnViewCatalog(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LoginStage.setTitle("Catalog Type Screen");
+		LoginStage.setScene(scene);
+		LoginStage.show();
+    }
+
+    @FXML
     void initialize() {
         assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
+        assert viewCatalog != null : "fx:id=\"viewCatalog\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
+        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
 
     }
 }
