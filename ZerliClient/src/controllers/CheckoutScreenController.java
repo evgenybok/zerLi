@@ -44,11 +44,12 @@ public class CheckoutScreenController {
     @FXML
     void btnAddGreeting(MouseEvent event) throws IOException {
 		FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource(("/fxml/AddGreeting.fxml")));
-		Parent root1=(Parent) fxmlLoader.load();
-		Stage stage=new Stage();
-		stage.setTitle("Add Greeting");
-		stage.setScene((new Scene(root1)));
-		stage.show();
+		Parent root=(Parent) fxmlLoader.load();
+		Stage addGreetingStage=new Stage();
+		addGreetingStage.setTitle("Add Greeting");
+		addGreetingStage.setScene((new Scene(root)));
+		addGreetingStage.show();
+		addGreetingStage.centerOnScreen();
     }
 
     @FXML
@@ -56,20 +57,22 @@ public class CheckoutScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Catalog Type");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage catalogTypeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogTypeStage.setTitle("Catalog Type");
+		catalogTypeStage.setScene(scene);
+		catalogTypeStage.show();
+		catalogTypeStage.centerOnScreen();
     }
 
     @FXML
     void btnChooseStore(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ChooseStore.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Choose Store");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage chooseStoreStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		chooseStoreStage.setTitle("Choose Store");
+		chooseStoreStage.setScene(scene);
+		chooseStoreStage.show();
+		chooseStoreStage.centerOnScreen();
     }
 
     @FXML

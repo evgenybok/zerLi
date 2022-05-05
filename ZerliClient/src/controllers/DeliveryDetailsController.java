@@ -46,20 +46,22 @@ public class DeliveryDetailsController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ChooseStore.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Choose Store");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage chooseStoreStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		chooseStoreStage.setTitle("Choose Store");
+		chooseStoreStage.setScene(scene);
+		chooseStoreStage.show();
+		chooseStoreStage.centerOnScreen();
     }
 
     @FXML
     void btnDone(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Payment");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage paymentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		paymentStage.setTitle("Payment");
+		paymentStage.setScene(scene);
+		paymentStage.show();
+		paymentStage.centerOnScreen();
     }
 
     @FXML

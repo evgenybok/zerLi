@@ -51,12 +51,11 @@ public class CustomerScreenController {
 		chat.accept(new Message(MessageType.LOGOUT, null));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Login Screen");
-		LoginStage.setScene(scene);
-		LoginStage.show();
-		
-    	
+		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		loginStage.setTitle("Login Screen");
+		loginStage.setScene(scene);
+		loginStage.show();
+		loginStage.centerOnScreen();  	
     }
 
     @FXML
@@ -64,20 +63,22 @@ public class CustomerScreenController {
 
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Order Screen");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage orderStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		orderStage.setTitle("Order Screen");
+		orderStage.setScene(scene);
+		orderStage.show();
+		orderStage.centerOnScreen();  
     }
 
     @FXML
     void btnViewCatalog(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Catalog Type Screen");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage catalogStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogStage.setTitle("Catalog Type Screen");
+		catalogStage.setScene(scene);
+		catalogStage.show();
+		catalogStage.centerOnScreen();
     }
 
     @FXML

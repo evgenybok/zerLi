@@ -40,40 +40,44 @@ public class CatalogTypeScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Customer");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
 
     @FXML
     void btnCheckout(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CheckoutScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Checkout");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage checkoutStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		checkoutStage.setTitle("Checkout");
+		checkoutStage.setScene(scene);
+		checkoutStage.show();
+		checkoutStage.centerOnScreen();
     }
 
     @FXML
     void btnPreMade(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PreMadeItems.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Premade Items");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		premadeStage.setTitle("Premade Items");
+		premadeStage.setScene(scene);
+		premadeStage.show();
+		premadeStage.centerOnScreen();
     }
 
     @FXML
     void btnSelfAss(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SelfAssemblyItems.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Self Assembly Items");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage selfAssemblyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		selfAssemblyStage.setTitle("Self Assembly Items");
+		selfAssemblyStage.setScene(scene);
+		selfAssemblyStage.show();
+		selfAssemblyStage.centerOnScreen();
     }
 
     @FXML

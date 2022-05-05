@@ -31,7 +31,7 @@ public class LoginScreenController {
 
 	@FXML
 	private Button exitBtn;
-	
+
 	@FXML
 	private PasswordField Password;
 
@@ -54,7 +54,7 @@ public class LoginScreenController {
 
 	@FXML
 	void btnLogin(ActionEvent event) throws IOException {
-		
+
 		StringBuilder login = new StringBuilder();
 		String truelogin = null;
 		if (Username.getText().equals("") || Password.getText().equals("")) {
@@ -74,14 +74,14 @@ public class LoginScreenController {
 
 		}
 		;
-		
-		Parent parent = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Customer Screen");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer Screen");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
 	}
 
 }

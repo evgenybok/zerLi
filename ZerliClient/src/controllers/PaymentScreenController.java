@@ -45,10 +45,11 @@ public class PaymentScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliveryDetails.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Delivery Details");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		deliveryDetailsStage.setTitle("Delivery Details");
+		deliveryDetailsStage.setScene(scene);
+		deliveryDetailsStage.show();
+		deliveryDetailsStage.centerOnScreen();
     }
 
     @FXML

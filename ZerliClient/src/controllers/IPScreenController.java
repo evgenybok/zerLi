@@ -57,13 +57,13 @@ public class IPScreenController {
 		}
 
 		chat.accept(new Message(MessageType.CONFIRM_IP, txtip.getText()));
-		Parent parent = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LoginStage.setTitle("LoginScreen");
 		LoginStage.setScene(scene);
 		LoginStage.show();
+		LoginStage.centerOnScreen();
 
 	}
 
@@ -85,6 +85,7 @@ public class IPScreenController {
 		primaryStage.setTitle("Connect To Server");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.centerOnScreen();
 
 	}
 }

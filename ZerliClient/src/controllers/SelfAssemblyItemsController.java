@@ -61,10 +61,11 @@ public class SelfAssemblyItemsController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Catalog Type");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage catalogTypeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogTypeStage.setTitle("Catalog Type");
+		catalogTypeStage.setScene(scene);
+		catalogTypeStage.show();
+		catalogTypeStage.centerOnScreen();
     }
 
     @FXML
@@ -76,10 +77,11 @@ public class SelfAssemblyItemsController {
     void imgToCart(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CheckoutScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Checkout");
-		LoginStage.setScene(scene);
-		LoginStage.show();
+		Stage checkoutStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		checkoutStage.setTitle("Checkout");
+		checkoutStage.setScene(scene);
+		checkoutStage.show();
+		checkoutStage.centerOnScreen();
     }
 
     @FXML

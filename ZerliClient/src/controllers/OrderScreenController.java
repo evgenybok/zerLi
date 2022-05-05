@@ -92,7 +92,9 @@ public class OrderScreenController {
 	public static ObservableList<Order> orders = FXCollections.observableArrayList();
 
 	/**
-	 * @param event double click on any order to view its details
+	 * event double click on any order to view its details
+	 * 
+	 * @param
 	 * @throws IOException
 	 */
 	@FXML
@@ -103,12 +105,13 @@ public class OrderScreenController {
 			int orderNumber = orderList.get(0).getOrderNumber();
 			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
 
-			FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource(("/fxml/OrderDetails.fxml")));
-			Parent root1=(Parent) fxmlLoader.load();
-			Stage stage=new Stage();
-			stage.setTitle("Order Details");
-			stage.setScene((new Scene(root1)));
-			stage.show();
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderDetails.fxml")));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage orderDetailsStage = new Stage();
+			orderDetailsStage.setTitle("Order Details");
+			orderDetailsStage.setScene((new Scene(root1)));
+			orderDetailsStage.show();
+			orderDetailsStage.centerOnScreen();
 		}
 
 	}
@@ -117,15 +120,13 @@ public class OrderScreenController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		this.getOrders().getItems().clear();
-		//chat.accept(new Message(MessageType.LOGOUT, null)); //???????????
-
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		LoginStage.setTitle("Customer Screen");
-		LoginStage.setScene(scene);
-		LoginStage.show();
-
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer Screen");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
 	}
 
 	@FXML
