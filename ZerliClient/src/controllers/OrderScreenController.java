@@ -14,6 +14,7 @@ import communication.Message;
 import communication.MessageType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import logic.Order;
 
 public class OrderScreenController {
@@ -101,6 +103,7 @@ public class OrderScreenController {
 	void openOrderInfo(MouseEvent event) throws IOException {
 		if (event.getClickCount() == 2) {
 			ObservableList<Order> orderList;
+			try {
 			orderList = Orders.getSelectionModel().getSelectedItems();
 			int orderNumber = orderList.get(0).getOrderNumber();
 			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
@@ -112,8 +115,9 @@ public class OrderScreenController {
 			orderDetailsStage.setScene((new Scene(root1)));
 			orderDetailsStage.show();
 			orderDetailsStage.centerOnScreen();
+			}
+			catch (Exception e) {};
 		}
-
 	}
 
 	@FXML
@@ -123,7 +127,7 @@ public class OrderScreenController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Customer Screen");
+		customerStage.setTitle("Customer");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
@@ -181,6 +185,7 @@ public class OrderScreenController {
 		this.shop.setCellValueFactory(new PropertyValueFactory<>("shop"));
 		this.deliveryDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 		this.orderDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+		// this.startTest());
 		this.getOrders().setItems(orders);
 		assert lblOrders != null : "fx:id=\"lblOrders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
 		assert Orders != null : "fx:id=\"Orders\" was not injected: check your FXML file 'OrderScreen.fxml'.";

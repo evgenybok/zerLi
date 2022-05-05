@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SelfAssemblyItemsController {
@@ -75,13 +76,14 @@ public class SelfAssemblyItemsController {
 
     @FXML
     void imgToCart(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CheckoutScreen.fxml")));
-		Scene scene = new Scene(parent);
-		Stage checkoutStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		checkoutStage.setTitle("Checkout");
-		checkoutStage.setScene(scene);
-		checkoutStage.show();
-		checkoutStage.centerOnScreen();
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage cartStage = new Stage();
+		cartStage.initModality(Modality.APPLICATION_MODAL);
+		cartStage.setTitle("Cart");
+		cartStage.setScene((new Scene(root1)));
+		cartStage.show();
+		cartStage.centerOnScreen();
     }
 
     @FXML

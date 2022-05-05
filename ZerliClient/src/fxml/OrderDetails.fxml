@@ -6,18 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderDetailsController">
    <children>
-      <TextArea fx:id="orderDetails" editable="false" layoutX="87.0" layoutY="91.0" prefHeight="554.0" prefWidth="410.0" />
-      <Label fx:id="Title" layoutX="208.0" layoutY="30.0" text="Order Details" textAlignment="CENTER" underline="true">
+      <TextArea fx:id="txtOrderDetails" editable="false" layoutX="87.0" layoutY="135.0" prefHeight="510.0" prefWidth="410.0" />
+      <Label fx:id="lblTitle" layoutX="208.0" layoutY="30.0" text="Order Details" textAlignment="CENTER" underline="true">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button fx:id="done" layoutX="232.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
+      <Button fx:id="btnBack" layoutX="232.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Back">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
+      <Label fx:id="lblOrderNumber" layoutX="88.0" layoutY="93.0" prefHeight="17.0" prefWidth="241.0" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

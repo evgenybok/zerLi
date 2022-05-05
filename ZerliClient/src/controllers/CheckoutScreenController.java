@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CheckoutScreenController {
@@ -46,6 +47,7 @@ public class CheckoutScreenController {
 		FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource(("/fxml/AddGreeting.fxml")));
 		Parent root=(Parent) fxmlLoader.load();
 		Stage addGreetingStage=new Stage();
+		addGreetingStage.initModality(Modality.APPLICATION_MODAL);
 		addGreetingStage.setTitle("Add Greeting");
 		addGreetingStage.setScene((new Scene(root)));
 		addGreetingStage.show();

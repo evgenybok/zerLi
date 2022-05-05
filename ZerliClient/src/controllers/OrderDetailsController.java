@@ -2,6 +2,8 @@ package controllers;
 
 import java.net.URL;
 
+import javax.swing.JOptionPane;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,17 +18,20 @@ public class OrderDetailsController {
 	private URL location;
 
 	@FXML
-	private TextArea orderDetails;
+	private TextArea txtOrderDetails;
 
 	@FXML
-	private Label Title;
+	private Label lblTitle;
 
     @FXML
-    private Button done;
+    private Button btnBack;
 
     @FXML
-    void btnDone(MouseEvent event) {
-        Stage stage = (Stage) done.getScene().getWindow();
+    private Label lblOrderNumber;
+
+    @FXML
+    void btnBack(MouseEvent event) {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
 	@FXML
@@ -34,14 +39,14 @@ public class OrderDetailsController {
 		String data = AnalyzeMessageFromServer.getData();
 		if (!data.equals("ERROR")) {
 			String[] temporal = data.split("#", 2);
-			orderDetails.appendText(temporal[0] + "\n");
+			lblOrderNumber.setText(temporal[0]);	//order number
 			data = temporal[1];
 			String temp = "";
 			while (!data.equals("@")) {
 				String[] orderNumber = data.split("#", 2);
 				for (int i = 0; i < orderNumber[0].length(); i++) {
 					if (orderNumber[0].charAt(i) == (',') || orderNumber[0].charAt(i) == ('#') || orderNumber[0].charAt(i) == ('[') || orderNumber[0].charAt(i) == (']')) {
-						orderDetails.appendText(temp + "\n");
+						txtOrderDetails.appendText(temp + "\n");
 						temp = "";
 					} else {
 						temp += orderNumber[0].charAt(i);
@@ -50,9 +55,11 @@ public class OrderDetailsController {
 				data = orderNumber[1];
 			}
 		}
-		assert orderDetails != null
+		else
+			JOptionPane.showMessageDialog(null, "Could not open order", "Error", JOptionPane.WARNING_MESSAGE);
+		assert txtOrderDetails != null
 				: "fx:id=\"orderDetails\" was not injected: check your FXML file 'OrderDetails.fxml'.";
-		assert Title != null : "fx:id=\"Title\" was not injected: check your FXML file 'OrderDetails.fxml'.";
+		assert lblTitle != null : "fx:id=\"Title\" was not injected: check your FXML file 'OrderDetails.fxml'.";
 
 	}
 }
