@@ -50,7 +50,7 @@ public class ChatClient extends AbstractClient {
 			// wait for response
 			while (waitingForResponse) {
 				try {
-					Thread.sleep(100);
+				Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

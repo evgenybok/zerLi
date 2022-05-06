@@ -21,10 +21,15 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			if (Query.Login((String) receivedMessage.getMessageData(), client))
+			if (Query.Login((String) receivedMessage.getMessageData(), client)) {
+				System.out.println("Success");
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			else
+			} else
+			{
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				System.out.println("No Success");
+			}
+			
 			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(), null);
 
 		case LOGOUT:
@@ -54,9 +59,9 @@ public class AnalyzeMessageFromClient {
 						receivedMessage.getMessageData());
 			}
 		case GET_SELECTED_ORDER:
-			//int ordnum=(int) receivedMessage.getMessageData();
+			// int ordnum=(int) receivedMessage.getMessageData();
 			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
-			order=Query.getItemName(order);
+			order = Query.getItemName(order);
 			if (order.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				return new Message(MessageType.GET_SELECTED_ORDER, receivedMessage.getMessageAnswer(), null); // Not

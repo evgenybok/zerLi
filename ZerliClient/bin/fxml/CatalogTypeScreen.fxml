@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogTypeScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogTypeScreenController">
    <children>
       <ImageView fitHeight="666.0" fitWidth="720.0" layoutX="-5.0" pickOnBounds="true">
          <image>
@@ -46,7 +46,7 @@
             <Font size="21.0" />
          </font>
       </Button>
-      <Button fx:id="checkout" layoutX="569.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="59.0" prefWidth="116.0" style="-fx-background-radius: 20;" text="Checkout">
+      <Button fx:id="checkout" layoutX="556.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="59.0" prefWidth="129.0" style="-fx-background-radius: 20;" text="Checkout">
          <font>
             <Font size="21.0" />
          </font>

@@ -21,9 +21,9 @@ public class Query {
 				String username = rs.getString("Username");
 				String password = rs.getString("Password");
 				boolean Loggedin = rs.getBoolean("LoggedIn");
-				int ID = (int) client.getId();
+				String ID = rs.getString("id");
 				if (username.equals(login[0]) && password.equals(login[1]) && !Loggedin) {
-					query = ("UPDATE users SET LoggedIn=true , id=" + ID + " WHERE Username=username;");
+					query = ("UPDATE users SET LoggedIn=true WHERE id=ID;");
 					st.executeUpdate(query);
 					return true;
 				}
