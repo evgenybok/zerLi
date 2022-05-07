@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -40,6 +42,9 @@ public class ChooseStoreController {
 
     @FXML
     private CheckBox pickUp;
+
+    @FXML
+    private ImageView StoreImage;
 
     @FXML
     void btnBack(MouseEvent event) throws IOException {
@@ -93,5 +98,7 @@ public class ChooseStoreController {
         assert delivery != null : "fx:id=\"delivery\" was not injected: check your FXML file 'ChooseStore.fxml'.";
         assert pickUp != null : "fx:id=\"pickUp\" was not injected: check your FXML file 'ChooseStore.fxml'.";
 
+        Image storeimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/choosestore.jpg")));
+        StoreImage.setImage(storeimage);
     }
 }

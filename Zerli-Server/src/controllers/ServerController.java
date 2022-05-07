@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -82,6 +83,9 @@ public class ServerController extends JFrame {
 	@FXML
 	private TextField DBUser;
 
+	@FXML
+	private ImageView ServerImage;
+
 	public Button getDisconnect() {
 		return Disconnect;
 	}
@@ -115,6 +119,8 @@ public class ServerController extends JFrame {
 		this.TableStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 		this.getConnectedClients().setItems(clients);
 		getIP();
+		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/mainscreen.jpg")));
+		ServerImage.setImage(image);
 
 	}
 

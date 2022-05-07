@@ -11,7 +11,6 @@ import ocsf.server.ConnectionToClient;
 public class Query {
 
 	public static boolean Login(String loginInfo, ConnectionToClient client) {
-		String idClient=String.valueOf(client.getId());
 		String[] login = loginInfo.split("@"); // username@password
 		String query = "SELECT * FROM zerli.users;";
 		try {
@@ -23,10 +22,7 @@ public class Query {
 				boolean Loggedin = rs.getBoolean("LoggedIn");
 				if (username.equals(login[0]) && password.equals(login[1]) && !Loggedin) {
 					String ID = rs.getString("id");
-					System.out.println(idClient);
 					query = ("UPDATE users SET LoggedIn=true WHERE id=" + ID + ";");
-					st.executeUpdate(query);
-					query = ("UPDATE users SET id="+idClient+" WHERE id=" + ID + ";");
 					st.executeUpdate(query);
 					return true;
 				}
@@ -52,27 +48,29 @@ public class Query {
 		}
 	}
 
-	public static boolean Disconnect(ConnectionToClient client) {
-		String query = ("SELECT * FROM zerli.users;");
-		//System.out.println(client.getId());
+	public static boolean Disconnect(String loginInfo,ConnectionToClient client) {
+		String[] login = loginInfo.split("@"); // username@password
+		String query = "SELECT * FROM zerli.users;";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				int ID = rs.getInt("id");
-				
-				if (ID == client.getId()) {
-					//System.out.println(ID+"Elad");
-					String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
-					st.executeUpdate(query1);
+				String username = rs.getString("Username");
+				String password = rs.getString("Password");
+				boolean Loggedin = rs.getBoolean("LoggedIn");
+				if (username.equals(login[0]) && password.equals(login[1]) && Loggedin) {
+					String ID = rs.getString("id");
+					query = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
+					st.executeUpdate(query);
 					return true;
 				}
 			}
-
 			return false;
+
 		} catch (SQLException e) {
 			return false;
 		}
+
 	}
 
 	public static String GetOrders() {

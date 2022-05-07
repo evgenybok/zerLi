@@ -11,10 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class PaymentScreenController {
+
+    @FXML
+    private ImageView PaymentImage;
 
     @FXML
     private ResourceBundle resources;
@@ -66,5 +71,7 @@ public class PaymentScreenController {
         assert finish != null : "fx:id=\"finish\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
         assert txtID != null : "fx:id=\"txtID\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
 
+        Image paymentimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/payment1.jpg")));
+        PaymentImage.setImage(paymentimage);
     }
 }

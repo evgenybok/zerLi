@@ -19,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -26,6 +28,10 @@ import ocsf.server.ConnectionToClient;
 
 public class LoginScreenController {
 	ConnectionToClient client;
+
+	@FXML
+	private ImageView LoginImage;
+
 	@FXML
 	private Button Login;
 
@@ -40,6 +46,23 @@ public class LoginScreenController {
 
 	@FXML
 	private Pane LoginStage;
+
+	public static String username;
+	public static String password;
+
+
+	@FXML
+	void initialize() {
+		assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
+		LoginImage.setImage(loginImage);
+
+	}
 
 	@FXML
 	void ExitLogin(MouseEvent event) {
@@ -62,6 +85,7 @@ public class LoginScreenController {
 			return;
 		}
 
+
 		login.append(Username.getText());
 		login.append("@");
 		login.append(Password.getText());
@@ -75,6 +99,8 @@ public class LoginScreenController {
 		}
 		;
 
+		username=Username.getText();
+		password=Password.getText();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

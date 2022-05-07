@@ -26,12 +26,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import logic.Order;
 
 public class OrderScreenController {
+
+	@FXML
+	private ImageView OrderScreenImage;
 
 	@FXML
 	private ResourceBundle resources;
@@ -158,6 +163,9 @@ public class OrderScreenController {
 	@FXML
 	void initialize() {
 
+		Image orderscreenimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerSubScreen.jpg")));
+		OrderScreenImage.setImage(orderscreenimage);
+
 		chat.accept(new Message(MessageType.GET_ORDERS, null));
 		String data = AnalyzeMessageFromServer.getData();
 		while (!data.equals("&")) {
@@ -204,6 +212,7 @@ public class OrderScreenController {
 		assert txtColor != null : "fx:id=\"txtColor\" was not injected: check your FXML file 'OrderScreen.fxml'.";
 		assert txtOrder != null : "fx:id=\"txtOrder\" was not injected: check your FXML file 'OrderScreen.fxml'.";
 		assert txtDate != null : "fx:id=\"txtDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+
 
 	}
 }

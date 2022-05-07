@@ -16,10 +16,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class CustomerScreenController {
+
+    @FXML
+    private ImageView CustomerScreenImage;
 
     @FXML
     private Button viewCatalog;
@@ -45,17 +50,26 @@ public class CustomerScreenController {
     @FXML
     private Button Logout;
 
+
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
-		chat.accept(new Message(MessageType.LOGOUT, null));
+        StringBuilder login = new StringBuilder();
+        String truelogin = null;
+        login.append(LoginScreenController.username);
+        login.append("@");
+        login.append(LoginScreenController.password);
+        truelogin = login.toString();
+
+		chat.accept(new Message(MessageType.LOGOUT, truelogin));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
 		loginStage.setScene(scene);
 		loginStage.show();
-		loginStage.centerOnScreen();  	
+		loginStage.centerOnScreen();
+
     }
 
     @FXML
@@ -89,6 +103,8 @@ public class CustomerScreenController {
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
+        Image customerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerScreen.jpeg")));
+        CustomerScreenImage.setImage(customerImage);
 
     }
 }

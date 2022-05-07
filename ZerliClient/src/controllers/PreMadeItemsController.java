@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -38,6 +39,9 @@ public class PreMadeItemsController {
 
     @FXML
     private ImageView toCart;
+
+    @FXML
+    private ImageView PreMadeImage;
 
 
     @FXML
@@ -96,5 +100,10 @@ public class PreMadeItemsController {
         assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
         assert update != null : "fx:id=\"update\" was not injected: check your FXML file 'PreMadeItems.fxml'.";
 
+        Image premade = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/catalogitems.jpg")));
+        PreMadeImage.setImage(premade);
+
+        Image cart = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cart.jpg")));
+        toCart.setImage(cart);
     }
 }

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -50,6 +51,10 @@ public class SelfAssemblyItemsController {
 
     @FXML
     private ImageView toCart;
+
+    @FXML
+    private ImageView SelfAssemblyImage;
+
 
 
     @FXML
@@ -96,6 +101,13 @@ public class SelfAssemblyItemsController {
         assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
         assert update != null : "fx:id=\"update\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'SelfAssemblyItems.fxml'.";
+
+        Image selfassembly = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/catalogitems.jpg")));
+        SelfAssemblyImage.setImage(selfassembly);
+
+        Image cart = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cart.jpg")));
+        toCart.setImage(cart);
+
 
     }
 }

@@ -12,11 +12,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CheckoutScreenController {
+
+    @FXML
+    private ImageView CheckoutImage;
 
     @FXML
     private ResourceBundle resources;
@@ -90,6 +95,10 @@ public class CheckoutScreenController {
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
         assert totalSum != null : "fx:id=\"totalSum\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
         assert remove != null : "fx:id=\"remove\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
+
+        Image checkoutimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/checkout.jpg")));
+        CheckoutImage.setImage(checkoutimage);
+
 
     }
 }

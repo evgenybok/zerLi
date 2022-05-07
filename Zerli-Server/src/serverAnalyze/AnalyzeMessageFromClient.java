@@ -22,18 +22,16 @@ public class AnalyzeMessageFromClient {
 
 		case LOGIN:
 			if (Query.Login((String) receivedMessage.getMessageData(), client)) {
-				System.out.println("Success");
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} else
 			{
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				System.out.println("No Success");
 			}
 			
 			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(), null);
 
 		case LOGOUT:
-			if (Query.Disconnect(client))
+			if (Query.Disconnect((String) receivedMessage.getMessageData(), client))
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			else
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);

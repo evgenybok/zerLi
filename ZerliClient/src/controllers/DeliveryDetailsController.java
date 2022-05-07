@@ -12,10 +12,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class DeliveryDetailsController {
+
+    @FXML
+    private ImageView DeliveryImage;
 
     @FXML
     private ResourceBundle resources;
@@ -72,6 +77,7 @@ public class DeliveryDetailsController {
         assert txtPhone != null : "fx:id=\"txtPhone\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
         assert txtName != null : "fx:id=\"txtName\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
         assert deliveryDate != null : "fx:id=\"deliveryDate\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-
+        Image deliveryimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/deliverydetails.jpg")));
+        DeliveryImage.setImage(deliveryimage);
     }
 }

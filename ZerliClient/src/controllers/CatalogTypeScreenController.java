@@ -11,10 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class CatalogTypeScreenController {
+
+    @FXML
+    private ImageView CatalogTypeImage;
 
     @FXML
     private ResourceBundle resources;
@@ -86,6 +91,8 @@ public class CatalogTypeScreenController {
         assert selfAss != null : "fx:id=\"selfAss\" was not injected: check your FXML file 'CatalogTypeScreen.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'CatalogTypeScreen.fxml'.";
         assert checkout != null : "fx:id=\"checkout\" was not injected: check your FXML file 'CatalogTypeScreen.fxml'.";
+        Image CatalogtypeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/catalogtype.jpg")));
+        CatalogTypeImage.setImage(CatalogtypeImage);
 
     }
 }

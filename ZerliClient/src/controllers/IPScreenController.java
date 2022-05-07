@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -24,6 +26,9 @@ import ocsf.server.ConnectionToClient;
 public class IPScreenController {
 
 	Stage primaryStage;
+
+	@FXML
+	private ImageView IPimage;
 
 	@FXML
 	private AnchorPane ServerStage;
@@ -46,6 +51,18 @@ public class IPScreenController {
 	public static ClientController chat;
 
 	ConnectionToClient client;
+
+	@FXML
+	void initialize() {
+		assert Confirm != null : "fx:id=\"Confirm\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		assert IPimage != null : "fx:id=\"IPimage\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		assert ServerStage != null : "fx:id=\"ServerStage\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		assert lblConnect != null : "fx:id=\"lblConnect\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		assert lblIP != null : "fx:id=\"lblIP\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		assert txtip != null : "fx:id=\"txtip\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
+		Image ipimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
+		IPimage.setImage(ipimage);
+	}
 
 	@FXML
 	void btnCnf(MouseEvent event) throws IOException {
