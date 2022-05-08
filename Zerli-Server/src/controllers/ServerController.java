@@ -140,15 +140,16 @@ public class ServerController extends JFrame {
 
 	@FXML
 	void ClickOnConnect(MouseEvent event) throws UnknownHostException {
-		ServerConnection.startServer(null, this);
-		String username, password;
+		ServerConnection.startServer(Port.getText().toString(), this);
+		String username, password,dbName;
 		if (DBPassword.getText().isEmpty()) {
 			addText("Fill Password!");
 		} else {
-			username = "root";
+			username = DBUser.getText().toString();
 			password = DBPassword.getText().toString();
+			dbName=DBName.getText().toString();
 			try {
-				Connection connection = ConnectToDB.connect(username, password);
+				Connection connection = ConnectToDB.connect(username, password,dbName);
 				Disconnect.setDisable(false);
 				Connect.setDisable(true);
 				Query.DisconnectAll();	//Disconnects all currently logged in users.

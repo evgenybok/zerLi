@@ -17,7 +17,7 @@ public class ConnectToDB extends ServerController{
 	private static final long serialVersionUID = -2568961513728853135L;
 	public static Connection conn;
 
-	public static Connection connect(String UserName, String Password) throws Exception {
+	public static Connection connect(String UserName, String Password,String connection) throws Exception {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			EchoServer.serverController.addText("Driver definition succeed");
@@ -28,7 +28,7 @@ public class ConnectToDB extends ServerController{
 		}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/zerli?serverTimezone=IST", UserName,
+			conn = DriverManager.getConnection(connection, UserName,
 					Password);
 
 			EchoServer.serverController.addText("SQL Connection succeed");

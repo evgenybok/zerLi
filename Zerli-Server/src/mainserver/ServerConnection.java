@@ -19,7 +19,7 @@ public class ServerConnection {
 	 * @param serverController
 	 */
 	public static void startServer(String userport, ServerController serverController) {
-		int port = 0;
+		int port;
 		try {
 			port = Integer.parseInt(userport);// convert string to integer
 		} catch (Throwable t) {

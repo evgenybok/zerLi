@@ -70,6 +70,7 @@ public class IPScreenController {
 		try {
 			chat = new ClientController(txtip.getText(), 5555);
 		} catch (Exception e) {
+
 			exit(1);
 		}
 
