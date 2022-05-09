@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerScreenController">
    <children>
       <ImageView fitHeight="918.0" fitWidth="1075.0" pickOnBounds="true">
          <image>
-            <Image url="@../flowers.jpg" />
+            <Image url="@../../images/images/CustomerScreen.jpeg" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -37,7 +37,7 @@
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="294.0" text="View Reports">
+                  <Button fx:id="viewReports" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="44.0" prefWidth="294.0" text="View Reports">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -62,11 +62,11 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Text layoutX="45.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(User Name)" textAlignment="CENTER" wrappingWidth="169.13671875">
+            <Text fx:id="userName" layoutX="45.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(User Name)" textAlignment="CENTER" wrappingWidth="169.13671875">
                <font>
                   <Font size="22.0" />
                </font></Text>
-            <Text layoutX="41.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account's status)" textAlignment="CENTER" wrappingWidth="178.0">
+            <Text fx:id="accountStatus" layoutX="41.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account's status)" textAlignment="CENTER" wrappingWidth="178.0">
                <font>
                   <Font size="22.0" />
                </font></Text>
@@ -80,7 +80,7 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label layoutX="57.0" layoutY="66.0" text="(Account Type)" textAlignment="CENTER">
+            <Label fx:id="accountType" layoutX="57.0" layoutY="66.0" text="(Account Type)" textAlignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
