@@ -1,12 +1,24 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+import communication.Message;
+import communication.MessageType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CEOScreenController {
 
@@ -44,7 +56,23 @@ public class CEOScreenController {
     private Label accountType;
 
     @FXML
-    void btnLogout(MouseEvent event) {
+    void btnLogout(MouseEvent event) throws IOException {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+        StringBuilder login = new StringBuilder();
+        String truelogin = null;
+        login.append(LoginScreenController.username);
+        login.append("@");
+        login.append(LoginScreenController.password);
+        truelogin = login.toString();
+
+		chat.accept(new Message(MessageType.LOGOUT, truelogin));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		loginStage.setTitle("Login Screen");
+		loginStage.setScene(scene);
+		loginStage.show();
+		loginStage.centerOnScreen();
 
     }
 
