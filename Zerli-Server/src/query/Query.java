@@ -6,34 +6,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import logic.Order;
 import ocsf.server.ConnectionToClient;
 
 public class Query {
 
-	public static boolean Login(String loginInfo, ConnectionToClient client) {
+	public static String Login(String loginInfo, ConnectionToClient client) {
 		String[] login = loginInfo.split("@"); // username@password
-		String query = "SELECT * FROM zerli.users;";
+		String query ="UPDATE users SET LoggedIn=true WHERE Username='"+login[0]+"' AND Password='"+login[1]+"'";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				String username = rs.getString("Username");
-				String password = rs.getString("Password");
-				boolean Loggedin = rs.getBoolean("LoggedIn");
-				if (username.equals(login[0]) && password.equals(login[1]) && !Loggedin) {
-					String ID = rs.getString("id");
-					query = ("UPDATE users SET LoggedIn=true WHERE id=" + ID + ";");
-					st.executeUpdate(query);
-					return true;
-				}
+			int rs = st.executeUpdate();
+			if(rs==-1)
+				return null;
+			String query2 ="SELECT Role FROM zerli.users WHERE Username='"+login[0]+"'";
+			PreparedStatement st2= ConnectToDB.conn.prepareStatement(query2);
+			ResultSet rs2=st2.executeQuery();
+			while (rs2.next()) {
+				String role = rs2.getString("Role");
+				return role;
 			}
-			return false;
 
 		} catch (SQLException e) {
-			return false;
+			return null;
 		}
+		return null;
 	}
-
 	public static void DisconnectAll() {
 		String query = ("SELECT * FROM zerli.users;");
 		try {
@@ -81,7 +79,7 @@ public class Query {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int OrderNumber = rs.getInt("orderNumber");
-				int Price = rs.getInt("price");
+				double Price = rs.getDouble("price");
 				String GreetingCard = rs.getString("greetingCard");
 				String color = rs.getString("Color");
 				String D_Order = rs.getString("dOrder");
@@ -109,9 +107,10 @@ public class Query {
 			if (res != null) {
 				return res.toString();
 			}
+			
 
 		} catch (SQLException e) {
-
+			
 		}
 		return ("ERROR");
 	}

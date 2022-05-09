@@ -98,16 +98,40 @@ public class LoginScreenController {
 
 		}
 		;
-
+		String Role=AnalyzeMessageFromServer.getData();
+		String roleScreen=caseRoleScreen(Role);
 		username=Username.getText();
 		password=Password.getText();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(roleScreen)));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer Screen");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
+	}
+	public String caseRoleScreen(String Role)
+	{
+		switch(Role)
+		{
+		case "customer":
+			return "/fxml/CustomerScreen.fxml";
+		case "worker":
+			return "!!!";
+		case "Delivery":
+			return "!!!!";
+		case "branch manager":
+			return "!!!!!";
+		case "customer specialist":	
+			return "!!!";
+		case "customer service":
+			return "!!!";
+		case "ceo":
+			return "/fxml/CEOScreen.fxml";
+		default:
+			return "error";
+		}
+		
 	}
 
 }

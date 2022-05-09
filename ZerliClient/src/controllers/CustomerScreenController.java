@@ -103,8 +103,8 @@ public class CustomerScreenController {
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        Image customerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerScreen.jpeg")));
-        CustomerScreenImage.setImage(customerImage);
+       // Image customerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerScreen.jpeg")));
+        //CustomerScreenImage.setImage(customerImage);
 
     }
 }

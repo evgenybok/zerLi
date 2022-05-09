@@ -1,13 +1,17 @@
 package clientanalyze;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import communication.Message;
 import communication.MessageAnswer;
 import javafx.application.Platform;
+import logic.Order;
 
 public class AnalyzeMessageFromServer {
 	private static String res;
+
 
 	public static void Message(Object msg) throws Exception {
 		Message receivedMessage = (Message) msg;
@@ -34,7 +38,7 @@ public class AnalyzeMessageFromServer {
 
 		case LOGIN:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = null;
+				res = receivedMessage.getMessageData().toString();
 				break;
 			} else if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
 				res = "false";

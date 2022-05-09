@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1258.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1258.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderScreenController">
 	<children>
-      <ImageView fitHeight="562.0" fitWidth="1258.0" pickOnBounds="true">
+      <ImageView fx:id="OrderScreenImage" fitHeight="562.0" fitWidth="1258.0" pickOnBounds="true">
          <image>
             <Image url="@../../images/images/CustomerSubScreen.jpg" />
          </image>
