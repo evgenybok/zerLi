@@ -11,27 +11,7 @@ import ocsf.server.ConnectionToClient;
 
 public class Query {
 
-	public static String Login(String loginInfo, ConnectionToClient client) {
-		String[] login = loginInfo.split("@"); // username@password
-		String query ="UPDATE users SET LoggedIn=true WHERE Username='"+login[0]+"' AND Password='"+login[1]+"'";
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			int rs = st.executeUpdate();
-			if(rs==-1)
-				return null;
-			String query2 ="SELECT Role FROM zerli.users WHERE Username='"+login[0]+"'";
-			PreparedStatement st2= ConnectToDB.conn.prepareStatement(query2);
-			ResultSet rs2=st2.executeQuery();
-			while (rs2.next()) {
-				String role = rs2.getString("Role");
-				return role;
-			}
 
-		} catch (SQLException e) {
-			return null;
-		}
-		return null;
-	}
 	public static void DisconnectAll() {
 		String query = ("SELECT * FROM zerli.users;");
 		try {
@@ -69,114 +49,6 @@ public class Query {
 			return false;
 		}
 
-	}
-
-	public static String GetOrders() {
-		String query = ("SELECT * FROM zerli.orders;");
-		StringBuilder res = new StringBuilder();
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				int OrderNumber = rs.getInt("orderNumber");
-				double Price = rs.getDouble("price");
-				String GreetingCard = rs.getString("greetingCard");
-				String color = rs.getString("Color");
-				String D_Order = rs.getString("dOrder");
-				String Shop = rs.getString("shop");
-				String Date = rs.getString("date");
-				String OrderDate = rs.getString("orderDate");
-				res.append(OrderNumber);
-				res.append("#");
-				res.append(Price);
-				res.append("#");
-				res.append(GreetingCard);
-				res.append("#");
-				res.append(color);
-				res.append("#");
-				res.append(D_Order);
-				res.append("#");
-				res.append(Shop);
-				res.append("#");
-				res.append(Date);
-				res.append("#");
-				res.append(OrderDate);
-				res.append("@");
-			}
-			res.append("&");
-			if (res != null) {
-				return res.toString();
-			}
-			
-
-		} catch (SQLException e) {
-			
-		}
-		return ("ERROR");
-	}
-
-	public static boolean Update(String updatedData) {
-		String[] str = updatedData.split("#", 3);
-		int ordNum = Integer.parseInt(str[0]);
-		String color = str[1];
-		String date = str[2];
-		String query = ("SELECT * FROM zerli.orders;");
-
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				int num = rs.getInt("orderNumber");
-				if (num == ordNum) {
-					String color1 = rs.getString("Color");
-					String date1 = rs.getString("date");
-					if (color.equals("")) {
-						color = color1;
-					}
-					if (date.equals("")) {
-						date = date1;
-					}
-
-					String query1 = ("UPDATE zerli.orders SET Color=" + "\"" + color + "\"" + " , " + "Date=" + "\""
-							+ date + "\"" + " WHERE orderNumber = " + ordNum + ";");
-					st.executeUpdate(query1);
-					return true;
-				}
-
-			}
-		} catch (SQLException e) {
-			return false;
-		}
-		return false;
-	}
-
-	public static String getSelectedOrder(int orderNumber) {
-		String query = ("SELECT * FROM zerli.iteminorder;");
-		StringBuilder res = new StringBuilder();
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			res.append(orderNumber);
-			res.append("#");
-			while (rs.next()) {
-				int OrderID = rs.getInt("orderID");
-				int itemID = rs.getInt("itemID");
-				int amount = rs.getInt("amount");
-				if (orderNumber == OrderID) {
-					res.append(itemID);
-					res.append("#");
-					res.append(amount);
-					res.append("#");
-				}
-			}
-			// ordernum, itemid, amount, itemid, amout
-			res.append("@");
-			if (res.toString().equals("@"))
-				return null; // no details
-			return res.toString();
-		} catch (SQLException e) {
-			return "Error";
-		}
 	}
 
 	public static String getItemName(String data) {

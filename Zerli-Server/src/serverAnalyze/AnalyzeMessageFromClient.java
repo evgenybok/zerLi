@@ -5,6 +5,8 @@ import communication.MessageAnswer;
 import communication.MessageType;
 import controllers.ConnectedClientsController;
 import ocsf.server.ConnectionToClient;
+import query.GetOrderQuery;
+import query.LoginQuery;
 import query.Query;
 
 public class AnalyzeMessageFromClient {
@@ -21,7 +23,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			String role=Query.Login((String) receivedMessage.getMessageData(), client);
+			String role= LoginQuery.Login((String) receivedMessage.getMessageData(), client);
 			if (role!=null) {
 				receivedMessage.setMessageData(role);
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -40,14 +42,14 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
 
 		case UPDATE:
-			if (Query.Update((String) receivedMessage.getMessageData()))
+			if (GetOrderQuery.Update((String) receivedMessage.getMessageData()))
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			else
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			String orders = Query.GetOrders();
+			String orders = GetOrderQuery.GetOrders();
 			if (orders.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); // Not implemented
@@ -60,7 +62,7 @@ public class AnalyzeMessageFromClient {
 			}
 		case GET_SELECTED_ORDER:
 			int ordnum=(int) receivedMessage.getMessageData();
-			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
+			String order = GetOrderQuery.getSelectedOrder((int) receivedMessage.getMessageData());
 			order = Query.getItemName(order);
 			if (order.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);

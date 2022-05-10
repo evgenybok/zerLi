@@ -113,8 +113,10 @@ public class LoginScreenController {
 	{
 		switch(Role)
 		{
-		case "customer":
+		case "customer@Active":
 			return "/fxml/CustomerScreen.fxml";
+		case "customer@Frozen":
+			return "/fxml/CustomerScreen.fxml";//New screen or disable add item button.
 		case "worker":
 			return "/fxml/WorkerScreen.fxml";
 		case "Delivery":
