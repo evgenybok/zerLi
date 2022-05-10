@@ -64,7 +64,8 @@ public class AnalyzeMessageFromServer {
 
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = (String) receivedMessage.getMessageData();
+				//res = (String) receivedMessage.getMessageData();
+				Object list2= receivedMessage.getMessageData();
 			}
 			else
 			{
@@ -88,7 +89,7 @@ public class AnalyzeMessageFromServer {
 		}
 	}
 
-	public static String getData() {
+	public static Object getData() {
 		return res;
 	}
 

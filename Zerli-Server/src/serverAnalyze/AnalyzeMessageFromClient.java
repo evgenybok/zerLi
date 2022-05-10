@@ -49,8 +49,9 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			String orders = GetOrderQuery.GetOrders();
-			if (orders.equals("ERROR")) {
+			//String orders = GetOrderQuery.GetOrders();
+			Object orders = GetOrderQuery.GetOrders();
+			/*if (orders.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); // Not implemented
 																										// yet
@@ -59,7 +60,17 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(orders);
 				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 						receivedMessage.getMessageData());
+			}*/
+			if (orders==null) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); // Not implemented
+				// yet
+			} else {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(orders);
+				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),receivedMessage.getMessageData());
 			}
+
 		case GET_SELECTED_ORDER:
 			int ordnum=(int) receivedMessage.getMessageData();
 			String order = GetOrderQuery.getSelectedOrder((int) receivedMessage.getMessageData());

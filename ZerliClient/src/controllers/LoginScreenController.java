@@ -97,7 +97,7 @@ public class LoginScreenController {
 
 		}
 		;
-		String Role=AnalyzeMessageFromServer.getData();
+		String Role=AnalyzeMessageFromServer.getData().toString();
 		String roleScreen=caseRoleScreen(Role);
 		username=Username.getText();
 		password=Password.getText();

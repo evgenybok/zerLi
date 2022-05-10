@@ -1,14 +1,20 @@
 package query;
 
+import logic.Order;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class GetOrderQuery {
 
-    public static String GetOrders() {
+
+
+    public static Object GetOrders() {
+        ArrayList<Order> list=new ArrayList<>();
         String query = ("SELECT * FROM zerli.orders;");
-        StringBuilder res = new StringBuilder();
+        //StringBuilder res = new StringBuilder();
         try {
             PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
             ResultSet rs = st.executeQuery();
@@ -21,7 +27,10 @@ public class GetOrderQuery {
                 String Shop = rs.getString("shop");
                 String Date = rs.getString("date");
                 String OrderDate = rs.getString("orderDate");
-                res.append(OrderNumber);
+                String Status=rs.getString("Status");
+                String SupplyType=rs.getString("SupplyType");
+                list.add(new Order(OrderNumber,Price,GreetingCard,color,D_Order,Shop,Date,OrderDate,Status,SupplyType));
+                /*res.append(OrderNumber);
                 res.append("#");
                 res.append(Price);
                 res.append("#");
@@ -36,17 +45,22 @@ public class GetOrderQuery {
                 res.append(Date);
                 res.append("#");
                 res.append(OrderDate);
-                res.append("@");
+                res.append("@");*/
             }
-            res.append("&");
-            if (res != null) {
+            // res.append("&");
+            if(list.size()!=0)
+            {
+                return list;
+            }
+            /*if (res != null) {
                 return res.toString();
-            }
+            }*/
 
         } catch (SQLException e) {
 
         }
-        return ("ERROR");
+       // return ("ERROR");
+        return null;
     }
 
     public static boolean Update(String updatedData) {
