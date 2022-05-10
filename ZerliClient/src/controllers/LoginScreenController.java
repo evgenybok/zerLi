@@ -50,7 +50,6 @@ public class LoginScreenController {
 	public static String username;
 	public static String password;
 
-
 	@FXML
 	void initialize() {
 		assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";

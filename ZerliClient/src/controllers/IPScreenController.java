@@ -3,7 +3,9 @@ package controllers;
 import static java.lang.System.exit;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import communication.Message;
 import communication.MessageType;
@@ -18,63 +20,57 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.ClientController;
 import ocsf.server.ConnectionToClient;
 
 public class IPScreenController {
 
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+    
+    @FXML
+    private ImageView flowerImage;
+
+    @FXML
+    private BorderPane ServerStage;
+
+    @FXML
+    private Label lblZerli;
+
+    @FXML
+    private Label lblIPConnect;
+
+    @FXML
+    private Label lblEnterIP;
+
+    @FXML
+    private TextField txtIP;
+
+    @FXML
+    private Button Connect;
+
 	Stage primaryStage;
-
-	@FXML
-	private ImageView IPimage;
-
-	@FXML
-	private AnchorPane ServerStage;
-
-	@FXML
-	private Button exitBtn;
-
-	@FXML
-	private Button Confirm;
-
-	@FXML
-	private Label lblConnect;
-
-	@FXML
-	private Label lblIP;
-
-	@FXML
-	private TextField txtip;
 
 	public static ClientController chat;
 
 	ConnectionToClient client;
-
-	@FXML
-	void initialize() {
-		assert Confirm != null : "fx:id=\"Confirm\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		assert IPimage != null : "fx:id=\"IPimage\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		assert ServerStage != null : "fx:id=\"ServerStage\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		assert lblConnect != null : "fx:id=\"lblConnect\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		assert lblIP != null : "fx:id=\"lblIP\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		assert txtip != null : "fx:id=\"txtip\" was not injected: check your FXML file 'IPConfirmationScreen.fxml'.";
-		Image ipimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
-		IPimage.setImage(ipimage);
-	}
-
-	@FXML
-	void btnCnf(MouseEvent event) throws IOException {
+	
+    @FXML
+    void btnConnect(MouseEvent event) throws IOException {
 
 		try {
-			chat = new ClientController(txtip.getText(), 5555);
+			chat = new ClientController(txtIP.getText(), 5555);
 		} catch (Exception e) {
 
 			exit(1);
 		}
 
-		chat.accept(new Message(MessageType.CONFIRM_IP, txtip.getText()));
+		chat.accept(new Message(MessageType.CONFIRM_IP, txtIP.getText()));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -82,9 +78,36 @@ public class IPScreenController {
 		LoginStage.setScene(scene);
 		LoginStage.show();
 		LoginStage.centerOnScreen();
+    }
+
+    @FXML
+    void initialize() {
+		//Image ipimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
+		//IPimage.setImage(ipimage);
+    	Image floImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IPflower.png")));
+    	flowerImage.setImage(floImage);
+        assert ServerStage != null : "fx:id=\"ServerStage\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert lblZerli != null : "fx:id=\"lblZerli\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert lblIPConnect != null : "fx:id=\"lblIPConnect\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert lblEnterIP != null : "fx:id=\"lblEnterIP\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert txtIP != null : "fx:id=\"txtIP\" was not injected: check your FXML file 'IPscreen.fxml'.";
+        assert Connect != null : "fx:id=\"Connect\" was not injected: check your FXML file 'IPscreen.fxml'.";
+
+
+    }
+	public void start(Stage primaryStage) throws Exception {
+		this.primaryStage = primaryStage;
+		Parent root = FXMLLoader
+				.load(Objects.requireNonNull(getClass().getResource("/fxml/IPscreen.fxml")));
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("Connect To Server");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.centerOnScreen();
 
 	}
-
+	/*
 	@FXML
 	void ExitApp(MouseEvent event) throws IOException {
 		Stage stage;
@@ -94,16 +117,5 @@ public class IPScreenController {
 		System.exit(1);
 
 	}
-
-	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
-		Parent root = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/IPConfirmationScreen.fxml")));
-		Scene scene = new Scene(root);
-		primaryStage.setTitle("Connect To Server");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		primaryStage.centerOnScreen();
-
-	}
+	*/
 }
