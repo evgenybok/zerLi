@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -115,8 +116,9 @@ public class CustomerScreenController {
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-       // Image customerImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerScreen.jpeg")));
-        //CustomerScreenImage.setImage(customerImage);
+        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
+        CustomerScreenImage.setImage(homeImage);
+        
 
     }
 }

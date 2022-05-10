@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controllers.WorkerScreenController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1075.0">
+         <children>
+            <ImageView fx:id="WrokerScreenImage" fitHeight="945.0" fitWidth="1095.0" layoutX="-17.0" layoutY="-20.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/images/HomeScreen.jpeg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <Blend />
+               </effect>
+            </ImageView>
+            <AnchorPane layoutX="439.0" layoutY="370.0" prefHeight="522.0" prefWidth="492.0" />
+            <AnchorPane layoutX="211.0" layoutY="233.0" prefHeight="396.0" prefWidth="260.0">
+               <children>
+                  <ImageView fitHeight="475.0" fitWidth="268.0" layoutX="-8.0" pickOnBounds="true" />
+                  <Label fx:id="lblUserPortal" alignment="CENTER" layoutX="51.0" layoutY="4.0" prefHeight="60.0" prefWidth="151.0" text="User Portal" textAlignment="JUSTIFY" underline="true">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStartMsg" layoutX="69.0" layoutY="125.0" text="Welcome!">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="userName" layoutX="45.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(User Name)" textAlignment="CENTER" wrappingWidth="169.13671875">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="accountStatus" layoutX="41.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account's status)" textAlignment="CENTER" wrappingWidth="178.0">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="Logout" layoutX="26.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="201.0" style="-fx-background-radius: 20;" text="Logout">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lblStatus" layoutX="37.0" layoutY="252.0" text="Account Status:">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="accountType" layoutX="57.0" layoutY="66.0" text="(Account Type)" textAlignment="CENTER">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <VBox layoutX="596.0" layoutY="258.0" prefHeight="268.0" prefWidth="374.0" spacing="30.0" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="596.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="258.0">
+               <children>
+                  <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="44.0" prefWidth="294.0" text="Update Catalog">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="itemsOnSale" mnemonicParsing="false" onMouseClicked="#btnItemsOnSale" prefHeight="44.0" prefWidth="294.0" text="Items On Sale">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

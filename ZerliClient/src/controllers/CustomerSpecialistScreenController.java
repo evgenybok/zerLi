@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,6 +29,9 @@ public class CustomerSpecialistScreenController {
 
     @FXML
     private URL location;
+    
+    @FXML
+    private ImageView CustomerSpecialistScreenImage;
 
     @FXML
     private Button viewReports;
@@ -91,6 +96,10 @@ public class CustomerSpecialistScreenController {
 		this.accountType.setText("Customer Specialist"); // accountType - may be handled from DB
 		this.userName.setText(LoginScreenController.username); // userName
 		
+        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
+        CustomerSpecialistScreenImage.setImage(homeImage);
+        
+        assert CustomerSpecialistScreenImage != null : "fx:id=\"CustomerSpecialistScreenImage\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
         assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
         assert viewQuaReports != null : "fx:id=\"viewQuaReports\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";

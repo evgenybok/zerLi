@@ -14,12 +14,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CourierScreenController {
-
+    @FXML
+    private ImageView CourierScreenImage;
+    
     @FXML
     private Button updateOrderStatus;
 
@@ -76,6 +80,10 @@ public class CourierScreenController {
     	this.accountType.setText("Courier"); //accountType - may be handled from DB
     	this.userName.setText(LoginScreenController.username); //userName
     	
+        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
+        CourierScreenImage.setImage(homeImage);
+    	
+        assert CourierScreenImage != null : "fx:id=\"CourierScreenImage\" was not injected: check your FXML file 'CourierScreen.fxml'.";
         assert updateOrderStatus != null : "fx:id=\"updateOrderStatus\" was not injected: check your FXML file 'CourierScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CourierScreen.fxml'.";
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CourierScreen.fxml'.";
@@ -84,6 +92,7 @@ public class CourierScreenController {
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CourierScreen.fxml'.";
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CourierScreen.fxml'.";
         assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'CourierScreen.fxml'.";
+
 
     }
 

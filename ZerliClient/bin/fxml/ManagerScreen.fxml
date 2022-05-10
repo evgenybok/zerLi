@@ -14,9 +14,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerScreenController">
    <children>
-      <ImageView fitHeight="918.0" fitWidth="1075.0" pickOnBounds="true">
+      <ImageView fx:id="ManagerScreenImage" fitHeight="918.0" fitWidth="1075.0" pickOnBounds="true">
          <image>
-            <Image url="@../../images/images/CustomerScreen.jpeg" />
+            <Image url="@../../images/images/HomeScreen.jpeg" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

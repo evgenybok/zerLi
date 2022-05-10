@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class ManagerScreenController {
+public class WorkerScreenController {
 
     @FXML
     private ResourceBundle resources;
@@ -31,13 +31,7 @@ public class ManagerScreenController {
     private URL location;
 
     @FXML
-    private ImageView ManagerScreenImage;
-
-    @FXML
-    private Button viewOrders;
-
-    @FXML
-    private Button viewReports;
+    private ImageView WrokerScreenImage;
 
     @FXML
     private Label lblUserPortal;
@@ -61,6 +55,17 @@ public class ManagerScreenController {
     private Label accountType;
 
     @FXML
+    private Button updateCatalog;
+
+    @FXML
+    private Button itemsOnSale;
+
+    @FXML
+    void btnItemsOnSale(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnLogout(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
         StringBuilder login = new StringBuilder();
@@ -78,39 +83,32 @@ public class ManagerScreenController {
 		loginStage.setScene(scene);
 		loginStage.show();
 		loginStage.centerOnScreen();
-
     }
 
     @FXML
-    void btnViewOrders(MouseEvent event) {
-
-    }
-
-    @FXML
-    void btnViewReports(MouseEvent event) {
+    void btnUpdateCatalog(MouseEvent event) {
 
     }
 
     @FXML
     void initialize() {
     	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
-    	this.accountType.setText("Branch Manager"); //accountType - may be handled from DB
+    	this.accountType.setText("Store Worker"); //accountType - may be handled from DB
     	this.userName.setText(LoginScreenController.username); //userName
     	
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
-        ManagerScreenImage.setImage(homeImage);
+        WrokerScreenImage.setImage(homeImage);
         
-        assert ManagerScreenImage != null : "fx:id=\"ManagerScreenImage\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-
+        assert WrokerScreenImage != null : "fx:id=\"WrokerScreenImage\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert updateCatalog != null : "fx:id=\"updateCatalog\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
+        assert itemsOnSale != null : "fx:id=\"itemsOnSale\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
 
     }
 }

@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,6 +29,9 @@ public class CEOScreenController {
 
     @FXML
     private URL location;
+    
+	@FXML
+	private ImageView CEOScreenImage;
 
     @FXML
     private Button viewReports;
@@ -91,6 +96,11 @@ public class CEOScreenController {
     	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
     	this.accountType.setText("CEO"); //accountType - may be handled from DB
     	this.userName.setText(LoginScreenController.username); //userName
+    	
+        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
+        CEOScreenImage.setImage(homeImage);
+        
+        assert CEOScreenImage != null : "fx:id=\"CEOScreenImage\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert viewQuaReports != null : "fx:id=\"viewQuaReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CEOScreen.fxml'.";
@@ -100,6 +110,7 @@ public class CEOScreenController {
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'CEOScreen.fxml'.";
+
 
     }
 }
