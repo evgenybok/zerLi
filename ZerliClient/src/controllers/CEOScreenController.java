@@ -53,7 +53,7 @@ public class CEOScreenController {
     private Label lblStatus;
 
     @FXML
-    private Label accountType;
+    private Text accountType;
 
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
@@ -88,6 +88,9 @@ public class CEOScreenController {
 
     @FXML
     void initialize() {
+    	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
+    	this.accountType.setText("CEO"); //accountType - may be handled from DB
+    	this.userName.setText(LoginScreenController.username); //userName
         assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert viewQuaReports != null : "fx:id=\"viewQuaReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CEOScreen.fxml'.";

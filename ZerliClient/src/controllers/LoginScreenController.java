@@ -104,11 +104,11 @@ public class LoginScreenController {
 		password=Password.getText();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(roleScreen)));
 		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Home");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
+		Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		homeStage.setTitle("Home");
+		homeStage.setScene(scene);
+		homeStage.show();
+		homeStage.centerOnScreen();
 	}
 	public String caseRoleScreen(String Role)
 	{

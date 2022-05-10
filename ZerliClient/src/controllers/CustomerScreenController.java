@@ -16,9 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CustomerScreenController {
@@ -38,6 +38,10 @@ public class CustomerScreenController {
     @FXML
     private Button viewOrders;
 
+
+    @FXML
+    private Label lblStatus;
+
     @FXML
     private Label lblUserPortal;
 
@@ -45,11 +49,16 @@ public class CustomerScreenController {
     private Label lblStartMsg;
 
     @FXML
-    private Label lblStatus;
+    private Text userName;
+
+    @FXML
+    private Text accountStatus;
 
     @FXML
     private Button Logout;
 
+    @FXML
+    private Text accountType;
 
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
@@ -97,6 +106,9 @@ public class CustomerScreenController {
 
     @FXML
     void initialize() {
+    	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
+    	this.accountType.setText("Customer"); //accountType - may be handled from DB
+    	this.userName.setText(LoginScreenController.username); //userName
         assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert viewCatalog != null : "fx:id=\"viewCatalog\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CustomerScreen.fxml'.";

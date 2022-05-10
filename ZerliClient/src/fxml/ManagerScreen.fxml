@@ -25,31 +25,8 @@
             <Blend />
          </effect>
       </ImageView>
-      <AnchorPane layoutX="439.0" layoutY="370.0" prefHeight="522.0" prefWidth="492.0">
-         <children>
-            <VBox layoutX="99.0" layoutY="29.0" prefHeight="325.0" prefWidth="283.0" spacing="30.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="29.0">
-               <children>
-                  <Button fx:id="viewOrders" mnemonicParsing="false" onMouseClicked="#btnViewOrders" prefHeight="44.0" prefWidth="294.0" text="View Orders">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="viewReports" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="44.0" prefWidth="294.0" text="View Reports">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="35.0" layoutY="30.0" prefHeight="396.0" prefWidth="260.0">
+      <AnchorPane layoutX="439.0" layoutY="370.0" prefHeight="522.0" prefWidth="492.0" />
+      <AnchorPane layoutX="211.0" layoutY="233.0" prefHeight="396.0" prefWidth="260.0">
          <children>
             <ImageView fitHeight="475.0" fitWidth="268.0" layoutX="-8.0" pickOnBounds="true" />
             <Label fx:id="lblUserPortal" alignment="CENTER" layoutX="51.0" layoutY="4.0" prefHeight="60.0" prefWidth="151.0" text="User Portal" textAlignment="JUSTIFY" underline="true">
@@ -87,5 +64,25 @@
             </Label>
          </children>
       </AnchorPane>
+      <VBox layoutX="596.0" layoutY="258.0" prefHeight="268.0" prefWidth="374.0" spacing="30.0" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="596.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="258.0">
+         <children>
+            <Button fx:id="viewOrders" mnemonicParsing="false" onMouseClicked="#btnViewOrders" prefHeight="44.0" prefWidth="294.0" text="View Orders">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewReports" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="44.0" prefWidth="294.0" text="View Reports">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

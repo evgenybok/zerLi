@@ -88,6 +88,9 @@ public class ManagerScreenController {
 
     @FXML
     void initialize() {
+    	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
+    	this.accountType.setText("Branch Manager"); //accountType - may be handled from DB
+    	this.userName.setText(LoginScreenController.username); //userName
         assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
         assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
         assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'ManagerScreen.fxml'.";

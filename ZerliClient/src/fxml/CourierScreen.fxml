@@ -12,9 +12,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOScreenController">
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controllers.CourierScreenController">
    <children>
-      <ImageView fitHeight="918.0" fitWidth="1075.0" pickOnBounds="true">
+      <ImageView fitHeight="918.0" fitWidth="1075.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -25,16 +26,11 @@
             <Image url="@../../images/images/CustomerScreen.jpeg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="491.0" layoutY="314.0" prefHeight="511.0" prefWidth="492.0">
+      <AnchorPane layoutX="501.0" layoutY="324.0" prefHeight="511.0" prefWidth="492.0">
          <children>
             <VBox layoutX="85.0" layoutY="32.0" prefHeight="333.0" prefWidth="323.0" spacing="30.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="32.0">
                <children>
-                  <Button fx:id="viewReports" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="44.0" prefWidth="294.0" text="View Reports">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="viewQuaReports" mnemonicParsing="false" onMouseClicked="#btnViewQuaReports" prefHeight="44.0" prefWidth="294.0" text="View Quarterly Reports">
+                  <Button fx:id="updateOrderStatus" mnemonicParsing="false" onMouseClicked="#btnUpdateOrderStatus" prefHeight="44.0" prefWidth="294.0" text="Update Order Status">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -46,7 +42,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="180.0" layoutY="263.0" prefHeight="465.0" prefWidth="264.0">
+      <AnchorPane layoutX="190.0" layoutY="273.0" prefHeight="465.0" prefWidth="264.0">
          <children>
             <ImageView fitHeight="475.0" fitWidth="268.0" layoutX="-4.0" pickOnBounds="true" />
             <Label fx:id="lblUserPortal" alignment="CENTER" layoutX="51.0" layoutY="4.0" prefHeight="60.0" prefWidth="151.0" text="User Portal" textAlignment="JUSTIFY" underline="true">
@@ -62,11 +58,13 @@
             <Text fx:id="userName" layoutX="45.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(User Name)" textAlignment="CENTER" wrappingWidth="169.13671875">
                <font>
                   <Font size="22.0" />
-               </font></Text>
+               </font>
+            </Text>
             <Text fx:id="accountStatus" layoutX="44.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account's status)" textAlignment="CENTER" wrappingWidth="178.0">
                <font>
                   <Font size="22.0" />
-               </font></Text>
+               </font>
+            </Text>
             <Button fx:id="Logout" layoutX="26.0" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="201.0" style="-fx-background-radius: 20;" text="Logout">
                <font>
                   <Font size="24.0" />
