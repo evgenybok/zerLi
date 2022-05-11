@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1258.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1258.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderScreenController">
 	<children>
       <ImageView fx:id="OrderScreenImage" fitHeight="562.0" fitWidth="1258.0" pickOnBounds="true">
          <image>
@@ -30,11 +30,11 @@
 				<TableColumn fx:id="color" prefWidth="85.0" text="Color" />
 				<TableColumn fx:id="orderType" editable="false" prefWidth="113.0" text="Order_Type" />
 				<TableColumn fx:id="shop" editable="false" prefWidth="81.0" text="Shop" />
-            <TableColumn prefWidth="82.0" text="Delivery" />
+            <TableColumn fx:id="delivery" prefWidth="82.0" text="Delivery" />
 				<TableColumn fx:id="deliveryDate" prefWidth="157.0" text="Delivery_Date" />
 				<TableColumn fx:id="orderDate" editable="false" prefWidth="128.0" text="Order_Date" />
-            <TableColumn prefWidth="99.0" text="Order Status" />
-            <TableColumn prefWidth="83.0" text="Refund" />
+            <TableColumn fx:id="orderStatus" prefWidth="99.0" text="Order Status" />
+            <TableColumn fx:id="refund" prefWidth="83.0" text="Refund" />
 			</columns>
 		</TableView>
 		<Button fx:id="Back" layoutX="49.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="71.0" prefWidth="112.0" style="-fx-background-radius: 20;" text="Back">

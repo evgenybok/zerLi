@@ -97,6 +97,15 @@ public class OrderScreenController {
 	@FXML
 	private TableColumn<Order, String> orderDate;
 
+    @FXML
+    private TableColumn<Order, String> delivery;
+
+    @FXML
+    private TableColumn<Order, String> orderStatus;
+
+    @FXML
+    private TableColumn<Order, String> refund;
+
 	public static ObservableList<Order> orders = FXCollections.observableArrayList();
 
 	/**
@@ -161,16 +170,19 @@ public class OrderScreenController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-
 		Image orderscreenimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerSubScreen.jpg")));
-		OrderScreenImage.setImage(orderscreenimage);
-
-		chat.accept(new Message(MessageType.GET_ORDERS, null));
-		String data = (String) AnalyzeMessageFromServer.getData();
+        OrderScreenImage.setImage(orderscreenimage);
+        ArrayList<Order> orderList=new ArrayList<>();
+        chat.accept(new Message(MessageType.GET_ORDERS, null));
+        orderList = (ArrayList<Order>) AnalyzeMessageFromServer.getData();
+        for(Order s: orderList)
+            orders.add(s);
 		//ArrayList<Order> data =(ArrayList<Order>)AnalyzeMessageFromServer.getData();
-		while (!data.equals("&")) {
+		/*
+		  while (!data.equals("&")) {
 			String[] orderdata = data.split("#", 8);
 			String[] newdata = orderdata[7].split("@", 2);
 			// Remove null values
@@ -184,8 +196,9 @@ public class OrderScreenController {
 			int orderNumber = Integer.parseInt(orderdata[0]);
 			double price = Double.parseDouble(orderdata[1]);
 			orders.add(new Order(orderNumber, price, orderdata[2], orderdata[3], orderdata[4], orderdata[5],
-					orderdata[6], newdata[0], data, data));
+					orderdata[6], orderdata[7], orderdata[8], newdata[0]));
 		}
+		*/
 
 		this.orderNum.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
 		this.price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -197,23 +210,25 @@ public class OrderScreenController {
 		this.orderDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
 		// this.startTest());
 		this.getOrders().setItems(orders);
-		assert lblOrders != null : "fx:id=\"lblOrders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert Orders != null : "fx:id=\"Orders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert orderNum != null : "fx:id=\"orderNum\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert price != null : "fx:id=\"price\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert greetingCard != null
-				: "fx:id=\"greetingCard\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert orderType != null : "fx:id=\"orderType\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert shop != null : "fx:id=\"shop\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert deliveryDate != null
-				: "fx:id=\"deliveryDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert orderDate != null : "fx:id=\"orderDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert Update != null : "fx:id=\"Update\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert txtColor != null : "fx:id=\"txtColor\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert txtOrder != null : "fx:id=\"txtOrder\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-		assert txtDate != null : "fx:id=\"txtDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert OrderScreenImage != null : "fx:id=\"OrderScreenImage\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert lblOrders != null : "fx:id=\"lblOrders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert Orders != null : "fx:id=\"Orders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert orderNum != null : "fx:id=\"orderNum\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert price != null : "fx:id=\"price\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert greetingCard != null : "fx:id=\"greetingCard\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert orderType != null : "fx:id=\"orderType\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert shop != null : "fx:id=\"shop\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert delivery != null : "fx:id=\"delivery\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert deliveryDate != null : "fx:id=\"deliveryDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert orderDate != null : "fx:id=\"orderDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert orderStatus != null : "fx:id=\"orderStatus\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert refund != null : "fx:id=\"refund\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert txtColor != null : "fx:id=\"txtColor\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert txtOrder != null : "fx:id=\"txtOrder\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert txtDate != null : "fx:id=\"txtDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert Update != null : "fx:id=\"Update\" was not injected: check your FXML file 'OrderScreen.fxml'.";
 
 
 	}

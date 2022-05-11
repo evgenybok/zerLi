@@ -65,13 +65,13 @@ public class SelfAssemblyItemsController {
     @FXML
     void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CatalogTypeScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage catalogTypeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		catalogTypeStage.setTitle("Catalog Type");
-		catalogTypeStage.setScene(scene);
-		catalogTypeStage.show();
-		catalogTypeStage.centerOnScreen();
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
 
     @FXML

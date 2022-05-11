@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import logic.Order;
 import logic.User;
-import ocsf.server.ConnectionToClient;
 
 public class Query {
 
@@ -63,49 +63,57 @@ public class Query {
 			return false;
 		}
 	}
+	/**
+     * @return ArrayList of users in DB
+     */
+    public static ArrayList<User> GetUsersDB() {
+        ArrayList<User> users = new ArrayList<>();
+        String query = "SELECT FROM zerli.users;";
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("Username");
+                String password = rs.getString("Password");
+                boolean Loggedin = rs.getBoolean("LoggedIn");
+                String ID = rs.getString("id");
+                String Firstname = rs.getString("FirstName");
+                String Lastname = rs.getString("LastName");
+                String role = rs.getString("Role");
+                String Phonenumber = rs.getString("PhoneNumber");
+                String Email = rs.getString("Email");
+                users.add(new User(username, password, Loggedin, ID, Firstname, Lastname, role, Phonenumber, Email));
+            }
+        } catch (SQLException e) {
+        }
+        return users;
+    }
 
-	public static String GetOrders() {
-		String query = ("SELECT * FROM zerli.orders;");
-		StringBuilder res = new StringBuilder();
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				int OrderNumber = rs.getInt("orderNumber");
-				double Price = rs.getDouble("price");
-				String GreetingCard = rs.getString("greetingCard");
-				String color = rs.getString("Color");
-				String D_Order = rs.getString("dOrder");
-				String Shop = rs.getString("shop");
-				String Date = rs.getString("date");
-				String OrderDate = rs.getString("orderDate");
-				res.append(OrderNumber);
-				res.append("#");
-				res.append(Price);
-				res.append("#");
-				res.append(GreetingCard);
-				res.append("#");
-				res.append(color);
-				res.append("#");
-				res.append(D_Order);
-				res.append("#");
-				res.append(Shop);
-				res.append("#");
-				res.append(Date);
-				res.append("#");
-				res.append(OrderDate);
-				res.append("@");
-			}
-			res.append("&");
-			if (res != null) {
-				return res.toString();
-			}
+	public static ArrayList<Order> GetOrders() {
+        String query = ("SELECT * FROM zerli.orders;");
+        ArrayList<Order> orders = new ArrayList<Order>();
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                int OrderNumber = rs.getInt("orderNumber");
+                int Price = rs.getInt("price");
+                String GreetingCard = rs.getString("greetingCard");
+                String color = rs.getString("Color");
+                String D_Order = rs.getString("dOrder");
+                String Shop = rs.getString("shop");
+                String Date = rs.getString("date");
+                String OrderDate = rs.getString("orderDate");
+                String Status = rs.getString("Status");
+                String SupplyType = rs.getString("SupplyType");
+                orders.add(new Order(OrderNumber, Price, GreetingCard, color, D_Order, Shop, Date, OrderDate, Status,
+                        SupplyType));
+            }
+        } catch (SQLException e) {
 
-		} catch (SQLException e) {
-
-		}
-		return ("ERROR");
-	}
+        }
+        return orders;
+    }
 
 	public static boolean Update(String updatedData) {
 		String[] str = updatedData.split("#", 3);

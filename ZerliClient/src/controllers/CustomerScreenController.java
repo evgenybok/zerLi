@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 
 public class CustomerScreenController {
 
+
     @FXML
     private ResourceBundle resources;
 
@@ -76,13 +77,14 @@ public class CustomerScreenController {
 
     @FXML
     void btnCatalog(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SelfAssemblyItems.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PreMadeItems.fxml")));
 		Scene scene = new Scene(parent);
-		Stage selfAssemblyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		selfAssemblyStage.setTitle("Self Assembly Items");
-		selfAssemblyStage.setScene(scene);
-		selfAssemblyStage.show();
-		selfAssemblyStage.centerOnScreen();
+		Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		premadeStage.setTitle("Premade Items");
+		premadeStage.setScene(scene);
+		premadeStage.show();
+		premadeStage.centerOnScreen();
+
     }
 
     @FXML
@@ -92,13 +94,13 @@ public class CustomerScreenController {
     
     @FXML
     void btnCustomCatalog(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PreMadeItems.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SelfAssemblyItems.fxml")));
 		Scene scene = new Scene(parent);
-		Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		premadeStage.setTitle("Premade Items");
-		premadeStage.setScene(scene);
-		premadeStage.show();
-		premadeStage.centerOnScreen();
+		Stage selfAssemblyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		selfAssemblyStage.setTitle("Self Assembly Items");
+		selfAssemblyStage.setScene(scene);
+		selfAssemblyStage.show();
+		selfAssemblyStage.centerOnScreen();
     }
     
     @FXML
@@ -130,16 +132,14 @@ public class CustomerScreenController {
     	this.AccountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
     	this.AccountType.setText("Customer"); //accountType - may be handled from DB
     	this.UserName.setText(LoginScreenController.user.getUsername()); //userName
-    	
-      //  Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
-       //CustomerScreenImage.setImage(homeImage);
+
     	Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
     	PersonImage.setImage(personImage);
     	Image catalogImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
     	CatalogImage.setImage(catalogImage);
     	Image custumCatalogImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
     	CustomCatalogImage.setImage(custumCatalogImage);
-    	Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
+    	Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/orders.jpg")));
     	OrdersImage.setImage(ordersImage);
     	Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
     	ComplaintImage.setImage(complaintImage);
@@ -160,6 +160,7 @@ public class CustomerScreenController {
         assert Catalog != null : "fx:id=\"Catalog\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Orders != null : "fx:id=\"Orders\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
         assert Complaint != null : "fx:id=\"Complaint\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
+
 
     }
 }

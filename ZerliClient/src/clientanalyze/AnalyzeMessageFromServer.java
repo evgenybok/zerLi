@@ -62,8 +62,8 @@ public class AnalyzeMessageFromServer {
 
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				//res = (String) receivedMessage.getMessageData();
-				Object list2= receivedMessage.getMessageData();
+				res = receivedMessage.getMessageData();
+				//Object list2= receivedMessage.getMessageData();
 			} else {
 				// Not implemented yet
 			}
@@ -76,19 +76,33 @@ public class AnalyzeMessageFromServer {
 				// Not implemented yet
 			}
 			return;
+		case GET_USERS:
+            if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+                res = receivedMessage.getMessageData();
+            }
 
 		default:
 			break;
 
 		}
+		
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Object getData() {
 		if (res instanceof String)
 			return (String)res;
 		if (res instanceof User)
 			return (User)res;
+		if(res instanceof ArrayList<?> )
+        {
+            if(((ArrayList<?>)res).get(0) instanceof User)
+            return (ArrayList<User>) res;
+            if(((ArrayList<?>)res).get(0) instanceof Order)
+                return (ArrayList<Order>) res;
+        }
 		return null;
+		
 	}
 
 }
