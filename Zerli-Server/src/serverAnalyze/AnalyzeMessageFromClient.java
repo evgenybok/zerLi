@@ -4,12 +4,14 @@ import communication.Message;
 import communication.MessageAnswer;
 import communication.MessageType;
 import controllers.ConnectedClientsController;
+import logic.User;
 import ocsf.server.ConnectionToClient;
 import query.Query;
 
 public class AnalyzeMessageFromClient {
 
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
+		User user;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -21,9 +23,9 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			String role=Query.Login((String) receivedMessage.getMessageData(), client);
-			if (role!=null) {
-				receivedMessage.setMessageData(role);
+			user =Query.Login((User)receivedMessage.getMessageData());
+			if (user.isLoggedIn()) {
+				receivedMessage.setMessageData(user);
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} else
 			{
@@ -33,11 +35,11 @@ public class AnalyzeMessageFromClient {
 			
 
 		case LOGOUT:
-			if (Query.Disconnect((String) receivedMessage.getMessageData(), client))
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			else
-				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
+            if (Query.Disconnect((User) receivedMessage.getMessageData()))
+                receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+            else
+                receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+            return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
 
 		case UPDATE:
 			if (Query.Update((String) receivedMessage.getMessageData()))

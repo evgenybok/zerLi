@@ -60,25 +60,19 @@ public class CustomerSpecialistScreenController {
     @FXML
     private Text accountType;
 
-	@FXML
-	void btnLogout(MouseEvent event) throws IOException {
-		((Node) event.getSource()).getScene().getWindow().hide();
-		StringBuilder login = new StringBuilder();
-		String truelogin = null;
-		login.append(LoginScreenController.username);
-		login.append("@");
-		login.append(LoginScreenController.password);
-		truelogin = login.toString();
-
-		chat.accept(new Message(MessageType.LOGOUT, truelogin));
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+    @FXML
+    void btnLogout(MouseEvent event) throws IOException {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+ 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
 		loginStage.setScene(scene);
 		loginStage.show();
 		loginStage.centerOnScreen();
-	}
+    }
+
 
     @FXML
     void btnViewQuaReports(MouseEvent event) {
@@ -94,7 +88,7 @@ public class CustomerSpecialistScreenController {
     void initialize() {
 		this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
 		this.accountType.setText("Customer Specialist"); // accountType - may be handled from DB
-		this.userName.setText(LoginScreenController.username); // userName
+    	this.userName.setText(LoginScreenController.user.getUsername()); //userName
 		
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
         CustomerSpecialistScreenImage.setImage(homeImage);

@@ -1,17 +1,14 @@
 package clientanalyze;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 import communication.Message;
 import communication.MessageAnswer;
 import javafx.application.Platform;
-import logic.Order;
+import logic.User;
 
 public class AnalyzeMessageFromServer {
-	private static String res;
-
+	private static Object res;
 
 	public static void Message(Object msg) throws Exception {
 		Message receivedMessage = (Message) msg;
@@ -38,10 +35,10 @@ public class AnalyzeMessageFromServer {
 
 		case LOGIN:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = receivedMessage.getMessageData().toString();
+				res = receivedMessage.getMessageData();
 				break;
 			} else if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
-				res = "false";
+				res = null;
 				JOptionPane.showMessageDialog(null, "Wrong username or password", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
@@ -65,31 +62,31 @@ public class AnalyzeMessageFromServer {
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = (String) receivedMessage.getMessageData();
-			}
-			else
-			{
-				//Not implemented yet
+			} else {
+				// Not implemented yet
 			}
 			return;
-			
+
 		case GET_SELECTED_ORDER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = (String) receivedMessage.getMessageData();
-			}
-			else 
-			{
-				//Not implemented yet
+			} else {
+				// Not implemented yet
 			}
 			return;
-			
+
 		default:
 			break;
 
 		}
 	}
 
-	public static String getData() {
-		return res;
+	public static Object getData() {
+		if (res instanceof String)
+			return (String)res;
+		if (res instanceof User)
+			return (User)res;
+		return null;
 	}
 
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
+   <children>
+      <ImageView fx:id="CustomerScreenImage" fitHeight="703.0" fitWidth="1005.0" layoutX="-29.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/images/HomeScreen.jpeg" />
+         </image></ImageView>
+      <AnchorPane layoutX="529.0" layoutY="228.0" prefHeight="668.0" prefWidth="496.0">
+         <children>
+            <VBox layoutX="14.0" layoutY="14.0" prefHeight="610.0" prefWidth="360.0" spacing="30.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="248.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <Button fx:id="viewOrders" mnemonicParsing="false" onMouseClicked="#btnViewOrders" prefHeight="44.0" prefWidth="294.0" text="View Orders">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="viewCatalog" mnemonicParsing="false" onMouseClicked="#btnViewCatalog" prefHeight="44.0" prefWidth="294.0" text="View Catalog">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblStatus" layoutX="-355.0" layoutY="342.0" opacity="0.0" text="Account Status:">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="152.0" layoutY="184.0" prefHeight="465.0" prefWidth="264.0">
+         <children>
+            <ImageView fitHeight="475.0" fitWidth="268.0" layoutX="-4.0" pickOnBounds="true" />
+            <Label fx:id="lblUserPortal" alignment="CENTER" layoutX="51.0" layoutY="4.0" prefHeight="60.0" prefWidth="151.0" text="User Portal" textAlignment="JUSTIFY" underline="true">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStartMsg" layoutX="69.0" layoutY="125.0" text="Welcome!">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Text fx:id="userName" layoutX="45.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(User Name)" textAlignment="CENTER" wrappingWidth="169.13671875">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text fx:id="accountStatus" layoutX="44.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account's status)" textAlignment="CENTER" wrappingWidth="178.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Button fx:id="Logout" layoutX="26.0" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="201.0" style="-fx-background-radius: 20;" text="Logout">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblStatus" layoutX="37.0" layoutY="245.0" text="Account Status:">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Text fx:id="accountType" layoutX="38.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account Type)" textAlignment="CENTER" wrappingWidth="178.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

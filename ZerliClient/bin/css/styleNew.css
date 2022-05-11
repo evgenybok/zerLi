@@ -1,0 +1,25 @@
+.right-bar{
+	//-fx-background-color: linear-gradient(rgb(255, 255, 255), rgb(230, 255, 204));
+	-fx-background-color: #d3d3d3;
+}
+.add-btn{
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 30;
+}
+.shadow{
+	-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+.logo{
+background: url(path_to_logo); }
+}
+.reportbtn{
+	-fx-background-color: #b3ffff;
+	-fx-background-radius: 30;
+}
+.paneback{
+-fx-background-color: #e6ffcc;
+}
+.body{
+-fx-background-color: linear-gradient(rgb(255, 255, 255), rgb(230, 255, 204),transparent);
+}
+

@@ -2,180 +2,127 @@ package logic;
 
 import java.io.Serializable;
 
-/***
- * 
- * Entity class to define a user in the system
- *
- */
 public class User implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7256829878818339147L;
-	/**
-	 * user id
-	 */
-	private int userID;
-	/**
-	 * user name for log in
-	 */
-	private String user;
-	/**
-	 * password for log in
-	 */
-	private String password;
-	/**
-	 * state is logged in
-	 */
-	private boolean isLogged;
-	/**
-	 * permission of the user
-	 */
-	private Permission permission;
+	private static final long serialVersionUID = 1L;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	private String Username;
+	private String Password;
+	private boolean LoggedIn;
+	private String ID;
+	private String FirstName;
+	private String LastName;
+	private String Role;
+	private String PhoneNumber;
+	private String Email;
 
-	/***
-	 * 
-	 * @return user's permission
-	 */
-	public Permission getPermission() {
-		return permission;
+	public User(String username, String password, boolean loggedIn, String iD, String firstName, String lastName,
+			String role, String phoneNumber, String email) {
+		super();
+		Username = username;
+		Password = password;
+		LoggedIn = loggedIn;
+		ID = iD;
+		FirstName = firstName;
+		LastName = lastName;
+		Role = role;
+		PhoneNumber = phoneNumber;
+		Email = email;
+	}
+	
+	public User(String username, String password) {
+		super();
+		Username = username;
+		Password = password;
 	}
 
-	/***
-	 * 
-	 * @param permission to set
-	 */
-	public void setPermission(Permission permission) {
-		this.permission = permission;
+	public User(String username, String password, boolean loggedIn, String iD, String role) {
+		super();
+		Username = username;
+		Password = password;
+		LoggedIn = loggedIn;
+		ID = iD;
+		Role = role;
 	}
 
-	/***
-	 * 
-	 * @return user id
-	 */
-	public int getuId() {
-		return userID;
+	public String getUsername() {
+		return Username;
 	}
 
-	/***
-	 * 
-	 * @param uId to set
-	 */
-	public void setuId(int uId) {
-		this.userID = uId;
+	public void setUsername(String username) {
+		Username = username;
 	}
 
-	/***
-	 * 
-	 * @return user name
-	 */
-	public String getUser() {
-		return user;
-	}
-
-	/***
-	 * 
-	 * @param user to set
-	 */
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	/***
-	 * 
-	 * @return user's password
-	 */
 	public String getPassword() {
-		return password;
+		return Password;
 	}
 
-	/***
-	 * 
-	 * @param password to set
-	 */
 	public void setPassword(String password) {
-		this.password = password;
+		Password = password;
 	}
 
-	/***
-	 * 
-	 * @return the logged state
-	 */
-	public boolean isLogged() {
-		return isLogged;
+	public boolean isLoggedIn() {
+		return LoggedIn;
 	}
 
-	/***
-	 * 
-	 * @param isLogged to set
-	 */
-	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
+	public void setLoggedIn(boolean loggedIn) {
+		LoggedIn = loggedIn;
 	}
 
-	/***
-	 * Constructor for the server side use
-	 * 
-	 * @param uId        user id
-	 * @param user       user name
-	 * @param password   password
-	 * @param isLogged   is online
-	 * @param permission permission
-	 */
-	public User(int uId, String user, String password, boolean isLogged, Permission permission) {
-		super();
-		this.userID = uId;
-		this.user = user;
-		this.password = password;
-		this.isLogged = isLogged;
-		this.permission = permission;
+	public String getID() {
+		return ID;
 	}
 
-	/***
-	 * Constructor for the client side use
-	 * 
-	 * @param user       user name
-	 * @param password   password
-	 * @param isLogged   is online
-	 * @param permission permission
-	 */
-	public User(String user, String password, boolean isLogged, Permission permission) {
-		super();
-		this.user = user;
-		this.password = password;
-		this.isLogged = isLogged;
-		this.permission = permission;
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	/***
-	 * Minimal constructor
-	 * 
-	 * @param user     user name
-	 * @param password password
-	 */
-	public User(String user, String password) {
-		super();
-		this.user = user;
-		this.password = password;
+	public String getFirstName() {
+		return FirstName;
 	}
 
-	/***
-	 * Initialize only uId
-	 * 
-	 * @param userID user id
-	 */
-	public User(int userID) {
-		super();
-		this.userID = userID;
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
 	}
 
-	/***
-	 * Copy Constructor
-	 * 
-	 * @param user user name
-	 */
-	public User(User user) {
-		this(user.userID, user.user, user.password, user.isLogged, user.permission);
+	public String getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+
+	public String getRole() {
+		return Role;
+	}
+
+	public void setRole(String role) {
+		Role = role;
+	}
+
+	public String getPhoneNumber() {
+		return PhoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User [Username=" + Username + ", Password=" + Password + ", LoggedIn=" + LoggedIn + ", ID=" + ID
+				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Role=" + Role + ", PhoneNumber="
+				+ PhoneNumber + ", Email=" + Email + "]";
 	}
 }

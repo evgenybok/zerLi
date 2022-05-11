@@ -24,11 +24,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logic.User;
 import ocsf.server.ConnectionToClient;
 
 public class LoginScreenController {
 	ConnectionToClient client;
-
+	public static User user;
+	
 	@FXML
 	private ImageView LoginImage;
 
@@ -47,21 +49,10 @@ public class LoginScreenController {
 	@FXML
 	private Pane LoginStage;
 
-	public static String username;
-	public static String password;
+	//public static String username;
+	//public static String password;
 
-	@FXML
-	void initialize() {
-		assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
-		LoginImage.setImage(loginImage);
 
-	}
 
 	@FXML
 	void ExitLogin(MouseEvent event) {
@@ -77,30 +68,23 @@ public class LoginScreenController {
 	@FXML
 	void btnLogin(ActionEvent event) throws IOException {
 
-		StringBuilder login = new StringBuilder();
-		String truelogin = null;
 		if (Username.getText().equals("") || Password.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
-
-		login.append(Username.getText());
-		login.append("@");
-		login.append(Password.getText());
-		truelogin = login.toString();
 		try {
-			chat.accept(new Message(MessageType.LOGIN, truelogin));
-			if (AnalyzeMessageFromServer.getData().equals("false")) // Incorrect username / password
+			chat.accept(new Message(MessageType.LOGIN, new User(Username.getText(),Password.getText())));
+			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
+			
 		} catch (Exception e) {
 
 		}
 		;
-		String Role=AnalyzeMessageFromServer.getData();
-		String roleScreen=caseRoleScreen(Role);
-		username=Username.getText();
-		password=Password.getText();
+		user=(User)AnalyzeMessageFromServer.getData();
+		String roleScreen=caseRoleScreen(user.getRole());
+		//username=Username.getText();
+		//password=Password.getText();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(roleScreen)));
 		Scene scene = new Scene(parent);
 		Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -132,5 +116,16 @@ public class LoginScreenController {
 		}
 		
 	}
+	@FXML
+	void initialize() {
+		assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
+		LoginImage.setImage(loginImage);
 
+	}
 }

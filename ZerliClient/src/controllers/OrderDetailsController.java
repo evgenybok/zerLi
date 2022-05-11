@@ -36,7 +36,7 @@ public class OrderDetailsController {
     }
 	@FXML
 	void initialize() {
-		String data = AnalyzeMessageFromServer.getData();
+		String data = (String) AnalyzeMessageFromServer.getData();
 		if (!data.equals("ERROR")) {
 			String[] temporal = data.split("#", 2);
 			lblOrderNumber.setText(temporal[0]);	//order number

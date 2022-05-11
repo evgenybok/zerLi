@@ -6,48 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import logic.Order;
+import logic.User;
 import ocsf.server.ConnectionToClient;
 
 public class Query {
 
-	public static String Login(String loginInfo, ConnectionToClient client) {
-		String[] login = loginInfo.split("@"); // username@password
-		String query ="UPDATE users SET LoggedIn=true WHERE Username='"+login[0]+"' AND Password='"+login[1]+"'";
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			int rs = st.executeUpdate();
-			if(rs==-1)
-				return null;
-			String query2 ="SELECT Role FROM zerli.users WHERE Username='"+login[0]+"'";
-			PreparedStatement st2= ConnectToDB.conn.prepareStatement(query2);
-			ResultSet rs2=st2.executeQuery();
-			while (rs2.next()) {
-				String role = rs2.getString("Role");
-				return role;
-			}
-
-		} catch (SQLException e) {
-			return null;
-		}
-		return null;
-	}
-	public static void DisconnectAll() {
-		String query = ("SELECT * FROM zerli.users;");
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				int ID = rs.getInt("id");
-				String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
-				st.executeUpdate(query1);
-			}
-		} catch (SQLException e) {
-		}
-	}
-
-	public static boolean Disconnect(String loginInfo,ConnectionToClient client) {
-		String[] login = loginInfo.split("@"); // username@password
+	public static User Login(User user) {
 		String query = "SELECT * FROM zerli.users;";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -56,19 +20,48 @@ public class Query {
 				String username = rs.getString("Username");
 				String password = rs.getString("Password");
 				boolean Loggedin = rs.getBoolean("LoggedIn");
-				if (username.equals(login[0]) && password.equals(login[1]) && Loggedin) {
-					String ID = rs.getString("id");
-					query = ("UPDATE users SET LoggedIn=false WHERE id=" + ID + ";");
+				String ID = rs.getString("id");
+				String role = rs.getString("Role");
+				if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && !Loggedin) {
+					query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
+					user = new User(username, password, true, ID, role);
 					st.executeUpdate(query);
-					return true;
 				}
 			}
-			return false;
+			return user;
+		} catch (SQLException e) {
+			return user;
+		}
+	}
 
+	public static void DisconnectAll() {
+		String query = ("SELECT * FROM zerli.users;");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String query1 = ("UPDATE users SET LoggedIn=false;");
+				st.executeUpdate(query1);
+			}
+		} catch (SQLException e) {
+		}
+	}
+
+	public static boolean Disconnect(User user) {
+		String query = ("SELECT * FROM zerli.users;");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + user.getID() + ";");
+				st.executeUpdate(query1);
+				return true;
+			}
+
+			return false;
 		} catch (SQLException e) {
 			return false;
 		}
-
 	}
 
 	public static String GetOrders() {
@@ -107,10 +100,9 @@ public class Query {
 			if (res != null) {
 				return res.toString();
 			}
-			
 
 		} catch (SQLException e) {
-			
+
 		}
 		return ("ERROR");
 	}
@@ -183,10 +175,10 @@ public class Query {
 		String query = ("SELECT * FROM zerli.item;");
 		HashMap<String, ArrayList<String>> map = new HashMap<>();
 		String[] arr;
-		arr=data.split("#",2);
+		arr = data.split("#", 2);
 		StringBuilder res = new StringBuilder();
 		res.append("Order Number:" + arr[0] + "#");
-		data=arr[1];
+		data = arr[1];
 		while (!data.equals("@")) {
 			arr = data.split("#", 3);
 			if (!map.containsKey(arr[0]))

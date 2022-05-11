@@ -167,7 +167,7 @@ public class OrderScreenController {
 		OrderScreenImage.setImage(orderscreenimage);
 
 		chat.accept(new Message(MessageType.GET_ORDERS, null));
-		String data = AnalyzeMessageFromServer.getData();
+		String data = (String) AnalyzeMessageFromServer.getData();
 		while (!data.equals("&")) {
 			String[] orderdata = data.split("#", 8);
 			String[] newdata = orderdata[7].split("@", 2);

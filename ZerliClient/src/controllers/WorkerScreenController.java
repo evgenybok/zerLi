@@ -68,14 +68,7 @@ public class WorkerScreenController {
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
-        StringBuilder login = new StringBuilder();
-        String truelogin = null;
-        login.append(LoginScreenController.username);
-        login.append("@");
-        login.append(LoginScreenController.password);
-        truelogin = login.toString();
-
-		chat.accept(new Message(MessageType.LOGOUT, truelogin));
+ 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -84,6 +77,7 @@ public class WorkerScreenController {
 		loginStage.show();
 		loginStage.centerOnScreen();
     }
+
 
     @FXML
     void btnUpdateCatalog(MouseEvent event) {
@@ -94,7 +88,7 @@ public class WorkerScreenController {
     void initialize() {
     	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
     	this.accountType.setText("Store Worker"); //accountType - may be handled from DB
-    	this.userName.setText(LoginScreenController.username); //userName
+    	this.userName.setText(LoginScreenController.user.getUsername()); //userName
     	
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
         WrokerScreenImage.setImage(homeImage);
