@@ -4,6 +4,7 @@ import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -168,6 +169,7 @@ public class OrderScreenController {
 
 		chat.accept(new Message(MessageType.GET_ORDERS, null));
 		String data = (String) AnalyzeMessageFromServer.getData();
+		//ArrayList<Order> data =(ArrayList<Order>)AnalyzeMessageFromServer.getData();
 		while (!data.equals("&")) {
 			String[] orderdata = data.split("#", 8);
 			String[] newdata = orderdata[7].split("@", 2);
@@ -182,7 +184,7 @@ public class OrderScreenController {
 			int orderNumber = Integer.parseInt(orderdata[0]);
 			double price = Double.parseDouble(orderdata[1]);
 			orders.add(new Order(orderNumber, price, orderdata[2], orderdata[3], orderdata[4], orderdata[5],
-					orderdata[6], newdata[0]));
+					orderdata[6], newdata[0], data, data));
 		}
 
 		this.orderNum.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));

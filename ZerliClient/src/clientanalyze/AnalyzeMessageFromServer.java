@@ -1,12 +1,13 @@
 package clientanalyze;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 import communication.Message;
 import communication.MessageAnswer;
 import javafx.application.Platform;
 import logic.User;
-
+import logic.Order;
 public class AnalyzeMessageFromServer {
 	private static Object res;
 
@@ -61,7 +62,8 @@ public class AnalyzeMessageFromServer {
 
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = (String) receivedMessage.getMessageData();
+				//res = (String) receivedMessage.getMessageData();
+				Object list2= receivedMessage.getMessageData();
 			} else {
 				// Not implemented yet
 			}

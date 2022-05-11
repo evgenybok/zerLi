@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
    <children>
       <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblZerLi" prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../../../git/zerLi/ZerliClient/src/views/styleNew.css" text="Zer-Li" textFill="#004d00">
+                        <Label fx:id="lblZerLi" prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
@@ -59,7 +53,7 @@
                      <children>
                         <ImageView fx:id="PersonImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
-                              <Image url="@../../../../eclipse-workspace/Test1/src/img/pngegg.png" />
+                              <Image url="@../../images/images/Avatar.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -92,7 +86,7 @@
                         <Insets top="100.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="Logout" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="144.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/views/styleNew.css" text="Logout" textFill="#004d00">
+                        <Button fx:id="Logout" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="144.0" stylesheets="@../../images/css/styleNew.css" text="Logout" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
@@ -107,9 +101,9 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="800.0" prefWidth="771.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="800.0" prefWidth="771.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" textFill="#004d00">
+                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" stylesheets="@../../images/css/styleNew.css" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -118,7 +112,7 @@
                         <Font name="Cambria Bold" size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="CustomCatalog" alignment="TOP_CENTER" layoutX="471.0" layoutY="191.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Custom Catalog" textFill="#004d00">
+                  <Button fx:id="CustomCatalog" alignment="TOP_CENTER" layoutX="471.0" layoutY="191.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Custom Catalog" textFill="#004d00">
                      <font>
                         <Font name="Cambria Bold" size="23.0" />
                      </font>
@@ -127,7 +121,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </Button>
-                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Cancel Order" textFill="#004d00">
+                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Cancel Order" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -136,7 +130,7 @@
                         <Font name="Cambria Bold" size="25.0" />
                      </font>
                   </Button>
-                  <Button alignment="TOP_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Complaint" textFill="#004d00">
+                  <Button alignment="TOP_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Complaint" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -147,7 +141,7 @@
                   </Button>
                   <ImageView fx:id="CatalogImage" fitHeight="111.0" fitWidth="143.0" layoutX="144.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../eclipse-workspace/Test1/src/img/catalog-icon-22.png" />
+                        <Image url="@../../images/images/Catalog.png" />
                      </image>
                   </ImageView>
                   <HBox prefHeight="100.0" prefWidth="801.0">
@@ -179,17 +173,17 @@
                   </HBox>
                   <ImageView fx:id="CustomCatalogImage" fitHeight="82.0" fitWidth="77.0" layoutX="533.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../eclipse-workspace/Test1/src/img/הורדה.png" />
+                        <Image url="@../../images/images/CustomCatalog.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="ComplaintImage" fitHeight="91.0" fitWidth="94.0" layoutX="545.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../eclipse-workspace/Test1/src/img/complaint.png" />
+                        <Image url="@../../images/images/complaint.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="OrdersImage" fitHeight="89.0" fitWidth="104.0" layoutX="160.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../eclipse-workspace/Test1/src/img/cacncel.png" />
+                        <Image url="@../../images/images/cacncel.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="Catalog" layoutX="116.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#btnCatalog" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Catalog" />

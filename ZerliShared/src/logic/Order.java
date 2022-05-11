@@ -15,9 +15,11 @@ public class Order implements Serializable {
 	private String shop;
 	private String date;
 	private String orderDate;
+	private String Status;
+	private String SupplyType;
 
 	public Order(int orderNumber, double price, String greetingCard, String color, String dOrder, String shop,
-			String date, String orderDate) {
+				 String date, String orderDate,String Status,String SupplyType) {
 		this.orderNumber = orderNumber;
 		this.price = price;
 		this.greetingCard = greetingCard;
@@ -26,8 +28,30 @@ public class Order implements Serializable {
 		this.shop = shop;
 		this.date = date;
 		this.orderDate = orderDate;
+		this.SupplyType=SupplyType;
+		this.Status=Status;
+
 
 	}
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	public String getSupplyType() {
+		return SupplyType;
+	}
+
+	public void setSupplyType(String supplyType) {
+		SupplyType = supplyType;
+	}
+
+
+
+
 
 	public int getOrderNumber() {
 		return orderNumber;

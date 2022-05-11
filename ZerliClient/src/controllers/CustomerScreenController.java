@@ -139,8 +139,8 @@ public class CustomerScreenController {
     	CatalogImage.setImage(catalogImage);
     	Image custumCatalogImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
     	CustomCatalogImage.setImage(custumCatalogImage);
-    	//Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
-    	//OrdersImage.setImage(ordersImage);
+    	Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
+    	OrdersImage.setImage(ordersImage);
     	Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
     	ComplaintImage.setImage(complaintImage);
     	

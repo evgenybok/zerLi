@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="fontawesomefx-commons-9.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-commons-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-controls-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-fontawesome-4.7.0-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-icons525-4.2.0-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-materialdesignfont-2.0.26-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-materialicons-2.2.0-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-materialstackicons-2.1-5-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-octicons-4.3.0-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/fontawesomefx-weathericons-2.0.10-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jars/mysql-connector-java-8.0.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
