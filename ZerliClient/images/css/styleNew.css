@@ -22,4 +22,4 @@ background: url(path_to_logo); }
 .body{
 -fx-background-color: linear-gradient(rgb(255, 255, 255), rgb(230, 255, 204),transparent);
 }
-<Pane stylesheets="@stylesheet.css">
+

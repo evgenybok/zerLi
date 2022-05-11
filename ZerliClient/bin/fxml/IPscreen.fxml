@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import java.lang.String?>
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="ServerStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IPScreenController">
+<BorderPane fx:id="ServerStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IPScreenController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="202.0" style="-fx-background-color: d3d3d3;" BorderPane.alignment="CENTER">
          <children>
@@ -48,7 +42,7 @@
                <children>
                   <ImageView fx:id="flowerImage" fitHeight="126.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/flower-lotus-nature-plant-water-plant-icon-28.png" />
+                        <Image url="@../../images/images/IPflower.png" />
                      </image>
                   </ImageView>
                </children></HBox>
@@ -63,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="63.0" prefWidth="395.0">
                <children>
-                  <TextField fx:id="txtIP" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" text="localhost">
+                  <TextField fx:id="txtIP" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" stylesheets="@../../images/css/styleNew.css" text="localhost">
                      <styleClass>
                         <String fx:value="shadow" />
                         <String fx:value="add-btn" />
@@ -71,16 +65,12 @@
                      <font>
                         <Font size="18.0" />
                      </font>
-                     <stylesheets>
-                        <URL value="@../../../../git/zerLi/ZerliClient/src/view/styleNew.css" />
-                        <URL value="@../../images/css/styleNew.css" />
-                     </stylesheets>
                   </TextField>
                </children>
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="118.0" prefWidth="395.0">
                <children>
-                  <Button fx:id="Connect" mnemonicParsing="false" onMouseClicked="#btnConnect" prefHeight="53.0" prefWidth="114.0" text="Connect" textFill="#004d00">
+                  <Button fx:id="Connect" mnemonicParsing="false" onMouseClicked="#btnConnect" prefHeight="53.0" prefWidth="114.0" stylesheets="@../../images/css/styleNew.css" text="Connect" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -88,10 +78,6 @@
                      <font>
                         <Font name="Cambria" size="18.0" />
                      </font>
-                     <stylesheets>
-                        <URL value="@../../../../git/zerLi/ZerliClient/src/view/styleNew.css" />
-                        <URL value="@../../images/css/styleNew.css" />
-                     </stylesheets>
                   </Button>
                </children>
             </HBox>

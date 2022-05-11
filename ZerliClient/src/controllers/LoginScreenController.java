@@ -22,32 +22,34 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logic.User;
 import ocsf.server.ConnectionToClient;
 
 public class LoginScreenController {
+	
 	ConnectionToClient client;
 	public static User user;
 	
-	@FXML
-	private ImageView LoginImage;
+    @FXML
+    private Button Login;
 
-	@FXML
-	private Button Login;
+    @FXML
+    private ImageView LoginImage;
 
-	@FXML
-	private Button exitBtn;
+    @FXML
+    private AnchorPane LoginStage;
 
-	@FXML
-	private PasswordField Password;
+    @FXML
+    private TextField Password;
 
-	@FXML
-	private TextField Username;
+    @FXML
+    private TextField Username;
 
-	@FXML
-	private Pane LoginStage;
+    @FXML
+    private Button exitBtn;
 
 	//public static String username;
 	//public static String password;
@@ -66,7 +68,7 @@ public class LoginScreenController {
 	}
 
 	@FXML
-	void btnLogin(ActionEvent event) throws IOException {
+	void btnLogin(MouseEvent event) throws IOException {
 
 		if (Username.getText().equals("") || Password.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -118,13 +120,13 @@ public class LoginScreenController {
 	}
 	@FXML
 	void initialize() {
-		assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
+        assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+        assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+        assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+        assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+        assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+        assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'loginScreenNew.fxml'.";
+		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/LoginScreen.jpg")));
 		LoginImage.setImage(loginImage);
 
 	}

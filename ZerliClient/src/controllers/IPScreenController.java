@@ -71,7 +71,7 @@ public class IPScreenController {
 		}
 
 		chat.accept(new Message(MessageType.CONFIRM_IP, txtIP.getText()));
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/loginScreenNew.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LoginStage.setTitle("LoginScreen");
