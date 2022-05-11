@@ -1,0 +1,58 @@
+.search-box{
+	-fx-background-color:#FFFFFF;
+	-fx-background-radius: 100;
+}
+
+.transparent{
+	-fx-background-color: rgba(0,0,0,0);
+	-fx-background-color: #e6ffcc;
+}
+
+.search-button{
+	-fx-background-color: #004d00;
+	-fx-background-radius: 30;
+}
+
+.right-bar{
+	-fx-background-color: #daffb3;
+}
+
+.shadow{
+	-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+
+.chosen-zerli-cart{
+	-fx-background-color: #ffdab3;
+	-fx-background-radius: 30;
+}
+
+.comboBox{
+	-fx-background-color: rgba(255,255,255,0.3);
+	-fx-background-radius: 30;
+}
+
+.add-btn{
+	-fx-background-color: #004d00;
+	-fx-background-radius: 30;
+}
+
+.free-delivery-cart{
+	-fx-background-color: #004d00;
+	-fx-background-radius: 30;
+}
+
+.shopping-online-cart{
+	-fx-background-color: #daffb3;
+	-fx-background-radius: 30;
+}
+
+.flowers-item{
+	-fx-background-color: #e6ffcc;
+	-fx-background-radius: 30;
+}
+
+.transparentTwo{
+	-fx-background-color: rgba(0,0,0,0);
+}
+
+
