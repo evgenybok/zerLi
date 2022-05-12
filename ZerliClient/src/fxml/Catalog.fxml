@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
    <children>
       <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -112,21 +112,25 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@../../images/css/style.css" text="Add to cart" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="270.0" stylesheets="@../../images/css/style.css" text="Add to cart" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="20.0" top="40.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="add-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass>
                         </Button>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="90.0" prefWidth="435.0">
                      <children>
-                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="49.0" prefWidth="119.0" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="#004d00">
+                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="49.0" prefWidth="119.0" stylesheets="@../../images/css/style.css" text="Back" textFill="WHITE">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                              <Font name="Cambria Bold" size="24.0" />
                            </font>
                            <styleClass>
                               <String fx:value="add-btn" />
@@ -159,7 +163,7 @@
                               <Font name="Cambria Bold" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="CartImage" fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/images/img_293282.png" />
                            </image>
@@ -194,7 +198,7 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="ClockImage" fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/pngaaa.com-372753.png" />
                                  </image>
@@ -227,7 +231,7 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <ImageView fitHeight="71.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="DeliveryImage" fitHeight="71.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/delivery.png" />
                                  </image>

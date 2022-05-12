@@ -98,8 +98,9 @@ public class IPScreenController {
     }
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-		Parent root = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/IPscreen.fxml")));
+		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IPscreen.fxml")));
+        root.getStylesheets().clear();
+        root.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Connect To Server");
 		primaryStage.setScene(scene);

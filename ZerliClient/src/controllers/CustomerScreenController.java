@@ -79,8 +79,7 @@ public class CustomerScreenController {
     void btnCatalog(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Catalog.fxml")));
 		Scene scene = new Scene(parent);
-        scene.getStylesheets().add("style.css");
-        scene.getStylesheets().add("styleNew.css");
+        parent.getStylesheets().add("css/style.css");
         Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		premadeStage.setTitle("PremadeItems");
 		premadeStage.setScene(scene);
