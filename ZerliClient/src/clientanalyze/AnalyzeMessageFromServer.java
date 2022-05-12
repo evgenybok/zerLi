@@ -8,8 +8,9 @@ import communication.MessageAnswer;
 import javafx.application.Platform;
 import logic.User;
 import logic.Order;
+
 public class AnalyzeMessageFromServer {
-	private static Object res;
+	private static Object result;
 
 	public static void Message(Object msg) throws Exception {
 		Message receivedMessage = (Message) msg;
@@ -36,10 +37,10 @@ public class AnalyzeMessageFromServer {
 
 		case LOGIN:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = receivedMessage.getMessageData();
+				result = receivedMessage.getMessageData();
 				break;
 			} else if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
-				res = null;
+				result = null;
 				JOptionPane.showMessageDialog(null, "Wrong username or password", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
@@ -62,46 +63,43 @@ public class AnalyzeMessageFromServer {
 
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = receivedMessage.getMessageData();
-			} else {
-				// Not implemented yet
+				result = receivedMessage.getMessageData();
+			} else if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
+				result = null;
 			}
 			return;
 
 		case GET_SELECTED_ORDER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = (String) receivedMessage.getMessageData();
+				result = (String) receivedMessage.getMessageData();
 			} else {
 				// Not implemented yet
 			}
 			return;
 		case GET_USERS:
-            if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-                res = receivedMessage.getMessageData();
-            }
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				result = receivedMessage.getMessageData();
+			}
 
 		default:
 			break;
-
 		}
-		
 	}
 
 	@SuppressWarnings("unchecked")
 	public static Object getData() {
-		if (res instanceof String)
-			return (String)res;
-		if (res instanceof User)
-			return (User)res;
-		if(res instanceof ArrayList<?> )
-        {
-            if(((ArrayList<?>)res).get(0) instanceof User)
-            return (ArrayList<User>) res;
-            if(((ArrayList<?>)res).get(0) instanceof Order)
-                return (ArrayList<Order>) res;
-        }
+		if (result instanceof String)
+			return (String) result;
+		if (result instanceof User)
+			return (User) result;
+		if (result instanceof ArrayList<?>) {
+			if (((ArrayList<?>) result).get(0) instanceof User)
+				return (ArrayList<User>) result;
+			if (((ArrayList<?>) result).get(0) instanceof Order)
+				return (ArrayList<Order>) result;
+		}
 		return null;
-		
+
 	}
 
 }

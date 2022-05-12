@@ -53,17 +53,16 @@ public class AnalyzeMessageFromClient {
 
 		case GET_ORDERS:
 			Orders = Query.GetOrders();
-			/*
-			 * if (orders.equals("ERROR")) {
-			 * receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED); return new
-			 * Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); //
-			 * Not implemented // yet } else {
-			 */
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(Orders);
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(Orders);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
 			return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-		// }
 		case GET_SELECTED_ORDER:
 			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
 			order = Query.getItemName(order);
