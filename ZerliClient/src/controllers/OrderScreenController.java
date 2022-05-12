@@ -15,7 +15,6 @@ import communication.Message;
 import communication.MessageType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -30,8 +29,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import logic.Order;
 
 public class OrderScreenController {
@@ -92,17 +91,20 @@ public class OrderScreenController {
 	private TableColumn<Order, String> shop;
 
 	@FXML
+	private TableColumn<Order, String> date;
+
+	@FXML
 	private TableColumn<Order, String> deliveryDate;
 
 	@FXML
 	private TableColumn<Order, String> orderDate;
 
-    @FXML
-    private TableColumn<Order, String> delivery;
+	@FXML
+	private TableColumn<Order, String> orderStatus;
 
-    @FXML
-    private TableColumn<Order, String> orderStatus;
-
+	@FXML
+	private TableColumn<Order, String> supplyType;
+	
     @FXML
     private TableColumn<Order, String> refund;
 
@@ -119,19 +121,20 @@ public class OrderScreenController {
 		if (event.getClickCount() == 2) {
 			ObservableList<Order> orderList;
 			try {
-			orderList = Orders.getSelectionModel().getSelectedItems();
-			int orderNumber = orderList.get(0).getOrderNumber();
-			chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
-
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderDetails.fxml")));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage orderDetailsStage = new Stage();
-			orderDetailsStage.setTitle("Order Details");
-			orderDetailsStage.setScene((new Scene(root1)));
-			orderDetailsStage.show();
-			orderDetailsStage.centerOnScreen();
+				orderList = Orders.getSelectionModel().getSelectedItems();
+				int orderNumber = orderList.get(0).getOrderNumber();
+				chat.accept(new Message(MessageType.GET_SELECTED_ORDER, orderNumber));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderDetails.fxml")));
+				Parent root1 = (Parent) fxmlLoader.load();
+				Stage orderDetailsStage = new Stage();
+				orderDetailsStage.initModality(Modality.APPLICATION_MODAL);
+				orderDetailsStage.setTitle("Order Details");
+				orderDetailsStage.setScene((new Scene(root1)));
+				orderDetailsStage.show();
+				orderDetailsStage.centerOnScreen();
+			} catch (Exception e) {
 			}
-			catch (Exception e) {};
+			;
 		}
 	}
 
@@ -150,6 +153,7 @@ public class OrderScreenController {
 
 	@FXML
 	void btnUpdate(MouseEvent event) {
+
 		String orderNumber = txtOrder.getText();
 		String Color = txtColor.getText();
 		String Date = txtDate.getText();
@@ -173,33 +177,15 @@ public class OrderScreenController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-		Image orderscreenimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerSubScreen.jpg")));
-        OrderScreenImage.setImage(orderscreenimage);
-        ArrayList<Order> orderList=new ArrayList<>();
-        chat.accept(new Message(MessageType.GET_ORDERS, null));
-        orderList = (ArrayList<Order>) AnalyzeMessageFromServer.getData();
-        for(Order s: orderList)
-            orders.add(s);
-		//ArrayList<Order> data =(ArrayList<Order>)AnalyzeMessageFromServer.getData();
-		/*
-		  while (!data.equals("&")) {
-			String[] orderdata = data.split("#", 8);
-			String[] newdata = orderdata[7].split("@", 2);
-			// Remove null values
-			if (orderdata[2].equals("null"))
-				orderdata[2] = " ";
-			if (orderdata[3].equals("null"))
-				orderdata[3] = " ";
-			if (orderdata[4].equals("null"))
-				orderdata[4] = " ";
-			data = newdata[1];
-			int orderNumber = Integer.parseInt(orderdata[0]);
-			double price = Double.parseDouble(orderdata[1]);
-			orders.add(new Order(orderNumber, price, orderdata[2], orderdata[3], orderdata[4], orderdata[5],
-					orderdata[6], orderdata[7], orderdata[8], newdata[0]));
-		}
-		*/
 
+		Image orderscreenimage = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomerSubScreen.jpg")));
+		OrderScreenImage.setImage(orderscreenimage);
+		ArrayList<Order> orderList = new ArrayList<>();
+		chat.accept(new Message(MessageType.GET_ORDERS, null));
+		orderList = (ArrayList<Order>) AnalyzeMessageFromServer.getData();
+		for (Order s : orderList)
+			orders.add(s);
 		this.orderNum.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
 		this.price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		this.greetingCard.setCellValueFactory(new PropertyValueFactory<>("greetingCard"));
@@ -208,7 +194,10 @@ public class OrderScreenController {
 		this.shop.setCellValueFactory(new PropertyValueFactory<>("shop"));
 		this.deliveryDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 		this.orderDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-		// this.startTest());
+		this.orderStatus.setCellValueFactory(new PropertyValueFactory<>("Status"));
+		this.supplyType.setCellValueFactory(new PropertyValueFactory<>("SupplyType"));
+		this.refund.setCellValueFactory(new PropertyValueFactory<>("Refund"));
+
 		this.getOrders().setItems(orders);
         assert OrderScreenImage != null : "fx:id=\"OrderScreenImage\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert lblOrders != null : "fx:id=\"lblOrders\" was not injected: check your FXML file 'OrderScreen.fxml'.";
@@ -219,7 +208,7 @@ public class OrderScreenController {
         assert color != null : "fx:id=\"color\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert orderType != null : "fx:id=\"orderType\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert shop != null : "fx:id=\"shop\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-        assert delivery != null : "fx:id=\"delivery\" was not injected: check your FXML file 'OrderScreen.fxml'.";
+        assert supplyType != null : "fx:id=\"delivery\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert deliveryDate != null : "fx:id=\"deliveryDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert orderDate != null : "fx:id=\"orderDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert orderStatus != null : "fx:id=\"orderStatus\" was not injected: check your FXML file 'OrderScreen.fxml'.";
@@ -229,7 +218,6 @@ public class OrderScreenController {
         assert txtOrder != null : "fx:id=\"txtOrder\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert txtDate != null : "fx:id=\"txtDate\" was not injected: check your FXML file 'OrderScreen.fxml'.";
         assert Update != null : "fx:id=\"Update\" was not injected: check your FXML file 'OrderScreen.fxml'.";
-
 
 	}
 }

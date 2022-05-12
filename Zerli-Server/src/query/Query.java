@@ -107,8 +107,9 @@ public class Query {
                 String OrderDate = rs.getString("orderDate");
                 String Status = rs.getString("Status");
                 String SupplyType = rs.getString("SupplyType");
+                String Refund=rs.getString("Refund");
                 orders.add(new Order(OrderNumber, Price, GreetingCard, color, D_Order, Shop, Date, OrderDate, Status,
-                        SupplyType));
+                        SupplyType,Refund));
             }
         } catch (SQLException e) {
 
@@ -170,10 +171,9 @@ public class Query {
 					res.append("#");
 				}
 			}
-			// ordernum, itemid, amount, itemid, amout
 			res.append("@");
 			if (res.toString().equals("@"))
-				return null; // no details
+				return null;
 			return res.toString();
 		} catch (SQLException e) {
 			return "Error";

@@ -10,8 +10,8 @@
 	-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
 }
 .logo{
-background: url(path_to_logo); }
-}
+background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63dea7d1da6d362d1e9a/ZerliClient/images/images/IPflower.png); }
+
 .reportbtn{
 	-fx-background-color: #b3ffff;
 	-fx-background-radius: 30;
