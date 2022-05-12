@@ -11,15 +11,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-commons-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-controls-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-fontawesome-4.7.0-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-icons525-4.2.0-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-materialdesignfont-2.0.26-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-materialicons-2.2.0-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-materialstackicons-2.1-5-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-octicons-4.3.0-9.1.2.jar"/>
-	<classpathentry kind="lib" path="src/fontawesomefx-weathericons-2.0.10-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-commons-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-controls-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-fontawesome-4.7.0-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-icons525-4.2.0-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-materialdesignfont-2.0.26-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-materialicons-2.2.0-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-materialstackicons-2.1-5-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-octicons-4.3.0-9.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/fontawesomefx-weathericons-2.0.10-9.1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx"/>
+	<classpathentry kind="lib" path="src/jfoenix-9.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

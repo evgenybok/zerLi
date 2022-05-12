@@ -109,7 +109,7 @@ public class CustomerScreenController {
     void btnLogout(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
  		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreenNew.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
