@@ -77,7 +77,7 @@ public class CustomerScreenController {
 
     @FXML
     void btnCatalog(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Catalog.fxml")));
+    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/Catalog.fxml"))));
 		Scene scene = new Scene(parent);
         parent.getStylesheets().add("css/style.css");
         Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -133,6 +133,8 @@ public class CustomerScreenController {
     	this.AccountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
     	this.AccountType.setText("Customer"); //accountType - may be handled from DB
     	this.UserName.setText(LoginScreenController.user.getUsername()); //userName
+
+
 
     	Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
     	PersonImage.setImage(personImage);

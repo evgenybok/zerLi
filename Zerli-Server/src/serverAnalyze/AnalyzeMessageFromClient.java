@@ -6,6 +6,7 @@ import communication.Message;
 import communication.MessageAnswer;
 import communication.MessageType;
 import controllers.ConnectedClientsController;
+import logic.Item;
 import logic.Order;
 import logic.User;
 import ocsf.server.ConnectionToClient;
@@ -17,6 +18,7 @@ public class AnalyzeMessageFromClient {
 		User user;
 		ArrayList<Order> Orders;
 		ArrayList<User> UsersArr;
+		ArrayList<Item> Items;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -85,6 +87,19 @@ public class AnalyzeMessageFromClient {
             receivedMessage.setMessageData(UsersArr);
             receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
             return new Message(MessageType.GET_USERS, receivedMessage.getMessageAnswer(), receivedMessage.getMessageData());
+
+
+
+			case GET_ITEMS:
+				Items=Query.GetItems();
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(Items);
+
+				return new Message(MessageType.GET_ITEMS, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+
+
+
 
 		default:
 			return new Message(MessageType.ERROR, null);

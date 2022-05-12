@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import logic.Item;
 import logic.Order;
 import logic.User;
 
@@ -220,5 +221,28 @@ public class Query {
 		} catch (SQLException e) {
 			return "Error";
 		}
+	}
+
+	public static ArrayList<Item> GetItems(){
+		String query = ("SELECT * FROM zerli.item;");
+		ArrayList<Item> items = new ArrayList<Item>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int ID = rs.getInt("ID");
+				String imgSrc = rs.getString("imgSrc");
+				String Name = rs.getString("Name");
+				Double Price = rs.getDouble("Price");
+				String Color = rs.getString("color");
+				String Type = rs.getString("Type");
+				items.add(new Item(ID,imgSrc,Name,Price,Color,Type));
+
+			}
+		} catch (SQLException e) {
+
+		}
+		return items;
+
 	}
 }

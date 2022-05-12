@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import communication.Message;
 import communication.MessageAnswer;
 import javafx.application.Platform;
+import logic.Item;
 import logic.User;
 import logic.Order;
 public class AnalyzeMessageFromServer {
@@ -81,6 +82,17 @@ public class AnalyzeMessageFromServer {
                 res = receivedMessage.getMessageData();
             }
 
+
+			case GET_ITEMS:
+				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+					res = receivedMessage.getMessageData();
+
+				} else {
+					res=null;
+				}
+				return;
+
+
 		default:
 			break;
 
@@ -97,9 +109,11 @@ public class AnalyzeMessageFromServer {
 		if(res instanceof ArrayList<?> )
         {
             if(((ArrayList<?>)res).get(0) instanceof User)
-            return (ArrayList<User>) res;
+            	return (ArrayList<User>)  res;
             if(((ArrayList<?>)res).get(0) instanceof Order)
                 return (ArrayList<Order>) res;
+			if(((ArrayList<?>)res).get(0) instanceof Item)
+				return(ArrayList<Item>)   res;
         }
 		return null;
 		

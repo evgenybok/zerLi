@@ -84,6 +84,10 @@ public class LoginScreenController {
 		user=(User)AnalyzeMessageFromServer.getData();
 		String roleScreen=caseRoleScreen(user.getRole());
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(roleScreen)));
+		if(roleScreen.equals("/fxml/CustomerScreen.fxml")){
+			parent.getStylesheets().clear();
+			parent.getStylesheets().add("css/styleNew.css");
+		}
 		Scene scene = new Scene(parent);
 		Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		homeStage.setTitle("Home");
@@ -97,6 +101,7 @@ public class LoginScreenController {
 		switch(Role)
 		{
 		case "customer":
+
 			return "/fxml/CustomerScreen.fxml";
 		case "worker":
 			return "/fxml/WorkerScreen.fxml";
