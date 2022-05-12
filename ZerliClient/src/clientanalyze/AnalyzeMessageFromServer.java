@@ -63,7 +63,6 @@ public class AnalyzeMessageFromServer {
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
-				//Object list2= receivedMessage.getMessageData();
 			} else {
 				// Not implemented yet
 			}

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="585.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServerController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="585.0" prefWidth="894.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ServerController">
    <children>
       <ImageView fx:id="ServerImage" cache="true" fitHeight="625.0" fitWidth="943.0" opacity="0.86" pickOnBounds="true">
          <image>

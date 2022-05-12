@@ -28,23 +28,21 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			user =Query.Login((User)receivedMessage.getMessageData());
+			user = Query.Login((User) receivedMessage.getMessageData());
 			if (user.isLoggedIn()) {
 				receivedMessage.setMessageData(user);
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			} else
-			{
+			} else {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			}
-			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(),receivedMessage.getMessageData());
-			
+			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(), receivedMessage.getMessageData());
 
 		case LOGOUT:
-            if (Query.Disconnect((User) receivedMessage.getMessageData()))
-                receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-            else
-                receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-            return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
+			if (Query.Disconnect((User) receivedMessage.getMessageData()))
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			else
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
 
 		case UPDATE:
 			if (Query.Update((String) receivedMessage.getMessageData()))
@@ -55,18 +53,18 @@ public class AnalyzeMessageFromClient {
 
 		case GET_ORDERS:
 			Orders = Query.GetOrders();
-		/*	if (orders.equals("ERROR")) {
-				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); // Not implemented
-																										// yet
-			} else {*/
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-				receivedMessage.setMessageData(Orders);
-				return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
-						receivedMessage.getMessageData());
-		//	}
+			/*
+			 * if (orders.equals("ERROR")) {
+			 * receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED); return new
+			 * Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(), null); //
+			 * Not implemented // yet } else {
+			 */
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(Orders);
+			return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		// }
 		case GET_SELECTED_ORDER:
-			int ordnum=(int) receivedMessage.getMessageData();
 			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
 			order = Query.getItemName(order);
 			if (order.equals("ERROR")) {
@@ -81,10 +79,11 @@ public class AnalyzeMessageFromClient {
 						receivedMessage.getMessageData());
 			}
 		case GET_USERS:
-            UsersArr=Query.GetUsersDB();
-            receivedMessage.setMessageData(UsersArr);
-            receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-            return new Message(MessageType.GET_USERS, receivedMessage.getMessageAnswer(), receivedMessage.getMessageData());
+			UsersArr = Query.GetUsersDB();
+			receivedMessage.setMessageData(UsersArr);
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			return new Message(MessageType.GET_USERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 
 		default:
 			return new Message(MessageType.ERROR, null);

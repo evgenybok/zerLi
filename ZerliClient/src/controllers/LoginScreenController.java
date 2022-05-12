@@ -78,7 +78,7 @@ public class LoginScreenController {
 				return;
 			
 		} catch (Exception e) {
-
+			return;
 		}
 		;
 		user=(User)AnalyzeMessageFromServer.getData();

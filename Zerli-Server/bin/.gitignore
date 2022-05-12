@@ -1,6 +1,3 @@
-/controllers/
-/icon.png
-/images/
-/mainserver/
-/query/
 /serverAnalyze/
+/query/
+/controllers/
