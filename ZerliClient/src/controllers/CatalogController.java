@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,17 +27,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.Item;
 
 public class CatalogController {
 
 	@FXML
+    private Button AddToCartBtn;
+	
+	@FXML
 	private ImageView CartImage;
 
 	@FXML
 	private ImageView ClockImage;
-
+	 
+	@FXML
+	private TextField AmountLabel;
 	@FXML
 	private ImageView DeliveryImage;
 
@@ -45,6 +52,12 @@ public class CatalogController {
 
 	@FXML
 	private Pane chosenFlowerCart;
+	
+	@FXML
+	private Button MinBtn;
+
+	@FXML
+	private Button PlusBtn;
 
 	@FXML
 	private ImageView flowerImage;
@@ -60,6 +73,9 @@ public class CatalogController {
 
 	@FXML
 	private ScrollPane scroll;
+	
+	ArrayList<Item> selectedItems = new ArrayList<>();
+	
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -72,6 +88,27 @@ public class CatalogController {
 		customerStage.show();
 		customerStage.centerOnScreen();
 	}
+    @FXML
+    void btnMin(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnPlus(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void btnMyCart(MouseEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage cartStage = new Stage();
+		cartStage.initModality(Modality.APPLICATION_MODAL);
+		cartStage.setTitle("Cart");
+		cartStage.setScene((new Scene(root1)));
+		cartStage.show();
+		cartStage.centerOnScreen();
+    }
 
 	private void setChosenItem(Item item) {
 		flowerName.setText(item.getName());
@@ -79,13 +116,20 @@ public class CatalogController {
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
 		flowerImage.setImage(image);
 	}
+	@FXML
+    void btnAddToCart(MouseEvent event) throws IOException {
+		
+}
 
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
 		int column = 0;
 		int row = 1;
-		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
+		 assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert AmountLabel != null : "fx:id=\"AmountLabel\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert chosenFlowerCart != null
 				: "fx:id=\"chosenFlowerCart\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'Catalog.fxml'.";
@@ -105,11 +149,10 @@ public class CatalogController {
 		ArrayList<Item> items = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
-
 		if (items.size() > 0) {
 			setChosenItem(items.get(0));
 		}
-
+		selectedItems.equals(items);
 		try {
 
 			for (int i = 0; i < items.size(); i++) {

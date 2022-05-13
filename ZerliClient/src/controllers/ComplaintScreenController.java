@@ -1,15 +1,20 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class ComplaintScreenController {
 
@@ -18,6 +23,9 @@ public class ComplaintScreenController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button Back;
 
     @FXML
     private TextField desTxt;
@@ -35,19 +43,32 @@ public class ComplaintScreenController {
     private TextField subTxt;
 
     @FXML
-    void btnsend(MouseEvent event) {
+    void btnBack(MouseEvent event) throws IOException {
+    	((Node) event.getSource()).getScene().getWindow().hide();
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+    	Scene scene = new Scene(parent);
+    	Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	customerStage.setTitle("Customer");
+    	customerStage.setScene(scene);
+    	customerStage.show();
+    	customerStage.centerOnScreen();
 
     }
 
     @FXML
+    void btnsend(MouseEvent event) throws IOException {
+    	
+    }
+
+    @FXML
     void initialize() {
+        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
         assert desTxt != null : "fx:id=\"desTxt\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
         assert image != null : "fx:id=\"image\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
         assert pane != null : "fx:id=\"pane\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
         assert sendbtn != null : "fx:id=\"sendbtn\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
         assert subTxt != null : "fx:id=\"subTxt\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        //Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ComplaintImage.jpeg")));
-        //image.setImage(homeImage);
+
     }
 
 }

@@ -1,46 +1,52 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import logic.Item;
 
 public class CartController {
 
 	@FXML
-	private ResourceBundle resources;
+	private ImageView flowerImage;
 
 	@FXML
-	private URL location;
+	private Label flowerName;
 
 	@FXML
-	private Label lblTitle;
+	private Label flowerPrice;
 
 	@FXML
-	private TableView<String> tblCart;
-
+	private GridPane grid;
+	    
 	@FXML
-	private Button btnRemove;
+	    private ResourceBundle resources;
 
+	    @FXML
+	    private URL location;
 
-	@FXML
-	void clkRemove(MouseEvent event) {
+	    @FXML
+	    private ScrollPane scrollPane;
 
-	}
-
-	@FXML
-	void initialize() {
-		/*
-		 * Not implemented yet query to get data from user's info and put it in the
-		 * tableview
-		 */
-		assert lblTitle != null : "fx:id=\"lblTitle\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert tblCart != null : "fx:id=\"tblCart\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert btnRemove != null : "fx:id=\"btnRemove\" was not injected: check your FXML file 'CartScreen.fxml'.";
-
-	}
+	    @FXML
+	    void initialize() {
+	        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'CartScreen.fxml'.";
+	        
+	    }
 }

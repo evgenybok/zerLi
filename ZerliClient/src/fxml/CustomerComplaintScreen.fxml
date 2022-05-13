@@ -137,6 +137,19 @@
                   <HBox prefHeight="104.0" prefWidth="270.0" />
                </children>
             </VBox>
+            <HBox alignment="CENTER" layoutY="415.0" prefHeight="86.0" prefWidth="258.0">
+               <children>
+                  <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="36.0" prefWidth="107.0" style="-fx-background-color: transparent;" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </center>
