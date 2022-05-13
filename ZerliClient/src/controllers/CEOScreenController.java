@@ -1,11 +1,9 @@
 package controllers;
-
-import static controllers.IPScreenController.chat;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import static controllers.IPScreenController.chat;
 
 import communication.Message;
 import communication.MessageType;
@@ -28,37 +26,49 @@ public class CEOScreenController {
     private ResourceBundle resources;
 
     @FXML
-    private URL location;
+    private Text AccountStatus;
     
-	@FXML
-	private ImageView CEOScreenImage;
+    @FXML
+    private Text UserName;
+    
+    @FXML
+    private URL location;
 
     @FXML
-    private Button viewReports;
+    private Text AccountType;
 
     @FXML
-    private Button viewQuaReports;
+    private Button ComplainRep;
 
     @FXML
-    private Label lblUserPortal;
+    private Button CreatRep;
 
     @FXML
-    private Label lblStartMsg;
-
-    @FXML
-    private Text userName;
-
-    @FXML
-    private Text accountStatus;
+    private Button IncomRep;
 
     @FXML
     private Button Logout;
 
     @FXML
-    private Label lblStatus;
+    private Button OrdersRep;
 
     @FXML
-    private Text accountType;
+    private Text userName;
+
+    @FXML
+    void btnComplaint(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnCreate(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnIncom(MouseEvent event) {
+
+    }
 
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
@@ -73,37 +83,25 @@ public class CEOScreenController {
 		loginStage.centerOnScreen();
     }
 
-
     @FXML
-    void btnViewQuaReports(MouseEvent event) {
-
-    }
-
-    @FXML
-    void btnViewReports(MouseEvent event) {
+    void btnOrders(MouseEvent event) {
 
     }
 
     @FXML
     void initialize() {
-    	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
-    	this.accountType.setText("CEO"); //accountType - may be handled from DB
-    	this.userName.setText(LoginScreenController.user.getUsername()); //userName
+    	//this.AccountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
+    	//this.AccountType.setText("CEO"); //accountType - may be handled from DB
+    	//this.UserName.setText(LoginScreenController.user.getUsername()); //userName
     	
-        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
-        CEOScreenImage.setImage(homeImage);
-        
-        assert CEOScreenImage != null : "fx:id=\"CEOScreenImage\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert viewQuaReports != null : "fx:id=\"viewQuaReports\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'CEOScreen.fxml'.";
-
+        assert AccountType != null : "fx:id=\"AccountType\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert ComplainRep != null : "fx:id=\"ComplainRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert CreatRep != null : "fx:id=\"CreatRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert IncomRep != null : "fx:id=\"IncomRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert OrdersRep != null : "fx:id=\"OrdersRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
+        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
 
     }
+
 }

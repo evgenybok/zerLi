@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOScreenController">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Line endX="329.3431396484375" endY="-16.322040557861328" startX="-104.94975280761719" startY="-15.61270523071289" stroke="#004d00" strokeWidth="5.0" />
+                  <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
+                     <children>
+                        <Label prefHeight="42.0" prefWidth="172.0" text="Welcome back!" textAlignment="CENTER">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
+                     <children>
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="168.0" prefWidth="435.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                           <image>
+                              <Image url="@../../images/images/Avatar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="435.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="CEO" textAlignment="CENTER" wrappingWidth="153.13671875">
+                           <font>
+                              <Font name="Cambria" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="Logout" mnemonicParsing="false" onMouseClicked="#btnLogout" prefHeight="60.0" prefWidth="144.0" stylesheets="@../../images/css/styleNew.css" text="Logout" textFill="#004d00">
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="add-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane prefHeight="800.0" prefWidth="771.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="IncomRep" alignment="BOTTOM_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#btnIncom" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Incom" textFill="#004d00">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Cambria Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="OrdersRep" alignment="BOTTOM_CENTER" layoutX="471.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#btnOrders" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Orders" textFill="#004d00">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ComplainRep" alignment="BOTTOM_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Complaint" textFill="#004d00">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="CreatRep" alignment="BOTTOM_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnCreate" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Create Report" textFill="#004d00">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="767.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" CEO Screen">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="472.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli">
+                                 <font>
+                                    <Font name="Cambria" size="25.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIconView glyphName="LEAF" size="40" wrappingWidth="46.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="122.0" prefWidth="769.0">
+                     <children>
+                        <HBox prefHeight="122.0" prefWidth="115.0" />
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="108.0" fitWidth="149.0" layoutX="517.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/report-icon-13315.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="110.0" fitWidth="96.0" layoutX="170.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/225-2259206_mansfield-sales-order-sku-transparent-background-report-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="108.0" fitWidth="149.0" layoutX="530.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/WhatsApp%20Image%202022-05-10%20at%2019.49.21.jpeg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="122.0" fitWidth="117.0" layoutX="160.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/WhatsApp%20Image%202022-05-10%20at%2019.49.20.jpeg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

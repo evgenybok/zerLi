@@ -108,13 +108,13 @@ public class LoginScreenController {
 		case "Delivery":
 			return "/fxml/CourierScreen.fxml";
 		case "branch manager":
-			return "/fxml/ManagerScreen.fxml";
+			return "/fxml/branchManager.fxml";
 		case "customer specialist":	
 			return "/fxml/CustomerSpecialistScreen.fxml";
 		case "customer service":
 			return "/fxml/CustomerServiceScreen.fxml";
 		case "ceo":
-			return "/fxml/CEOScreen.fxml";
+			return "/fxml/CEOScreenNew.fxml";
 		default:
 			return "error";
 		}

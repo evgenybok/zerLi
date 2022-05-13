@@ -14,15 +14,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="534.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportScreenController">
    <children>
       <BorderPane prefHeight="673.0" prefWidth="534.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css">
          <left>
-            <VBox prefHeight="673.0" prefWidth="186.0" styleClass="right-bar" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="673.0" prefWidth="186.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="lblZerli" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Zerli">
+                        <Text fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Zerli">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                            </font>
@@ -33,7 +33,7 @@
                   <Line endX="100.0" startX="-100.0" stroke="#004d00" strokeWidth="5.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="lblReportsSreen" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Screen" wrappingWidth="162.13671875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Screen" wrappingWidth="162.13671875">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -47,14 +47,14 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../eclipse-workspace/Test1/src/img/pngegg.png" />
+                              <Image url="@../../images/images/Avatar.png" />
                            </image>
                         </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="232.0" prefWidth="205.0">
                      <children>
-                        <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="71.0" prefWidth="143.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Back">
+                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="71.0" prefWidth="143.0" stylesheets="@../../images/css/styleNew.css" text="Back">
                            <styleClass>
                               <String fx:value="add-btn" />
                               <String fx:value="shadow" />
@@ -69,13 +69,13 @@
             </VBox>
          </left>
          <right>
-            <VBox prefHeight="673.0" prefWidth="328.0" styleClass="body" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="673.0" prefWidth="328.0" styleClass="body" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="222.0" prefWidth="338.0">
                      <children>
                         <AnchorPane prefHeight="214.0" prefWidth="340.0">
                            <children>
-                              <Button alignment="TOP_CENTER" layoutX="54.0" layoutY="114.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Income Report" textFill="#004d00">
+                              <Button fx:id="IncomReport" alignment="TOP_CENTER" layoutX="54.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#btnIncom" prefHeight="110.0" prefWidth="230.0" stylesheets="@../../images/css/styleNew.css" text="Income Report" textFill="#004d00">
                                  <styleClass>
                                     <String fx:value="add-btn" />
                                     <String fx:value="shadow" />
@@ -86,7 +86,7 @@
                               </Button>
                               <ImageView fitHeight="66.0" fitWidth="55.0" layoutX="144.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../eclipse-workspace/Test1/src/img/225-2259206_mansfield-sales-order-sku-transparent-background-report-icon.png" />
+                                    <Image url="@../../images/images/225-2259206_mansfield-sales-order-sku-transparent-background-report-icon.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -97,7 +97,7 @@
                      <children>
                         <AnchorPane prefHeight="175.0" prefWidth="341.0">
                            <children>
-                              <Button alignment="TOP_CENTER" layoutX="54.0" layoutY="69.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Order Report" textFill="#004d00">
+                              <Button fx:id="OrderReport" alignment="TOP_CENTER" layoutX="54.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#btnOrders" prefHeight="110.0" prefWidth="230.0" stylesheets="@../../images/css/styleNew.css" text="Orders Report" textFill="#004d00">
                                  <styleClass>
                                     <String fx:value="add-btn" />
                                     <String fx:value="shadow" />
@@ -108,7 +108,7 @@
                               </Button>
                               <ImageView fitHeight="65.0" fitWidth="69.0" layoutX="136.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../eclipse-workspace/Test1/src/img/report-icon-13315.png" />
+                                    <Image url="@../../images/images/report-icon-13315.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -119,7 +119,7 @@
                      <children>
                         <AnchorPane prefHeight="182.0" prefWidth="346.0">
                            <children>
-                              <Button alignment="TOP_CENTER" layoutX="55.0" layoutY="73.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="230.0" stylesheets="@../../../../git/zerLi/ZerliClient/src/styles/styleNew.css" text="Complaint Report" textFill="#004d00">
+                              <Button fx:id="ComplaintsReport" alignment="TOP_CENTER" layoutX="52.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="110.0" prefWidth="237.0" stylesheets="@../../images/css/styleNew.css" text="Complaints Report" textFill="#004d00">
                                  <styleClass>
                                     <String fx:value="add-btn" />
                                     <String fx:value="shadow" />
@@ -128,9 +128,9 @@
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="70.0" fitWidth="79.0" layoutX="135.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="76.0" fitWidth="74.0" layoutX="135.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../eclipse-workspace/Test1/src/img/—Pngtree—reports%20icon%20for%20your%20project_4815639.png" />
+                                    <Image url="@../../images/images/WhatsApp%20Image%202022-05-10%20at%2019.49.20.jpeg" />
                                  </image>
                               </ImageView>
                            </children>

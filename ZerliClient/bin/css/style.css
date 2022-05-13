@@ -1,6 +1,6 @@
 .search-box{
 	-fx-background-color:#FFFFFF;
-	-fx-background-radius: 100;
+	-fx-background-radius: 10;
 }
 
 .transparent{
@@ -10,7 +10,7 @@
 
 .search-button{
 	-fx-background-color: #004d00;
-	-fx-background-radius: 30;
+	-fx-background-radius: 50;
 }
 
 .right-bar{
@@ -54,5 +54,9 @@
 .transparentTwo{
 	-fx-background-color: rgba(0,0,0,0);
 }
+
+    	
+    	
+
 
 

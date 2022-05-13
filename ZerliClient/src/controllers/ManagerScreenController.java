@@ -31,7 +31,19 @@ public class ManagerScreenController {
     private URL location;
 
     @FXML
-    private ImageView ManagerScreenImage;
+    private Button EditInfo;
+
+    @FXML
+    private Button Logout;
+
+    @FXML
+    private Text accountType;
+
+    @FXML
+    private Button addCustomer;
+
+    @FXML
+    private Text userName;
 
     @FXML
     private Button viewOrders;
@@ -40,25 +52,14 @@ public class ManagerScreenController {
     private Button viewReports;
 
     @FXML
-    private Label lblUserPortal;
+    void btnAdd(MouseEvent event) {
+
+    }
 
     @FXML
-    private Label lblStartMsg;
+    void btnEdit(MouseEvent event) {
 
-    @FXML
-    private Text userName;
-
-    @FXML
-    private Text accountStatus;
-
-    @FXML
-    private Button Logout;
-
-    @FXML
-    private Label lblStatus;
-
-    @FXML
-    private Label accountType;
+    }
 
     @FXML
     void btnLogout(MouseEvent event) throws IOException {
@@ -74,35 +75,33 @@ public class ManagerScreenController {
     }
 
     @FXML
-    void btnViewOrders(MouseEvent event) {
-
+    void btnViewOrders(MouseEvent event) throws IOException {
+   
     }
 
     @FXML
-    void btnViewReports(MouseEvent event) {
-
+    void btnViewReports(MouseEvent event) throws IOException {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+ 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BranchManagerReports.fxml")));
+		Scene scene = new Scene(parent);
+		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		loginStage.setTitle("Reports Screen");
+		loginStage.setScene(scene);
+		loginStage.show();
+		loginStage.centerOnScreen();
     }
 
     @FXML
     void initialize() {
-    	this.accountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
-    	this.accountType.setText("Branch Manager"); //accountType - may be handled from DB
-    	this.userName.setText(LoginScreenController.user.getUsername()); //userName
-    	
-        Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
-        ManagerScreenImage.setImage(homeImage);
-        
-        assert ManagerScreenImage != null : "fx:id=\"ManagerScreenImage\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'ManagerScreen.fxml'.";
-
+        assert EditInfo != null : "fx:id=\"EditInfo\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert addCustomer != null : "fx:id=\"addCustomer\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'branchManager.fxml'.";
+        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'branchManager.fxml'.";
 
     }
+
 }

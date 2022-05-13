@@ -89,8 +89,15 @@ public class CustomerScreenController {
     }
 
     @FXML
-    void btnComplaint(MouseEvent event) {
-
+    void btnComplaint(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CustomerComplaintScreen.fxml"))));
+		Scene scene = new Scene(parent);
+        parent.getStylesheets().add("css/style.css");
+        Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		premadeStage.setTitle("Customer Complaint");
+		premadeStage.setScene(scene);
+		premadeStage.show();
+		premadeStage.centerOnScreen();
     }
     
     @FXML
