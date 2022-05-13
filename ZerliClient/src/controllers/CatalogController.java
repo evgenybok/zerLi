@@ -125,14 +125,17 @@ public class CatalogController {
 					row++;
 
 				}
-				
+
 				anchorPane.setId(Integer.toString(items.get(i).getID()));
 				for (Item item : items) {
 					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
-						anchorPane.setOnMouseClicked(evt -> flowerImage.setImage(new Image(
-								Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString())))));
+						anchorPane.setOnMouseClicked(evt -> {
+							flowerImage.setImage(new Image(Objects
+									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
+							flowerName.setText(item.getName());
+							flowerPrice.setText("$" + item.getPrice());
+						});
 					}
-					;
 				}
 
 				grid.add(anchorPane, column++, row);// (child,column,row)
