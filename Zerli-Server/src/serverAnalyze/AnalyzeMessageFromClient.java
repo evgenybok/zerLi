@@ -19,6 +19,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Order> Orders;
 		ArrayList<User> UsersArr;
 		ArrayList<Item> Items;
+		ArrayList<String> data;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -86,19 +87,32 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_USERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
+		case GET_ITEMS:
+			try {
+			Items = Query.GetItems();
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(Items);
+			}
+			catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			};
+			return new Message(MessageType.GET_ITEMS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 
-
-			case GET_ITEMS:
-				Items=Query.GetItems();
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-				receivedMessage.setMessageData(Items);
-
-				return new Message(MessageType.GET_ITEMS, receivedMessage.getMessageAnswer(),
-						receivedMessage.getMessageData());
-
-
-
-
+		case GET_ACCOUNT_DETAILS:
+			try {
+			data = Query.GetAccountDetails((String)receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(data);
+			}
+			catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			};
+			return new Message(MessageType.GET_ACCOUNT_DETAILS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
 		default:
 			return new Message(MessageType.ERROR, null);
 		}

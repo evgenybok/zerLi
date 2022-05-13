@@ -65,6 +65,8 @@ public class LoginScreenController {
 		stage.close();
 		System.exit(1);
     }
+    
+    
 
     @FXML
     void btnLogin(MouseEvent event) throws IOException {
@@ -124,7 +126,12 @@ public class LoginScreenController {
     void initialize() {
 		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/LoginScreen.jpg")));
 		LoginImage.setImage(loginImage);
-		
+		//PopUp.setResizable(false);
+		/*
+		 * FXMLLoader fxmlLoader=new
+		 * FXMLLoader(getClass().getResource("/fxml/IPscreen.fxml")); Stage
+		 * primaryStamge=fxmlLoader.load();
+		 */
         assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";

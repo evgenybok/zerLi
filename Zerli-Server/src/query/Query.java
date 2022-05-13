@@ -237,12 +237,43 @@ public class Query {
 				String Color = rs.getString("color");
 				String Type = rs.getString("Type");
 				items.add(new Item(ID,imgSrc,Name,Price,Color,Type));
-
 			}
 		} catch (SQLException e) {
 
 		}
 		return items;
 
+	}
+	
+	public static ArrayList<String> GetAccountDetails(String id) {
+		String query = ("SELECT * FROM zerli.account_details;");
+		ArrayList<String> details = new ArrayList<String>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String userID = rs.getString("User_ID");
+				String creditCardNumber = rs.getString("CreditCardNumber");
+				String creditCardDate = rs.getString("CreditCardNumber");
+				String CVV = rs.getString("CreditCardCVV");
+				String refund = rs.getString("Refund");
+				String status = rs.getString("status");
+				if(id.equals(userID))
+				{
+				details.add(userID);
+				details.add(creditCardNumber);
+				details.add(creditCardDate);
+				details.add(CVV);
+				details.add(refund);
+				details.add(status);
+				break;
+				}
+			}
+			if(details.isEmpty())
+				details=null;
+		} catch (SQLException e) {
+			return null;
+		}
+		return details;
 	}
 }

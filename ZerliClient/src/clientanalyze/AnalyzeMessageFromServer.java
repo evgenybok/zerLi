@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import logic.Item;
 import logic.User;
 import logic.Order;
+
 public class AnalyzeMessageFromServer {
 	private static Object res;
 
@@ -64,9 +65,8 @@ public class AnalyzeMessageFromServer {
 		case GET_ORDERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
-				//Object list2= receivedMessage.getMessageData();
 			} else {
-				// Not implemented yet
+				res = null;
 			}
 			return;
 
@@ -74,49 +74,61 @@ public class AnalyzeMessageFromServer {
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = (String) receivedMessage.getMessageData();
 			} else {
-				// Not implemented yet
+				res = null;
 			}
 			return;
 		case GET_USERS:
-            if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-                res = receivedMessage.getMessageData();
-            }
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+			}
 
+		case GET_ITEMS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-			case GET_ITEMS:
-				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-					res = receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
 
-				} else {
-					res=null;
-				}
-				return;
+		case GET_ACCOUNT_DETAILS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
+			} else {
+				res = null;
+			}
+			return;
 
 		default:
 			break;
 
 		}
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	public static Object getData() {
 		if (res instanceof String)
-			return (String)res;
+			return (String) res;
 		if (res instanceof User)
-			return (User)res;
-		if(res instanceof ArrayList<?> )
-        {
-            if(((ArrayList<?>)res).get(0) instanceof User)
-            	return (ArrayList<User>)  res;
-            if(((ArrayList<?>)res).get(0) instanceof Order)
-                return (ArrayList<Order>) res;
-			if(((ArrayList<?>)res).get(0) instanceof Item)
-				return(ArrayList<Item>)   res;
-        }
+			return (User) res;
+		if (res instanceof ArrayList<?>) {
+			try {
+			if (((ArrayList<?>) res).get(0) instanceof User)
+				return (ArrayList<User>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Order)
+				return (ArrayList<Order>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Item)
+				return (ArrayList<Item>) res;
+			if (((ArrayList<?>) res).get(0) instanceof String)
+				return (ArrayList<String>) res;
+			}
+			catch (IndexOutOfBoundsException e) {
+			};
+		}
 		return null;
-		
+
 	}
 
 }
