@@ -82,7 +82,16 @@ public class AnalyzeMessageFromServer {
 				res = receivedMessage.getMessageData();
 			}
 
-		case GET_ITEMS:
+		case GET_PREMADE_ITEMS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+			
+		case GET_SELFASSEMBLY_ITEMS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 

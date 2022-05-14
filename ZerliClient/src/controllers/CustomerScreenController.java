@@ -81,7 +81,7 @@ public class CustomerScreenController {
 		Scene scene = new Scene(parent);
         parent.getStylesheets().add("css/style.css");
         Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		premadeStage.setTitle("PremadeItems");
+		premadeStage.setTitle("Premade Catalog");
 		premadeStage.setScene(scene);
 		premadeStage.show();
 		premadeStage.centerOnScreen();
@@ -102,13 +102,13 @@ public class CustomerScreenController {
     
     @FXML
     void btnCustomCatalog(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SelfAssemblyItems.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomCatalogScreen.fxml")));
 		Scene scene = new Scene(parent);
-		Stage selfAssemblyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		selfAssemblyStage.setTitle("Self Assembly Items");
-		selfAssemblyStage.setScene(scene);
-		selfAssemblyStage.show();
-		selfAssemblyStage.centerOnScreen();
+		Stage customCatalogStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customCatalogStage.setTitle("Custom Catalog");
+		customCatalogStage.setScene(scene);
+		customCatalogStage.show();
+		customCatalogStage.centerOnScreen();
     }
     
     @FXML

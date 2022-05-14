@@ -9,7 +9,6 @@ import java.util.Objects;
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -88,14 +87,31 @@ public class CatalogController {
 		customerStage.show();
 		customerStage.centerOnScreen();
 	}
-    @FXML
-    void btnMin(MouseEvent event) {
-
-    }
-
+	
     @FXML
     void btnPlus(MouseEvent event) {
-
+		int amount = Integer.valueOf(AmountLabel.getText());
+		if (amount < 50) {
+			amount ++;
+			AmountLabel.setText(Integer.toString(amount));
+		}
+		else {
+			amount = 0;
+			AmountLabel.setText(Integer.toString(amount));
+		}
+    }
+    
+    @FXML
+    void btnMin(MouseEvent event) {
+		int amount = Integer.valueOf(AmountLabel.getText());
+		if (amount > 0) {
+			amount --;
+			AmountLabel.setText(Integer.toString(amount));
+		}
+		else {
+			amount = 50;
+			AmountLabel.setText(Integer.toString(amount));
+		}
     }
     
     @FXML
@@ -110,7 +126,7 @@ public class CatalogController {
 		cartStage.centerOnScreen();
     }
 
-	private void setChosenItem(Item item) {
+	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
 		flowerPrice.setText("$" + item.getPrice());
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
@@ -126,17 +142,7 @@ public class CatalogController {
 	void initialize() {
 		int column = 0;
 		int row = 1;
-		 assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert AmountLabel != null : "fx:id=\"AmountLabel\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert chosenFlowerCart != null
-				: "fx:id=\"chosenFlowerCart\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert flowerName != null : "fx:id=\"flowerName\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert flowerPrice != null : "fx:id=\"flowerPrice\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'Catalog.fxml'.";
-		assert scroll != null : "fx:id=\"scroll\" was not injected: check your FXML file 'Catalog.fxml'.";
+
 		Image flower = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/clipart704080.png")));
 		flowerImage.setImage(flower);
 		Image clockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Clock.png")));
@@ -147,10 +153,10 @@ public class CatalogController {
 		DeliveryImage.setImage(deliveryImage);
 
 		ArrayList<Item> items = new ArrayList<>();
-		chat.accept(new Message(MessageType.GET_ITEMS, null));
+		chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
 		if (items.size() > 0) {
-			setChosenItem(items.get(0));
+			setSelectedItem(items.get(0));
 		}
 		selectedItems.equals(items);
 		try {
@@ -199,7 +205,17 @@ public class CatalogController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		 assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert AmountLabel != null : "fx:id=\"AmountLabel\" was not injected: check your FXML file 'Catalog.fxml'.";
+	        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert chosenFlowerCart != null
+				: "fx:id=\"chosenFlowerCart\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert flowerName != null : "fx:id=\"flowerName\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert flowerPrice != null : "fx:id=\"flowerPrice\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert scroll != null : "fx:id=\"scroll\" was not injected: check your FXML file 'Catalog.fxml'.";
 	}
 
 }

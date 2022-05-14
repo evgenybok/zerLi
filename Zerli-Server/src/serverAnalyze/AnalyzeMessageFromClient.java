@@ -87,9 +87,9 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_USERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
-		case GET_ITEMS:
+		case GET_PREMADE_ITEMS:
 			try {
-			Items = Query.GetItems();
+			Items = Query.GetPremadeItems();
 			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			receivedMessage.setMessageData(Items);
 			}
@@ -97,7 +97,20 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			};
-			return new Message(MessageType.GET_ITEMS, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_SELFASSEMBLY_ITEMS:
+			try {
+			Items = Query.GetSelfAssemblyItems();
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(Items);
+			}
+			catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			};
+			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case GET_ACCOUNT_DETAILS:
