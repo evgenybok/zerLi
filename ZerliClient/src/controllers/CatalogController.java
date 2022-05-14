@@ -128,7 +128,7 @@ public class CatalogController {
 
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
-		flowerPrice.setText("$" + item.getPrice());
+		flowerPrice.setText("\u20AA" + item.getPrice());
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
 		flowerImage.setImage(image);
 	}

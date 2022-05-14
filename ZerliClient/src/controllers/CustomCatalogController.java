@@ -94,6 +94,9 @@ public class CustomCatalogController {
 	private ScrollPane scroll;
 
 	@FXML
+	private Label serialID;
+
+	@FXML
 	private Button viewCustomizedBouquet;
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
@@ -113,31 +116,48 @@ public class CustomCatalogController {
 		ArrayList<Item> items = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+
+		boolean flag = false;
 		for (Item item : items) {
-			if (item.getName().equals(flowerName.getText())) {
-				selectedProducts.add(item);
+			if (Integer.toString(item.getID()).equals(serialID.getText())) {
+				try {
+					for (int k = 0; k < selectedProducts.size(); k++) {
+						Item temp = selectedProducts.get(k);
+						if (temp.getID() == item.getID()) {
+							flag = true;
+						}
+					}
+				} catch (Exception e) {
+				}
+				;
+				if (!flag) {
+					selectedProducts.add(item);
+					flag = false;
+				}
 			}
 		}
+		boolean amountChanged = false;
 		for (int i = 0; i < selectedProducts.size(); i++) {
+			if(selectedProducts.get(i).getID()==Integer.parseInt(serialID.getText()))
+			{
 			ArrayList<String> details = new ArrayList<String>();
 			details.add(items.get(i).getName());
 			details.add(Double.toString(items.get(i).getPrice()));
 			details.add(items.get(i).getImgSrc());
-			if (itemToAmount.containsKey(selectedProducts.get(i).getID())) {
-				String tempAmount = itemToAmount.get(selectedProducts.get(i).getID()).get(3).toString();
+			if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
+				if(!amountChanged)
+				{
+				String tempAmount = itemToAmount.get(Integer.parseInt(serialID.getText())).get(3).toString();
 				Integer newAmount = Integer.parseInt(tempAmount) + Integer.parseInt(AmountLabel.getText());
 				details.add(newAmount.toString());
+				amountChanged = true;
+				}
 			} else
 				details.add(AmountLabel.getText());
-			itemToAmount.put(selectedProducts.get(i).getID(), details);
-			// ArrayList<String> str = itemToAmount.get(selectedProducts.get(i).getID());
-			//
-			// itemToAmount.put(selectedProducts.get(i).getID(),Integer.parseInt(str.get(3))+
-			// }
-			// itemToAmount.put(selectedProducts.get(i).getID(), details);
-			// System.out.println(itemToAmount);
+			itemToAmount.put(Integer.parseInt(serialID.getText()), details);
 		}
-
+		}
+		System.out.println(itemToAmount);
 	}
 
 	@FXML
@@ -154,9 +174,10 @@ public class CustomCatalogController {
 
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
-		flowerPrice.setText("$" + item.getPrice());
+		flowerPrice.setText("\u20AA" + item.getPrice());	//unicode for shekel
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
 		flowerImage.setImage(image);
+		serialID.setText(Integer.toString(item.getID()));
 	}
 
 	@FXML
@@ -191,7 +212,6 @@ public class CustomCatalogController {
 
 	@FXML
 	void btnViewCustomizedBouquet(MouseEvent event) {
-
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -253,6 +273,7 @@ public class CustomCatalogController {
 									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
 							flowerName.setText(item.getName());
 							flowerPrice.setText("$" + item.getPrice());
+							serialID.setText(Integer.toString(item.getID()));
 						});
 					}
 				}

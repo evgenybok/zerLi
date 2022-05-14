@@ -21,7 +21,8 @@ public class ItemController {
     @FXML
     private  Label priceLabel;
 
-
+    @FXML
+    private Label serial;
 
 
     public void setData(Item item) {
@@ -31,7 +32,7 @@ public class ItemController {
         nameLabel.setText(item.getName());
         Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
         img.setImage(image);
-
+        serial.setText(Integer.toString(item.getID()));
     }
 
 

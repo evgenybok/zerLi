@@ -7,8 +7,12 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -71,6 +75,13 @@ public class IPScreenController {
 		}
 
 		chat.accept(new Message(MessageType.CONFIRM_IP, txtIP.getText()));
+		String result=(String) AnalyzeMessageFromServer.getData();
+		if(result.equals("Failed"))
+		{
+			JOptionPane.showMessageDialog(null, "IP already connected", "Error", JOptionPane.ERROR_MESSAGE);
+			Platform.exit();
+			System.exit(0);
+		}
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

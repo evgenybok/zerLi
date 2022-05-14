@@ -35,7 +35,7 @@ public class CustomizedItemController {
 
 	public void setData(Item item, String amount) {
 		amountLabel.setText(amount);
-		priceLabel.setText("¤" + item.getPrice());
+		priceLabel.setText("\u20AA" + item.getPrice()); // shekel unicode
 		nameLabel.setText(item.getName());
 		totalPriceLabel.setText(Double.toString(Integer.parseInt(amount) * item.getPrice()));
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));

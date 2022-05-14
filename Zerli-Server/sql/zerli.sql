@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: zerli
+-- Host: localhost    Database: zerli
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -67,7 +67,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (10000,'/images/iris.png','Iris',28,'Red','Self Assembly'),(10001,'/images/Tulip.png','Tulip',54,'Blue','Self Assembly'),(10100,'/images/PinkLotus.png','PinkLouts',150,'Pink','Premade'),(10101,'/images/Passion.png','Passion',100,'Yellow','Premade');
+INSERT INTO `item` VALUES (10000,'/images/iris.png','Iris',28,'Blue','Self Assembly'),(10003,'/images/Passion.png','Passion',35,'Yellow','Self Assembly'),(10004,'/images/asterFlower.jpg','Aster',20,'Purple','Self Assembly'),(10005,'/images/daisyFlower.png','Daisy',22,'White','Self Assembly'),(10006,'/images/irisFlower.jpg','Purple Iris',25,'Purple','Self Assembly'),(10007,'/images/lilyFlower.png','Lily',25,'White','Self Assembly'),(10008,'/images/pinkLilyflower.jpg','Pink Lily',28,'Pink','Self Assembly'),(10009,'/images/yellowTulipFlower.png','Yellow Tulip',16,'Yellow','Self Assembly'),(10010,'/images/plumeriaFlower.jpg','Plumeria',22,'Yellow','Self Assembly'),(10011,'/images/poppyFlower.png','Poppy',15,'Red','Self Assembly'),(10012,'/images/purpleRoseFlower.png','Purple Rose',25,'Purple','Self Assembly'),(10013,'/images/redRoseFlower.png','Red Rose',20,'Red','Self Assembly'),(10014,'/images/tulipFlower.png','Tulip',15,'Red','Self Assembly'),(10015,'/images/whiteRoseFlower.png','White Rose',22,'White','Self Assembly'),(10016,'/images/whiteTulipFlower.png','White Tulip',16,'White','Self Assembly'),(10017,'/images/zinniaFlower.jpg','Zinnia',26,'Red','Self Assembly'),(10018,'/images/greenVase.png','Green Vase',45,'Green','Self Assembly'),(10019,'/images/highballGlassVase.jpg','Highball Glass Vase',65,'Glass','Self Assembly'),(10020,'/images/redVase.png','Red Vase',50,'Red','Self Assembly'),(20001,'/images/mixedRosesBouquet.png','Mixed Roses',300,'Mixed','Premade'),(20002,'/images/rosesBouquet.png','Premium Roses',320,'Red','Premade'),(20003,'/images/pinkRosesBouquet.png','Pink Roses',280,'Pink','Premade'),(20004,'/images/tulipBouquet.png','Red Tulips',150,'Red','Premade'),(20005,'/images/whiteRosesBouquet.png','White Roses',280,'White','Premade'),(20006,'/images/yellowTulipBouquet.png','Yellow Tulips',170,'Yellow','Premade'),(20007,'/images/desertCactus.png','Desert Cactus',58,'Green','Premade'),(20008,'/images/cactus.png','Cactus',45,'Green','Premade'),(20010,'/images/pinkWeddingBouquet.jpg','Pink Wedding Bouquet',420,'Pink','Premade'),(20011,'/images/whiteWeddingBouquet.jpg','White Wedding Bouquet',425,'White','Premade');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,6 +158,33 @@ INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','Nort
 UNLOCK TABLES;
 
 --
+-- Table structure for table `premade`
+--
+
+DROP TABLE IF EXISTS `premade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `premade` (
+  `ID` int NOT NULL,
+  `imgSrc` varchar(255) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Price` double NOT NULL,
+  `Color` varchar(30) DEFAULT NULL,
+  `Type` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `premade`
+--
+
+LOCK TABLES `premade` WRITE;
+/*!40000 ALTER TABLE `premade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `premade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `premade_items`
 --
 
@@ -226,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 12:31:25
+-- Dump completed on 2022-05-14 17:02:08

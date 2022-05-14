@@ -1,14 +1,14 @@
 package clientanalyze;
 
-import javax.swing.JOptionPane;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import communication.Message;
 import communication.MessageAnswer;
-import javafx.application.Platform;
 import logic.Item;
-import logic.User;
 import logic.Order;
+import logic.User;
 
 public class AnalyzeMessageFromServer {
 	private static Object res;
@@ -20,10 +20,9 @@ public class AnalyzeMessageFromServer {
 
 		case CONFIRM_IP:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
-				JOptionPane.showMessageDialog(null, "Already Logged in", "Error", JOptionPane.ERROR_MESSAGE);
-				Platform.exit();
-				System.exit(0);
+				res="Failed";
 			} else {
+				res="Success";
 				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 					break;
 				}

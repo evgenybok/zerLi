@@ -36,6 +36,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(user);
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} else {
+				receivedMessage.setMessageData(null);
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			}
 			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(), receivedMessage.getMessageData());
