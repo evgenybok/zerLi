@@ -67,6 +67,7 @@
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
                      <children>
+                        <Label fx:id="serialID" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="89.0" textAlignment="CENTER" />
                         <HBox prefHeight="24.0" prefWidth="325.0">
                            <children>
                               <Label fx:id="flowerName" prefHeight="58.0" prefWidth="191.0" text="Tulips bouqet" textFill="#004d00">
@@ -181,7 +182,7 @@
                      <children>
                         <Pane prefHeight="100.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label layoutX="24.0" layoutY="27.0" prefHeight="47.0" prefWidth="394.0" text="Pre-Made Catalog" textFill="#004d00">
+                              <Label layoutX="24.0" layoutY="27.0" prefHeight="47.0" prefWidth="394.0" text="Premade Catalog" textFill="#004d00">
                                  <font>
                                     <Font name="Cambria Bold" size="36.0" />
                                  </font>
@@ -193,9 +194,9 @@
                               <Font name="Cambria Bold" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="CartImage" fitHeight="44.0" fitWidth="42.0" onMouseClicked="#btnMyCart" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="CartImage" fitHeight="37.0" fitWidth="103.0" onMouseClicked="#btnMyCart" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/images/img_293282.png" />
+                              <Image url="@../../images/images/Cart.png" />
                            </image>
                            <HBox.margin>
                               <Insets bottom="15.0" />

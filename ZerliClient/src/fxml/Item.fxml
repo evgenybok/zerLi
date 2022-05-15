@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../images/css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../images/css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,12 +18,12 @@
                <children>
                   <Label fx:id="nameLabel" prefHeight="50.0" prefWidth="150.0" text="Iris">
                      <font>
-                        <Font name="Cambria" size="24.0" />
+                        <Font name="Cambria" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="priceLabel" prefHeight="50.0" prefWidth="85.0" text="\$29.90">
                      <font>
-                        <Font name="Cambria Bold" size="18.0" />
+                        <Font name="Cambria Bold" size="17.0" />
                      </font>
                   </Label>
                </children>
@@ -31,7 +31,7 @@
                   <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="serial" />
+            <Label fx:id="serial" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="57.0" />
             <ImageView fx:id="img" fitHeight="115.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/images/iris.png" />

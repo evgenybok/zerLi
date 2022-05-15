@@ -17,7 +17,7 @@
    <left>
       <VBox prefHeight="474.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="45.0" prefWidth="700.0">
+            <HBox prefHeight="26.0" prefWidth="700.0">
                <children>
                   <Label fx:id="titleImage" text="Image" textAlignment="CENTER">
                      <HBox.margin>
@@ -27,9 +27,9 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="titleName" text="Name" textAlignment="CENTER">
+                  <Label fx:id="titleName" prefHeight="27.0" prefWidth="50.0" text="Name" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="67.0" />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -37,7 +37,7 @@
                   </Label>
                   <Label fx:id="titlePrice" text="Price" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="135.0" />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -45,7 +45,7 @@
                   </Label>
                   <Label fx:id="titleAmount" text="Amount" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="73.0" />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -53,7 +53,7 @@
                   </Label>
                   <Label fx:id="titleTotalPrice" text="Total Price" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -77,24 +77,17 @@
       </VBox>
    </left>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="55.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblCustomizedName" prefHeight="42.0" prefWidth="227.0" text="Customized Item Name:">
+            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="195.0" text="Total Item Price:">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Text fx:id="customizedName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="75.0">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Text>
-            <Label fx:id="lblTotalPrice" prefHeight="42.0" prefWidth="157.0" text="Total Item Price:">
+            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="77.13671875">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="21.0" />
-               </font>
-            </Label>
-            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.13671875" />
+                  <Font size="24.0" />
+               </font></Text>
             <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" styleClass="body" text="Close" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
@@ -103,6 +96,9 @@
                   <URL value="@../../images/css/style.css" />
                   <URL value="@../../images/css/styleNew.css" />
                </stylesheets>
+               <HBox.margin>
+                  <Insets left="320.0" />
+               </HBox.margin>
             </Button>
          </children>
       </HBox>
@@ -111,9 +107,9 @@
       <HBox prefHeight="115.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label text="Customized Item View" BorderPane.alignment="CENTER">
+      <Label prefHeight="30.0" prefWidth="85.0" text="My Cart" BorderPane.alignment="CENTER">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
    </top>

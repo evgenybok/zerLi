@@ -4,7 +4,11 @@ import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -33,14 +37,14 @@ import logic.Item;
 public class CatalogController {
 
 	@FXML
-    private Button AddToCartBtn;
-	
+	private Button AddToCartBtn;
+
 	@FXML
 	private ImageView CartImage;
 
 	@FXML
 	private ImageView ClockImage;
-	 
+
 	@FXML
 	private TextField AmountLabel;
 	@FXML
@@ -51,7 +55,7 @@ public class CatalogController {
 
 	@FXML
 	private Pane chosenFlowerCart;
-	
+
 	@FXML
 	private Button MinBtn;
 
@@ -71,10 +75,18 @@ public class CatalogController {
 	private GridPane grid;
 
 	@FXML
+	private Label serialID;
+
+	@FXML
 	private ScrollPane scroll;
-	
+
+	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
+	public double totalPrice;
+
+	// A map that wires an item for the selected amount. ( map.get(item)==amount )
+	public static Map<Integer, ArrayList<String>> itemToAmount = new HashMap<Integer, ArrayList<String>>();
+
 	ArrayList<Item> selectedItems = new ArrayList<>();
-	
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -87,55 +99,111 @@ public class CatalogController {
 		customerStage.show();
 		customerStage.centerOnScreen();
 	}
-	
-    @FXML
-    void btnPlus(MouseEvent event) {
+
+	@FXML
+	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
 		if (amount < 50) {
-			amount ++;
+			amount++;
 			AmountLabel.setText(Integer.toString(amount));
-		}
-		else {
+		} else {
 			amount = 0;
 			AmountLabel.setText(Integer.toString(amount));
 		}
-    }
-    
-    @FXML
-    void btnMin(MouseEvent event) {
+	}
+
+	@FXML
+	void btnMin(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
 		if (amount > 0) {
-			amount --;
+			amount--;
 			AmountLabel.setText(Integer.toString(amount));
-		}
-		else {
+		} else {
 			amount = 50;
 			AmountLabel.setText(Integer.toString(amount));
 		}
-    }
-    
-    @FXML
-    void btnMyCart(MouseEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-		Parent root1 = (Parent) fxmlLoader.load();
-		Stage cartStage = new Stage();
-		cartStage.initModality(Modality.APPLICATION_MODAL);
-		cartStage.setTitle("Cart");
-		cartStage.setScene((new Scene(root1)));
-		cartStage.show();
-		cartStage.centerOnScreen();
-    }
+	}
+
+	@FXML
+	void btnMyCart(MouseEvent event) throws IOException {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage cartDetailsScreen = new Stage();
+			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+			cartDetailsScreen.setTitle("Cart Details");
+			cartDetailsScreen.setScene((new Scene(root1)));
+			cartDetailsScreen.show();
+			cartDetailsScreen.centerOnScreen();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
 		flowerPrice.setText("\u20AA" + item.getPrice());
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
 		flowerImage.setImage(image);
+		serialID.setText(Integer.toString(item.getID()));
 	}
+
+	@SuppressWarnings("unchecked")
 	@FXML
-    void btnAddToCart(MouseEvent event) throws IOException {
-		
-}
+	void btnAddToCart(MouseEvent event) throws IOException {
+		if (AmountLabel.getText().equals("0")) {
+			JOptionPane.showMessageDialog(null, "You can not add 0 items to the cart!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			ArrayList<Item> items = new ArrayList<>();
+			chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
+			items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+
+			boolean flag = false;
+			for (Item item : items) {
+				if (Integer.toString(item.getID()).equals(serialID.getText())) {
+					try {
+						for (int k = 0; k < selectedProducts.size(); k++) {
+							Item temp = selectedProducts.get(k);
+							if (temp.getID() == item.getID()) {
+								flag = true;
+							}
+						}
+					} catch (Exception e) {
+					}
+					;
+					if (!flag) {
+						selectedProducts.add(item);
+						flag = false;
+					}
+				}
+			}
+			boolean amountChanged = false;
+			for (int i = 0; i < selectedProducts.size(); i++) {
+				if (selectedProducts.get(i).getID() == Integer.parseInt(serialID.getText())) {
+					ArrayList<String> details = new ArrayList<String>();
+					details.add(items.get(i).getName());
+					details.add(Double.toString(items.get(i).getPrice()));
+					details.add(items.get(i).getImgSrc());
+					if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
+						if (!amountChanged) {
+							String tempAmount = itemToAmount.get(Integer.parseInt(serialID.getText())).get(3)
+									.toString();
+							Integer newAmount = Integer.parseInt(tempAmount) + Integer.parseInt(AmountLabel.getText());
+							details.add(newAmount.toString());
+							amountChanged = true;
+						}
+					} else
+						details.add(AmountLabel.getText());
+					itemToAmount.put(Integer.parseInt(serialID.getText()), details);
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Added the bouquet(s) to the cart!", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+			AmountLabel.setText("0");
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -143,8 +211,6 @@ public class CatalogController {
 		int column = 0;
 		int row = 1;
 
-		Image flower = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/clipart704080.png")));
-		flowerImage.setImage(flower);
 		Image clockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Clock.png")));
 		ClockImage.setImage(clockImage);
 		Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
@@ -182,7 +248,8 @@ public class CatalogController {
 							flowerImage.setImage(new Image(Objects
 									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
 							flowerName.setText(item.getName());
-							flowerPrice.setText("$" + item.getPrice());
+							flowerPrice.setText("\u20AA" + item.getPrice());
+							serialID.setText(Integer.toString(item.getID()));
 						});
 					}
 				}
@@ -205,10 +272,14 @@ public class CatalogController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert AmountLabel != null : "fx:id=\"AmountLabel\" was not injected: check your FXML file 'Catalog.fxml'.";
-	        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert AddToCartBtn != null : "fx:id=\"AddToCartBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert AmountLabel != null : "fx:id=\"AmountLabel\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert CartImage != null : "fx:id=\"CartImage\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert ClockImage != null : "fx:id=\"ClockImage\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert DeliveryImage != null : "fx:id=\"DeliveryImage\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert chosenFlowerCart != null
 				: "fx:id=\"chosenFlowerCart\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'Catalog.fxml'.";
@@ -216,6 +287,7 @@ public class CatalogController {
 		assert flowerPrice != null : "fx:id=\"flowerPrice\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'Catalog.fxml'.";
 		assert scroll != null : "fx:id=\"scroll\" was not injected: check your FXML file 'Catalog.fxml'.";
+		assert serialID != null : "fx:id=\"serialID\" was not injected: check your FXML file 'Catalog.fxml'.";
 	}
 
 }

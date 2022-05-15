@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public class ItemController {
 
-    private Item item;
 
     @FXML
     private ImageView img;
@@ -27,8 +26,7 @@ public class ItemController {
 
     public void setData(Item item) {
 
-        this.item=item;
-        priceLabel.setText("$"+item.getPrice());
+        priceLabel.setText("\u20AA"+item.getPrice());
         nameLabel.setText(item.getName());
         Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
         img.setImage(image);

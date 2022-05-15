@@ -53,20 +53,20 @@
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
                            <children>
-                              <Label fx:id="serialID" />
+                              <Label fx:id="serialID" alignment="CENTER" contentDisplay="CENTER" prefHeight="11.0" prefWidth="105.0" textAlignment="CENTER" />
                               <HBox prefHeight="24.0" prefWidth="325.0">
                                  <children>
-                                    <Label fx:id="flowerName" prefHeight="58.0" prefWidth="191.0" text="Tulips bouqet" textFill="#004d00">
+                                    <Label fx:id="flowerName" prefHeight="34.0" prefWidth="183.0" text="Tulips bouqet" textFill="#004d00">
                                        <font>
-                                          <Font name="Cambria Bold" size="26.0" />
+                                          <Font name="Cambria Bold" size="20.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="flowerPrice" prefHeight="58.0" prefWidth="151.0" text="\$29.90" textFill="#004d00">
+                                    <Label fx:id="flowerPrice" prefHeight="34.0" prefWidth="113.0" text="\$29.90" textFill="#004d00">
                                        <font>
-                                          <Font name="Cambria" size="36.0" />
+                                          <Font name="Cambria" size="20.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="20.0" />
@@ -188,12 +188,12 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <Label fx:id="myCart" onMouseClicked="#btnMyCart" prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
+                              <Label prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
                                  <font>
                                     <Font name="Cambria Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="CartImage" fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="CartImage" fitHeight="44.0" fitWidth="42.0" onMouseClicked="#btnMyCart" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/Cart.png" />
                                  </image>

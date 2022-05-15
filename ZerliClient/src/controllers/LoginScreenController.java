@@ -58,6 +58,12 @@ public class LoginScreenController {
     private Text lblZerli;
 
     @FXML
+    private ImageView imageLeft;
+
+    @FXML
+    private ImageView imageRight;
+
+    @FXML
     void ExitLogin(MouseEvent event) {
 		chat.accept(new Message(MessageType.EXIT, null));
 		Stage stage;
@@ -124,21 +130,19 @@ public class LoginScreenController {
 
     @FXML
     void initialize() {
-		Image loginImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/LoginScreen.jpg")));
-		LoginImage.setImage(loginImage);
-		//PopUp.setResizable(false);
-		/*
-		 * FXMLLoader fxmlLoader=new
-		 * FXMLLoader(getClass().getResource("/fxml/IPscreen.fxml")); Stage
-		 * primaryStamge=fxmlLoader.load();
-		 */
+		Image imgLeft = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin.png")));
+		imageLeft.setImage(imgLeft);
+		Image imgRight = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin2.png")));
+		imageRight.setImage(imgRight);
         assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert LoginImage != null : "fx:id=\"LoginImage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+        assert imageLeft != null : "fx:id=\"imageLeft\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+        assert imageRight != null : "fx:id=\"imageRight\" was not injected: check your FXML file 'LoginScreen.fxml'.";
         assert lblZerli != null : "fx:id=\"lblZerli\" was not injected: check your FXML file 'LoginScreen.fxml'.";
+
 
     }
 

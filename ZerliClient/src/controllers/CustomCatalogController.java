@@ -5,10 +5,13 @@ import static controllers.IPScreenController.chat;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -88,9 +91,6 @@ public class CustomCatalogController {
 	private Button itemsInCustomBouquet;
 
 	@FXML
-	private Label myCart;
-
-	@FXML
 	private ScrollPane scroll;
 
 	@FXML
@@ -100,68 +100,112 @@ public class CustomCatalogController {
 	private Button viewCustomizedBouquet;
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
-	public double totalPrice;
+	public static double totalPrice = 0;
 
-	// A map that wires an item for the selected amount. ( map.get(item)==amount )
+	public static ArrayList<String[]> customItemInCart = new ArrayList<String[]>();
 	public static Map<Integer, ArrayList<String>> itemToAmount = new HashMap<Integer, ArrayList<String>>();
+	private int counter = 0;
 
 	@FXML
 	void btnAddToCart(MouseEvent event) {
+		if (!selectedProducts.isEmpty()) {
+			StringBuilder customItemDetails = new StringBuilder();
+			for (int i = 0; i < selectedProducts.size(); i++) {
+				customItemDetails.append(selectedProducts.get(i).getName() + "("
+						+ itemToAmount.get(selectedProducts.get(i).getID()).get(3) + "), ");
 
+			}
+			if (customName.getText().equals("")) {
+				String[] data = new String[] { "MyBouquet" + Integer.toString(counter + 1),
+						customItemDetails.toString(), Double.toString(totalPrice) };
+				customItemInCart.add(counter, data);
+			} else {
+				String[] data = new String[] { customName.getText(), customItemDetails.toString(),
+						Double.toString(totalPrice) };
+				customItemInCart.add(counter, data);
+			}
+
+			counter++;
+			selectedProducts.clear();
+			itemToAmount.clear();
+			;
+			totalPrice = 0;
+			customName.setText("");
+			JOptionPane.showMessageDialog(null, "Added the customized bouquet to the cart!", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "You did not add items for the customized bouquet!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void btnAddToCustomArrangement(MouseEvent event) {
-		ArrayList<Item> items = new ArrayList<>();
-		chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
-		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+		if (AmountLabel.getText().equals("0")) {
+			JOptionPane.showMessageDialog(null, "You can not add 0 items to the customized bouquet!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			ArrayList<Item> items = new ArrayList<>();
+			chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
+			items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
 
-		boolean flag = false;
-		for (Item item : items) {
-			if (Integer.toString(item.getID()).equals(serialID.getText())) {
-				try {
-					for (int k = 0; k < selectedProducts.size(); k++) {
-						Item temp = selectedProducts.get(k);
-						if (temp.getID() == item.getID()) {
-							flag = true;
+			boolean flag = false;
+			for (Item item : items) {
+				if (Integer.toString(item.getID()).equals(serialID.getText())) {
+					try {
+						for (int k = 0; k < selectedProducts.size(); k++) {
+							Item temp = selectedProducts.get(k);
+							if (temp.getID() == item.getID()) {
+								flag = true;
+							}
 						}
+					} catch (Exception e) {
 					}
-				} catch (Exception e) {
-				}
-				;
-				if (!flag) {
-					selectedProducts.add(item);
-					flag = false;
+					;
+					if (!flag) {
+						selectedProducts.add(item);
+						flag = false;
+					}
 				}
 			}
-		}
-		boolean amountChanged = false;
-		for (int i = 0; i < selectedProducts.size(); i++) {
-			if(selectedProducts.get(i).getID()==Integer.parseInt(serialID.getText()))
-			{
-			ArrayList<String> details = new ArrayList<String>();
-			details.add(items.get(i).getName());
-			details.add(Double.toString(items.get(i).getPrice()));
-			details.add(items.get(i).getImgSrc());
-			if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
-				if(!amountChanged)
-				{
-				String tempAmount = itemToAmount.get(Integer.parseInt(serialID.getText())).get(3).toString();
-				Integer newAmount = Integer.parseInt(tempAmount) + Integer.parseInt(AmountLabel.getText());
-				details.add(newAmount.toString());
-				amountChanged = true;
+			boolean amountChanged = false;
+			for (int i = 0; i < selectedProducts.size(); i++) {
+				if (selectedProducts.get(i).getID() == Integer.parseInt(serialID.getText())) {
+					ArrayList<String> details = new ArrayList<String>();
+					details.add(items.get(i).getName());
+					details.add(Double.toString(items.get(i).getPrice()));
+					details.add(items.get(i).getImgSrc());
+					if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
+						if (!amountChanged) {
+							String tempAmount = itemToAmount.get(Integer.parseInt(serialID.getText())).get(3)
+									.toString();
+							Integer newAmount = Integer.parseInt(tempAmount) + Integer.parseInt(AmountLabel.getText());
+							details.add(newAmount.toString());
+							amountChanged = true;
+						}
+					} else
+						details.add(AmountLabel.getText());
+					itemToAmount.put(Integer.parseInt(serialID.getText()), details);
+					totalPrice += Integer.parseInt(itemToAmount.get(selectedProducts.get(i).getID()).get(3))
+							* selectedProducts.get(i).getPrice();
 				}
-			} else
-				details.add(AmountLabel.getText());
-			itemToAmount.put(Integer.parseInt(serialID.getText()), details);
+			}
+			JOptionPane.showMessageDialog(null, "Added the items to the customized bouquet!", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+			AmountLabel.setText("0");
 		}
-		}
-		System.out.println(itemToAmount);
 	}
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
+		selectedProducts.clear();
+		itemToAmount.clear();
+		;
+		totalPrice = 0;
+		customName.setText("");
+
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
 		Scene scene = new Scene(parent);
@@ -174,7 +218,7 @@ public class CustomCatalogController {
 
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
-		flowerPrice.setText("\u20AA" + item.getPrice());	//unicode for shekel
+		flowerPrice.setText("\u20AA" + item.getPrice()); // unicode for shekel
 		Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc())));
 		flowerImage.setImage(image);
 		serialID.setText(Integer.toString(item.getID()));
@@ -207,11 +251,6 @@ public class CustomCatalogController {
 
 	@FXML
 	void btnMyCart(MouseEvent event) {
-
-	}
-
-	@FXML
-	void btnViewCustomizedBouquet(MouseEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -226,21 +265,39 @@ public class CustomCatalogController {
 		}
 	}
 
+	@FXML
+	void btnViewCustomizedBouquet(MouseEvent event) {
+		try {
+			if (selectedProducts.isEmpty())
+				JOptionPane.showMessageDialog(null, "You did not add items for the customized bouquet!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			else {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CustomItemViewScreen.fxml")));
+				Parent root1 = (Parent) fxmlLoader.load();
+				Stage customizedItemDetailsScreen = new Stage();
+				customizedItemDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+				customizedItemDetailsScreen.setTitle("Customized Item Details");
+				customizedItemDetailsScreen.setScene((new Scene(root1)));
+				customizedItemDetailsScreen.show();
+				customizedItemDetailsScreen.centerOnScreen();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
 		int column = 0;
 		int row = 1;
-		// Image flower = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/clipart704080.png")));
-		// flowerImage.setImage(flower);
+
 		Image clockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Clock.png")));
 		ClockImage.setImage(clockImage);
 		Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
 		CartImage.setImage(cartImage);
 		Image deliveryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/delivery.png")));
 		DeliveryImage.setImage(deliveryImage);
-
 		ArrayList<Item> items = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
@@ -272,7 +329,7 @@ public class CustomCatalogController {
 							flowerImage.setImage(new Image(Objects
 									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
 							flowerName.setText(item.getName());
-							flowerPrice.setText("$" + item.getPrice());
+							flowerPrice.setText("\u20AA" + item.getPrice());
 							serialID.setText(Integer.toString(item.getID()));
 						});
 					}
@@ -322,8 +379,9 @@ public class CustomCatalogController {
 		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
 		assert itemsInCustomBouquet != null
 				: "fx:id=\"itemsInCustomBouquet\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert myCart != null : "fx:id=\"myCart\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
 		assert scroll != null : "fx:id=\"scroll\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
+		assert serialID != null
+				: "fx:id=\"serialID\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
 		assert viewCustomizedBouquet != null
 				: "fx:id=\"viewCustomizedBouquet\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
 
