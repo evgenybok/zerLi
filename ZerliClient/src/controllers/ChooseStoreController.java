@@ -91,13 +91,6 @@ public class ChooseStoreController {
 
     @FXML
     void initialize() {
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-        assert done != null : "fx:id=\"done\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-        assert chooseStore != null : "fx:id=\"chooseStore\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-        assert chooseArea != null : "fx:id=\"chooseArea\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-        assert delivery != null : "fx:id=\"delivery\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-        assert pickUp != null : "fx:id=\"pickUp\" was not injected: check your FXML file 'ChooseStore.fxml'.";
-
         Image storeimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/choosestore.jpg")));
         StoreImage.setImage(storeimage);
     }

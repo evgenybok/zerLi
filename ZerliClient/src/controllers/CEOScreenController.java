@@ -97,21 +97,7 @@ public class CEOScreenController {
 			userName.setText(LoginScreenController.user.getUsername());
 
 		} catch (NullPointerException e) {
-		}
-		;
-
-		assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert AccountType != null
-				: "fx:id=\"AccountType\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert AccountStatus != null
-				: "fx:id=\"AccountStatus\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert IncomeRep != null : "fx:id=\"IncomeRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert OrdersRep != null : "fx:id=\"OrdersRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert ComplaintRep != null
-				: "fx:id=\"ComplaintRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-		assert CreateRep != null : "fx:id=\"CreateRep\" was not injected: check your FXML file 'CEOScreenNew.fxml'.";
-
+		};
 	}
 
 }

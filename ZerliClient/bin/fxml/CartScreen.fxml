@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
    <left>
       <VBox prefHeight="474.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
@@ -79,16 +79,16 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="195.0" text="Total Item Price:">
+            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="203.0" text="Total Items Price:">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="77.13671875">
+            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="230.13671875">
                <font>
                   <Font size="24.0" />
                </font></Text>
-            <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" styleClass="body" text="Close" textAlignment="CENTER">
+            <Button fx:id="checkOut" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="35.0" prefWidth="91.0" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Checkout" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -97,7 +97,19 @@
                   <URL value="@../../images/css/styleNew.css" />
                </stylesheets>
                <HBox.margin>
-                  <Insets left="320.0" />
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Close" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../images/css/style.css" />
+                  <URL value="@../../images/css/styleNew.css" />
+               </stylesheets>
+               <HBox.margin>
+                  <Insets left="20.0" />
                </HBox.margin>
             </Button>
          </children>

@@ -57,9 +57,6 @@ public class OrderDetailsController {
 		}
 		else
 			JOptionPane.showMessageDialog(null, "Could not open order", "Error", JOptionPane.WARNING_MESSAGE);
-		assert txtOrderDetails != null
-				: "fx:id=\"orderDetails\" was not injected: check your FXML file 'OrderDetails.fxml'.";
-		assert lblTitle != null : "fx:id=\"Title\" was not injected: check your FXML file 'OrderDetails.fxml'.";
 
 	}
 }

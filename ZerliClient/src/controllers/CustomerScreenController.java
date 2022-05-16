@@ -154,22 +154,6 @@ public class CustomerScreenController {
     	Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
     	ComplaintImage.setImage(complaintImage);
     	
-    	
-        assert lblZerLi != null : "fx:id=\"lblZerLi\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert UserName != null : "fx:id=\"UserName\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert PersonImage != null : "fx:id=\"PersonImage\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert AccountType != null : "fx:id=\"AccountType\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert AccountStatus != null : "fx:id=\"AccountStatus\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert CustomCatalog != null : "fx:id=\"CustomCatalog\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert CatalogImage != null : "fx:id=\"CatalogImage\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert CustomCatalogImage != null : "fx:id=\"CustomCatalogImage\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert ComplaintImage != null : "fx:id=\"ComplaintImage\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert OrdersImage != null : "fx:id=\"OrdersImage\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert Catalog != null : "fx:id=\"Catalog\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert Orders != null : "fx:id=\"Orders\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
-        assert Complaint != null : "fx:id=\"Complaint\" was not injected: check your FXML file 'CustomerScreen.fxml'.";
 
 
     }

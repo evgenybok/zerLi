@@ -89,13 +89,6 @@ public class CheckoutScreenController {
 
     @FXML
     void initialize() {
-        assert checkoutTable != null : "fx:id=\"checkoutTable\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-        assert chooseStore != null : "fx:id=\"chooseStore\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-        assert addGreeting != null : "fx:id=\"addGreeting\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-        assert totalSum != null : "fx:id=\"totalSum\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-        assert remove != null : "fx:id=\"remove\" was not injected: check your FXML file 'CheckoutScreen.fxml'.";
-
         Image checkoutimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/checkout.jpg")));
         CheckoutImage.setImage(checkoutimage);
 

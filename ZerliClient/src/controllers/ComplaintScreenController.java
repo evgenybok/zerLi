@@ -62,13 +62,6 @@ public class ComplaintScreenController {
 
     @FXML
     void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        assert desTxt != null : "fx:id=\"desTxt\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        assert image != null : "fx:id=\"image\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        assert pane != null : "fx:id=\"pane\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        assert sendbtn != null : "fx:id=\"sendbtn\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-        assert subTxt != null : "fx:id=\"subTxt\" was not injected: check your FXML file 'CustomerComplaintScreen.fxml'.";
-
     }
 
 }

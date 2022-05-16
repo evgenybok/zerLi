@@ -92,17 +92,5 @@ public class WorkerScreenController {
     	
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
         WrokerScreenImage.setImage(homeImage);
-        
-        assert WrokerScreenImage != null : "fx:id=\"WrokerScreenImage\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert updateCatalog != null : "fx:id=\"updateCatalog\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-        assert itemsOnSale != null : "fx:id=\"itemsOnSale\" was not injected: check your FXML file 'WorkerScreen.fxml'.";
-
     }
 }

@@ -93,19 +93,8 @@ public class IPScreenController {
 
     @FXML
     void initialize() {
-		//Image ipimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Login.jpg")));
-		//IPimage.setImage(ipimage);
     	Image floImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IPflower.png")));
     	flowerImage.setImage(floImage);
-        assert ServerStage != null : "fx:id=\"ServerStage\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert lblZerli != null : "fx:id=\"lblZerli\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert lblIPConnect != null : "fx:id=\"lblIPConnect\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert flowerImage != null : "fx:id=\"flowerImage\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert lblEnterIP != null : "fx:id=\"lblEnterIP\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert txtIP != null : "fx:id=\"txtIP\" was not injected: check your FXML file 'IPscreen.fxml'.";
-        assert Connect != null : "fx:id=\"Connect\" was not injected: check your FXML file 'IPscreen.fxml'.";
-
-
     }
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;

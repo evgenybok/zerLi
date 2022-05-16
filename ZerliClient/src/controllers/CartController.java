@@ -51,12 +51,19 @@ public class CartController {
 	@FXML
 	private Text totalItemPrice;
 
+    @FXML
+    private Button checkOut;
+
 
 	public ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
 	public Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
 	private double amountToPay=0;
+	
+    @FXML
+    void btnCheckout(MouseEvent event) {
 
+    }
 
 	@FXML
 	void btnClose(MouseEvent event) {
@@ -137,18 +144,6 @@ public class CartController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert lblTotalPrice != null
-				: "fx:id=\"lblTotalPrice\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert titleAmount != null : "fx:id=\"titleAmount\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert titleImage != null : "fx:id=\"titleImage\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert titleName != null : "fx:id=\"titleName\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert titlePrice != null : "fx:id=\"titlePrice\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert titleTotalPrice != null
-				: "fx:id=\"titleTotalPrice\" was not injected: check your FXML file 'CartScreen.fxml'.";
-		assert totalItemPrice != null
-				: "fx:id=\"totalItemPrice\" was not injected: check your FXML file 'CartScreen.fxml'.";
 
 	}
 }

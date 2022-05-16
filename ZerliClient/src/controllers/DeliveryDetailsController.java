@@ -71,12 +71,6 @@ public class DeliveryDetailsController {
 
     @FXML
     void initialize() {
-        assert done != null : "fx:id=\"done\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-        assert txtAddress != null : "fx:id=\"txtAddress\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-        assert txtPhone != null : "fx:id=\"txtPhone\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-        assert txtName != null : "fx:id=\"txtName\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
-        assert deliveryDate != null : "fx:id=\"deliveryDate\" was not injected: check your FXML file 'DeliveryDetails.fxml'.";
         Image deliveryimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/deliverydetails.jpg")));
         DeliveryImage.setImage(deliveryimage);
     }

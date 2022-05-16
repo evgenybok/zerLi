@@ -94,14 +94,6 @@ public class ManagerScreenController {
 
     @FXML
     void initialize() {
-        assert EditInfo != null : "fx:id=\"EditInfo\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert addCustomer != null : "fx:id=\"addCustomer\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert viewOrders != null : "fx:id=\"viewOrders\" was not injected: check your FXML file 'branchManager.fxml'.";
-        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'branchManager.fxml'.";
-
     }
 
 }

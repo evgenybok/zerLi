@@ -353,38 +353,6 @@ public class CustomCatalogController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assert AmountLabel != null
-				: "fx:id=\"AmountLabel\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert CartImage != null
-				: "fx:id=\"CartImage\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert ClockImage != null
-				: "fx:id=\"ClockImage\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert DeliveryImage != null
-				: "fx:id=\"DeliveryImage\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert MinBtn != null : "fx:id=\"MinBtn\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert PlusBtn != null : "fx:id=\"PlusBtn\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert addToCart != null
-				: "fx:id=\"addToCart\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert chosenFlowerCart != null
-				: "fx:id=\"chosenFlowerCart\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert customName != null
-				: "fx:id=\"customName\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert flowerImage != null
-				: "fx:id=\"flowerImage\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert flowerName != null
-				: "fx:id=\"flowerName\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert flowerPrice != null
-				: "fx:id=\"flowerPrice\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert itemsInCustomBouquet != null
-				: "fx:id=\"itemsInCustomBouquet\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert scroll != null : "fx:id=\"scroll\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert serialID != null
-				: "fx:id=\"serialID\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-		assert viewCustomizedBouquet != null
-				: "fx:id=\"viewCustomizedBouquet\" was not injected: check your FXML file 'CustomCatalogScreen.fxml'.";
-
 	}
 
 }

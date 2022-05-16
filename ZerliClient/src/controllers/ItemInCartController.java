@@ -64,13 +64,6 @@ public class ItemInCartController {
 	@FXML
 	void initialize() {
 		nameLabel.getStyleClass().add("images/css/transTextArea.css");
-        assert amountLabel != null : "fx:id=\"amountLabel\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-        assert deleteItem != null : "fx:id=\"deleteItem\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-        assert img != null : "fx:id=\"img\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-        assert nameLabel != null : "fx:id=\"nameLabel\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-        assert priceLabel != null : "fx:id=\"priceLabel\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-        assert totalPriceLabel != null : "fx:id=\"totalPriceLabel\" was not injected: check your FXML file 'ItemInCart.fxml'.";
-
 	}
 
 }

@@ -16,7 +16,7 @@
          <children>
             <HBox prefHeight="46.0" prefWidth="185.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="50.0" prefWidth="150.0" text="Iris">
+                  <Label fx:id="nameLabel" prefHeight="50.0" prefWidth="150.0" text="Iris" wrapText="true">
                      <font>
                         <Font name="Cambria" size="18.0" />
                      </font>
@@ -31,12 +31,12 @@
                   <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="serial" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="57.0" />
-            <ImageView fx:id="img" fitHeight="115.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img" fitHeight="124.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/images/iris.png" />
                </image>
             </ImageView>
+            <Label fx:id="serial" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="57.0" text="ID" />
          </children>
       </VBox>
    </children>

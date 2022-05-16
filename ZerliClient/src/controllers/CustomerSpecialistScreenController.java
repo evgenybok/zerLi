@@ -92,17 +92,5 @@ public class CustomerSpecialistScreenController {
 		
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
         CustomerSpecialistScreenImage.setImage(homeImage);
-        
-        assert CustomerSpecialistScreenImage != null : "fx:id=\"CustomerSpecialistScreenImage\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert viewReports != null : "fx:id=\"viewReports\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert viewQuaReports != null : "fx:id=\"viewQuaReports\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'CustomerSpecialistScreen.fxml'.";
-
     }
 }

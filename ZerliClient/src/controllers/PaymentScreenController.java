@@ -64,13 +64,6 @@ public class PaymentScreenController {
 
     @FXML
     void initialize() {
-        assert txtCardNumber != null : "fx:id=\"txtCardNumber\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-        assert txtCardDate != null : "fx:id=\"txtCardDate\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-        assert txtCVV != null : "fx:id=\"txtCVV\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-        assert finish != null : "fx:id=\"finish\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-        assert txtID != null : "fx:id=\"txtID\" was not injected: check your FXML file 'PaymentScreen.fxml'.";
-
         Image paymentimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/payment1.jpg")));
         PaymentImage.setImage(paymentimage);
     }

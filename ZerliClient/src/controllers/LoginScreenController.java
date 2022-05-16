@@ -134,16 +134,6 @@ public class LoginScreenController {
 		imageLeft.setImage(imgLeft);
 		Image imgRight = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin2.png")));
 		imageRight.setImage(imgRight);
-        assert Login != null : "fx:id=\"Login\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert LoginStage != null : "fx:id=\"LoginStage\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert Username != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert exitBtn != null : "fx:id=\"exitBtn\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert imageLeft != null : "fx:id=\"imageLeft\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert imageRight != null : "fx:id=\"imageRight\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-        assert lblZerli != null : "fx:id=\"lblZerli\" was not injected: check your FXML file 'LoginScreen.fxml'.";
-
-
     }
 
 }

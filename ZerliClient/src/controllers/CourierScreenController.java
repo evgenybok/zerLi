@@ -75,18 +75,6 @@ public class CourierScreenController {
     	
         Image homeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/HomeScreen.jpeg")));
         CourierScreenImage.setImage(homeImage);
-    	
-        assert CourierScreenImage != null : "fx:id=\"CourierScreenImage\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert updateOrderStatus != null : "fx:id=\"updateOrderStatus\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert lblUserPortal != null : "fx:id=\"lblUserPortal\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'CourierScreen.fxml'.";
-
-
     }
 
 }

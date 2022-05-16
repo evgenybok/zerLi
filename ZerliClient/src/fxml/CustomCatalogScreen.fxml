@@ -48,33 +48,32 @@
                               <TextField fx:id="customName" layoutX="236.0" layoutY="-3.0" promptText="Type here" />
                            </children>
                         </Pane>
-                        <VBox alignment="CENTER" prefHeight="577.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/style.css">
+                        <VBox alignment="CENTER" prefHeight="632.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/style.css">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
                            <children>
-                              <Label fx:id="serialID" alignment="CENTER" contentDisplay="CENTER" prefHeight="11.0" prefWidth="105.0" textAlignment="CENTER" />
-                              <HBox prefHeight="24.0" prefWidth="325.0">
+                              <HBox prefHeight="85.0" prefWidth="325.0">
                                  <children>
-                                    <Label fx:id="flowerName" prefHeight="34.0" prefWidth="183.0" text="Tulips bouqet" textFill="#004d00">
+                                    <Label fx:id="flowerName" prefHeight="81.0" prefWidth="195.0" text="Tulips bouqet" textFill="#004d00">
                                        <font>
-                                          <Font name="Cambria Bold" size="20.0" />
+                                          <Font name="Cambria Bold" size="25.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="flowerPrice" prefHeight="34.0" prefWidth="113.0" text="\$29.90" textFill="#004d00">
+                                    <Label fx:id="flowerPrice" prefHeight="34.0" prefWidth="113.0" text="₪29.90" textFill="#004d00">
                                        <font>
-                                          <Font name="Cambria" size="20.0" />
+                                          <Font name="Cambria" size="30.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="20.0" top="20.0" />
                                        </HBox.margin>
                                     </Label>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="10.0" top="30.0" />
+                                    <Insets left="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                               <ImageView fx:id="flowerImage" fitHeight="221.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
@@ -82,6 +81,7 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </ImageView>
+                              <Label fx:id="serialID" alignment="CENTER" contentDisplay="CENTER" prefHeight="11.0" prefWidth="105.0" text="ID" textAlignment="CENTER" />
                               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="38.0" prefWidth="167.0" text="Amount:" textAlignment="CENTER" textFill="WHITE">

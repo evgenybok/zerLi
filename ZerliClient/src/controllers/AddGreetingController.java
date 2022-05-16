@@ -36,8 +36,6 @@ public class AddGreetingController {
 
     @FXML
     void initialize() {
-        assert txtGreeting != null : "fx:id=\"txtGreeting\" was not injected: check your FXML file 'AddGreeting.fxml'.";
-        assert done != null : "fx:id=\"done\" was not injected: check your FXML file 'AddGreeting.fxml'.";
         Image greetingimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Greeting.jpg")));
         GreetingImage.setImage(greetingimage);
 

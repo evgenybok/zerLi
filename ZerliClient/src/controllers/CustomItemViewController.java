@@ -108,16 +108,5 @@ public class CustomItemViewController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert grid != null : "fx:id=\"grid\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert lblTotalPrice != null : "fx:id=\"lblTotalPrice\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert titleAmount != null : "fx:id=\"titleAmount\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert titleImage != null : "fx:id=\"titleImage\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert titleName != null : "fx:id=\"titleName\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert titlePrice != null : "fx:id=\"titlePrice\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert titleTotalPrice != null : "fx:id=\"titleTotalPrice\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-        assert totalItemPrice != null : "fx:id=\"totalItemPrice\" was not injected: check your FXML file 'CustomItemViewScreen.fxml'.";
-
 	}
 }

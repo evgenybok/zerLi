@@ -19,7 +19,7 @@
    <children>
       <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@images\css\styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
