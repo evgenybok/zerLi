@@ -143,6 +143,8 @@ public class OrderScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		this.getOrders().getItems().clear();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().clear();
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");

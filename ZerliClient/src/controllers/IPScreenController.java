@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -71,6 +72,7 @@ public class IPScreenController {
 			chat = new ClientController(txtIP.getText(), 5555);
 		} catch (Exception e) {
 
+
 			exit(1);
 		}
 
@@ -108,15 +110,4 @@ public class IPScreenController {
 		primaryStage.centerOnScreen();
 
 	}
-	/*
-	@FXML
-	void ExitApp(MouseEvent event) throws IOException {
-		Stage stage;
-		client.close();
-		stage = (Stage) ServerStage.getScene().getWindow();
-		stage.close();
-		System.exit(1);
-
-	}
-	*/
 }

@@ -208,6 +208,8 @@ public class CustomCatalogController {
 
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().clear();
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -339,11 +341,9 @@ public class CustomCatalogController {
 				GridPane.setMargin(anchorPane, new Insets(10));
 
 				// width
-
 				grid.setMinWidth(Region.USE_COMPUTED_SIZE);
 				grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
 				grid.setMaxWidth(Region.USE_PREF_SIZE);
-
 				// height
 				grid.setMinHeight(Region.USE_COMPUTED_SIZE);
 				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
