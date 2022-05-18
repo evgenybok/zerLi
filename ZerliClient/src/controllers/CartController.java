@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -20,7 +24,8 @@ import javafx.stage.Stage;
 import logic.Item;
 
 public class CartController {
-
+	  @FXML
+	    private Button AddGreeting;
 	@FXML
 	private Button close;
 
@@ -61,10 +66,27 @@ public class CartController {
 	public double amountToPay=0;
 	
     @FXML
-    void btnCheckout(MouseEvent event) {
-
+    void btnCheckout(MouseEvent event) throws IOException {
+    	((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreenNew.fxml")));
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Checkout");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
-
+    @FXML
+    void btnGreeting(MouseEvent event) throws IOException {
+    	((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddGreeting.fxml")));
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Greeting");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
+    }
 	@FXML
 	void btnClose(MouseEvent event) {
 		Stage stage = (Stage) close.getScene().getWindow();

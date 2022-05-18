@@ -30,6 +30,8 @@ public class ItemController {
         nameLabel.setText(item.getName());
         Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
         img.setImage(image);
+       // img.setFitHeight(150);
+       // img.setFitWidth(150);
         serial.setText(Integer.toString(item.getID()));
     }
 

@@ -26,4 +26,10 @@ background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63de
 	-fx-background-color: #FFFFFF;
 	-fx-background-radius: 10;
 }
-
+.circleprofil{
+	-fx-background-radius: 0 0 50 50;
+	-fx-background-color: #737373;
+}
+.zerli{
+-fx-background-color: #737373;
+}

@@ -15,13 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerScreenController">
    <children>
       <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@images\css\styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: 737373;">
                      <children>
                         <Label fx:id="lblZerLi" prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
                            <font>
@@ -34,59 +34,64 @@
                      </VBox.margin>
                   </HBox>
                   <Line endX="299.5" startX="-100.0" strokeWidth="5.0" />
-                  <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
+                  <VBox prefHeight="409.0" prefWidth="405.0" styleClass="circleprofil" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <Label fx:id="lblStartMsg" prefHeight="42.0" prefWidth="172.0" text="Welcome back!" textAlignment="CENTER">
-                           <font>
-                              <Font name="Cambria Bold" size="24.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
+                           <children>
+                              <Label fx:id="lblStartMsg" prefHeight="42.0" prefWidth="172.0" text="Welcome back!" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Cambria Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
+                           <children>
+                              <Text fx:id="UserName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
+                           <children>
+                              <ImageView fx:id="PersonImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                 <image>
+                                    <Image url="@../../images/images/Avatar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="30.0" />
+                           </VBox.margin>
+                           <children>
+                              <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" textAlignment="CENTER" wrappingWidth="121.13671875">
+                                 <font>
+                                    <Font name="Cambria" size="25.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="405.0">
+                           <children>
+                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" wrappingWidth="142.13671875">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
                      </children>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
-                     <children>
-                        <Text fx:id="UserName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
-                           <font>
-                              <Font name="Cambria" size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
-                     <children>
-                        <ImageView fx:id="PersonImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
-                           <image>
-                              <Image url="@../../images/images/Avatar.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                     <children>
-                        <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" textAlignment="CENTER" wrappingWidth="153.13671875">
-                           <font>
-                              <Font name="Cambria" size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="151.13671875">
-                     <font>
-                        <Font name="Cambria" size="20.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="130.0" />
-                     </VBox.margin>
-                  </Text>
+                  </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
                      <VBox.margin>
                         <Insets top="100.0" />
@@ -107,7 +112,7 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="800.0" prefWidth="771.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="800.0" prefWidth="771.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" stylesheets="@../../images/css/styleNew.css" textFill="#004d00">
                      <styleClass>
@@ -154,7 +159,7 @@
                      <children>
                         <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Customer Screen" textFill="#004d00">
                            <font>
-                              <Font name="Cambria" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="5.0" />
@@ -164,7 +169,7 @@
                            <children>
                               <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli" textFill="#004d00">
                                  <font>
-                                    <Font name="Cambria" size="25.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
                               </Label>
                               <FontAwesomeIconView fill="#004d00" glyphName="LEAF" size="40" wrappingWidth="46.0" />
@@ -172,7 +177,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="122.0" prefWidth="769.0">
+                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="79.0" prefWidth="800.0">
                      <children>
                         <HBox prefHeight="122.0" prefWidth="115.0" />
                      </children>
@@ -187,7 +192,7 @@
                         <Image url="@../../images/images/complaint.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="OrdersImage" fitHeight="89.0" fitWidth="104.0" layoutX="160.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="OrdersImage" fitHeight="97.0" fitWidth="184.0" layoutX="160.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="540.0">
                      <image>
                         <Image url="@../../images/images/orders.jpg" />
                      </image>
@@ -197,10 +202,6 @@
                   <Button fx:id="Orders" layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnOrders" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Orders" />
                   <Button fx:id="Complaint" layoutX="485.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnComplaint" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Complaint" />
                </children>
-               <styleClass>
-                  <String fx:value="paneback" />
-                  <String fx:value="body" />
-               </styleClass>
             </AnchorPane>
          </center>
       </BorderPane>

@@ -94,7 +94,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="50.0" prefWidth="247.0">
                            <children>
-                              <ComboBox prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" stylesheets="@../../images/css/style.css">
+                              <ComboBox fx:id="Area" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 10; -fx-background-color: ffffff;">
                                  <VBox.margin>
                                     <Insets left="15.0" />
                                  </VBox.margin>
@@ -118,7 +118,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="85.0" prefWidth="238.0">
                                  <children>
-                                    <ComboBox prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" stylesheets="@../../images/css/style.css">
+                                    <ComboBox fx:id="StoreName" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 10; -fx-background-color: ffffff;">
                                        <VBox.margin>
                                           <Insets left="10.0" />
                                        </VBox.margin>
@@ -151,7 +151,7 @@
                         </VBox>
                         <VBox prefHeight="74.0" prefWidth="271.0">
                            <children>
-                              <DatePicker prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: ffffff;" />
+                              <DatePicker fx:id="Date" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: ffffff;" />
                            </children>
                         </VBox>
                      </children>
@@ -174,7 +174,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="70.0" prefWidth="189.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" styleClass="shadow" stylesheets="@../../images/css/style.css" text="Pick up">
+                                    <CheckBox mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" text="Pick up">
                                        <font>
                                           <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                        </font>
@@ -204,7 +204,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="171.0">
                                  <children>
-                                    <TextField prefHeight="30.0" prefWidth="150.0" promptText="Type here your address" />
+                                    <TextField fx:id="Adress" prefHeight="30.0" prefWidth="168.0" promptText="Type here your address" style="-fx-background-radius: 30;" />
                                  </children>
                               </HBox>
                            </children>
@@ -222,9 +222,9 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="156.0">
+                        <VBox alignment="CENTER" prefHeight="47.0" prefWidth="173.0">
                            <children>
-                              <TextField prefHeight="30.0" prefWidth="217.0" promptText="Type here your name" />
+                              <TextField fx:id="ReciverName" prefHeight="30.0" prefWidth="174.0" promptText="Type here your name" style="-fx-background-radius: 30;" />
                            </children>
                         </VBox>
                      </children>
@@ -243,9 +243,9 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="159.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="175.0">
                            <children>
-                              <TextField prefHeight="30.0" prefWidth="150.0" promptText="Type here your number" />
+                              <TextField fx:id="Phone" prefHeight="30.0" prefWidth="150.0" promptText="Type here your number" style="-fx-background-radius: 30;" />
                            </children>
                         </VBox>
                      </children>
@@ -290,7 +290,7 @@
          <right>
             <VBox prefHeight="600.0" prefWidth="420.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="85.0" prefWidth="326.0">
+                  <HBox prefHeight="89.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="163.0">
                            <children>
@@ -308,7 +308,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="326.0">
+                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="109.0">
                            <children>
@@ -345,7 +345,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="83.0" prefWidth="420.0">
+                  <HBox prefHeight="47.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -358,12 +358,12 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="179.0">
                            <children>
-                              <TextField promptText="1234-5678-9123-4567" style="-fx-background-radius: 10; -fx-border-radius: 100;" />
+                              <TextField fx:id="CardNum" promptText="1234-5678-9123-4567" style="-fx-background-radius: 10; -fx-border-radius: 100;" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="58.0" prefWidth="420.0">
+                  <HBox prefHeight="55.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -376,16 +376,12 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="179.0">
                            <children>
-                              <TextField promptText="MM/YY" style="-fx-border-radius: 100; -fx-background-radius: 10;">
-                                 <font>
-                                    <Font size="100.0" />
-                                 </font>
-                              </TextField>
+                              <TextField fx:id="CardDate" promptText="MM/YY" style="-fx-border-radius: 100; -fx-background-radius: 10;" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="70.0" prefWidth="420.0">
+                  <HBox prefHeight="50.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -396,9 +392,9 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="179.0">
+                        <VBox alignment="CENTER" prefHeight="69.0" prefWidth="179.0">
                            <children>
-                              <TextField promptText="123" style="-fx-border-radius: 100; -fx-background-radius: 10;" />
+                              <TextField fx:id="CVV" promptText="123" style="-fx-border-radius: 100; -fx-background-radius: 10;" />
                            </children>
                         </VBox>
                      </children>
@@ -451,20 +447,23 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="120.0" prefWidth="420.0">
+                  <HBox prefHeight="153.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="341.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Back">
+                              <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: daffb3;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Back">
                                  <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="21.0" />
                                  </font>
                               </Button>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="319.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Pay" />
+                              <Button fx:id="Pay" mnemonicParsing="false" onMouseClicked="#btnPay" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: daffb3;" styleClass="shadow" stylesheets="@../../images/css/style.css" text="Pay">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                                 </font></Button>
                            </children>
                         </VBox>
                      </children>

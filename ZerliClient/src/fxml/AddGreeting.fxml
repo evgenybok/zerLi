@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" style="-fx-background-color: e6ffcc;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddGreetingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="550.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddGreetingController">
    <children>
-      <ImageView fitHeight="706.0" fitWidth="558.0" layoutX="-1.0" layoutY="-6.0">
+      <ImageView fitHeight="700.0" fitWidth="550.0" layoutX="-1.0" layoutY="-6.0">
          <image>
             <Image url="@../../images/images/GreetingImage.png" />
          </image>
@@ -22,9 +22,9 @@
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </TextArea>
-      <Button fx:id="done" alignment="CENTER" layoutY="640.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="59.0" prefWidth="116.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" text="Done">
+      <Button fx:id="done" alignment="CENTER" layoutX="409.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="66.0" prefWidth="138.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" text="Done">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
          </font>
       </Button>
       <HBox alignment="CENTER" layoutX="183.0" layoutY="-2.0" prefHeight="83.0" prefWidth="238.0">
@@ -39,5 +39,10 @@
             </Label>
          </children>
       </HBox>
+      <Button fx:id="Back" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="66.0" prefWidth="138.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" text="Back">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
