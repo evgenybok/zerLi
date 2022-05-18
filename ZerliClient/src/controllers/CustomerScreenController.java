@@ -132,7 +132,7 @@ public class CustomerScreenController {
     
     @FXML
     void btnOrders(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderScreen.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ViewOrders.fxml")));
 		Scene scene = new Scene(parent);
 		Stage orderStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		orderStage.setTitle("Order Screen");

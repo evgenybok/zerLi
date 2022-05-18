@@ -50,7 +50,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentScreenController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <left>
@@ -60,7 +60,7 @@
                      <children>
                         <VBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="137.0">
                            <children>
-                              <ImageView fitHeight="47.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="CheckoutImg" fitHeight="47.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-card-payment-50.png" />
                                  </image>
@@ -165,7 +165,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" text="Delivery">
+                                    <CheckBox fx:id="DeliveryBox" mnemonicParsing="false" onMouseClicked="#DeliveryBtn" prefHeight="55.0" prefWidth="136.0" text="Delivery">
                                        <font>
                                           <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                        </font>
@@ -174,7 +174,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="70.0" prefWidth="189.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" text="Pick up">
+                                    <CheckBox fx:id="PickUpBox" mnemonicParsing="false" onMouseClicked="#PickBtn" prefHeight="42.0" prefWidth="155.0" text="Pick up">
                                        <font>
                                           <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                        </font>
@@ -254,7 +254,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="95.0" prefWidth="172.0">
                            <children>
-                              <ImageView fitHeight="58.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="DeliveryImg" fitHeight="58.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-deliver-food-50%20(1).png" />
                                  </image>
@@ -266,7 +266,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="95.0" prefWidth="115.0">
                            <children>
-                              <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="BoxImg" fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-packing-50.png" />
                                  </image>
@@ -275,7 +275,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="95.0" prefWidth="170.0">
                            <children>
-                              <ImageView fitHeight="54.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="MailImg" fitHeight="54.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-letterbox-50%20(1).png" />
                                  </image>
@@ -312,7 +312,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="109.0">
                            <children>
-                              <ImageView fitHeight="44.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="Card1Img" fitHeight="44.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-mastercard-48.png" />
                                  </image>
@@ -321,7 +321,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="68.0" prefWidth="109.0">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="Card2Img" fitHeight="48.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-visa-48.png" />
                                  </image>
@@ -330,7 +330,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="68.0" prefWidth="109.0">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="BitCoinImg" fitHeight="48.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-bitcoin-48.png" />
                                  </image>
