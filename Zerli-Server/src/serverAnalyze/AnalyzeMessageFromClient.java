@@ -8,15 +8,17 @@ import communication.MessageType;
 import controllers.ConnectedClientsController;
 import logic.Item;
 import logic.Order;
+import logic.SingleOrder;
 import logic.User;
 import ocsf.server.ConnectionToClient;
+import query.GetOrderQuery;
 import query.Query;
 
 public class AnalyzeMessageFromClient {
 
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
 		User user;
-		ArrayList<Order> Orders;
+		ArrayList<SingleOrder> Orders;
 		ArrayList<User> UsersArr;
 		ArrayList<Item> Items;
 		ArrayList<String> data;
@@ -49,14 +51,14 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.LOGOUT, receivedMessage.getMessageAnswer(), null);
 
 		case UPDATE:
-			if (Query.Update((String) receivedMessage.getMessageData()))
+			if (GetOrderQuery.Update((String) receivedMessage.getMessageData()))
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			else
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			Orders = Query.GetOrders();
+			Orders = GetOrderQuery.GetOrders();
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(Orders);
@@ -64,11 +66,12 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			;
+
 			return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case GET_SELECTED_ORDER:
-			String order = Query.getSelectedOrder((int) receivedMessage.getMessageData());
+			String order = GetOrderQuery.getSelectedOrder((int) receivedMessage.getMessageData());
 			order = Query.getItemName(order);
 			if (order.equals("ERROR")) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
