@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AddGreetingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="550.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddGreetingController">
    <children>
-      <ImageView fx:id="GreetingImage" fitHeight="714.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="700.0" fitWidth="550.0" layoutX="-1.0" layoutY="-6.0">
          <image>
-            <Image url="@../../images/images/Greeting.jpg" />
+            <Image url="@../../images/images/GreetingImage.png" />
          </image>
       </ImageView>
-      <Label layoutX="175.0" layoutY="14.0" text="Add a Greeting" underline="true">
+      <TextArea fx:id="txtGreeting" cacheShape="false" centerShape="false" layoutX="185.0" layoutY="83.0" prefHeight="455.0" prefWidth="246.0" promptText="Flowers are so beautiful as you. Why? Because a butterfly can go after it. Fruit are as sweet as you. Why? Because birds can go after it. Fruit are as sweet as you. Why? Because birds can go after it. So why shouldn't I? Let me be your valentine! " scaleShape="false" style="-fx-background-color: transparent;" wrapText="true">
          <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="txtGreeting" layoutX="95.0" layoutY="98.0" prefHeight="500.0" prefWidth="359.0" promptText="Please enter here a greeting">
-         <font>
-            <Font size="18.0" />
+            <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </TextArea>
-      <Button fx:id="done" layoutX="205.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="59.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Done">
+      <Button fx:id="done" alignment="CENTER" layoutX="409.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#btnDone" prefHeight="66.0" prefWidth="138.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" text="Done">
          <font>
-            <Font size="21.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" layoutX="183.0" layoutY="-2.0" prefHeight="83.0" prefWidth="238.0">
+         <children>
+            <Label alignment="BOTTOM_LEFT" prefHeight="28.0" prefWidth="122.0" text="Greeting">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="26.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="Back" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="66.0" prefWidth="138.0" style="-fx-background-radius: 10; -fx-background-color: transparent;" text="Back">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="29.0" />
          </font>
       </Button>
    </children>

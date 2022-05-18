@@ -83,7 +83,7 @@ public class ManagerScreenController {
     void btnViewReports(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
  		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BranchManagerReports.fxml")));
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReportsNew.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Reports Screen");

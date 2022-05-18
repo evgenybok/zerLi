@@ -79,39 +79,50 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="203.0" text="Total Items Price:">
+            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="229.0" text=" Total Items Price:">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                </font>
             </Label>
-            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="230.13671875">
+            <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="172.13671875">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                </font></Text>
-            <Button fx:id="checkOut" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="35.0" prefWidth="91.0" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Checkout" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <stylesheets>
-                  <URL value="@../../images/css/style.css" />
-                  <URL value="@../../images/css/styleNew.css" />
-               </stylesheets>
-               <HBox.margin>
-                  <Insets left="60.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Close" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <stylesheets>
-                  <URL value="@../../images/css/style.css" />
-                  <URL value="@../../images/css/styleNew.css" />
-               </stylesheets>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Button>
+            <VBox alignment="CENTER" prefHeight="60.0" prefWidth="148.0">
+               <children>
+                  <Button fx:id="AddGreeting" mnemonicParsing="false" onMouseClicked="#btnGreeting" prefHeight="38.0" prefWidth="124.0" style="-fx-background-radius: 20;" styleClass="newbuttom" stylesheets="@../../images/css/styleNew.css" text="Add Greeting">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="60.0" prefWidth="108.0">
+               <children>
+                  <Button fx:id="checkOut" mnemonicParsing="false" onMouseClicked="#btnCheckout" prefHeight="35.0" prefWidth="90.0" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Checkout" textAlignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@../../images/css/style.css" />
+                        <URL value="@../../images/css/styleNew.css" />
+                     </stylesheets>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" prefHeight="35.0" prefWidth="75.0" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Close" textAlignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@../../images/css/style.css" />
+                        <URL value="@../../images/css/styleNew.css" />
+                     </stylesheets>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </bottom>
@@ -121,7 +132,7 @@
    <top>
       <Label prefHeight="30.0" prefWidth="85.0" text="My Cart" BorderPane.alignment="CENTER">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
          </font>
       </Label>
    </top>

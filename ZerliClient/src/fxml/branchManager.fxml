@@ -135,7 +135,7 @@
                         <Font name="Cambria Bold" size="22.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="77.0" fitWidth="68.0" layoutX="179.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="77.0" fitWidth="68.0" layoutX="179.0" layoutY="256.0" onMouseClicked="#btnViewReports" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/217-2170381_other-approved-icon-png-images-receipt-icon.png" />
                      </image>
@@ -145,7 +145,7 @@
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#004d00" layoutX="182.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Reports" wrappingWidth="81.13671875">
+                  <Text fill="#004d00" layoutX="182.0" layoutY="239.0" onMouseClicked="#btnViewReports" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Reports" wrappingWidth="81.13671875">
                      <font>
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
@@ -193,7 +193,7 @@
                         <Image url="@../../images/images/clipart3436115.png" />
                      </image>
                   </ImageView>
-                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="122.0" prefWidth="769.0">
+                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="91.0" prefWidth="769.0">
                      <children>
                         <HBox prefHeight="122.0" prefWidth="115.0" />
                      </children>
