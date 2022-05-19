@@ -1,3 +1,4 @@
+
 package controllers;
 
 import java.io.IOException;
@@ -62,10 +63,6 @@ public class ReportScreenController {
 
     @FXML
     void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'BranchManagerReports.fxml'.";
-        assert ComplaintsReport != null : "fx:id=\"ComplaintsReport\" was not injected: check your FXML file 'BranchManagerReports.fxml'.";
-        assert IncomReport != null : "fx:id=\"IncomReport\" was not injected: check your FXML file 'BranchManagerReports.fxml'.";
-        assert OrderReport != null : "fx:id=\"OrderReport\" was not injected: check your FXML file 'BranchManagerReports.fxml'.";
 
     }
 

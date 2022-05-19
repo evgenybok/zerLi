@@ -52,10 +52,6 @@ public class ReportsController  {
 
     @FXML
     void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'ReportsNew.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'ReportsNew.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'ReportsNew.fxml'.";
-
     }
 
 }

@@ -177,18 +177,18 @@ public class Query {
 
 	}
 	public static ArrayList<String> GetAccountDetails(String id) {
-		String query = ("SELECT * FROM zerli.account_details;");
+		String query = ("SELECT * FROM zerli.account;");
 		ArrayList<String> details = new ArrayList<String>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				String userID = rs.getString("User_ID");
+				String userID = rs.getString("CustomerID");
 				String creditCardNumber = rs.getString("CreditCardNumber");
-				String creditCardDate = rs.getString("CreditCardNumber");
-				String CVV = rs.getString("CreditCardCVV");
-				String refund = rs.getString("Refund");
-				String status = rs.getString("status");
+				String creditCardDate = rs.getString("ExpiryDate");
+				String CVV = rs.getString("CVV");
+				String refund = rs.getString("TotalRefund");
+				String status = rs.getString("Status");
 				if(id.equals(userID))
 				{
 				details.add(userID);
