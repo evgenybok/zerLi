@@ -68,6 +68,7 @@ public class CustomItemViewController {
 	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
 	public Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
 	static double totalPrice;
+	//test5
 
 	@FXML
 	void btnClose(MouseEvent event) {
