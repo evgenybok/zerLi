@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ComplaintScreenController">
+   <center>
+      <AnchorPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="image" fitHeight="507.0" fitWidth="340.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/images/ComplaintImage.jpg" />
+               </image>
+            </ImageView>
+            <VBox layoutX="257.0" layoutY="1.0" prefHeight="500.0" prefWidth="446.0" style="-fx-background-color: fff9e6;">
+               <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="62.0" prefWidth="343.0">
+                     <children>
+                        <Label prefHeight="44.0" prefWidth="131.0" text="Write Us!">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="343.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="224.0" text="Your opinion is important to us">
+                           <font>
+                              <Font name="Cambria Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="114.0">
+                           <children>
+                              <Label text="Subject:" underline="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets right="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="93.0" prefWidth="174.0" stylesheets="@../../images/css/style.css">
+                           <children>
+                              <TextField fx:id="subTxt" prefHeight="25.0" prefWidth="125.0" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/style.css">
+                                 <styleClass>
+                                    <String fx:value="search-box" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Cambria Bold" size="12.0" />
+                                 </font></TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="259.0" prefWidth="446.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" prefHeight="246.0" prefWidth="115.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="78.0" text="Description:" underline="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets right="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="268.0" prefWidth="313.0">
+                           <children>
+                              <TextField fx:id="desTxt" alignment="TOP_LEFT" prefHeight="249.0" prefWidth="308.0" promptText="Please Describe Your Complaint" stylesheets="@../../images/css/style.css">
+                                 <styleClass>
+                                    <String fx:value="search-box" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="Cambria Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="86.0" prefWidth="446.0">
+                     <children>
+                        <Button fx:id="sendbtn" mnemonicParsing="false" onMouseClicked="#btnsend" prefHeight="36.0" prefWidth="107.0" stylesheets="@../../images/css/styleNew.css" text="Send">
+                           <font>
+                              <Font name="Cambria Bold" size="17.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="add-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutY="1.0" prefHeight="196.0" prefWidth="270.0">
+               <children>
+                  <HBox prefHeight="44.0" prefWidth="270.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="56.0" prefWidth="116.0" text=" Zerli">
+                           <font>
+                              <Font name="Cambria Bold" size="45.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="104.0" prefWidth="270.0" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutY="415.0" prefHeight="86.0" prefWidth="258.0">
+               <children>
+                  <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="36.0" prefWidth="107.0" style="-fx-background-color: transparent;" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="29.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
