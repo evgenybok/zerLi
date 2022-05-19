@@ -63,7 +63,6 @@ public class ItemInCartController {
 
 	@FXML
 	void initialize() {
-		nameLabel.getStyleClass().add("images/css/transTextArea.css");
 	}
 
 }

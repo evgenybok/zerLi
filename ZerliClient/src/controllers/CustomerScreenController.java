@@ -2,8 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import clientanalyze.AnalyzeMessageFromServer;
+
 import static controllers.IPScreenController.chat;
 
 import communication.Message;
@@ -74,6 +78,8 @@ public class CustomerScreenController {
 
     @FXML
     private Button Complaint;
+    
+    public static String accountStatus;
 
     @FXML
     void btnCatalog(MouseEvent event) throws IOException {
@@ -137,7 +143,14 @@ public class CustomerScreenController {
 
     @FXML
     void initialize() {
-    	this.AccountStatus.setText("CONFIRMED"); //accountStatus - need to be handled from DB
+		try {
+			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
+			@SuppressWarnings("unchecked")
+			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
+			accountStatus= account.get(5); // *** AccountStatus text field is null!!
+		} catch (NullPointerException e) {
+		};
+    	this.AccountStatus.setText(accountStatus); //accountStatus - handled from DB
     	this.AccountType.setText("Customer"); //accountType - may be handled from DB
     	this.UserName.setText(LoginScreenController.user.getUsername()); //userName
 

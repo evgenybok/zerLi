@@ -208,6 +208,10 @@ public class CatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		if(CustomerScreenController.accountStatus.equals("Frozen")) {
+			AddToCartBtn.setDisable(true);
+			CartImage.setDisable(true);
+		}
 		int column = 0;
 		int row = 1;
 

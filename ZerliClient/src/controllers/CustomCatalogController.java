@@ -5,7 +5,6 @@ import static controllers.IPScreenController.chat;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -291,6 +290,10 @@ public class CustomCatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		if(CustomerScreenController.accountStatus.equals("Frozen")) {
+			addToCart.setDisable(true);
+			CartImage.setDisable(true);
+		}
 		int column = 0;
 		int row = 1;
 
