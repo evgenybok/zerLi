@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -21,67 +23,96 @@ import javafx.stage.Stage;
 import logic.Item;
 
 public class CustomItemViewController {
-	
-    @FXML
-    private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private Button close;
+	@FXML
+	private URL location;
 
-    @FXML
-    private GridPane grid;
+	@FXML
+	private Button close;
 
-    @FXML
-    private Label lblTotalPrice;
+	@FXML
+	private GridPane grid;
 
-    @FXML
-    private ScrollPane scrollPane;
+	@FXML
+	private Label lblTotalPrice;
 
-    @FXML
-    private Label titleAmount;
+	@FXML
+	private ScrollPane scrollPane;
 
-    @FXML
-    private Label titleImage;
+	@FXML
+	private Label titleAmount;
 
-    @FXML
-    private Label titleName;
+	@FXML
+	private Label titleImage;
 
-    @FXML
-    private Label titlePrice;
+	@FXML
+	private Label titleName;
 
-    @FXML
-    private Label titleTotalPrice;
+	@FXML
+	private Label titlePrice;
 
-    @FXML
-    private Text totalItemPrice;
-	
+	@FXML
+	private Label titleTotalPrice;
+
+	@FXML
+	private Text totalItemPrice;
+
+	@FXML
+	private Button btnSave;
+
+	public static Text totalPriceText;
+
 	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
 	public Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
-	private double totalPrice = CustomCatalogController.totalPrice;
-    @FXML
-    void btnClose(MouseEvent event) {
-        Stage stage = (Stage) close.getScene().getWindow();
+	static double totalPrice;
+
+	@FXML
+	void btnClose(MouseEvent event) {
+		Stage stage = (Stage) close.getScene().getWindow();
+		stage.close();
+	}
+
+	@FXML
+	void clkSave(MouseEvent event) throws IOException {
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(getClass().getResource("/fxml/ItemInCart.fxml"));
+		fxmlLoader.load();
+		ItemInCartController itemInCartController = fxmlLoader.getController();
+		itemToAmount = itemInCartController.getAmounts();
+		selectedProducts = itemInCartController.getSelected();
+		totalPrice=0;
+		for (ArrayList<String> entry : itemToAmount.values()) 
+		{
+			double price=Double.parseDouble(entry.get(1));
+			int amount=Integer.parseInt(entry.get(3));
+			totalPrice+=price*amount;
+		}
+		CustomCatalogController.totalPrice=totalPrice;
+        Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
-    }
+		JOptionPane.showMessageDialog(null, "Cart save successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
+	}
 
 	@FXML
 	void initialize() {
+		totalPrice = CustomCatalogController.totalPrice;
 		totalItemPrice.setText(Double.toString(totalPrice));
+		totalPriceText = totalItemPrice;
 		int column = 0;
 		int row = 1;
 		ArrayList<Item> items = new ArrayList<>();
 		items = selectedProducts;
 		try {
 			grid.getChildren().clear();
-
 			for (int i = 0; i < items.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/ItemInCart.fxml"));
 				AnchorPane anchorPane = fxmlLoader.load();
-				
+
 				ItemInCartController itemInCartController = fxmlLoader.getController();
 				itemInCartController.setData(items.get(i), itemToAmount.get(items.get(i).getID()).get(3));
 
@@ -99,8 +130,7 @@ public class CustomItemViewController {
 				grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
 				grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-				// height
-				grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+				// height grid.setMinHeight(Region.USE_COMPUTED_SIZE);
 				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
 				grid.setMaxHeight(Region.USE_PREF_SIZE);
 			}

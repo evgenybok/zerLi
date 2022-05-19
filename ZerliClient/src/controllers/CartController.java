@@ -46,7 +46,7 @@ public class CartController {
 	private Label titlePrice;
 
 	@FXML
-	private Label titleTotalPrice;
+	public static Label titleTotalPrice;
 
 	@FXML
 	private Text totalItemPrice;
@@ -58,7 +58,7 @@ public class CartController {
 	public ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
 	public Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
-	private double amountToPay=0;
+	public double amountToPay=0;
 	
     @FXML
     void btnCheckout(MouseEvent event) {

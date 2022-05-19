@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomItemViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomItemViewController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="710.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css">
          <left>
@@ -92,6 +92,18 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
+                  <Button fx:id="btnSave" mnemonicParsing="false" onMouseClicked="#clkSave" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Save" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@../../images/css/style.css" />
+                        <URL value="@../../images/css/styleNew.css" />
+                     </stylesheets>
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Close" textAlignment="CENTER">
                      <font>
                         <Font size="16.0" />
@@ -101,7 +113,7 @@
                         <URL value="@../../images/css/styleNew.css" />
                      </stylesheets>
                      <HBox.margin>
-                        <Insets left="250.0" />
+                        <Insets left="40.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -111,7 +123,7 @@
             <HBox prefHeight="115.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
          </center>
          <top>
-            <Label text="Customized Item View" BorderPane.alignment="CENTER">
+            <Label text="Customized Item View" underline="true" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
