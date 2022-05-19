@@ -8,6 +8,7 @@ import communication.Message;
 import communication.MessageAnswer;
 import logic.Item;
 import logic.Order;
+import logic.SingleOrder;
 import logic.User;
 
 public class AnalyzeMessageFromServer {
@@ -125,8 +126,8 @@ public class AnalyzeMessageFromServer {
 			try {
 			if (((ArrayList<?>) res).get(0) instanceof User)
 				return (ArrayList<User>) res;
-			if (((ArrayList<?>) res).get(0) instanceof Order)
-				return (ArrayList<Order>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleOrder)
+				return (ArrayList<SingleOrder>) res;
 			if (((ArrayList<?>) res).get(0) instanceof Item)
 				return (ArrayList<Item>) res;
 			if (((ArrayList<?>) res).get(0) instanceof String)

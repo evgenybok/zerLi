@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import logic.Item;
 import logic.Order;
+import logic.SingleOrder;
 import logic.User;
 
 public class Query {
@@ -89,97 +90,6 @@ public class Query {
         }
         return users;
     }
-
-	public static ArrayList<Order> GetOrders() {
-        String query = ("SELECT * FROM zerli.orders;");
-        ArrayList<Order> orders = new ArrayList<Order>();
-        try {
-            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                int OrderNumber = rs.getInt("orderNumber");
-                int Price = rs.getInt("price");
-                String GreetingCard = rs.getString("greetingCard");
-                String color = rs.getString("Color");
-                String D_Order = rs.getString("dOrder");
-                String Shop = rs.getString("shop");
-                String Date = rs.getString("date");
-                String OrderDate = rs.getString("orderDate");
-                String Status = rs.getString("Status");
-                String SupplyType = rs.getString("SupplyType");
-                String Refund=rs.getString("Refund");
-                orders.add(new Order(OrderNumber, Price, GreetingCard, color, D_Order, Shop, Date, OrderDate, Status,
-                        SupplyType,Refund));
-            }
-        } catch (SQLException e) {
-
-        }
-        return orders;
-    }
-
-	public static boolean Update(String updatedData) {
-		String[] str = updatedData.split("#", 3);
-		int ordNum = Integer.parseInt(str[0]);
-		String color = str[1];
-		String date = str[2];
-		String query = ("SELECT * FROM zerli.orders;");
-
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				int num = rs.getInt("orderNumber");
-				if (num == ordNum) {
-					String color1 = rs.getString("Color");
-					String date1 = rs.getString("date");
-					if (color.equals("")) {
-						color = color1;
-					}
-					if (date.equals("")) {
-						date = date1;
-					}
-
-					String query1 = ("UPDATE zerli.orders SET Color=" + "\"" + color + "\"" + " , " + "Date=" + "\""
-							+ date + "\"" + " WHERE orderNumber = " + ordNum + ";");
-					st.executeUpdate(query1);
-					return true;
-				}
-
-			}
-		} catch (SQLException e) {
-			return false;
-		}
-		return false;
-	}
-
-	public static String getSelectedOrder(int orderNumber) {
-		String query = ("SELECT * FROM zerli.iteminorder;");
-		StringBuilder res = new StringBuilder();
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			res.append(orderNumber);
-			res.append("#");
-			while (rs.next()) {
-				int OrderID = rs.getInt("orderID");
-				int itemID = rs.getInt("itemID");
-				int amount = rs.getInt("amount");
-				if (orderNumber == OrderID) {
-					res.append(itemID);
-					res.append("#");
-					res.append(amount);
-					res.append("#");
-				}
-			}
-			res.append("@");
-			if (res.toString().equals("@"))
-				return null;
-			return res.toString();
-		} catch (SQLException e) {
-			return "Error";
-		}
-	}
-
 	public static String getItemName(String data) {
 		String query = ("SELECT * FROM zerli.item;");
 		HashMap<String, ArrayList<String>> map = new HashMap<>();

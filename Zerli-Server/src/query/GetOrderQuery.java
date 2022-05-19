@@ -1,6 +1,7 @@
 package query;
 
 import logic.Order;
+import logic.SingleOrder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,34 +10,29 @@ import java.util.ArrayList;
 
 public class GetOrderQuery {
 
-	public static Object GetOrders() {
-		ArrayList<Order> orders = new ArrayList<>();
+	public static ArrayList<SingleOrder> GetOrders() {
 		String query = ("SELECT * FROM zerli.orders;");
+		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				int OrderNumber = rs.getInt("orderNumber");
-				double Price = rs.getDouble("price");
-				String GreetingCard = rs.getString("greetingCard");
-				String color = rs.getString("Color");
-				String D_Order = rs.getString("dOrder");
-				String Shop = rs.getString("shop");
-				String Date = rs.getString("date");
-				String OrderDate = rs.getString("orderDate");
+				int OrderNumber = rs.getInt("OrderNumber");
+				int Price = rs.getInt("Price");
+				String StoreID = rs.getString("StoreID");
+				String OrderDate = rs.getString("OrderDate");
+				String SupplyDate = rs.getString("SupplyDate");
 				String Status = rs.getString("Status");
 				String SupplyType = rs.getString("SupplyType");
-				String Refund = rs.getString("Refund");
-				orders.add(new Order(OrderNumber, Price, GreetingCard, color, D_Order, Shop, Date, OrderDate, Status,
-						SupplyType, Refund));
-			}
-			if (orders.size() != 0) {
-				return orders;
+				String Refund=rs.getString("Refund");
+				orders.add(new SingleOrder(OrderNumber, Price,StoreID,OrderDate,SupplyDate ,SupplyType ,Refund ,Status));
 			}
 		} catch (SQLException e) {
+
 		}
-		return null;
+		return orders;
 	}
+
 
 	public static boolean Update(String updatedData) {
 		String[] str = updatedData.split("#", 3);
