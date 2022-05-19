@@ -15,8 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrdersController">
    <left>
       <VBox prefHeight="800.0" prefWidth="366.0" BorderPane.alignment="CENTER">
          <children>
@@ -205,41 +204,46 @@
             </HBox>
             <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox prefHeight="573.0" prefWidth="833.0">
+                  <VBox fx:id="OrdersLayout" prefHeight="573.0" prefWidth="833.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="831.0" spacing="5.0" style="-fx-background-color: d3d3d3;">
                            <children>
-                              <Label prefHeight="29.0" prefWidth="117.0" text=" Order Number">
+                              <Label fx:id="orderNum" prefHeight="29.0" prefWidth="146.0" text=" Order Number">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="75.0" text="Price">
+                              <Label fx:id="price" alignment="CENTER" prefHeight="29.0" prefWidth="82.0" text="Price">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="126.0" text="Store Name">
+                              <Label fx:id="shop" alignment="CENTER" prefHeight="29.0" prefWidth="126.0" text="Store Name">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="153.0" text="Order Date">
+                              <Label fx:id="orderDate" alignment="CENTER" prefHeight="29.0" prefWidth="153.0" text="Order Date">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="160.0" text="Supply Date">
+                              <Label fx:id="deliveryDate" alignment="CENTER" prefHeight="29.0" prefWidth="160.0" text="Supply Date">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="114.0" text="Supply Type">
+                              <Label fx:id="supplyType" alignment="CENTER" prefHeight="29.0" prefWidth="154.0" text="Supply Type">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="29.0" prefWidth="102.0" text="Status">
+                              <Label fx:id="status" alignment="CENTER" prefHeight="29.0" prefWidth="87.0" text="Status">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="refund" alignment="CENTER" prefHeight="29.0" prefWidth="126.0" text="Refund">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
