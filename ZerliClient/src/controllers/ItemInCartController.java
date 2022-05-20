@@ -100,10 +100,10 @@ public class ItemInCartController extends CustomItemViewController {
 			}
 			;
 		}
-		if (amount < 20) /*
-							 * Calculating and setting single total item price label and total items price
-							 * label
-							 */
+		/*
+		 * setting single total item price label and total items pricelabel
+		 */
+		if (amount < 20)
 			PlusBtn.setDisable(false);
 		String priceText = priceLabel.getText();
 		String temp = priceText.substring(1);
@@ -111,7 +111,7 @@ public class ItemInCartController extends CustomItemViewController {
 		totalPriceLabel.setText("\u20AA" + Double.toString(price * Double.parseDouble(amountLabel.getText())));
 		double totalPriceTemp;
 		/* Only done for the Custom Catalog */
-		if (!(item == null)) {
+		if (!(item == null) && (item.getType().equals("Self Assembly"))) {
 			totalPriceTemp = Double.parseDouble(totalPriceText.getText().substring(1));
 			totalPriceTemp -= price;
 			totalPriceText.setText("\u20AA" + Double.toString(totalPriceTemp));
@@ -133,7 +133,7 @@ public class ItemInCartController extends CustomItemViewController {
 			amountLabel.setText(Integer.toString(amount));
 			ArrayList<String> updateItem = new ArrayList<String>();
 			/* Only done for the Custom Catalog */
-			if (!(item == null)) {
+			if (!(item == null) && (item.getType().equals("Self Assembly"))) {
 				updateItem.add(Integer.toString(item.getID()));
 				updateItem.add(Double.toString(item.getPrice()));
 				updateItem.add(item.getImgSrc());
@@ -154,7 +154,7 @@ public class ItemInCartController extends CustomItemViewController {
 		totalPriceLabel.setText("\u20AA" + Double.toString(price * Double.parseDouble(amountLabel.getText())));
 		double totalPriceTemp;
 		/* Only done for the Custom Catalog */
-		if (!(item == null)) {
+		if (!(item == null) && (item.getType().equals("Self Assembly"))) {
 			totalPriceTemp = Double.parseDouble(totalPriceText.getText().substring(1));
 			totalPriceTemp += price;
 			totalPriceText.setText("\u20AA" + Double.toString(totalPriceTemp));

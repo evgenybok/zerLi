@@ -112,6 +112,8 @@ public class CatalogController {
 			amount = 0;
 			AmountLabel.setText(Integer.toString(amount));
 		}
+		if(amount>0)
+			AddToCartBtn.setDisable(false);
 	}
 
 	@FXML
@@ -123,6 +125,7 @@ public class CatalogController {
 		} else {
 			amount = 50;
 			AmountLabel.setText(Integer.toString(amount));
+			AddToCartBtn.setDisable(true);
 		}
 	}
 
@@ -141,6 +144,7 @@ public class CatalogController {
 			e.printStackTrace();
 		}
 
+		
 	}
 
 	private void setSelectedItem(Item item) {
@@ -201,6 +205,7 @@ public class CatalogController {
 					itemToAmount.put(Integer.parseInt(serialID.getText()), details);
 				}
 			}
+			AddToCartBtn.setDisable(true);
 			JOptionPane.showMessageDialog(null, "Added the bouquet(s) to the cart!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
 			AmountLabel.setText("0");
@@ -211,8 +216,9 @@ public class CatalogController {
 	@FXML
 	void initialize() {
 		addToCart=AddToCartBtn;
+		AddToCartBtn.setDisable(true);
 		if(CustomerScreenController.accountStatus.equals("Frozen")) {
-			AddToCartBtn.setDisable(true);
+			//AddToCartBtn.setDisable(true);
 			CartImage.setDisable(true);
 		}
 		int column = 0;

@@ -100,7 +100,7 @@ public class CustomItemViewController{
 		}
 		Stage stage = (Stage) btnSave.getScene().getWindow();
 		stage.close();
-		JOptionPane.showMessageDialog(null, "Cart save successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Cart updated successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@FXML
