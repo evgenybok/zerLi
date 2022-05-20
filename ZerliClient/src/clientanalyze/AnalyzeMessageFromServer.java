@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import communication.Message;
 import communication.MessageAnswer;
 import logic.Item;
-import logic.Order;
 import logic.SingleOrder;
 import logic.User;
 

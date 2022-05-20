@@ -79,6 +79,8 @@ public class CatalogController {
 
 	@FXML
 	private ScrollPane scroll;
+	
+	static Button addToCart;
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
 	public double totalPrice;
@@ -208,6 +210,7 @@ public class CatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		addToCart=AddToCartBtn;
 		if(CustomerScreenController.accountStatus.equals("Frozen")) {
 			AddToCartBtn.setDisable(true);
 			CartImage.setDisable(true);

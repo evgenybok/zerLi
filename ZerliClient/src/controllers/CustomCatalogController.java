@@ -98,6 +98,10 @@ public class CustomCatalogController {
 	@FXML
 	private Button viewCustomizedBouquet;
 
+	static Button staticViewCustomizedBouquet;
+
+	static Button staticAddToCart;
+
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
 	public static double totalPrice = 0;
 
@@ -130,10 +134,11 @@ public class CustomCatalogController {
 			;
 			totalPrice = 0;
 			customName.setText("");
+			viewCustomizedBouquet.setDisable(true);
+			addToCart.setDisable(true);
 			JOptionPane.showMessageDialog(null, "Added the customized bouquet to the cart!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
-		}
-		else {
+		} else {
 			JOptionPane.showMessageDialog(null, "You did not add items for the customized bouquet!", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -190,6 +195,13 @@ public class CustomCatalogController {
 					totalPrice += Integer.parseInt(itemToAmount.get(selectedProducts.get(i).getID()).get(3))
 							* selectedProducts.get(i).getPrice();
 				}
+			}
+			if (!selectedProducts.isEmpty()) {
+				viewCustomizedBouquet.setDisable(false);
+				addToCart.setDisable(false);
+			} else {
+				viewCustomizedBouquet.setDisable(true);
+				addToCart.setDisable(true);
 			}
 			JOptionPane.showMessageDialog(null, "Added the items to the customized bouquet!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -270,8 +282,7 @@ public class CustomCatalogController {
 	void btnViewCustomizedBouquet(MouseEvent event) {
 		try {
 			if (selectedProducts.isEmpty())
-				JOptionPane.showMessageDialog(null, "You did not add items for the customized bouquet!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				return;
 			else {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CustomItemViewScreen.fxml")));
 				Parent root1 = (Parent) fxmlLoader.load();
@@ -290,7 +301,13 @@ public class CustomCatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-		if(CustomerScreenController.accountStatus.equals("Frozen")) {
+		staticAddToCart = addToCart;
+		staticViewCustomizedBouquet = viewCustomizedBouquet;
+		if (selectedProducts.isEmpty()) {
+			addToCart.setDisable(true);
+			viewCustomizedBouquet.setDisable(true);
+		}
+		if (CustomerScreenController.accountStatus.equals("Frozen")) {
 			addToCart.setDisable(true);
 			CartImage.setDisable(true);
 		}

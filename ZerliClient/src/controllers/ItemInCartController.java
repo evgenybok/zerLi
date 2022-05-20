@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -45,8 +46,8 @@ public class ItemInCartController extends CustomItemViewController {
 	private Button MinBtn;
 
 	Item item;
-	public static ArrayList<Item> updatedItems;
-	public static Map<Integer, ArrayList<String>> itemAmounts;
+	public static ArrayList<Item> originalSelectedProducts;
+	public static Map<Integer, ArrayList<String>> originalItemToAmounts;
 
 	public void setData(Item item, String amount) {
 		this.item = item;
@@ -60,7 +61,7 @@ public class ItemInCartController extends CustomItemViewController {
 
 	public void setData(String[] customItemData) {
 		amountLabel.setText("1");
-		priceLabel.setText("-");
+		priceLabel.setText("\u20AA" + customItemData[customItemData.length - 1].toString());
 		nameLabel.setText(customItemData[0] + ": " + customItemData[1]);
 		totalPriceLabel.setText("\u20AA" + customItemData[2]);
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/SA2.png"))));
@@ -73,46 +74,72 @@ public class ItemInCartController extends CustomItemViewController {
 		if (amount > 0) {
 			amount--;
 			amountLabel.setText(Integer.toString(amount));
-			ArrayList<String> updateItem = new ArrayList<String>();
-			updateItem.add(Integer.toString(item.getID()));
-			updateItem.add(Double.toString(item.getPrice()));
-			updateItem.add(item.getImgSrc());
-			updateItem.add(Integer.toString(amount));
-			itemAmounts.put(item.getID(), updateItem);
+			ArrayList<String> updateItemAmount = new ArrayList<String>(); /* new array list to update amount */
+			/* Only done for the Custom Catalog */
+			if (!(item == null)) {
+				updateItemAmount.add(Integer.toString(item.getID()));
+				updateItemAmount.add(Double.toString(item.getPrice()));
+				updateItemAmount.add(item.getImgSrc());
+				updateItemAmount.add(Integer.toString(amount));
+				itemToAmount.put(item.getID(), updateItemAmount);
+			}
 		}
 		if (amount == 0) {
 			MinBtn.setDisable(true);
+			/* Remove empty items from product array list and amount map */
 			int index = 0;
-			for (Item i : updatedItems)
-				if (i.equals(item)) {
-					updatedItems.remove(index);
-					break;
-				} else
-					index++;
+			try {
+				for (Item i : selectedProducts)
+					if (i.equals(item)) {
+						selectedProducts.remove(index);
+						itemToAmount.remove(i.getID());
+						break;
+					} else
+						index++;
+			} catch (NullPointerException e) {
+			}
+			;
 		}
-		if (amount < 20)
+		if (amount < 20) /*
+							 * Calculating and setting single total item price label and total items price
+							 * label
+							 */
 			PlusBtn.setDisable(false);
 		String priceText = priceLabel.getText();
 		String temp = priceText.substring(1);
 		double price = Double.valueOf(temp);
-		totalPriceLabel.setText(Double.toString(price * Double.parseDouble(amountLabel.getText())));
-		double totalPriceTemp = Double.parseDouble(totalPriceText.getText());
-		totalPriceTemp -= price;
-		totalPriceText.setText(Double.toString(totalPriceTemp));
+		totalPriceLabel.setText("\u20AA" + Double.toString(price * Double.parseDouble(amountLabel.getText())));
+		double totalPriceTemp;
+		/* Only done for the Custom Catalog */
+		if (!(item == null)) {
+			totalPriceTemp = Double.parseDouble(totalPriceText.getText().substring(1));
+			totalPriceTemp -= price;
+			totalPriceText.setText("\u20AA" + Double.toString(totalPriceTemp));
+			/* Done only for the cart */
+		} else {
+			totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
+			totalPriceTemp -= price;
+			CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
+		}
 	}
 
 	@FXML
+	/* Plus button for amounts for the Custom catalog and the Cart */
 	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(amountLabel.getText());
 		if (amount < 20) {
 			amount++;
+
 			amountLabel.setText(Integer.toString(amount));
 			ArrayList<String> updateItem = new ArrayList<String>();
-			updateItem.add(Integer.toString(item.getID()));
-			updateItem.add(Double.toString(item.getPrice()));
-			updateItem.add(item.getImgSrc());
-			updateItem.add(Integer.toString(amount));
-			itemAmounts.put(item.getID(), updateItem);
+			/* Only done for the Custom Catalog */
+			if (!(item == null)) {
+				updateItem.add(Integer.toString(item.getID()));
+				updateItem.add(Double.toString(item.getPrice()));
+				updateItem.add(item.getImgSrc());
+				updateItem.add(Integer.toString(amount));
+				itemToAmount.put(item.getID(), updateItem);
+			}
 		}
 		if (amount > 0)
 			MinBtn.setDisable(false);
@@ -120,27 +147,33 @@ public class ItemInCartController extends CustomItemViewController {
 			PlusBtn.setDisable(true);
 		} else
 			PlusBtn.setDisable(false);
+
 		String priceText = priceLabel.getText();
 		String temp = priceText.substring(1);
 		double price = Double.valueOf(temp);
-		totalPriceLabel.setText(Double.toString(price * Double.parseDouble(amountLabel.getText())));
-		double totalPriceTemp = Double.parseDouble(totalPriceText.getText());
-		totalPriceTemp += price;
-		totalPriceText.setText(Double.toString(totalPriceTemp));
-	}
-
-	Map<Integer, ArrayList<String>> getAmounts() {
-		return itemAmounts;
-	}
-
-	ArrayList<Item> getSelected() {
-		return updatedItems;
+		totalPriceLabel.setText("\u20AA" + Double.toString(price * Double.parseDouble(amountLabel.getText())));
+		double totalPriceTemp;
+		/* Only done for the Custom Catalog */
+		if (!(item == null)) {
+			totalPriceTemp = Double.parseDouble(totalPriceText.getText().substring(1));
+			totalPriceTemp += price;
+			totalPriceText.setText("\u20AA" + Double.toString(totalPriceTemp));
+			/* Done only for the cart */
+		} else {
+			totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
+			totalPriceTemp += price;
+			CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
+		}
 	}
 
 	@FXML
 	void initialize() {
-		updatedItems = selectedProducts;
-		itemAmounts = itemToAmount;
+		/*
+		 * Save original values on initialization in case 'Close' was clicked instead of
+		 * 'Save'
+		 */
+		originalSelectedProducts = new ArrayList<Item>(selectedProducts);
+		originalItemToAmounts = new HashMap<Integer, ArrayList<String>>(itemToAmount);
 	}
 
 }

@@ -55,6 +55,8 @@ public class CartController {
 
 	@FXML
 	private Text totalItemPrice;
+	
+	static Text totalItemsPrice;
 
     @FXML
     private Button checkOut;
@@ -95,6 +97,7 @@ public class CartController {
 
 	@FXML
 	void initialize() {
+		totalItemsPrice=totalItemPrice;
 		int column = 0;
 		int row = 1;
 		Map<Integer, ArrayList<String>> itemAmount = new HashMap<Integer, ArrayList<String>>();

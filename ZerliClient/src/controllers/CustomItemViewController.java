@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Item;
 
-public class CustomItemViewController {
+public class CustomItemViewController{
 
 	@FXML
 	private ResourceBundle resources;
@@ -66,12 +67,15 @@ public class CustomItemViewController {
 	public static Text totalPriceText;
 
 	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
-	public Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
+	public static Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
 	static double totalPrice;
-	//test5
 
 	@FXML
 	void btnClose(MouseEvent event) {
+		itemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
+		CustomCatalogController.itemToAmount = itemToAmount;
+		selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
+		CustomCatalogController.selectedProducts = selectedProducts;
 		Stage stage = (Stage) close.getScene().getWindow();
 		stage.close();
 	}
@@ -82,26 +86,27 @@ public class CustomItemViewController {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(getClass().getResource("/fxml/ItemInCart.fxml"));
 		fxmlLoader.load();
-		ItemInCartController itemInCartController = fxmlLoader.getController();
-		itemToAmount = itemInCartController.getAmounts();
-		selectedProducts = itemInCartController.getSelected();
-		totalPrice=0;
-		for (ArrayList<String> entry : itemToAmount.values()) 
-		{
-			double price=Double.parseDouble(entry.get(1));
-			int amount=Integer.parseInt(entry.get(3));
-			totalPrice+=price*amount;
+		totalPrice = 0;
+		for (ArrayList<String> entry : itemToAmount.values()) {
+			double price = Double.parseDouble(entry.get(1));
+			int amount = Integer.parseInt(entry.get(3));
+			totalPrice += price * amount;
 		}
-		CustomCatalogController.totalPrice=totalPrice;
-        Stage stage = (Stage) btnSave.getScene().getWindow();
-        stage.close();
+		CustomCatalogController.totalPrice = totalPrice;
+		if (selectedProducts.isEmpty())
+		{
+			CustomCatalogController.staticViewCustomizedBouquet.setDisable(true);
+			CustomCatalogController.staticAddToCart.setDisable(true);
+		}
+		Stage stage = (Stage) btnSave.getScene().getWindow();
+		stage.close();
 		JOptionPane.showMessageDialog(null, "Cart save successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@FXML
 	void initialize() {
 		totalPrice = CustomCatalogController.totalPrice;
-		totalItemPrice.setText(Double.toString(totalPrice));
+		totalItemPrice.setText("\u20AA" + Double.toString(totalPrice));
 		totalPriceText = totalItemPrice;
 		int column = 0;
 		int row = 1;
