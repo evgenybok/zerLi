@@ -15,12 +15,12 @@ public class SingleOrder implements Serializable {
     private String Refund;
     private String Status;
 
-    public SingleOrder(int OrderNumber,double Price,String StoreName,String OrderDate,String SupplyDate
+    public SingleOrder(int OrderNumber,double Price,String StoreID,String OrderDate,String SupplyDate
             ,String SupplyType,String Refund, String Status){
 
         this.OrderNumber=OrderNumber;
         this.Price=Price;
-        this.StoreName=StoreName;
+        this.StoreId=StoreID;
         this.OrderDate=OrderDate;
         this.SupplyDate=SupplyDate;
         this.SupplyType=SupplyType;

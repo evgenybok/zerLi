@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: zerli
+-- Host: 127.0.0.1    Database: zerli
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `account_details`;
 CREATE TABLE `account_details` (
   `User_ID` varchar(256) NOT NULL,
   `CreditCardNumber` varchar(256) NOT NULL,
-  `CreditCardDate` varchar(256) NOT NULL,
-  `CreditCardCVV` varchar(45) NOT NULL,
-  `Refund` varchar(256) DEFAULT NULL,
-  `status` varchar(45) NOT NULL,
+  `ExpiryDate` varchar(256) NOT NULL,
+  `CVV` varchar(45) NOT NULL,
+  `TotalRefund` varchar(256) DEFAULT NULL,
+  `Status` varchar(45) NOT NULL,
   PRIMARY KEY (`User_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -138,11 +138,13 @@ CREATE TABLE `orders` (
   `GreetingCard` varchar(255) DEFAULT NULL,
   `Color` varchar(20) DEFAULT NULL,
   `Dorder` varchar(255) DEFAULT NULL,
-  `Shop` varchar(50) NOT NULL,
-  `Date` varchar(255) NOT NULL,
+  `StoreID` varchar(50) NOT NULL,
   `OrderDate` varchar(255) NOT NULL,
+  `SupplyDate` varchar(255) NOT NULL,
   `Status` varchar(45) NOT NULL,
   `SupplyType` varchar(45) NOT NULL,
+  `UserID` varchar(45) NOT NULL,
+  `Refund` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`OrderNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,7 +155,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','North Branch','2022-02-12 10:30:00','2022-01-09 09:12:00','Approved','Delivery'),(4,30,'My Condolences','Green',NULL,'West Branch','2022-03-20 08:40:00','2022-01-01 08:26:00','Approved','PickUp'),(5,18,NULL,'Red',NULL,'North Branch','2022-02-12 10:30:00','2022-02-03 15:30:00','Approved','PickUp'),(7,70,NULL,'Blue','Express Order','West Branch','2022-03-20 08:40:00','2022-02-01 16:30:00','Approved','Delivery'),(200,55,'Happy Birthday','Blue',NULL,'East Branch','2022-03-22 14:40:00','2022-03-22 12:28:00','Approved','Delivery'),(300,162,'Happy Passover','Red','Express Order','South Branch','2022-02-28 09:40:00','2022-02-28 08:20:00','Approved','PickUp'),(600,96,NULL,'Blue',NULL,'South Branch','2022-03-26 15:55:00','2022-03-26 08:30:00','Approved','Delivery');
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','North Branch','2022-02-12 10:30:00','2022-01-09 09:12:00','Approved','Delivery','',NULL),(4,30,'My Condolences','Green',NULL,'West Branch','2022-03-20 08:40:00','2022-01-01 08:26:00','Approved','PickUp','',NULL),(5,18,NULL,'Red',NULL,'North Branch','2022-02-12 10:30:00','2022-02-03 15:30:00','Approved','PickUp','',NULL),(7,70,NULL,'Blue','Express Order','West Branch','2022-03-20 08:40:00','2022-02-01 16:30:00','Approved','Delivery','',NULL),(200,55,'Happy Birthday','Blue',NULL,'East Branch','2022-03-22 14:40:00','2022-03-22 12:28:00','Approved','Delivery','',NULL),(300,162,'Happy Passover','Red','Express Order','South Branch','2022-02-28 09:40:00','2022-02-28 08:20:00','Approved','PickUp','',NULL),(600,96,NULL,'Blue',NULL,'South Branch','2022-03-26 15:55:00','2022-03-26 08:30:00','Approved','Delivery','',NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-14 17:02:08
+-- Dump completed on 2022-05-21 20:03:30
