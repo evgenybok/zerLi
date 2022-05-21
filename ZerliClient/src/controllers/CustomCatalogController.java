@@ -95,6 +95,21 @@ public class CustomCatalogController {
 	@FXML
 	private Label serialID;
 
+    @FXML
+    private Button btnPriceRange;
+
+    @FXML
+    private TextField txtFrom;
+
+    @FXML
+    private TextField txtTo;
+
+    @FXML
+    private Button btnColor;
+
+    @FXML
+    private TextField txtColor;
+
 	@FXML
 	private Button viewCustomizedBouquet;
 
@@ -134,8 +149,11 @@ public class CustomCatalogController {
 			;
 			totalPrice = 0;
 			customName.setText("");
+			if (!CustomerScreenController.accountStatus.equals("Frozen"))
+			{
 			viewCustomizedBouquet.setDisable(true);
 			addToCart.setDisable(true);
+			}
 			JOptionPane.showMessageDialog(null, "Added the customized bouquet to the cart!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
@@ -178,9 +196,9 @@ public class CustomCatalogController {
 			for (int i = 0; i < selectedProducts.size(); i++) {
 				if (selectedProducts.get(i).getID() == Integer.parseInt(serialID.getText())) {
 					ArrayList<String> details = new ArrayList<String>();
-					details.add(items.get(i).getName());
-					details.add(Double.toString(items.get(i).getPrice()));
-					details.add(items.get(i).getImgSrc());
+					details.add(selectedProducts.get(i).getName());
+					details.add(Double.toString(selectedProducts.get(i).getPrice()));
+					details.add(selectedProducts.get(i).getImgSrc());
 					if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
 						if (!amountChanged) {
 							String tempAmount = itemToAmount.get(Integer.parseInt(serialID.getText())).get(3)
@@ -196,7 +214,7 @@ public class CustomCatalogController {
 							* selectedProducts.get(i).getPrice();
 				}
 			}
-			if (!selectedProducts.isEmpty()) {
+			if (!selectedProducts.isEmpty() && !CustomerScreenController.accountStatus.equals("Frozen")) {
 				viewCustomizedBouquet.setDisable(false);
 				addToCart.setDisable(false);
 			} else {
@@ -240,14 +258,13 @@ public class CustomCatalogController {
 	@FXML
 	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
-		if (amount < 50) {
+		if (amount < 20) {
 			amount++;
 			AmountLabel.setText(Integer.toString(amount));
 		} else {
 			amount = 0;
 			AmountLabel.setText(Integer.toString(amount));
 		}
-
 	}
 
 	@FXML
@@ -257,7 +274,7 @@ public class CustomCatalogController {
 			amount--;
 			AmountLabel.setText(Integer.toString(amount));
 		} else {
-			amount = 50;
+			amount = 20;
 			AmountLabel.setText(Integer.toString(amount));
 		}
 	}
@@ -297,6 +314,15 @@ public class CustomCatalogController {
 			e.printStackTrace();
 		}
 	}
+	@FXML
+	void clkColor(MouseEvent event) {
+
+	}
+
+	@FXML
+	void clkPriceRange(MouseEvent event) {
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -308,6 +334,7 @@ public class CustomCatalogController {
 			viewCustomizedBouquet.setDisable(true);
 		}
 		if (CustomerScreenController.accountStatus.equals("Frozen")) {
+			itemsInCustomBouquet.setDisable(true);
 			addToCart.setDisable(true);
 			CartImage.setDisable(true);
 		}
@@ -374,5 +401,6 @@ public class CustomCatalogController {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

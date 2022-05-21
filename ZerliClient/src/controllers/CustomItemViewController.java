@@ -66,6 +66,7 @@ public class CustomItemViewController{
 
 	public static Text totalPriceText;
 
+	static String totalPriceTemp;
 	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
 	public static Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
 	static double totalPrice;
@@ -73,9 +74,11 @@ public class CustomItemViewController{
 	@FXML
 	void btnClose(MouseEvent event) {
 		itemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
-		CustomCatalogController.itemToAmount = itemToAmount;
+		CustomCatalogController.itemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
 		selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
-		CustomCatalogController.selectedProducts = selectedProducts;
+		CustomCatalogController.selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
+		totalPriceTemp=totalPriceTemp.substring(1);
+		totalPrice=Double.parseDouble(totalPriceTemp);
 		Stage stage = (Stage) close.getScene().getWindow();
 		stage.close();
 	}
@@ -107,7 +110,10 @@ public class CustomItemViewController{
 	void initialize() {
 		totalPrice = CustomCatalogController.totalPrice;
 		totalItemPrice.setText("\u20AA" + Double.toString(totalPrice));
+		totalPriceTemp=totalItemPrice.getText();
 		totalPriceText = totalItemPrice;
+		itemToAmount=CustomCatalogController.itemToAmount;
+		selectedProducts=CustomCatalogController.selectedProducts;
 		int column = 0;
 		int row = 1;
 		ArrayList<Item> items = new ArrayList<>();

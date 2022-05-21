@@ -289,7 +289,7 @@
                               <HBox prefHeight="61.0" prefWidth="26.0" />
                               <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/style.css">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Price Range" textFill="WHITE">
+                                    <Button fx:id="btnPriceRange" mnemonicParsing="false" onMouseClicked="#clkPriceRange" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Price Range" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -301,7 +301,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </Button>
-                                    <TextField prefHeight="40.0" prefWidth="86.0" promptText="From" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                                    <TextField fx:id="txtFrom" prefHeight="40.0" prefWidth="86.0" promptText="From" styleClass="transparent" stylesheets="@../../images/css/style.css">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -321,7 +321,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <TextField prefHeight="40.0" prefWidth="85.0" promptText="Up" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                                    <TextField fx:id="txtTo" prefHeight="40.0" prefWidth="85.0" promptText="Up" styleClass="transparent" stylesheets="@../../images/css/style.css">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -338,7 +338,7 @@
                               <HBox prefHeight="61.0" prefWidth="51.0" />
                               <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/style.css">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Color" textFill="WHITE">
+                                    <Button fx:id="btnColor" mnemonicParsing="false" onMouseClicked="#clkColor" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Color" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -350,7 +350,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </Button>
-                                    <TextField prefHeight="40.0" prefWidth="195.0" promptText="Search by color" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                                    <TextField fx:id="txtColor" prefHeight="40.0" prefWidth="195.0" promptText="Search by color" styleClass="transparent" stylesheets="@../../images/css/style.css">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>

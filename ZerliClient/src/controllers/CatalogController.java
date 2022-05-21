@@ -79,7 +79,22 @@ public class CatalogController {
 
 	@FXML
 	private ScrollPane scroll;
-	
+
+	@FXML
+	private Button btnPriceRange;
+
+	@FXML
+	private TextField txtFrom;
+
+	@FXML
+	private TextField txtTo;
+
+	@FXML
+	private Button btnColor;
+
+	@FXML
+	private TextField txtColor;
+
 	static Button addToCart;
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
@@ -89,6 +104,7 @@ public class CatalogController {
 	public static Map<Integer, ArrayList<String>> itemToAmount = new HashMap<Integer, ArrayList<String>>();
 
 	ArrayList<Item> selectedItems = new ArrayList<>();
+	ArrayList<Item> items = new ArrayList<>();
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -105,14 +121,14 @@ public class CatalogController {
 	@FXML
 	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
-		if (amount < 50) {
+		if (amount < 20) {
 			amount++;
 			AmountLabel.setText(Integer.toString(amount));
 		} else {
 			amount = 0;
 			AmountLabel.setText(Integer.toString(amount));
 		}
-		if(amount>0)
+		if (amount > 0 && !CustomerScreenController.accountStatus.equals("Frozen"))
 			AddToCartBtn.setDisable(false);
 	}
 
@@ -123,9 +139,10 @@ public class CatalogController {
 			amount--;
 			AmountLabel.setText(Integer.toString(amount));
 		} else {
-			amount = 50;
+			amount = 20;
 			AmountLabel.setText(Integer.toString(amount));
-			AddToCartBtn.setDisable(true);
+			if (!CustomerScreenController.accountStatus.equals("Frozen"))
+				AddToCartBtn.setDisable(true);
 		}
 	}
 
@@ -144,7 +161,6 @@ public class CatalogController {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	private void setSelectedItem(Item item) {
@@ -215,10 +231,11 @@ public class CatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-		addToCart=AddToCartBtn;
+		grid.getChildren().clear();
+		addToCart = AddToCartBtn;
 		AddToCartBtn.setDisable(true);
-		if(CustomerScreenController.accountStatus.equals("Frozen")) {
-			//AddToCartBtn.setDisable(true);
+		if (CustomerScreenController.accountStatus.equals("Frozen")) {
+			// AddToCartBtn.setDisable(true);
 			CartImage.setDisable(true);
 		}
 		int column = 0;
@@ -231,31 +248,30 @@ public class CatalogController {
 		Image deliveryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/delivery.png")));
 		DeliveryImage.setImage(deliveryImage);
 
-		ArrayList<Item> items = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
 		if (items.size() > 0) {
 			setSelectedItem(items.get(0));
 		}
-		selectedItems.equals(items);
+		if (selectedItems.isEmpty())
+			selectedItems = new ArrayList<Item>(items);
 		try {
 
-			for (int i = 0; i < items.size(); i++) {
+			for (int i = 0; i < selectedItems.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/Item.fxml"));
 				AnchorPane anchorPane = fxmlLoader.load();
 
 				ItemController itemController = fxmlLoader.getController();
-				itemController.setData(items.get(i));
+				itemController.setData(selectedItems.get(i));
 
 				if (column == 3) {
 					column = 0;
 					row++;
-
 				}
 
-				anchorPane.setId(Integer.toString(items.get(i).getID()));
-				for (Item item : items) {
+				anchorPane.setId(Integer.toString(selectedItems.get(i).getID()));
+				for (Item item : selectedItems) {
 					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
 						anchorPane.setOnMouseClicked(evt -> {
 							flowerImage.setImage(new Image(Objects
@@ -285,7 +301,80 @@ public class CatalogController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	void clkColor(MouseEvent event) {
+		String color;
+		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
+		if (txtColor.getText().isEmpty()) {
+			double from, to;
+			if (txtFrom.getText().isEmpty())
+				from = 0;
+			else
+				from = Double.parseDouble(txtFrom.getText());
+			if (txtTo.getText().isEmpty())
+				to = Integer.MAX_VALUE;
+			else
+				to = Double.parseDouble(txtTo.getText());
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade"))
+					tempSelectedItems.add(item);
+			}
+			selectedItems = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+			return;
+		}
+		color = txtColor.getText();
+		if (selectedItems.isEmpty()) {
+			for (Item item : items) {
+				if (color.equals(item.getColor()))
+					tempSelectedItems.add(item);
+			}
+		} else {
+			for (Item item : selectedItems) {
+				if (color.equals(item.getColor()))
+					tempSelectedItems.add(item);
+			}
+		}
+		if (!tempSelectedItems.isEmpty()) {
+			selectedItems = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+		} else
+			JOptionPane.showMessageDialog(null, "No bouquets found with the color " + color + ".", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 
 	}
 
+	@FXML
+	void clkPriceRange(MouseEvent event) {
+		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
+		double from, to;
+		if (txtFrom.getText().isEmpty())
+			from = 0;
+		else
+			from = Double.parseDouble(txtFrom.getText());
+		if (txtTo.getText().isEmpty())
+			to = Integer.MAX_VALUE;
+		else
+			to = Double.parseDouble(txtTo.getText());
+		if (!(txtColor.getText().isEmpty())) {
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")
+						&& txtColor.getText().equals(item.getColor())) {
+					tempSelectedItems.add(item);
+				}
+			}
+		} else {
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")) {
+					tempSelectedItems.add(item);
+				}
+			}
+		}
+		if (!tempSelectedItems.isEmpty()) {
+			selectedItems = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+		}
+	}
 }
