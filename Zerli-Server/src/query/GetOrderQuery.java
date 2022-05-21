@@ -1,12 +1,11 @@
 package query;
 
-import logic.Order;
-import logic.SingleOrder;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import logic.SingleOrder;
 
 public class GetOrderQuery {
 

@@ -128,8 +128,14 @@ public class CatalogController {
 			amount = 0;
 			AmountLabel.setText(Integer.toString(amount));
 		}
-		if (amount > 0 && !CustomerScreenController.accountStatus.equals("Frozen"))
+		if (amount != 0)
 			AddToCartBtn.setDisable(false);
+		else
+			AddToCartBtn.setDisable(true);
+		if (amount > 0)
+			AddToCartBtn.setDisable(false);
+		if(CustomerScreenController.accountStatus.equals("Frozen"))
+			AddToCartBtn.setDisable(true);
 	}
 
 	@FXML
@@ -141,9 +147,13 @@ public class CatalogController {
 		} else {
 			amount = 20;
 			AmountLabel.setText(Integer.toString(amount));
-			if (!CustomerScreenController.accountStatus.equals("Frozen"))
-				AddToCartBtn.setDisable(true);
 		}
+		if (amount != 0)
+			AddToCartBtn.setDisable(false);
+		else
+			AddToCartBtn.setDisable(true);
+		if (CustomerScreenController.accountStatus.equals("Frozen"))
+			AddToCartBtn.setDisable(true);
 	}
 
 	@FXML
@@ -252,7 +262,7 @@ public class CatalogController {
 		}
 		color = txtColor.getText();
 		color.toLowerCase();
-		color= color.substring(0,1).toUpperCase() + color.substring(1);
+		color = color.substring(0, 1).toUpperCase() + color.substring(1);
 		if (selectedItems.isEmpty()) {
 			for (Item item : items) {
 				if (color.equals(item.getColor()))

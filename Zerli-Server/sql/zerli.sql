@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: zerli
+-- Host: localhost    Database: zerli
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -155,7 +155,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','North Branch','2022-02-12 10:30:00','2022-01-09 09:12:00','Approved','Delivery','',NULL),(4,30,'My Condolences','Green',NULL,'West Branch','2022-03-20 08:40:00','2022-01-01 08:26:00','Approved','PickUp','',NULL),(5,18,NULL,'Red',NULL,'North Branch','2022-02-12 10:30:00','2022-02-03 15:30:00','Approved','PickUp','',NULL),(7,70,NULL,'Blue','Express Order','West Branch','2022-03-20 08:40:00','2022-02-01 16:30:00','Approved','Delivery','',NULL),(200,55,'Happy Birthday','Blue',NULL,'East Branch','2022-03-22 14:40:00','2022-03-22 12:28:00','Approved','Delivery','',NULL),(300,162,'Happy Passover','Red','Express Order','South Branch','2022-02-28 09:40:00','2022-02-28 08:20:00','Approved','PickUp','',NULL),(600,96,NULL,'Blue',NULL,'South Branch','2022-03-26 15:55:00','2022-03-26 08:30:00','Approved','Delivery','',NULL);
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','North Branch','2022-02-12 10:30:00','2022-01-09 09:12:00','Approved','Delivery','0001',NULL),(4,30,'My Condolences','Green',NULL,'West Branch','2022-03-20 08:40:00','2022-01-01 08:26:00','Approved','PickUp','0002',NULL),(5,18,NULL,'Red',NULL,'North Branch','2022-02-12 10:30:00','2022-02-03 15:30:00','Approved','PickUp','0001',NULL),(7,70,NULL,'Blue','Express Order','West Branch','2022-03-20 08:40:00','2022-02-01 16:30:00','Approved','Delivery','0002',NULL),(200,55,'Happy Birthday','Blue',NULL,'East Branch','2022-03-22 14:40:00','2022-03-22 12:28:00','Approved','Delivery','0001',NULL),(300,162,'Happy Passover','Red','Express Order','South Branch','2022-02-28 09:40:00','2022-02-28 08:20:00','Approved','PickUp','0001',NULL),(600,96,NULL,'Blue',NULL,'South Branch','2022-03-26 15:55:00','2022-03-26 08:30:00','Approved','Delivery','0002',NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-21 20:03:30
+-- Dump completed on 2022-05-22  0:21:59
