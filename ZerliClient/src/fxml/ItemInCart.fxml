@@ -12,55 +12,86 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="83.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemInCartController">  <children>
+<AnchorPane prefHeight="83.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemInCartController">  <children>
       <AnchorPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="667.0" stylesheets="@../../images/css/style.css">
          <styleClass>
             <String fx:value="flowers-item" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <ImageView fx:id="img" fitHeight="66.0" fitWidth="73.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img" fitHeight="66.0" fitWidth="73.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/images/iris.png" />
                </image>
             </ImageView>
-            <VBox alignment="TOP_CENTER" layoutX="60.0" layoutY="-7.0" prefHeight="93.0" prefWidth="594.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="-7.0">
+            <VBox alignment="TOP_CENTER" layoutX="60.0" layoutY="-7.0" prefHeight="93.0" prefWidth="604.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="-7.0">
                <children>
                   <HBox prefHeight="82.0" prefWidth="554.0" spacing="10.0">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                      <children>
-                        <TextArea fx:id="nameLabel" editable="false" prefHeight="82.0" prefWidth="249.0" style="-fx-background-color: TRANSPARENT;" stylesheets="@../../images/css/transTextArea.css" wrapText="true">
+                        <TextArea fx:id="nameLabel" editable="false" prefHeight="82.0" prefWidth="417.0" style="-fx-background-color: TRANSPARENT;" stylesheets="@../../images/css/transTextArea.css" wrapText="true">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextArea>
-                        <Label fx:id="priceLabel" prefHeight="78.0" prefWidth="85.0" text="₪29.90">
+                        <Label fx:id="priceLabel" prefHeight="78.0" prefWidth="245.0" text="₪999.99" textOverrun="CLIP">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="27.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="amountLabel" prefHeight="76.0" prefWidth="47.0" text="2">
-                           <font>
-                              <Font name="Cambria Bold" size="18.0" />
-                           </font>
+                        <HBox prefHeight="82.0" prefWidth="266.0">
+                           <children>
+                              <Button fx:id="MinBtn" mnemonicParsing="false" onMouseClicked="#btnMin" prefHeight="30.0" prefWidth="32.0" stylesheets="@../../images/css/styleNew.css" text="-">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="newbuttom" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Label fx:id="amountLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="25.0" text="99" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="PlusBtn" mnemonicParsing="false" onMouseClicked="#btnPlus" prefHeight="30.0" prefWidth="32.0" stylesheets="@../../images/css/styleNew.css" text="+">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="newbuttom" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
-                        </Label>
-                        <Label fx:id="totalPriceLabel" prefHeight="74.0" prefWidth="83.0" text="₪59.80" textAlignment="CENTER">
+                        </HBox>
+                        <Label fx:id="totalPriceLabel" prefHeight="74.0" prefWidth="254.0" text="₪9999.99" textAlignment="CENTER" textOverrun="CLIP">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="65.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -69,23 +100,5 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button fx:id="PlusBtn" layoutX="484.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#btnPlus" prefHeight="30.0" prefWidth="32.0" stylesheets="@../../images/css/styleNew.css" text="+">
-         <styleClass>
-            <String fx:value="shadow" />
-            <String fx:value="newbuttom" />
-         </styleClass>
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="MinBtn" layoutX="422.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#btnMin" prefHeight="30.0" prefWidth="32.0" stylesheets="@../../images/css/styleNew.css" text="-">
-         <styleClass>
-            <String fx:value="shadow" />
-            <String fx:value="newbuttom" />
-         </styleClass>
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

@@ -251,6 +251,8 @@ public class CatalogController {
 			return;
 		}
 		color = txtColor.getText();
+		color.toLowerCase();
+		color= color.substring(0,1).toUpperCase() + color.substring(1);
 		if (selectedItems.isEmpty()) {
 			for (Item item : items) {
 				if (color.equals(item.getColor()))
