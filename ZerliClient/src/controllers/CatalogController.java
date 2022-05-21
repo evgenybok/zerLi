@@ -228,81 +228,6 @@ public class CatalogController {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@FXML
-	void initialize() {
-		grid.getChildren().clear();
-		addToCart = AddToCartBtn;
-		AddToCartBtn.setDisable(true);
-		if (CustomerScreenController.accountStatus.equals("Frozen")) {
-			// AddToCartBtn.setDisable(true);
-			CartImage.setDisable(true);
-		}
-		int column = 0;
-		int row = 1;
-
-		Image clockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Clock.png")));
-		ClockImage.setImage(clockImage);
-		Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
-		CartImage.setImage(cartImage);
-		Image deliveryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/delivery.png")));
-		DeliveryImage.setImage(deliveryImage);
-
-		chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
-		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
-		if (items.size() > 0) {
-			setSelectedItem(items.get(0));
-		}
-		if (selectedItems.isEmpty())
-			selectedItems = new ArrayList<Item>(items);
-		try {
-
-			for (int i = 0; i < selectedItems.size(); i++) {
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("/fxml/Item.fxml"));
-				AnchorPane anchorPane = fxmlLoader.load();
-
-				ItemController itemController = fxmlLoader.getController();
-				itemController.setData(selectedItems.get(i));
-
-				if (column == 3) {
-					column = 0;
-					row++;
-				}
-
-				anchorPane.setId(Integer.toString(selectedItems.get(i).getID()));
-				for (Item item : selectedItems) {
-					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
-						anchorPane.setOnMouseClicked(evt -> {
-							flowerImage.setImage(new Image(Objects
-									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
-							flowerName.setText(item.getName());
-							flowerPrice.setText("\u20AA" + item.getPrice());
-							serialID.setText(Integer.toString(item.getID()));
-						});
-					}
-				}
-
-				grid.add(anchorPane, column++, row);// (child,column,row)
-				GridPane.setMargin(anchorPane, new Insets(10));
-
-				// width
-
-				grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-				grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-				grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-				// height
-				grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-				grid.setMaxHeight(Region.USE_PREF_SIZE);
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	@FXML
 	void clkColor(MouseEvent event) {
 		String color;
@@ -375,6 +300,80 @@ public class CatalogController {
 		if (!tempSelectedItems.isEmpty()) {
 			selectedItems = new ArrayList<Item>(tempSelectedItems);
 			initialize();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@FXML
+	void initialize() {
+		grid.getChildren().clear();
+		addToCart = AddToCartBtn;
+		AddToCartBtn.setDisable(true);
+		if (CustomerScreenController.accountStatus.equals("Frozen")) {
+			CartImage.setDisable(true);
+		}
+		int column = 0;
+		int row = 1;
+
+		Image clockImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Clock.png")));
+		ClockImage.setImage(clockImage);
+		Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
+		CartImage.setImage(cartImage);
+		Image deliveryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/delivery.png")));
+		DeliveryImage.setImage(deliveryImage);
+
+		chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
+		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+		if (items.size() > 0) {
+			setSelectedItem(items.get(0));
+		}
+		if (selectedItems.isEmpty())
+			selectedItems = new ArrayList<Item>(items);
+		try {
+
+			for (int i = 0; i < selectedItems.size(); i++) {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("/fxml/Item.fxml"));
+				AnchorPane anchorPane = fxmlLoader.load();
+
+				ItemController itemController = fxmlLoader.getController();
+				itemController.setData(selectedItems.get(i));
+
+				if (column == 3) {
+					column = 0;
+					row++;
+				}
+
+				anchorPane.setId(Integer.toString(selectedItems.get(i).getID()));
+				for (Item item : selectedItems) {
+					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
+						anchorPane.setOnMouseClicked(evt -> {
+							flowerImage.setImage(new Image(Objects
+									.requireNonNull(getClass().getResourceAsStream(item.getImgSrc().toString()))));
+							flowerName.setText(item.getName());
+							flowerPrice.setText("\u20AA" + item.getPrice());
+							serialID.setText(Integer.toString(item.getID()));
+						});
+					}
+				}
+
+				grid.add(anchorPane, column++, row);// (child,column,row)
+				GridPane.setMargin(anchorPane, new Insets(10));
+
+				// width
+
+				grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+				grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+				grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+				// height
+				grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+				grid.setMaxHeight(Region.USE_PREF_SIZE);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

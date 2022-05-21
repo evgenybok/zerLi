@@ -95,20 +95,20 @@ public class CustomCatalogController {
 	@FXML
 	private Label serialID;
 
-    @FXML
-    private Button btnPriceRange;
+	@FXML
+	private Button btnPriceRange;
 
-    @FXML
-    private TextField txtFrom;
+	@FXML
+	private TextField txtFrom;
 
-    @FXML
-    private TextField txtTo;
+	@FXML
+	private TextField txtTo;
 
-    @FXML
-    private Button btnColor;
+	@FXML
+	private Button btnColor;
 
-    @FXML
-    private TextField txtColor;
+	@FXML
+	private TextField txtColor;
 
 	@FXML
 	private Button viewCustomizedBouquet;
@@ -118,11 +118,13 @@ public class CustomCatalogController {
 	static Button staticAddToCart;
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
+	private ArrayList<Item> catalogProducts = new ArrayList<Item>();
 	public static double totalPrice = 0;
 
 	public static ArrayList<String[]> customItemInCart = new ArrayList<String[]>();
 	public static Map<Integer, ArrayList<String>> itemToAmount = new HashMap<Integer, ArrayList<String>>();
 	private int counter = 0;
+	private ArrayList<Item> items;
 
 	@FXML
 	void btnAddToCart(MouseEvent event) {
@@ -149,10 +151,9 @@ public class CustomCatalogController {
 			;
 			totalPrice = 0;
 			customName.setText("");
-			if (!CustomerScreenController.accountStatus.equals("Frozen"))
-			{
-			viewCustomizedBouquet.setDisable(true);
-			addToCart.setDisable(true);
+			if (!CustomerScreenController.accountStatus.equals("Frozen")) {
+				viewCustomizedBouquet.setDisable(true);
+				addToCart.setDisable(true);
 			}
 			JOptionPane.showMessageDialog(null, "Added the customized bouquet to the cart!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -162,16 +163,18 @@ public class CustomCatalogController {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked" })
+	// @SuppressWarnings({ "unchecked" })
 	@FXML
 	void btnAddToCustomArrangement(MouseEvent event) {
 		if (AmountLabel.getText().equals("0")) {
 			JOptionPane.showMessageDialog(null, "You can not add 0 items to the customized bouquet!", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			ArrayList<Item> items = new ArrayList<>();
-			chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
-			items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+			/*
+			 * ArrayList<Item> items = new ArrayList<>(); chat.accept(new
+			 * Message(MessageType.GET_SELFASSEMBLY_ITEMS, null)); items = (ArrayList<Item>)
+			 * AnalyzeMessageFromServer.getData();
+			 */
 
 			boolean flag = false;
 			for (Item item : items) {
@@ -314,19 +317,101 @@ public class CustomCatalogController {
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
 	void clkColor(MouseEvent event) {
-
+		String color;
+		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
+		if (txtColor.getText().isEmpty()) {
+			double from, to;
+			if (txtFrom.getText().isEmpty())
+				from = 0;
+			else
+				from = Double.parseDouble(txtFrom.getText());
+			if (txtTo.getText().isEmpty())
+				to = Integer.MAX_VALUE;
+			else
+				to = Double.parseDouble(txtTo.getText());
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade"))
+					tempSelectedItems.add(item);
+			}
+			catalogProducts = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+			return;
+		}
+		color = txtColor.getText();
+		color.toLowerCase();
+		color = color.substring(0, 1).toUpperCase() + color.substring(1);
+		if (catalogProducts.isEmpty()) {
+			for (Item item : items) {
+				if (color.equals(item.getColor()))
+					tempSelectedItems.add(item);
+			}
+		} else {
+			for (Item item : catalogProducts) {
+				if (color.equals(item.getColor()))
+					tempSelectedItems.add(item);
+			}
+		}
+		if (tempSelectedItems.isEmpty()) {
+			for (Item item : items) {
+				if (color.equals(item.getColor()))
+					tempSelectedItems.add(item);
+			}
+		}
+		if (!tempSelectedItems.isEmpty()) {
+			catalogProducts = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+		} else
+			JOptionPane.showMessageDialog(null, "No items found with the color " + color + ".", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@FXML
 	void clkPriceRange(MouseEvent event) {
-
+		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
+		double from, to;
+		String color = null;
+		if (!txtColor.getText().isEmpty()) {
+			color = txtColor.getText();
+			color.toLowerCase();
+			color = color.substring(0, 1).toUpperCase() + color.substring(1);
+		}
+		if (txtFrom.getText().isEmpty())
+			from = 0;
+		else
+			from = Double.parseDouble(txtFrom.getText());
+		if (txtTo.getText().isEmpty())
+			to = Integer.MAX_VALUE;
+		else
+			to = Double.parseDouble(txtTo.getText());
+		if (from > to || to < from)
+			JOptionPane.showMessageDialog(null, "Invalid price range entered", "Error", JOptionPane.ERROR_MESSAGE);
+		if (!(txtColor.getText().isEmpty())) {
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Self Assembly")
+						&& color.equals(item.getColor())) {
+					tempSelectedItems.add(item);
+				}
+			}
+		} else {
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Self Assembly")) {
+					tempSelectedItems.add(item);
+				}
+			}
+		}
+		if (!tempSelectedItems.isEmpty()) {
+			catalogProducts = new ArrayList<Item>(tempSelectedItems);
+			initialize();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		grid.getChildren().clear();
 		staticAddToCart = addToCart;
 		staticViewCustomizedBouquet = viewCustomizedBouquet;
 		if (selectedProducts.isEmpty()) {
@@ -347,23 +432,24 @@ public class CustomCatalogController {
 		CartImage.setImage(cartImage);
 		Image deliveryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/delivery.png")));
 		DeliveryImage.setImage(deliveryImage);
-		ArrayList<Item> items = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
 		items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
 
 		if (items.size() > 0) {
 			setSelectedItem(items.get(0));
 		}
-
+		if (catalogProducts.isEmpty()) {
+			catalogProducts = new ArrayList<Item>(items);
+		}
 		try {
 
-			for (int i = 0; i < items.size(); i++) {
+			for (int i = 0; i < catalogProducts.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/Item.fxml"));
 				AnchorPane anchorPane = fxmlLoader.load();
 
 				ItemController itemController = fxmlLoader.getController();
-				itemController.setData(items.get(i));
+				itemController.setData(catalogProducts.get(i));
 
 				if (column == 3) {
 					column = 0;
@@ -371,8 +457,8 @@ public class CustomCatalogController {
 
 				}
 
-				anchorPane.setId(Integer.toString(items.get(i).getID()));
-				for (Item item : items) {
+				anchorPane.setId(Integer.toString(catalogProducts.get(i).getID()));
+				for (Item item : catalogProducts) {
 					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
 						anchorPane.setOnMouseClicked(evt -> {
 							flowerImage.setImage(new Image(Objects
@@ -401,6 +487,5 @@ public class CustomCatalogController {
 			e.printStackTrace();
 		}
 	}
-	
 
 }
