@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ReportsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1234.0">
          <left>
@@ -127,7 +127,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="250.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefHeight="63.0" prefWidth="188.0" text="Monthly">
+                              <CheckBox fx:id="Monthly" mnemonicParsing="false" onMouseClicked="#btnMonthly" prefHeight="63.0" prefWidth="188.0" text="Monthly">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
@@ -172,12 +172,12 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="307.0">
                            <children>
-                              <ComboBox prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="MonthlyYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
                            </children>
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="240.0">
                            <children>
-                              <ComboBox prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="MonthlyMonth" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
                            </children>
                            <HBox.margin>
                               <Insets right="30.0" />
@@ -185,7 +185,7 @@
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="236.0">
                            <children>
-                              <ComboBox prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="MonthlyReport" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
                            </children>
                            <HBox.margin>
                               <Insets right="20.0" />
@@ -197,7 +197,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="353.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefHeight="63.0" prefWidth="278.0" text="Customer Complaint">
+                              <CheckBox fx:id="ComplaintCu" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="63.0" prefWidth="278.0" text="Customer Complaint">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
@@ -230,16 +230,16 @@
                         <VBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="269.0" />
                      </children>
                   </HBox>
-                  <HBox layoutY="484.0" prefHeight="54.0" prefWidth="814.0">
+                  <HBox fx:id="ComplaitBox" layoutY="484.0" prefHeight="54.0" prefWidth="814.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="307.0">
                            <children>
-                              <ComboBox prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="ComplaintYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
                            </children>
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="240.0">
                            <children>
-                              <ComboBox prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="ComplaintQuart" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
                            </children>
                            <HBox.margin>
                               <Insets right="30.0" />
@@ -252,7 +252,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutY="592.0" prefHeight="202.0" prefWidth="855.0">
+                  <HBox alignment="CENTER" layoutY="607.0" prefHeight="187.0" prefWidth="855.0">
                      <children>
                         <Button fx:id="View" mnemonicParsing="false" onMouseClicked="#btnView" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="View">
                            <font>

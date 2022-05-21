@@ -15,15 +15,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrdersController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrdersController">
    <left>
       <VBox prefHeight="800.0" prefWidth="366.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="800.0" styleClass="right-bar" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css">
+            <VBox prefHeight="800.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0">
                      <children>
-                        <Label fx:id="lblZerLi" prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
+                        <Label fx:id="lblZerLi" prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
@@ -60,7 +60,7 @@
                            <children>
                               <ImageView fx:id="PersonImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                  <image>
-                                    <Image url="@../../../../git/zerLi/ZerliClient/images/images/Avatar.png" />
+                                    <Image url="@../../images/images/Avatar.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -96,7 +96,7 @@
                         <Insets top="100.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="60.0" prefWidth="144.0" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" text="Back" textFill="#004d00">
+                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="60.0" prefWidth="144.0" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>
@@ -113,7 +113,7 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="800.0" prefWidth="854.0" style="-fx-background-color: e6ffcc;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="935.0" style="-fx-background-color: e6ffcc;" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -177,7 +177,7 @@
                                        <graphic>
                                           <ImageView fitHeight="45.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../git/zerLi/ZerliClient/images/images/icons8-search-50.png" />
+                                                <Image url="@../../images/images/icons8-search-50.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -204,11 +204,11 @@
             </HBox>
             <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox fx:id="OrdersLayout" prefHeight="573.0" prefWidth="833.0">
+                  <VBox fx:id="OrdersLayout" prefHeight="573.0" prefWidth="934.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="831.0" spacing="5.0" style="-fx-background-color: d3d3d3;">
                            <children>
-                              <Label fx:id="orderNum" prefHeight="29.0" prefWidth="146.0" text=" Order Number">
+                              <Label fx:id="orderNum" prefHeight="29.0" prefWidth="97.0" text=" Order Num">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -223,7 +223,7 @@
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="orderDate" alignment="CENTER" prefHeight="29.0" prefWidth="153.0" text="Order Date">
+                              <Label fx:id="orderDate" alignment="CENTER" prefHeight="29.0" prefWidth="157.0" text="Order Date">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>

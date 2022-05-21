@@ -49,13 +49,27 @@ public class ManagerScreenController {
     private Button viewReports;
 
     @FXML
-    void btnAdd(MouseEvent event) {
-
+    void btnAdd(MouseEvent event) throws IOException {
+    	((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddNewCustomer.fxml")));
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
 
     @FXML
-    void btnEdit(MouseEvent event) {
-
+    void btnEdit(MouseEvent event) throws IOException {
+    	((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddNewCustomer.fxml")));
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
 
     @FXML

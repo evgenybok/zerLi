@@ -64,8 +64,15 @@ public class CEOScreenController {
 	}
 
 	@FXML
-	void btnIncome(MouseEvent event) {
-
+	void btnIncome(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Customer");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
 	}
 
 	@FXML

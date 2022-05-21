@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ManagerScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerScreenController">
    <children>
       <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0">
          <left>
@@ -140,7 +140,7 @@
                         <Image url="@../../images/images/217-2170381_other-approved-icon-png-images-receipt-icon.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#004d00" layoutX="503.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="New Customer" wrappingWidth="161.13671875">
+                  <Text fill="#004d00" layoutX="503.0" layoutY="239.0" onMouseClicked="#btnAdd" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="New Customer" wrappingWidth="161.13671875">
                      <font>
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
@@ -150,17 +150,17 @@
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#004d00" layoutX="156.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Account info" wrappingWidth="117.13671875">
+                  <Text fill="#004d00" layoutX="156.0" layoutY="524.0" onMouseClicked="#btnEdit" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Account info" wrappingWidth="117.13671875">
                      <font>
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#004d00" layoutX="527.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="managment" wrappingWidth="115.13671875">
+                  <Text fill="#004d00" layoutX="527.0" layoutY="524.0" onMouseClicked="#btnViewOrders" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="managment" wrappingWidth="115.13671875">
                      <font>
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
                   </Text>
-                  <FontAwesomeIconView fill="#004d00" glyphName="USER" layoutX="547.0" layoutY="307.0" size="60" wrappingWidth="49.0" />
+                  <FontAwesomeIconView fill="#004d00" glyphName="USER" layoutX="547.0" layoutY="307.0" onMouseClicked="#btnAdd" size="60" wrappingWidth="49.0" />
                   <HBox prefHeight="100.0" prefWidth="767.0">
                      <children>
                         <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Branch Manager Screen">
@@ -183,12 +183,12 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ImageView fitHeight="77.0" fitWidth="100.0" layoutX="178.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="77.0" fitWidth="100.0" layoutX="178.0" layoutY="541.0" onMouseClicked="#btnEdit" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/146-1468319_edit-profile-female-icon-png-transparent-png.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="541.0" onMouseClicked="#btnViewOrders" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/clipart3436115.png" />
                      </image>

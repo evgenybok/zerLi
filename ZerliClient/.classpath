@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="src/fontawesomefx-weathericons-2.0.10-9.1.2.jar"/>
 	<classpathentry kind="lib" path="src/jfoenix-9.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
