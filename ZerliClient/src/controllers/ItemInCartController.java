@@ -184,7 +184,7 @@ public class ItemInCartController extends CustomItemViewController {
 					double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 					totalPriceTemp -= Double.parseDouble((bouquet[2])) * (Double.parseDouble(amountLabel.getText()));
 					CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
-					CartController.staticGrid.getChildren().remove(CartController.customItemInCart.indexOf(bouquet));
+					CartController.staticGrid.getChildren().remove(CartController.selectedProductsPremade.size() +CartController.customItemInCart.indexOf(bouquet));
 					CartController.customItemInCart.remove(bouquet);
 					CustomCatalogController.bouquetCounter--;
 					return;
@@ -199,7 +199,7 @@ public class ItemInCartController extends CustomItemViewController {
 			CartController.selectedProductsPremade.remove(item);
 			CartController.itemToAmountPremade.remove(item.getID());
 			CartController.staticGrid.getChildren().remove(indexToDelete);
-			CustomCatalogController.bouquetCounter--;
+			CatalogController.premadeBouquetNumber--;
 		} else if (item.getType().equals("Self Assembly")) {
 
 			itemToAmount.remove(item.getID());

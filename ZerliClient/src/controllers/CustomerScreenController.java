@@ -147,7 +147,7 @@ public class CustomerScreenController {
 			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 			@SuppressWarnings("unchecked")
 			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
-			accountStatus= account.get(5); // *** AccountStatus text field is null!!
+			accountStatus= account.get(5);
 		} catch (NullPointerException e) {
 		};
     	this.AccountStatus.setText(accountStatus); //accountStatus - handled from DB

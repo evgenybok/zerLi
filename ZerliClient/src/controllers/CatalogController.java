@@ -105,6 +105,7 @@ public class CatalogController {
 
 	ArrayList<Item> selectedItems = new ArrayList<>();
 	ArrayList<Item> items = new ArrayList<>();
+	static int premadeBouquetNumber=0;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -232,6 +233,7 @@ public class CatalogController {
 				}
 			}
 			AddToCartBtn.setDisable(true);
+			premadeBouquetNumber++;
 			JOptionPane.showMessageDialog(null, "Added the bouquet(s) to the cart!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
 			AmountLabel.setText("0");
