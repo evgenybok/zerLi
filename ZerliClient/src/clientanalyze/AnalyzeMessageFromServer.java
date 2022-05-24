@@ -108,6 +108,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+			//111
 		case GET_STORE_NAME:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
