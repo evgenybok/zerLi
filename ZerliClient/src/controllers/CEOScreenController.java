@@ -96,10 +96,11 @@ public class CEOScreenController {
 	@FXML
 	void initialize() {
 		try {
-			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
+			/*chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 			@SuppressWarnings("unchecked")
 			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
-			AccountStatus.setText(account.get(5)); // *** AccountStatus text field is null!!
+			AccountStatus.setText(account.get(5)); // *** AccountStatus text field is null!!*/
+			AccountStatus.setText("CONFIRMED");
 			userName.setText(LoginScreenController.user.getUsername());
 
 		} catch (NullPointerException e) {

@@ -6,13 +6,16 @@ import communication.Message;
 import communication.MessageAnswer;
 import communication.MessageType;
 import controllers.ConnectedClientsController;
+import logic.Account;
 import logic.Item;
 import logic.Order;
 import logic.SingleOrder;
 import logic.User;
 import ocsf.server.ConnectionToClient;
+import query.CreditDetailsQuery;
 import query.GetOrderQuery;
 import query.Query;
+import query.StoresQuery;
 
 public class AnalyzeMessageFromClient {
 
@@ -22,6 +25,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<User> UsersArr;
 		ArrayList<Item> Items;
 		ArrayList<String> data;
+		ArrayList<Account> creditDetails;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -93,43 +97,68 @@ public class AnalyzeMessageFromClient {
 
 		case GET_PREMADE_ITEMS:
 			try {
-			Items = Query.GetPremadeItems();
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(Items);
-			}
-			catch (Exception e) {
+				Items = Query.GetPremadeItems();
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(Items);
+			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			};
+			}
+			;
 			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_SELFASSEMBLY_ITEMS:
 			try {
-			Items = Query.GetSelfAssemblyItems();
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(Items);
-			}
-			catch (Exception e) {
+				Items = Query.GetSelfAssemblyItems();
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(Items);
+			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			};
+			}
+			;
 			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case GET_ACCOUNT_DETAILS:
 			try {
-			data = Query.GetAccountDetails((String)receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(data);
-			}
-			catch (Exception e) {
+				data = Query.GetAccountDetails((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(data);
+			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			};
+			}
+			;
+
 			return new Message(MessageType.GET_ACCOUNT_DETAILS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
+		case GET_STORE_NAME:
+			try {
+				data = StoresQuery.GetStoreName((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(data);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_CREDIT_DETAILS:
+			try {
+				creditDetails = CreditDetailsQuery.GetCreditCardDetails((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(creditDetails);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 		default:
 			return new Message(MessageType.ERROR, null);
 		}

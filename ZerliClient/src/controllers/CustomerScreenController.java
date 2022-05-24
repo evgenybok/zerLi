@@ -167,8 +167,6 @@ public class CustomerScreenController {
     	Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
     	ComplaintImage.setImage(complaintImage);
     	
-
-
     }
 }
 

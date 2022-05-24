@@ -213,12 +213,12 @@
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="price" alignment="CENTER" prefHeight="29.0" prefWidth="82.0" text="Price">
+                              <Label fx:id="price" alignment="CENTER" prefHeight="29.0" prefWidth="61.0" text="Price">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="shop" alignment="CENTER" prefHeight="29.0" prefWidth="126.0" text="Store Name">
+                              <Label fx:id="shop" alignment="CENTER" prefHeight="29.0" prefWidth="139.0" text="Store Name">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>

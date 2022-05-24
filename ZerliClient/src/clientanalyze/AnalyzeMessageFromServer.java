@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import communication.Message;
 import communication.MessageAnswer;
+import logic.Account;
 import logic.Item;
 import logic.SingleOrder;
 import logic.User;
@@ -107,10 +108,27 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case GET_STORE_NAME:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
+			} else {
+				res = null;
+			}
+			return;
+		case GET_CREDIT_DETAILS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+			
 		default:
 			break;
-
+		
+			
 		}
 
 	}
@@ -131,6 +149,8 @@ public class AnalyzeMessageFromServer {
 				return (ArrayList<Item>) res;
 			if (((ArrayList<?>) res).get(0) instanceof String)
 				return (ArrayList<String>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Account)
+				return (ArrayList<Account>) res;
 			}
 			catch (IndexOutOfBoundsException e) {
 			};
