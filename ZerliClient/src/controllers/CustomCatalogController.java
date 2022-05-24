@@ -123,8 +123,10 @@ public class CustomCatalogController {
 
 	public static ArrayList<String[]> customItemInCart = new ArrayList<String[]>();
 	public static Map<Integer, ArrayList<String>> itemToAmount = new HashMap<Integer, ArrayList<String>>();
-	private int counter = 0;
+	static int bouquetCounter = 0;
+	private int bouquetNumber = 1;
 	private ArrayList<Item> items;
+
 
 	@FXML
 	void btnAddToCart(MouseEvent event) {
@@ -136,16 +138,16 @@ public class CustomCatalogController {
 
 			}
 			if (customName.getText().equals("")) {
-				String[] data = new String[] { "MyBouquet" + Integer.toString(counter + 1),
-						customItemDetails.toString(), Double.toString(totalPrice) };
-				customItemInCart.add(counter, data);
+				String[] data = new String[] { "MyBouquet" + Integer.toString(bouquetCounter + 1),
+						customItemDetails.toString(), Double.toString(totalPrice),Integer.toString(bouquetNumber++) };
+				customItemInCart.add(bouquetCounter, data);
 			} else {
 				String[] data = new String[] { customName.getText(), customItemDetails.toString(),
-						Double.toString(totalPrice) };
-				customItemInCart.add(counter, data);
+						Double.toString(totalPrice) ,Integer.toString(bouquetNumber++)};
+				customItemInCart.add(bouquetCounter, data);
 			}
 
-			counter++;
+			bouquetCounter++;
 			selectedProducts.clear();
 			itemToAmount.clear();
 			;

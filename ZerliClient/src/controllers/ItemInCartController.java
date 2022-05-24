@@ -45,9 +45,14 @@ public class ItemInCartController extends CustomItemViewController {
 	@FXML
 	private Button MinBtn;
 
+	@FXML
+	private Button btnDelete;
+
 	Item item;
 	public static ArrayList<Item> originalSelectedProducts;
 	public static Map<Integer, ArrayList<String>> originalItemToAmounts;
+	static int originalBouquetCounter;
+	private int bouquetNumber = 1;
 
 	public void setData(Item item, String amount) {
 		this.item = item;
@@ -60,8 +65,9 @@ public class ItemInCartController extends CustomItemViewController {
 	}
 
 	public void setData(String[] customItemData) {
+		bouquetNumber = Integer.parseInt(customItemData[3]);
 		amountLabel.setText("1");
-		priceLabel.setText("\u20AA" + customItemData[customItemData.length - 1].toString());
+		priceLabel.setText("\u20AA" + customItemData[2].toString());
 		nameLabel.setText(customItemData[0] + ": " + customItemData[1]);
 		totalPriceLabel.setText("\u20AA" + customItemData[2]);
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/SA2.png"))));
@@ -115,7 +121,7 @@ public class ItemInCartController extends CustomItemViewController {
 			totalPriceTemp = Double.parseDouble(totalPriceText.getText().substring(1));
 			totalPriceTemp -= price;
 			totalPriceText.setText("\u20AA" + Double.toString(totalPriceTemp));
-			/* Done only for the cart */
+			/* Only done for the cart */
 		} else {
 			totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 			totalPriceTemp -= price;
@@ -167,11 +173,55 @@ public class ItemInCartController extends CustomItemViewController {
 	}
 
 	@FXML
+	void clkDelete(MouseEvent event) throws InterruptedException {
+		/* Cart */
+		// Self assembly catalog
+		int indexToDelete = 1;
+		if (item == null) {
+			for (String[] bouquet : CartController.customItemInCart)
+				if (bouquet[3].equals(Integer.toString(bouquetNumber))) {
+					indexToDelete = Integer.parseInt(bouquet[3]);
+					double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
+					totalPriceTemp -= Double.parseDouble((bouquet[2])) * (Double.parseDouble(amountLabel.getText()));
+					CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
+					CartController.staticGrid.getChildren().remove(CartController.selectedProductsPremade.size() +CartController.customItemInCart.indexOf(bouquet));
+					CartController.customItemInCart.remove(bouquet);
+					CustomCatalogController.bouquetCounter--;
+					return;
+				}
+		}
+		// Premade catalog
+		else if (item.getType().equals("Premade")) {
+			indexToDelete = CartController.selectedProductsPremade.indexOf(item);
+			double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
+			totalPriceTemp -= (item.getPrice()) * (Double.parseDouble(amountLabel.getText()));
+			CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
+			CartController.selectedProductsPremade.remove(item);
+			CartController.itemToAmountPremade.remove(item.getID());
+			CartController.staticGrid.getChildren().remove(indexToDelete);
+			CatalogController.premadeBouquetNumber--;
+		} else if (item.getType().equals("Self Assembly")) {
+
+			itemToAmount.remove(item.getID());
+			double totalPriceTemp = Double
+					.parseDouble(CustomItemViewController.staticTotalItemPrice.getText().substring(1));
+			totalPriceTemp -= item.getPrice() * Double.parseDouble(amountLabel.getText());
+			CustomItemViewController.staticTotalItemPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
+			CustomItemViewController.staticGrid.getChildren().remove(selectedProducts.indexOf(item));
+			selectedProducts.remove(item);
+			if (itemToAmount.isEmpty())
+				CustomCatalogController.bouquetCounter--;
+		}
+
+	}
+
+	@FXML
 	void initialize() {
 		/*
 		 * Save original values on initialization in case 'Close' was clicked instead of
 		 * 'Save'
 		 */
+		originalBouquetCounter=CustomCatalogController.bouquetCounter;
 		originalSelectedProducts = new ArrayList<Item>(selectedProducts);
 		originalItemToAmounts = new HashMap<Integer, ArrayList<String>>(itemToAmount);
 	}

@@ -57,14 +57,15 @@ public class CartController {
 	private Text totalItemPrice;
 	
 	static Text totalItemsPrice;
+	static GridPane staticGrid;
 
     @FXML
     private Button checkOut;
 
 
-	public ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
+	public static ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
-	public Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
+	public static Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
 	public double amountToPay=0;
 	
     @FXML
@@ -95,8 +96,10 @@ public class CartController {
 		stage.close();
 	}
 
+	
 	@FXML
 	void initialize() {
+		staticGrid=grid;
 		totalItemsPrice=totalItemPrice;
 		int column = 0;
 		int row = 1;

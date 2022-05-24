@@ -1,5 +1,12 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
@@ -17,13 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleOrder;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import static controllers.IPScreenController.chat;
 
 public class OrdersController {
 
@@ -90,7 +90,8 @@ public class OrdersController {
     }
 
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void initialize() {
         assert lblZerLi != null : "fx:id=\"lblZerLi\" was not injected: check your FXML file 'ViewOrders.fxml'.";
         assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'ViewOrders.fxml'.";

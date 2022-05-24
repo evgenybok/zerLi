@@ -65,6 +65,8 @@ public class CustomItemViewController{
 	private Button btnSave;
 
 	public static Text totalPriceText;
+	static GridPane staticGrid;
+	static Text staticTotalItemPrice;
 
 	static String totalPriceTemp;
 	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
@@ -79,6 +81,7 @@ public class CustomItemViewController{
 		CustomCatalogController.selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
 		totalPriceTemp=totalPriceTemp.substring(1);
 		totalPrice=Double.parseDouble(totalPriceTemp);
+		CustomCatalogController.bouquetCounter=ItemInCartController.originalBouquetCounter;
 		Stage stage = (Stage) close.getScene().getWindow();
 		stage.close();
 	}
@@ -108,6 +111,8 @@ public class CustomItemViewController{
 
 	@FXML
 	void initialize() {
+		staticGrid=grid;
+		staticTotalItemPrice=totalItemPrice;
 		totalPrice = CustomCatalogController.totalPrice;
 		totalItemPrice.setText("\u20AA" + Double.toString(totalPrice));
 		totalPriceTemp=totalItemPrice.getText();
