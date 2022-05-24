@@ -243,6 +243,7 @@ public class PaymentScreenController {
     	{
     		//here we need query to save the order;
     		// and show him the next screen;
+    		// BLa blAf
     	}
     	
     }
