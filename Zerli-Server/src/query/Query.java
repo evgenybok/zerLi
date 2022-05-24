@@ -176,35 +176,18 @@ public class Query {
 		return items;
 
 	}
-	public static ArrayList<String> GetAccountDetails(String id) {
-		String query = ("SELECT * FROM zerli.account_details;");
-		ArrayList<String> details = new ArrayList<String>();
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				String userID = rs.getString("User_ID");
-				String creditCardNumber = rs.getString("CreditCardNumber");
-				String creditCardDate = rs.getString("ExpiryDate");
-				String CVV = rs.getString("CVV");
-				String refund = rs.getString("TotalRefund");
-				String status = rs.getString("Status");
-				if(id.equals(userID))
-				{
-				details.add(userID);
-				details.add(creditCardNumber);
-				details.add(creditCardDate);
-				details.add(CVV);
-				details.add(refund);
-				details.add(status);
-				break;
-				}
-			}
-			if(details.isEmpty())
-				details=null;
-		} catch (SQLException e) {
-			return null;
-		}
-		return details;
-	}
+	/*
+	 * public static ArrayList<String> GetAccountDetails(String id) { String query =
+	 * ("SELECT * FROM zerli.account_details;"); ArrayList<String> details = new
+	 * ArrayList<String>(); try { PreparedStatement st =
+	 * ConnectToDB.conn.prepareStatement(query); ResultSet rs = st.executeQuery();
+	 * while (rs.next()) { String userID = rs.getString("User_ID"); String
+	 * creditCardNumber = rs.getString("CreditCardNumber"); String creditCardDate =
+	 * rs.getString("ExpiryDate"); String CVV = rs.getString("CVV"); String refund =
+	 * rs.getString("TotalRefund"); String status = rs.getString("Status");
+	 * if(id.equals(userID)) { details.add(userID); details.add(creditCardNumber);
+	 * details.add(creditCardDate); details.add(CVV); details.add(refund);
+	 * details.add(status); break; } } if(details.isEmpty()) details=null; } catch
+	 * (SQLException e) { return null; } return details; }
+	 */
 }

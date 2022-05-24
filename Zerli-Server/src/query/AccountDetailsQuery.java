@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import logic.Account;
 import logic.User;
 
-public class CreditDetailsQuery {
+public class AccountDetailsQuery {
 	
-	public static ArrayList<Account> GetCreditCardDetails(String userID) 
+	public static ArrayList<Account> GetAccountDetails(String userID) 
 	{
 		String query = ("SELECT * FROM zerli.account_details;");
 		ArrayList<Account> details = new ArrayList<>();

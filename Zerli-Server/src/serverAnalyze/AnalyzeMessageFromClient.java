@@ -12,7 +12,7 @@ import logic.Order;
 import logic.SingleOrder;
 import logic.User;
 import ocsf.server.ConnectionToClient;
-import query.CreditDetailsQuery;
+import query.AccountDetailsQuery;
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
@@ -123,9 +123,9 @@ public class AnalyzeMessageFromClient {
 
 		case GET_ACCOUNT_DETAILS:
 			try {
-				data = Query.GetAccountDetails((String) receivedMessage.getMessageData());
+				creditDetails = AccountDetailsQuery.GetAccountDetails((String) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-				receivedMessage.setMessageData(data);
+				receivedMessage.setMessageData(creditDetails);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
@@ -149,7 +149,7 @@ public class AnalyzeMessageFromClient {
 					receivedMessage.getMessageData());
 		case GET_CREDIT_DETAILS:
 			try {
-				creditDetails = CreditDetailsQuery.GetCreditCardDetails((String) receivedMessage.getMessageData());
+				creditDetails = AccountDetailsQuery.GetAccountDetails((String) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(creditDetails);
 			} catch (Exception e) {

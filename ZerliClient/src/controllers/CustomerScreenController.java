@@ -1,5 +1,7 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,9 +9,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
-
-import static controllers.IPScreenController.chat;
-
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -24,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Account;
 
 public class CustomerScreenController {
 
@@ -146,8 +146,8 @@ public class CustomerScreenController {
 		try {
 			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 			@SuppressWarnings("unchecked")
-			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
-			accountStatus= account.get(5);
+			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
+			accountStatus= account.get(0).getStatus();
 		} catch (NullPointerException e) {
 		};
     	this.AccountStatus.setText(accountStatus); //accountStatus - handled from DB

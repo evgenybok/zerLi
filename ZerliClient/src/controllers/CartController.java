@@ -66,7 +66,7 @@ public class CartController {
 	public static ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
 	public static Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
-	public double amountToPay=0;
+	public static double amountToPay=0;
 	
     @FXML
     void btnCheckout(MouseEvent event) throws IOException {

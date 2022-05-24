@@ -171,7 +171,7 @@ public class PaymentScreenController {
     {
     	ArrayList<Account> accountCreditDetails=new ArrayList<>();
     	try {
-			chat.accept(new Message(MessageType.GET_CREDIT_DETAILS,userID));
+			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS,userID));
 			if (AnalyzeMessageFromServer.getData().equals(null)) 
 				return;
 			
@@ -249,7 +249,7 @@ public class PaymentScreenController {
     }
     void CheckPayDetailsNoEmpty()
 	{
-		if(DeliveryFlag=true)
+		if(DeliveryFlag==true)
 		{
 			if(Adress.getText().isEmpty())
 			{
