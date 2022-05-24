@@ -6,33 +6,79 @@ public class Order implements Serializable {
 	/**
 	 * 
 	 */
+	public static int orderCount=1;
 	private static final long serialVersionUID = -4476848811757027097L;
 	private int orderNumber;
 	private double price;
 	private String greetingCard;
-	private String color;
-	private String dOrder;
+	//private String color;
+//	private String dOrder;
 	private String shop;
-	private String date;
 	private String orderDate;
+	private String supplyDate;
 	private String Status;
 	private String supplyType;
+	private String userID;
 	private String refund;
+	private String supplyAddress;
+	private String receiverName;
+	private String receiverPhone;
 
-	public Order(int orderNumber, double price, String greetingCard, String color, String dOrder, String shop,
-			String date, String orderDate, String Status, String SupplyType,String refund) {
+	public Order(int orderNumber, double price, String greetingCard, String shop,
+			String orderDate,String supplyDate, String Status,String SupplyType,String userID, String refund,String supplyAddress,
+			String receiverName,String receiverPhone) {
 		this.orderNumber = orderNumber;
 		this.price = price;
 		this.greetingCard = greetingCard;
-		this.color = color;
-		this.dOrder = dOrder;
+		//this.color = color;
+		//this.dOrder = dOrder;
 		this.shop = shop;
-		this.date = date;
 		this.orderDate = orderDate;
-		this.supplyType = SupplyType;
+		this.supplyDate = supplyDate;
 		this.Status = Status;
-		this.refund=refund;
+		this.supplyType = SupplyType;
+		this.userID = userID;
+		this.refund = refund;
+		this.supplyAddress = supplyAddress;
+		this.receiverName = receiverName;
+		this.receiverPhone = receiverPhone;
+	}
+	public String getSupplyDate() {
+		return supplyDate;
+	}
 
+	public void setSupplyDate(String supplyDate) {
+		this.supplyDate = supplyDate;
+	}
+	public String getReceiverPhone() {
+		return receiverPhone;
+	}
+
+	public void setReceiverPhone(String receiverPhone) {
+		this.receiverPhone = receiverName;
+	}
+	
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+	
+	public String getSupplyAddress() {
+		return supplyAddress;
+	}
+
+	public void setSupplyAddress(String supplyAddress) {
+		this.supplyAddress = supplyAddress;
+	}
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	public String getRefund() {
@@ -83,21 +129,15 @@ public class Order implements Serializable {
 		this.greetingCard = greetingCard;
 	}
 
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getDOrder() {
-		return dOrder;
-	}
-
-	public void setdOrder(String dOrder) {
-		this.dOrder = dOrder;
-	}
+	/*
+	 * public String getColor() { return color; }
+	 * 
+	 * public void setColor(String color) { this.color = color; }
+	 * 
+	 * public String getDOrder() { return dOrder; }
+	 * 
+	 * public void setdOrder(String dOrder) { this.dOrder = dOrder; }
+	 */
 
 	public String getShop() {
 		return shop;
@@ -108,11 +148,11 @@ public class Order implements Serializable {
 	}
 
 	public String getDate() {
-		return date;
+		return supplyDate;
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		this.supplyDate = date;
 	}
 
 	public String getOrderDate() {
@@ -125,7 +165,9 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [orderNumber=" + orderNumber + ", price=" + price + ", greeting Card=" + greetingCard + ", Color="
-				+ color + ", dOrder=" + dOrder + ", shop=" + shop + ", date=" + date + ", orderDate=" + orderDate + "]";
+		return "Order [orderNumber=" + orderNumber + ", price=" + price + ", greeting Card=" + greetingCard +
+				", shop=" + shop + ", OrderDate=" + orderDate + ", SupplyDate=" + supplyDate +", Status=" + Status + 
+				", UserID=" + userID + ", Refund=" + refund + ", SupplyAddress=" + supplyAddress + ", ReceiverName=" + receiverName +
+				", ReceiverPhone=" + receiverPhone +   "]";
 	}
 }

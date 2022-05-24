@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import logic.Order;
 import logic.SingleOrder;
 
 public class GetOrderQuery {
@@ -95,6 +96,19 @@ public class GetOrderQuery {
 		} catch (SQLException e) {
 			return "Error";
 		}
+	}
+	public static void InsertNewOrder(Order order) 
+	{
+		String query= "INSERT INTO zerli.orders VALUES("+order.getOrderNumber()+",'" +order.getPrice()+",'" +order.getGreetingCard()+",'" 
+				+order.getShop()+",'" + order.getOrderDate()+",'" +order.getSupplyDate()+",'" +order.getStatus()+",'" +order.getSupplyType()+",'"
+						+order.getUserID()+",'" +null+",'"+order.getSupplyAddress()+",'"+order.getReceiverName()+",'"+order.getReceiverPhone()+",'" +");";
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeQuery();
+		} catch (SQLException e) {
+			return;
+		}	
+		return;
 	}
 
 }

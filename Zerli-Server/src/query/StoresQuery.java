@@ -18,11 +18,27 @@ public class StoresQuery {
 				String storeName1 = rs.getString("storeName");
 				stores.add(storeName1);
 			}
-			System.out.println(stores.get(0));
 
 		} catch (SQLException e) {
 			return null;
 		}
 		return stores;
+	}
+	
+	public static String GetStoreId(String Name)
+	{
+		String query = "SELECT IDstore FROM zerli.stores WHERE storeName='" + Name + "'";
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String storeName1 = rs.getString("storeName");
+				return storeName1;
+			}
+			
+		} catch (SQLException e) {
+			return null;
+		}
+		return null;
 	}
 }

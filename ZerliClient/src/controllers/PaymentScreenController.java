@@ -33,15 +33,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
+import logic.Order;
+import logic.Time;
 import logic.User;
 
 public class PaymentScreenController {
 		String userID= LoginScreenController.user.getID();
 		String cardNum,date,CustomerCVV;
+		double totalPrice=CartController.amountToPay;
+		double totalPriceAfterDeliveryFee;
 		boolean DeliveryFlag=false;
 	 	@FXML
 	    private ResourceBundle resources;
 
+	    @FXML
+	    private DatePicker DateSupply;
+	    @FXML
+	    private TextField SupplyTime;
 	    @FXML
 	    private URL location;
 
@@ -104,6 +112,8 @@ public class PaymentScreenController {
 		private ImageView CheckoutImg;
 		@FXML
 	    private Text delviryFee;
+		@FXML
+	    private TextField totalPriceLabel;
 
 	@FXML
     void btnBack(MouseEvent event) throws IOException {
@@ -123,12 +133,14 @@ public class PaymentScreenController {
 		{
 			PickUpBox.setDisable(true);
 			delviryFee.setText("12.90");
+			changeAmount(12.90);
 			DeliveryFlag=true;
 		}
 		else
 		{
 			DeliveryFlag=false;
 			delviryFee.setText("0.00");
+			changeAmount(0.00);
 			PickUpBox.setDisable(false);	
 		}
 			
@@ -141,6 +153,7 @@ public class PaymentScreenController {
 			Adress.setDisable(true);
 			DeliveryFlag=false;
 			delviryFee.setText("0.00");
+			changeAmount(0.00);
 		}
 		else
 		{
@@ -148,6 +161,7 @@ public class PaymentScreenController {
 			DeliveryBox.setDisable(false);
 			Adress.setDisable(false);
 			delviryFee.setText("0.00");
+			changeAmount(0.00);
 		}
 	}
     @FXML
@@ -177,8 +191,7 @@ public class PaymentScreenController {
 			
 		} catch (Exception e) {
 			return;
-		}
-		;
+		};
 		accountCreditDetails=(ArrayList<Account>)AnalyzeMessageFromServer.getData();
 		//// this line for hide the number and show them on screen
 		String changedNumber = ChangeCreditCard(accountCreditDetails.get(0).getCreditCardNumber());
@@ -219,6 +232,7 @@ public class PaymentScreenController {
 		Image deliveryImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-deliver-food-50 (1).png")));
 		DeliveryImg.setImage(deliveryImg);
 		Area.setItems(FXCollections.observableArrayList("North","East","Center","South"));
+		changeAmount(0.00);
 		delviryFee.setText("0.00");
 		showCreditDetail();
     }
@@ -231,8 +245,6 @@ public class PaymentScreenController {
     	{
     		adress = Adress.getText();
     	}
-    	reciverName = ReciverName.getText();
-    	phone = Phone.getText();
     	cvv= CVV.getText();
     	if(!cvv.equals(CustomerCVV))
     	{
@@ -241,14 +253,35 @@ public class PaymentScreenController {
     	}
     	else// here every thing ok we can move to  save the details in DB
     	{
-    		//here we need query to save the order;
-    		// and show him the next screen;
-    		// BLa blAf
+    		//here we need query to save the order;\
+    		String storeid=getStoreId();
+    		Order.orderCount++;
+    		String orderDate = Time.getCurrencyTime();
+    		reciverName = ReciverName.getText();
+        	phone = Phone.getText();
+    		
     	}
     	
     }
-    void CheckPayDetailsNoEmpty()
+    private String getStoreId(){
+    	String storeName= StoreName.getValue();
+    	try {
+			chat.accept(new Message(MessageType.GET_STORE_ID, storeName));
+			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+				return null;
+			
+		} catch (Exception e) {
+			return null;
+		}
+		;
+		storeName=(String)AnalyzeMessageFromServer.getData();
+		return storeName;
+		
+   	}
+
+	void CheckPayDetailsNoEmpty()
 	{
+    	
 		if(DeliveryFlag==true)
 		{
 			if(Adress.getText().isEmpty())
@@ -265,5 +298,9 @@ public class PaymentScreenController {
 		}
 		 /////////////////////need to check the comobox and date in same way*/
 	}
-    
+    void changeAmount(Double deliveryFee)
+    {
+    	totalPriceAfterDeliveryFee= totalPrice + deliveryFee;
+    	totalPriceLabel.setText(Double.toString(totalPriceAfterDeliveryFee));
+    }
 }

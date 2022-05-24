@@ -21,6 +21,7 @@ public class AnalyzeMessageFromClient {
 
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
 		User user;
+		String storeID;
 		ArrayList<SingleOrder> Orders;
 		ArrayList<User> UsersArr;
 		ArrayList<Item> Items;
@@ -147,17 +148,25 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-		case GET_CREDIT_DETAILS:
+		case INSERT_NEW_ORDER:
 			try {
-				creditDetails = AccountDetailsQuery.GetAccountDetails((String) receivedMessage.getMessageData());
+			GetOrderQuery.InsertNewOrder((Order) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		;
+		case GET_STORE_ID:
+			try {
+				storeID= StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-				receivedMessage.setMessageData(creditDetails);
+				receivedMessage.setMessageData(storeID);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			}
-			;
-			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
+			};
+			return new Message(MessageType.GET_STORE_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		default:
 			return new Message(MessageType.ERROR, null);

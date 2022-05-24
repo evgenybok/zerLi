@@ -116,8 +116,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			//1111
-		case GET_CREDIT_DETAILS:
+		case INSERT_NEW_ORDER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -125,7 +124,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+		case GET_STORE_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		
