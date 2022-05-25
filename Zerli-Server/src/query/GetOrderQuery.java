@@ -99,12 +99,13 @@ public class GetOrderQuery {
 	}
 	public static void InsertNewOrder(Order order) 
 	{
-		String query= "INSERT INTO zerli.orders VALUES("+order.getOrderNumber()+",'" +order.getPrice()+",'" +order.getGreetingCard()+",'" 
-				+order.getShop()+",'" + order.getOrderDate()+",'" +order.getSupplyDate()+",'" +order.getStatus()+",'" +order.getSupplyType()+",'"
-						+order.getUserID()+",'" +null+",'"+order.getSupplyAddress()+",'"+order.getReceiverName()+",'"+order.getReceiverPhone()+",'" +");";
+		String query= "INSERT INTO zerli.orders VALUES("+order.getOrderNumber()+"," +order.getPrice()+",'" +order.getGreetingCard()+"','" 
+				+order.getShop()+"','" + order.getOrderDate()+"','" +order.getSupplyDate()+"','" +order.getStatus()+"','" +order.getSupplyType()+"','"
+						+order.getUserID()+"','" +null+"','"+order.getSupplyAddress()+"','"+order.getReceiverName()+"','"
+				+order.getReceiverPhone()+"','" +order.getDOrder()+"');";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			st.executeQuery();
+			st.executeUpdate();
 		} catch (SQLException e) {
 			return;
 		}	

@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
+import logic.Time;
 
 public class CustomerScreenController {
 

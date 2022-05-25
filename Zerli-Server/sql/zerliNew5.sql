@@ -135,12 +135,10 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderNumber` int NOT NULL,
   `Price` double NOT NULL,
-  `GreetingCard` varchar(255) DEFAULT NULL,
-  `Color` varchar(20) DEFAULT NULL,
-  `Dorder` varchar(255) DEFAULT NULL,
+  `GreetingCard` varchar(1000) DEFAULT NULL,
   `StoreID` varchar(50) NOT NULL,
-  `OrderDate` varchar(255) NOT NULL,
-  `SupplyDate` varchar(255) NOT NULL,
+  `OrderDate` datetime NOT NULL,
+  `SupplyDate` datetime NOT NULL,
   `Status` varchar(45) NOT NULL,
   `SupplyType` varchar(45) NOT NULL,
   `UserID` varchar(45) NOT NULL,
@@ -148,6 +146,7 @@ CREATE TABLE `orders` (
   `SupplyAdress` varchar(45) DEFAULT NULL,
   `RecieverName` varchar(45) DEFAULT NULL,
   `RecieverPhone` varchar(10) DEFAULT NULL,
+  `Dorder` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`OrderNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -158,7 +157,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','Green','Express Order','2000','2022-02-12 10:30:00','2022-01-09 09:12:00','Approved','Delivery','0001',NULL,NULL,NULL,NULL),(4,30,'My Condolences','Green',NULL,'2001','2022-03-20 08:40:00','2022-01-01 08:26:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL),(5,18,NULL,'Red',NULL,'2000','2022-02-12 10:30:00','2022-02-03 15:30:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL),(7,70,NULL,'Blue','Express Order','2007','2022-03-20 08:40:00','2022-02-01 16:30:00','Approved','Delivery','0001',NULL,NULL,NULL,NULL),(200,55,'Happy Birthday','Blue',NULL,'2000','2022-03-22 14:40:00','2022-03-22 12:28:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL),(300,162,'Happy Passover','Red','Express Order','2003','2022-02-28 09:40:00','2022-02-28 08:20:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL),(600,96,NULL,'Blue',NULL,'2016','2022-03-26 15:55:00','2022-03-26 08:30:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL);
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',NULL,'Nargilos','amit','0506576399',NULL),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL,NULL),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(4,70,NULL,'2007','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',NULL,NULL,NULL,NULL,NULL),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(7,96,NULL,'2016','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +270,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu2','cu2',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',1,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('delivery1','delivery1',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('branchMN1','branchMN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('customerSV','customerSV',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','elgazer','ceo','0555448478','elad@gmail.com');
+INSERT INTO `users` VALUES ('cu2','cu2',1,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('delivery1','delivery1',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('branchMN1','branchMN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('customerSV','customerSV',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','elgazer','ceo','0555448478','elad@gmail.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -284,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-24 12:40:06
+-- Dump completed on 2022-05-25 17:12:27

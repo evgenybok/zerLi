@@ -5,7 +5,17 @@ import static controllers.IPScreenController.chat;
 import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -39,10 +49,10 @@ import logic.User;
 
 public class PaymentScreenController {
 		String userID= LoginScreenController.user.getID();
-		String cardNum,date,CustomerCVV;
+		String cardNum,date,CustomerCVV,Dorder;
 		double totalPrice=CartController.amountToPay;
 		double totalPriceAfterDeliveryFee;
-		boolean DeliveryFlag=false;
+		boolean DeliveryFlag=false,DeliveryExpressFlag=false;
 	 	@FXML
 	    private ResourceBundle resources;
 
@@ -72,7 +82,7 @@ public class PaymentScreenController {
 	    private TextField CardNum;
 
 	    @FXML
-	    private DatePicker Date;
+	    private DatePicker Dates;
 
 	    @FXML
 	    private Button Pay;
@@ -114,6 +124,8 @@ public class PaymentScreenController {
 	    private Text delviryFee;
 		@FXML
 	    private TextField totalPriceLabel;
+		@FXML
+		private CheckBox ExpPick;
 
 	@FXML
     void btnBack(MouseEvent event) throws IOException {
@@ -132,36 +144,65 @@ public class PaymentScreenController {
 		if(DeliveryBox.isSelected())
 		{
 			PickUpBox.setDisable(true);
+			ExpPick.setDisable(true);
 			delviryFee.setText("12.90");
 			changeAmount(12.90);
 			DeliveryFlag=true;
+			DeliveryExpressFlag=false;
 		}
 		else
 		{
 			DeliveryFlag=false;
+			DeliveryExpressFlag=false;
+			ExpPick.setDisable(false);
 			delviryFee.setText("0.00");
 			changeAmount(0.00);
 			PickUpBox.setDisable(false);	
-		}
-			
+		}	
 	}
 	@FXML
 	void PickBtn(MouseEvent event) {
 
 		if(PickUpBox.isSelected()) {
 			DeliveryBox.setDisable(true);
+			ExpPick.setDisable(true);
 			Adress.setDisable(true);
 			DeliveryFlag=false;
+			DeliveryExpressFlag=false;
 			delviryFee.setText("0.00");
 			changeAmount(0.00);
 		}
 		else
 		{
 			DeliveryFlag=false;
+			DeliveryExpressFlag=false;
 			DeliveryBox.setDisable(false);
+			ExpPick.setDisable(false);
 			Adress.setDisable(false);
 			delviryFee.setText("0.00");
 			changeAmount(0.00);
+		}
+	}
+	@FXML
+	void expressPickBtn(MouseEvent event)
+	{
+		if(ExpPick.isSelected())
+		{
+			DeliveryBox.setDisable(true);
+			PickUpBox.setDisable(true);
+			DeliveryExpressFlag=true;
+			DeliveryFlag=true;
+			delviryFee.setText("12.90");
+			changeAmount(12.90);
+		}
+		else
+		{
+			DeliveryFlag=false;
+			DeliveryExpressFlag=false;
+			delviryFee.setText("0.00");
+			changeAmount(0.00);
+			PickUpBox.setDisable(false);
+			DeliveryBox.setDisable(false);
 		}
 	}
     @FXML
@@ -175,8 +216,7 @@ public class PaymentScreenController {
 			
 		} catch (Exception e) {
 			return;
-		}
-		;
+		};
 		storeName=(ArrayList<String>)AnalyzeMessageFromServer.getData();
 		StoreName.setItems(FXCollections.observableArrayList(storeName));
     }
@@ -193,27 +233,15 @@ public class PaymentScreenController {
 			return;
 		};
 		accountCreditDetails=(ArrayList<Account>)AnalyzeMessageFromServer.getData();
-		//// this line for hide the number and show them on screen
 		String changedNumber = ChangeCreditCard(accountCreditDetails.get(0).getCreditCardNumber());
 		String expiryDate=accountCreditDetails.get(0).getExpiryDate();
 		CardNum.setText(changedNumber);
 		CardDate.setText(expiryDate);
-		//this line for save the account details for DB and pay
 		cardNum = accountCreditDetails.get(0).getCreditCardNumber();
 		date = accountCreditDetails.get(0).getExpiryDate();
 		CustomerCVV=accountCreditDetails.get(0).getCVV();
-		
 	}
-    //Here we only show to the customer *************5454 we use this method only for secure
-    public String ChangeCreditCard(String number)
-    {
-    	StringBuilder hideNumber = new StringBuilder(number);
-    	for(int i =0;i<number.length()-4;i++)
-    	{
-    		hideNumber.setCharAt(i, '*');
-    	}
-    	return hideNumber.toString();
-    }
+
     @FXML
     void initialize() {
 
@@ -237,13 +265,16 @@ public class PaymentScreenController {
 		showCreditDetail();
     }
     @FXML
-    void btnPay(MouseEvent event) {
-    	//zaric methoda sbodeket skol hasdaot melim em lo meziga  msg matim
+    void btnPay(MouseEvent event){
     	CheckPayDetailsNoEmpty();
     	String adress,reciverName,phone,cvv;
     	if(DeliveryFlag)
     	{
     		adress = Adress.getText();
+    	}
+    	else
+    	{
+    		adress=null;
     	}
     	cvv= CVV.getText();
     	if(!cvv.equals(CustomerCVV))
@@ -251,33 +282,38 @@ public class PaymentScreenController {
     		JOptionPane.showMessageDialog(null, "CVV Number Is Worng!!", "Error", JOptionPane.ERROR_MESSAGE);
     		return;
     	}
-    	else// here every thing ok we can move to  save the details in DB
+    	else
     	{
-    		//here we need query to save the order;\
-    		String storeid=getStoreId();
     		Order.orderCount++;
-    		String orderDate = Time.getCurrencyTime();
-    		reciverName = ReciverName.getText();
+    		String greeting = AddGreetingController.Greeting;
+    		String storeid=getStoreId();
+    		Date orderDate = new Date();
+    		String orderDateString = convertToDate(orderDate.toString());
+    		String su= DateSupply.getValue().toString();
+    		String tu=SupplyTime.getText();
+    		String suplyDateTime=change(su,tu);
+        	Dorder= CheckExpressDelivery();
+        	String Status="WaitForApprove";
+        	String supplytype= CheckWhichSupplyMethod();
+        	String refund=null;
+        	reciverName = ReciverName.getText();
         	phone = Phone.getText();
-    		
+        	Order order= new Order(Order.orderCount,totalPriceAfterDeliveryFee,greeting,storeid,orderDateString,suplyDateTime,Status,supplytype,
+        			userID,null,adress,reciverName,phone,Dorder);
+        	try {
+    			chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
+    			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+    				return;
+    			
+    		} catch (Exception e) {
+    			return;
+    		}
+    		;
+    		return;	
     	}
     	
     }
-    private String getStoreId(){
-    	String storeName= StoreName.getValue();
-    	try {
-			chat.accept(new Message(MessageType.GET_STORE_ID, storeName));
-			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
-				return null;
-			
-		} catch (Exception e) {
-			return null;
-		}
-		;
-		storeName=(String)AnalyzeMessageFromServer.getData();
-		return storeName;
-		
-   	}
+   
 
 	void CheckPayDetailsNoEmpty()
 	{
@@ -298,9 +334,79 @@ public class PaymentScreenController {
 		}
 		 /////////////////////need to check the comobox and date in same way*/
 	}
+
+	 private String getStoreId()
+	 {
+	    	String storeName= StoreName.getValue();
+	    	try {
+				chat.accept(new Message(MessageType.GET_STORE_ID, storeName));
+				if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+					return null;
+				
+			} catch (Exception e) {
+				return null;
+			}
+			;
+			String storeid=(String)AnalyzeMessageFromServer.getData();
+			return storeid;
+			
+	   }
     void changeAmount(Double deliveryFee)
     {
     	totalPriceAfterDeliveryFee= totalPrice + deliveryFee;
     	totalPriceLabel.setText(Double.toString(totalPriceAfterDeliveryFee));
+    }
+    private String CheckWhichSupplyMethod()
+    {
+    	if(DeliveryFlag)
+    	{
+    		return "Delivery";
+    	}
+    	return "PickUp";
+    }
+    public Date calSupplyDate()
+	{
+		LocalDate localDate = DateSupply.getValue();
+		Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+		Date date= Date.from(instant);
+		int hour = Integer.parseInt(SupplyTime.getText().split(":")[0]);
+		int min= Integer.parseInt(SupplyTime.getText().split(":")[1]);
+		Calendar c= Calendar.getInstance();
+		c.setTime(date);
+		c.set(Calendar.HOUR_OF_DAY,hour);
+		c.set(Calendar.MINUTE,min);
+		c.set(Calendar.SECOND,0);
+		return c.getTime();
+	}
+    public String convertToDate(String mydate)
+    {
+    	Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:00");
+        mydate =sdf.format(date);
+        return mydate;
+    }  
+    public String change(String date,String time)
+    {
+    	String ans= date.replace('.', '-');
+    	ans= ans + " " + time+":00";
+    	return ans;
+    }
+    //Here we only show to the customer *************5454 we use this method only for secure
+    public String ChangeCreditCard(String number)
+    {
+    	StringBuilder hideNumber = new StringBuilder(number);
+    	for(int i =0;i<number.length()-4;i++)
+    	{
+    		hideNumber.setCharAt(i, '*');
+    	}
+    	return hideNumber.toString();
+    }
+    private String CheckExpressDelivery()
+    {
+    	if(DeliveryExpressFlag)
+    	{
+    		return "Express";
+    	}
+    	return "Regular";
     }
 }

@@ -32,7 +32,7 @@ public class StoresQuery {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				String storeName1 = rs.getString("storeName");
+				String storeName1 = rs.getString("IDstore");
 				return storeName1;
 			}
 			

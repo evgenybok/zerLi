@@ -1,18 +1,20 @@
 package logic;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Order implements Serializable {
 	/**
 	 * 
 	 */
-	public static int orderCount=1;
+	public static int orderCount=0;
 	private static final long serialVersionUID = -4476848811757027097L;
 	private int orderNumber;
 	private double price;
 	private String greetingCard;
 	//private String color;
-//	private String dOrder;
+	private String dOrder;
 	private String shop;
 	private String orderDate;
 	private String supplyDate;
@@ -23,15 +25,15 @@ public class Order implements Serializable {
 	private String supplyAddress;
 	private String receiverName;
 	private String receiverPhone;
+	
 
 	public Order(int orderNumber, double price, String greetingCard, String shop,
 			String orderDate,String supplyDate, String Status,String SupplyType,String userID, String refund,String supplyAddress,
-			String receiverName,String receiverPhone) {
+			String receiverName,String receiverPhone,String dOrder) {
 		this.orderNumber = orderNumber;
 		this.price = price;
 		this.greetingCard = greetingCard;
 		//this.color = color;
-		//this.dOrder = dOrder;
 		this.shop = shop;
 		this.orderDate = orderDate;
 		this.supplyDate = supplyDate;
@@ -42,6 +44,8 @@ public class Order implements Serializable {
 		this.supplyAddress = supplyAddress;
 		this.receiverName = receiverName;
 		this.receiverPhone = receiverPhone;
+		this.dOrder = dOrder;
+		
 	}
 	public String getSupplyDate() {
 		return supplyDate;
@@ -49,6 +53,13 @@ public class Order implements Serializable {
 
 	public void setSupplyDate(String supplyDate) {
 		this.supplyDate = supplyDate;
+	}
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
 	}
 	public String getReceiverPhone() {
 		return receiverPhone;
@@ -128,16 +139,11 @@ public class Order implements Serializable {
 	public void setGreetingCard(String greetingCard) {
 		this.greetingCard = greetingCard;
 	}
-
-	/*
-	 * public String getColor() { return color; }
-	 * 
-	 * public void setColor(String color) { this.color = color; }
-	 * 
-	 * public String getDOrder() { return dOrder; }
-	 * 
-	 * public void setdOrder(String dOrder) { this.dOrder = dOrder; }
-	 */
+	  
+	  public String getDOrder() { return dOrder; }
+	  
+	  public void setdOrder(String dOrder) { this.dOrder = dOrder; }
+	 
 
 	public String getShop() {
 		return shop;
@@ -147,27 +153,13 @@ public class Order implements Serializable {
 		this.shop = shop;
 	}
 
-	public String getDate() {
-		return supplyDate;
-	}
-
-	public void setDate(String date) {
-		this.supplyDate = date;
-	}
-
-	public String getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Order [orderNumber=" + orderNumber + ", price=" + price + ", greeting Card=" + greetingCard +
 				", shop=" + shop + ", OrderDate=" + orderDate + ", SupplyDate=" + supplyDate +", Status=" + Status + 
 				", UserID=" + userID + ", Refund=" + refund + ", SupplyAddress=" + supplyAddress + ", ReceiverName=" + receiverName +
-				", ReceiverPhone=" + receiverPhone +   "]";
+				", ReceiverPhone=" + receiverPhone + ", dOrder=" + dOrder + "]";
 	}
 }

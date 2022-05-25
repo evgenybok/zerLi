@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class AddGreetingController {
-
+	public static String Greeting;
 	@FXML
     private Button Back;
 	 @FXML
@@ -30,10 +30,18 @@ public class AddGreetingController {
 
 	    @FXML
 	    private TextArea txtGreeting;
-
+	    
 	    @FXML
 	    void btnDone(MouseEvent event) {
-
+	    	if(txtGreeting.getText().isEmpty())
+	    	{
+	    		Greeting=null;
+	    	}
+	    	else
+	    	{
+	    		Greeting=txtGreeting.getText();
+	    		
+	    	}
 	    }
 	    @FXML
 	    void btnBack(MouseEvent event) throws IOException {
