@@ -1,5 +1,4 @@
 .right-bar{
-	//-fx-background-color: linear-gradient(rgb(255, 255, 255), rgb(230, 255, 204));
 	-fx-background-color: #d3d3d3;
 }
 .add-btn{
@@ -32,4 +31,7 @@ background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63de
 }
 .zerli{
 -fx-background-color: #737373;
+}
+.check-box .box {
+  -fx-background-radius: 30;
 }
