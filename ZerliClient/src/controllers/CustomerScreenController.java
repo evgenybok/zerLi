@@ -93,18 +93,18 @@ public class CustomerScreenController {
 		premadeStage.centerOnScreen();
 
     }
-
     @FXML
-    void btnComplaint(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CustomerComplaintScreen.fxml"))));
+    void btnSurvey(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CustomerSurvey.fxml"))));
 		Scene scene = new Scene(parent);
         parent.getStylesheets().add("css/style.css");
         Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		premadeStage.setTitle("Customer Complaint");
+		premadeStage.setTitle("Customer Survey");
 		premadeStage.setScene(scene);
 		premadeStage.show();
 		premadeStage.centerOnScreen();
     }
+
     
     @FXML
     void btnCustomCatalog(MouseEvent event) throws IOException {
@@ -164,8 +164,8 @@ public class CustomerScreenController {
     	CustomCatalogImage.setImage(custumCatalogImage);
     	Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/orders.jpg")));
     	OrdersImage.setImage(ordersImage);
-    	Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
-    	ComplaintImage.setImage(complaintImage);
+    	//Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
+    	//ComplaintImage.setImage(complaintImage);
     	
     }
 }

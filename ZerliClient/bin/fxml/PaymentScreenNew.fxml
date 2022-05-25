@@ -56,7 +56,7 @@
          <left>
             <VBox prefHeight="535.0" prefWidth="381.0" style="-fx-background-color: daffb3;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="79.0" prefWidth="381.0">
                      <children>
                         <VBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="137.0">
                            <children>
@@ -78,7 +78,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="77.0" prefWidth="381.0">
+                  <HBox prefHeight="63.0" prefWidth="381.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -103,7 +103,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="48.0" prefWidth="381.0">
+                  <HBox prefHeight="41.0" prefWidth="381.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <HBox prefHeight="85.0" prefWidth="377.0">
                            <children>
@@ -135,11 +135,11 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="52.0" prefWidth="381.0">
+                  <HBox prefHeight="39.0" prefWidth="381.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="246.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="380.0">
                            <children>
-                              <Label prefHeight="35.0" prefWidth="147.0" text="Supply date:">
+                              <Label prefHeight="35.0" prefWidth="219.0" text="Supply Date&amp;Time:">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
@@ -149,23 +149,39 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="74.0" prefWidth="271.0">
-                           <children>
-                              <DatePicker fx:id="Date" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: ffffff;" />
-                           </children>
-                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="39.0" prefWidth="381.0">
                      <children>
-                        <HBox prefHeight="74.0" prefWidth="378.0">
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="161.0">
+                           <children>
+                              <DatePicker fx:id="Date" prefHeight="30.0" prefWidth="187.0" promptText="YYYY-MM-DD" style="-fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="83.0" prefWidth="48.0" />
+                        <VBox alignment="CENTER" prefHeight="83.0" prefWidth="138.0">
+                           <children>
+                              <TextField alignment="CENTER" promptText="HH:MM" style="-fx-background-color: ffffff; -fx-background-radius: 5;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="91.0" prefWidth="381.0">
+                     <children>
+                        <HBox prefHeight="51.0" prefWidth="378.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
                                  <children>
-                                    <CheckBox fx:id="DeliveryBox" mnemonicParsing="false" onMouseClicked="#DeliveryBtn" prefHeight="55.0" prefWidth="136.0" text="Delivery">
+                                    <CheckBox fx:id="DeliveryBox" mnemonicParsing="false" onMouseClicked="#DeliveryBtn" prefHeight="55.0" prefWidth="136.0" stylesheets="@../../images/css/styleNew.css" text="Delivery">
                                        <font>
                                           <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                        </font>
@@ -184,10 +200,30 @@
                            </children>
                         </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="56.0" prefWidth="381.0">
+                  <HBox alignment="CENTER" prefHeight="64.0" prefWidth="381.0">
                      <children>
-                        <VBox prefHeight="53.0" prefWidth="230.0">
+                        <CheckBox mnemonicParsing="false" prefHeight="33.0" prefWidth="231.0" stylesheets="@../../images/css/styleNew.css" text="Delivery Express">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                           </font>
+                        </CheckBox>
+                        <ImageView fitHeight="33.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/images/icons8-in-transit-48.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="52.0" prefWidth="381.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+                     <children>
+                        <VBox prefHeight="49.0" prefWidth="221.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="177.0">
                                  <children>
@@ -210,8 +246,11 @@
                            </children>
                         </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="52.0" prefWidth="381.0">
+                  <HBox prefHeight="52.0" prefWidth="381.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="85.0" prefWidth="163.0">
                            <children>
@@ -229,7 +268,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="39.0" prefWidth="381.0">
+                  <HBox prefHeight="39.0" prefWidth="381.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -290,7 +329,7 @@
          <right>
             <VBox prefHeight="600.0" prefWidth="420.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="89.0" prefWidth="420.0">
+                  <HBox prefHeight="89.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="163.0">
                            <children>
@@ -308,7 +347,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="420.0">
+                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="109.0">
                            <children>
@@ -345,7 +384,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="47.0" prefWidth="420.0">
+                  <HBox prefHeight="47.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -363,7 +402,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="55.0" prefWidth="420.0">
+                  <HBox prefHeight="55.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -381,7 +420,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="50.0" prefWidth="420.0">
+                  <HBox prefHeight="50.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                            <children>
@@ -399,7 +438,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="420.0">
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="BOTTOM_LEFT" prefHeight="70.0" prefWidth="124.0">
                            <children>
@@ -426,7 +465,7 @@
                         <Insets left="70.0" top="10.0" />
                      </VBox.margin>
                   </Line>
-                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="420.0">
+                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="42.0" prefWidth="154.0">
                            <children>

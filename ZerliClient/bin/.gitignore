@@ -1,6 +1,3 @@
-/clientanalyze/
-/common/
-/controllers/
 /css/
 /fontawesomefx-commons-9.1.2.jar
 /fontawesomefx-controls-9.1.2.jar
@@ -14,4 +11,7 @@
 /fxml/
 /images/
 /jfoenix-9.0.0.jar
+/clientanalyze/
+/common/
+/controllers/
 /main/
