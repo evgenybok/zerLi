@@ -112,10 +112,8 @@ public class GetOrderQuery {
 		return;
 	}
 	public static ArrayList<SingleOrder> GetOrderByIdAndUserId(String orderID) {
-		String[] user = orderID.split("@", 1);
-		System.out.println(user[0]+ " " + user[1]);
+		String[] user = orderID.split("@", 2);
 		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + user[0] + "' AND UserID ='" + user[1] +"';");
-		System.out.println(query);
 		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -130,9 +128,11 @@ public class GetOrderQuery {
 				String SupplyType = rs.getString("SupplyType");
 				String Refund=rs.getString("Refund");
 				orders.add(new SingleOrder(OrderNumber, Price,StoreID,OrderDate,SupplyDate ,SupplyType ,Refund ,Status));
+				return orders;
 			}
 		} catch (SQLException e) {
-
+			orders = new ArrayList<SingleOrder>();
+			return  orders;
 		}
 		return orders;
 	}

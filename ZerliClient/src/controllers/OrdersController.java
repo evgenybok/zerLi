@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
