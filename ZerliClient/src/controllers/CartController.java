@@ -99,6 +99,7 @@ public class CartController {
 	
 	@FXML
 	void initialize() {
+		amountToPay=0;
 		staticGrid=grid;
 		totalItemsPrice=totalItemPrice;
 		int column = 0;

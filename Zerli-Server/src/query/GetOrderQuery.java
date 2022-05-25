@@ -97,9 +97,17 @@ public class GetOrderQuery {
 			return "Error";
 		}
 	}
-	public static void InsertNewOrder(Order order) 
+	public static void InsertNewOrder(Order order) throws SQLException 
 	{
-		String query= "INSERT INTO zerli.orders VALUES("+order.getOrderNumber()+"," +order.getPrice()+",'" +order.getGreetingCard()+"','" 
+		int lastOrderNumber=0;
+		String sql = "SELECT MAX(OrderNumber) AS OrderNumber FROM orders";
+		PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+		    lastOrderNumber = rs.getInt("OrderNumber");  // access the max value
+		}
+		lastOrderNumber++;
+		String query= "INSERT INTO zerli.orders VALUES("+lastOrderNumber+"," +order.getPrice()+",'" +order.getGreetingCard()+"','" 
 				+order.getShop()+"','" + order.getOrderDate()+"','" +order.getSupplyDate()+"','" +order.getStatus()+"','" +order.getSupplyType()+"','"
 						+order.getUserID()+"','" +null+"','"+order.getSupplyAddress()+"','"+order.getReceiverName()+"','"
 				+order.getReceiverPhone()+"','" +order.getDOrder()+"');";
