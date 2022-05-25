@@ -23,8 +23,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CustomerServiceScreenController {
-
-	 @FXML
+		
+		@FXML
 	    private ResourceBundle resources;
 
 	    @FXML

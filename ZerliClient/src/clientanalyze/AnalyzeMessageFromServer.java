@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import communication.Message;
 import communication.MessageAnswer;
 import logic.Account;
+import logic.Complain;
 import logic.Item;
 import logic.SingleOrder;
 import logic.User;
@@ -140,6 +141,22 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case GET_USERID_BY_ORDERID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case INSERT_NEW_COMPLAIN:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		
@@ -154,6 +171,8 @@ public class AnalyzeMessageFromServer {
 			return (String) res;
 		if (res instanceof User)
 			return (User) res;
+		if (res instanceof Complain)
+			return (Complain) res;
 		if (res instanceof ArrayList<?>) {
 			try {
 			if (((ArrayList<?>) res).get(0) instanceof User)
@@ -166,6 +185,8 @@ public class AnalyzeMessageFromServer {
 				return (ArrayList<String>) res;
 			if (((ArrayList<?>) res).get(0) instanceof Account)
 				return (ArrayList<Account>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Complain)
+				return (ArrayList<Complain>) res;
 			}
 			catch (IndexOutOfBoundsException e) {
 			};
