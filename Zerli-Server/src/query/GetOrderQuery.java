@@ -10,8 +10,8 @@ import logic.SingleOrder;
 
 public class GetOrderQuery {
 
-	public static ArrayList<SingleOrder> GetOrders() {
-		String query = ("SELECT * FROM zerli.orders;");
+	public static ArrayList<SingleOrder> GetOrders(String userId) {
+		String query = ("SELECT * FROM zerli.orders WHERE UserID = '" + userId + "';");
 		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -111,5 +111,31 @@ public class GetOrderQuery {
 		}	
 		return;
 	}
+	public static ArrayList<SingleOrder> GetOrderByIdAndUserId(String orderID) {
+		String[] user = orderID.split("@", 1);
+		System.out.println(user[0]+ " " + user[1]);
+		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + user[0] + "' AND UserID ='" + user[1] +"';");
+		System.out.println(query);
+		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int OrderNumber = rs.getInt("OrderNumber");
+				int Price = rs.getInt("Price");
+				String StoreID = rs.getString("StoreID");
+				String OrderDate = rs.getString("OrderDate");
+				String SupplyDate = rs.getString("SupplyDate");
+				String Status = rs.getString("Status");
+				String SupplyType = rs.getString("SupplyType");
+				String Refund=rs.getString("Refund");
+				orders.add(new SingleOrder(OrderNumber, Price,StoreID,OrderDate,SupplyDate ,SupplyType ,Refund ,Status));
+			}
+		} catch (SQLException e) {
+
+		}
+		return orders;
+	}
+
 
 }

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
    <children>
       <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -38,7 +38,7 @@
                         <Insets />
                      </VBox.margin>
                   </Pane>
-                  <VBox alignment="CENTER" prefHeight="563.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/style.css">
+                  <VBox alignment="CENTER" prefHeight="563.0" prefWidth="335.0" stylesheets="@../../images/css/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -132,6 +132,10 @@
                            </styleClass>
                         </Button>
                      </children>
+                     <styleClass>
+                        <String fx:value="chosen-zerli-cart" />
+                        <String fx:value="shadow" />
+                     </styleClass>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="90.0" prefWidth="435.0">
                      <children>
@@ -165,7 +169,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Label prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
+                        <Label onMouseClicked="#btnMyCart" prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="20.0" />
                            </font>
@@ -207,7 +211,7 @@
                               </VBox>
                               <ImageView fx:id="ClockImage" fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../images/images/pngaaa.com-372753.png" />
+                                    <Image url="@../../images/images/stopwatch-icon-6.png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets right="20.0" />

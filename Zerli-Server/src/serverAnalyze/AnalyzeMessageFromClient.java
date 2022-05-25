@@ -63,7 +63,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			Orders = GetOrderQuery.GetOrders();
+			Orders = GetOrderQuery.GetOrders((String)receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(Orders);
@@ -168,6 +168,18 @@ public class AnalyzeMessageFromClient {
 			};
 			return new Message(MessageType.GET_STORE_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+	case GET_ORDER_BY_ID:
+		Orders = GetOrderQuery.GetOrderByIdAndUserId((String)receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(Orders);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
 		default:
 			return new Message(MessageType.ERROR, null);
 		}

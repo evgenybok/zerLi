@@ -34,7 +34,7 @@
                      </VBox.margin>
                   </HBox>
                   <Line endX="299.5" startX="-100.0" strokeWidth="5.0" />
-                  <VBox prefHeight="429.0" prefWidth="405.0" styleClass="circleprofil" stylesheets="@../../images/css/styleNew.css">
+                  <VBox prefHeight="429.0" prefWidth="405.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
                            <children>
@@ -81,11 +81,11 @@
                               </Text>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="405.0">
+                        <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="405.0">
                            <children>
-                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="142.13671875">
+                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="189.13671875">
                                  <font>
-                                    <Font name="Cambria" size="20.0" />
+                                    <Font name="Cambria" size="25.0" />
                                  </font>
                               </Text>
                            </children>
@@ -132,7 +132,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </Button>
-                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Orders" textFill="#004d00">
+                  <Button alignment="TOP_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="My Orders" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -141,7 +141,7 @@
                         <Font name="Cambria Bold" size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSurvey" alignment="TOP_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnSurvey" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Satisfaction">
+                  <Button fx:id="btnCart" alignment="TOP_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnCart" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="My Cart">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -187,24 +187,19 @@
                         <Image url="@../../images/images/CustomCatalog.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="OrdersImage" fitHeight="97.0" fitWidth="184.0" layoutX="160.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="540.0">
-                     <image>
-                        <Image url="@../../images/images/orders.jpg" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Catalog" layoutX="116.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#btnCatalog" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Catalog" />
                   <Button fx:id="CustomCatalog" layoutX="472.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#btnCustomCatalog" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="CustomCatalog" />
-                  <Button fx:id="Orders" layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnOrders" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Orders" />
-                  <ImageView fx:id="ImageSurvey" fitHeight="75.0" fitWidth="88.0" layoutX="547.0" layoutY="538.0" onMouseClicked="#btnSurvey" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Orders" layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnOrders" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="My Orders" />
+                  <ImageView fx:id="CartImage" fitHeight="97.0" fitWidth="90.0" layoutX="539.0" layoutY="512.0" onMouseClicked="#btnCart" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/icons8-survey-100.png" />
+                        <Image url="@../../images/images/icons8-buying-64%20(1).png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="551.0" layoutY="523.0" onMouseClicked="#btnSurvey" strokeType="OUTSIDE" strokeWidth="0.0" text="Survey">
-                     <font>
-                        <Font name="Cambria Bold" size="21.0" />
-                     </font>
-                  </Text>
+                  <ImageView fx:id="OrdersImage" fitHeight="97.0" fitWidth="90.0" layoutX="170.0" layoutY="512.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/icons8-list-64.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </center>

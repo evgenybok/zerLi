@@ -32,7 +32,7 @@ public class AddGreetingController {
 	    private TextArea txtGreeting;
 	    
 	    @FXML
-	    void btnDone(MouseEvent event) {
+	    void btnDone(MouseEvent event) throws IOException {
 	    	if(txtGreeting.getText().isEmpty())
 	    	{
 	    		Greeting=null;
@@ -42,6 +42,14 @@ public class AddGreetingController {
 	    		Greeting=txtGreeting.getText();
 	    		
 	    	}
+	    	((Node) event.getSource()).getScene().getWindow().hide();
+			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+			Scene scene = new Scene(parent);
+			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			deliveryDetailsStage.setTitle("Shopping Cart");
+			deliveryDetailsStage.setScene(scene);
+			deliveryDetailsStage.show();
+			deliveryDetailsStage.centerOnScreen();
 	    }
 	    @FXML
 	    void btnBack(MouseEvent event) throws IOException {

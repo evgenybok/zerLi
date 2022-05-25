@@ -67,7 +67,7 @@ public class CartController {
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
 	public static Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
 	public static double amountToPay=0;
-	
+	public boolean flag = true;
     @FXML
     void btnCheckout(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
@@ -120,7 +120,6 @@ public class CartController {
 				ItemInCartController itemInCartController = fxmlLoader.getController();
 				itemInCartController.setData(items.get(i), itemAmount.get(items.get(i).getID()).get(3));
 				amountToPay += Integer.parseInt(itemAmount.get(items.get(i).getID()).get(3)) * items.get(i).getPrice();
-
 				if (column == 1) {
 					column = 0;
 					row++;

@@ -66,7 +66,8 @@ public class CustomerScreenController {
     private ImageView CustomCatalogImage;
 
     @FXML
-    private ImageView ComplaintImage;
+    private ImageView CartImage;
+
 
     @FXML
     private ImageView OrdersImage;
@@ -76,10 +77,9 @@ public class CustomerScreenController {
 
     @FXML
     private Button Orders;
-
     @FXML
-    private Button Complaint;
-    
+    private Button btnCart;
+   
     public static String accountStatus;
 
     @FXML
@@ -95,15 +95,8 @@ public class CustomerScreenController {
 
     }
     @FXML
-    void btnSurvey(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CustomerSurvey.fxml"))));
-		Scene scene = new Scene(parent);
-        parent.getStylesheets().add("css/style.css");
-        Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		premadeStage.setTitle("Customer Survey");
-		premadeStage.setScene(scene);
-		premadeStage.show();
-		premadeStage.centerOnScreen();
+    void btnCart(MouseEvent event) {
+
     }
 
     
@@ -163,10 +156,10 @@ public class CustomerScreenController {
     	CatalogImage.setImage(catalogImage);
     	Image custumCatalogImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
     	CustomCatalogImage.setImage(custumCatalogImage);
-    	Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/orders.jpg")));
-    	OrdersImage.setImage(ordersImage);
-    	//Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
-    	//ComplaintImage.setImage(complaintImage);
+    	//Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-list-64.png")));
+    	//OrdersImage.setImage(ordersImage);
+    	//Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
+    	//CartImage.setImage(cartImage);
     	
     }
 }

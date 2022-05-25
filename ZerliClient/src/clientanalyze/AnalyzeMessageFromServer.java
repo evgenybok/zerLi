@@ -116,6 +116,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case GET_ORDER_BY_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		case INSERT_NEW_ORDER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
