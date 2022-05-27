@@ -157,20 +157,6 @@ public class CreateComplaintController {
 	public  void checkIfThisUserHaveChoosenOrder()
 	{
 		
-		try {
-			chat.accept(new Message(MessageType.CHECK_EXIST_QOMPLAIN,orderid));
-			if (AnalyzeMessageFromServer.getData().equals(null))
-				return;
-
-		} catch (Exception e) {
-			return;
-		}
-		;
-		String str = (String) AnalyzeMessageFromServer.getData();
-		if(str.equals("false"))
-		{
-			JOptionPane.showMessageDialog(null, "The Order Dont Exist For This User", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+		
 	}
 }
