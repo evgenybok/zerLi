@@ -152,7 +152,7 @@
                <children>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="User Name:">
+                        <Label text="User ID:">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                            </font>

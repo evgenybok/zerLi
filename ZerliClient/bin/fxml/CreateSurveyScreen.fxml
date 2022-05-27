@@ -138,7 +138,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="888.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="214.0" prefWidth="846.0">
                      <children>
                         <Label prefHeight="46.0" prefWidth="637.0" text=" Please Wirte Survey question:">
                            <font>
@@ -152,6 +152,29 @@
                         </ImageView>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="225.0" />
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="199.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="101.0" prefWidth="846.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="218.0" text="Survey Number:">
+                           <HBox.margin>
+                              <Insets left="50.0" top="30.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="SurveyNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="145" wrappingWidth="92.5367386341095">
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
                      </children>
                   </HBox>
                   <HBox prefHeight="70.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
@@ -288,7 +311,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="847.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="207.0" stylesheets="@../../images/css/styleNew.css" text="Create Survey">
+                        <Button mnemonicParsing="false" onMouseClicked="#CreateSurveyFunc" prefHeight="63.0" prefWidth="207.0" stylesheets="@../../images/css/styleNew.css" text="Create Survey">
                            <styleClass>
                               <String fx:value="add-btn" />
                               <String fx:value="shadow" />

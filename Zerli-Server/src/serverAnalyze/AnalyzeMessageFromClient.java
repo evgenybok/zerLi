@@ -1,5 +1,6 @@
 package serverAnalyze;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import communication.Message;
@@ -11,12 +12,14 @@ import logic.Complain;
 import logic.Item;
 import logic.Order;
 import logic.SingleOrder;
+import logic.Survey;
 import logic.User;
 import ocsf.server.ConnectionToClient;
 import query.AccountDetailsQuery;
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
+import query.SurveyQuery;
 import query.complaintQuery;
 
 public class AnalyzeMessageFromClient {
@@ -29,6 +32,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Item> Items;
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
+		int Num;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -203,7 +207,29 @@ public class AnalyzeMessageFromClient {
 		receivedMessage.setMessageData(null);
 	}
 	;
+	case GET_SURVEY_NUMBER:
 		
+		String SurveyNum = SurveyQuery.getNumberOfNextSurvey();
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(SurveyNum);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+		case INSERT_NEW_SURVEY:
+			try {
+				SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		;
+		//INSERT_NEW_SURVEY
 		default:
 			return new Message(MessageType.ERROR, null);
 		}

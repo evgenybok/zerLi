@@ -4,9 +4,13 @@ import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -19,9 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Survey;
 
 public class CreateSurveyController {
-
+	private boolean flag;
+	public String survey_num;
     @FXML
     private ResourceBundle resources;
 
@@ -59,18 +65,42 @@ public class CreateSurveyController {
     private Text userName;
 
     @FXML
+    private Text SurveyNumber;
+    @FXML
     void btnBack(MouseEvent event) throws IOException {
-    	((Node)event.getSource()).getScene().getWindow().hide();
- 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Create Survey Screen");
+		loginStage.setTitle("Customer Service Screen");
 		loginStage.setScene(scene);
 		loginStage.show();
 		loginStage.centerOnScreen();
     }
-
+    @FXML
+    void CreateSurveyFunc(MouseEvent event) throws IOException
+    {
+    	CheckIfEmpty();
+    	ArrayList<String> question = new ArrayList<>();
+    	question.add(Ques1.getText());
+    	question.add(Ques2.getText());
+    	question.add(Ques3.getText());
+    	question.add(Ques4.getText());
+    	question.add(Ques5.getText());
+    	question.add(Ques6.getText());
+    	String surveyCreator = LoginScreenController.user.getID();
+    	int surveyNumber= Integer.parseInt(survey_num);
+    	Survey survey= new Survey(surveyNumber,surveyCreator,question);
+    	//insert query
+    	insertSurveyToDB(survey);
+    	
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/FinishCreateSurvey.fxml")));
+		Scene scene = new Scene(parent);
+		Stage FinishSurveyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		FinishSurveyStage .setScene(scene);
+		FinishSurveyStage .show();
+		FinishSurveyStage .centerOnScreen();
+    	
+    }
     @FXML
     void initialize() {
         assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
@@ -86,6 +116,44 @@ public class CreateSurveyController {
         this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
 		this.accountType.setText("Customer Service"); // accountType - may be handled from DB
     	this.userName.setText(LoginScreenController.user.getUsername()); //userName
+    	survey_num=getSurveyNumber();
+    	SurveyNumber.setText(survey_num);
+    }
+    public String getSurveyNumber()
+    {
+    	String temp;
+    	try {
+			chat.accept(new Message(MessageType.GET_SURVEY_NUMBER,null));
+			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+				return null;
+
+		} catch (Exception e) {
+			return null;
+		}
+		;
+		temp = (String)AnalyzeMessageFromServer.getData();
+		return temp;
+    }  
+    public void insertSurveyToDB(Survey survey)
+    {
+    	try {
+			chat.accept(new Message(MessageType.INSERT_NEW_SURVEY,survey));
+			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+				return;
+
+		} catch (Exception e) {
+			return;
+		};
+    }
+    public void CheckIfEmpty()
+    {
+    	if(Ques1.getText().isEmpty()||Ques2.getText().isEmpty()||Ques3.getText().isEmpty()||Ques4.getText().isEmpty()||
+    			Ques5.getText().isEmpty()||Ques6.getText().isEmpty())
+    	{
+    		JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+    	}
+    	return;
     }
 
 }

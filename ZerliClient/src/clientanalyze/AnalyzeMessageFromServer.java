@@ -156,11 +156,24 @@ public class AnalyzeMessageFromServer {
 			} else {
 				res = null;
 			}
+		case GET_SURVEY_NUMBER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case INSERT_NEW_SURVEY:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
 			return;
 		default:
 			break;
-		
-			
 		}
 
 	}

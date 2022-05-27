@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
@@ -65,19 +67,15 @@ public class CreateComplaintController {
 	}
 
 	@FXML
-	void btnSubmit(MouseEvent event) {
-		String user_name = userNameField.getText();
-		
+	void btnSubmit(MouseEvent event) throws IOException {
+		checkIfFieldIsEmpty();
+		String user_id = userNameField.getText();
 		String orderid = OrderIdField.getText();
-		System.out.println(orderid);
 		int order_id = Integer.parseInt(orderid);
-		System.out.println(order_id);
 		String description = DescriptionField.getText();
-		System.out.println(description);
 		String handelerIdString = LoginScreenController.user.getID();
 		String refund = null;
 		String complainStatus = "WaitForHandle";
-		String user_id = getUserID(orderid);
 		// now query for insert
 		Complain complain = new Complain(handelerIdString, user_id, order_id, description, complainStatus, refund);
 		try {
@@ -89,9 +87,14 @@ public class CreateComplaintController {
 			return;
 		}
 		;
-
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+		Scene scene = new Scene(parent);
+		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		loginStage.setTitle("Customer Service Screen");
+		loginStage.setScene(scene);
+		loginStage.show();
+		loginStage.centerOnScreen();
 	}
-
 	public String getUserID(String OrderNumber) {
 		try {
 			chat.accept(new Message(MessageType.GET_USERID_BY_ORDERID, OrderNumber));
@@ -123,6 +126,14 @@ public class CreateComplaintController {
 				: "fx:id=\"userName\" was not injected: check your FXML file 'CreateComplaint.fxml'.";
 		this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
 		this.accountType.setText("Customer Service"); // accountType - may be handled from DB
+	}
+	public  void checkIfFieldIsEmpty()
+	{
+		if(userNameField.getText().isEmpty()||OrderIdField.getText().isEmpty()||DescriptionField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 	}
 
 }

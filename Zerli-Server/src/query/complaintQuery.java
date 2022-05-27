@@ -28,9 +28,8 @@ public class complaintQuery {
 	
 	public static void InsertNewComplain(Complain complain)
 	{
-		String query= "INSERT INTO zerli.complaint VALUES("+complain.getHandleUserID()+"," +complain.getComplainUserID()+",'" +complain.getOrderID()+"','" 
+		String query= "INSERT INTO zerli.complaint VALUES('"+complain.getHandleUserID()+"','"+complain.getComplainUserID()+"'," +complain.getOrderID()+",'" 
 				+complain.getDescription()+"','" + complain.getComplainStatus()+"','" +complain.getRefund()+"');";
-		System.out.println(query);
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
