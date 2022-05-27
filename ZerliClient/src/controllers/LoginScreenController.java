@@ -98,7 +98,7 @@ public class LoginScreenController {
 		}
 		Scene scene = new Scene(parent);
 		Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		homeStage.setTitle("Home");
+		homeStage.setTitle("Home Screen");
 		homeStage.setScene(scene);
 		homeStage.show();
 		homeStage.centerOnScreen();

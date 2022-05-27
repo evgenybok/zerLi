@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.Account;
 import logic.Time;
@@ -96,7 +97,18 @@ public class CustomerScreenController {
     }
     @FXML
     void btnCart(MouseEvent event) {
-
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage cartDetailsScreen = new Stage();
+			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+			cartDetailsScreen.setTitle("Cart Details");
+			cartDetailsScreen.setScene((new Scene(root1)));
+			cartDetailsScreen.show();
+			cartDetailsScreen.centerOnScreen();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     
@@ -156,6 +168,8 @@ public class CustomerScreenController {
     	CatalogImage.setImage(catalogImage);
     	Image custumCatalogImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/CustomCatalog.png")));
     	CustomCatalogImage.setImage(custumCatalogImage);
+    	Image myCartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
+    	CartImage.setImage(myCartImage);
     	//Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-list-64.png")));
     	//OrdersImage.setImage(ordersImage);
     	//Image cartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));

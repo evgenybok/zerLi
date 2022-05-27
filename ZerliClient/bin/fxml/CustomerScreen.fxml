@@ -192,7 +192,7 @@
                   <Button fx:id="Orders" layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnOrders" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="My Orders" />
                   <ImageView fx:id="CartImage" fitHeight="97.0" fitWidth="90.0" layoutX="539.0" layoutY="512.0" onMouseClicked="#btnCart" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/icons8-buying-64%20(1).png" />
+                        <Image url="@../../images/images/Cart.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="OrdersImage" fitHeight="97.0" fitWidth="90.0" layoutX="170.0" layoutY="512.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
