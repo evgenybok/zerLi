@@ -187,7 +187,7 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <TextField fx:id="OrderId" prefHeight="32.0" prefWidth="226.0" style="-fx-background-radius: 10;" />
+                        <TextField fx:id="OrderIdField" prefHeight="32.0" prefWidth="226.0" style="-fx-background-radius: 10;" />
                      </children>
                   </VBox>
                </children>
@@ -206,7 +206,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="313.0" prefWidth="847.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <TextField fx:id="Description" alignment="TOP_LEFT" prefHeight="305.0" prefWidth="629.0" promptText="Please write the customer complaint...">
+                  <TextField fx:id="DescriptionField" alignment="TOP_LEFT" prefHeight="305.0" prefWidth="629.0" promptText="Please write the customer complaint...">
                      <font>
                         <Font size="24.0" />
                      </font>
