@@ -37,5 +37,22 @@ public class complaintQuery {
 			return;
 		}	
 	}
+	public static String CheckComplaintExist(String orderid)
+	{
+		String temp;
+		String query = ("SELECT OrderID FROM zerli.complaint WHERE OrderId = '" + orderid + "' AND complainStatus= 'WaitForHandle';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				temp = rs.getString("OrderId");
+				return "true";
+			}
+		} catch (SQLException e) {
+			return "false";
+		}
+		return "false";
+		
+	}
 
 }

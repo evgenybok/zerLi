@@ -71,6 +71,7 @@ public class CreateComplaintController {
 		checkIfFieldIsEmpty();
 		String user_id = userNameField.getText();
 		String orderid = OrderIdField.getText();
+		checkIfHaveExistComplaint(orderid);
 		int order_id = Integer.parseInt(orderid);
 		String description = DescriptionField.getText();
 		String handelerIdString = LoginScreenController.user.getID();
@@ -135,5 +136,41 @@ public class CreateComplaintController {
 			return;
 		}
 	}
+	public  void checkIfHaveExistComplaint(String orderid)
+	{
+		try {
+			chat.accept(new Message(MessageType.CHECK_EXIST_QOMPLAIN,orderid));
+			if (AnalyzeMessageFromServer.getData().equals(null))
+				return;
 
+		} catch (Exception e) {
+			return;
+		}
+		;
+		String str = (String) AnalyzeMessageFromServer.getData();
+		if(str.equals("true"))
+		{
+			JOptionPane.showMessageDialog(null, "There Is Exist Compalin", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+	}
+	public  void checkIfThisUserHaveChoosenOrder()
+	{
+		
+		try {
+			chat.accept(new Message(MessageType.CHECK_EXIST_QOMPLAIN,orderid));
+			if (AnalyzeMessageFromServer.getData().equals(null))
+				return;
+
+		} catch (Exception e) {
+			return;
+		}
+		;
+		String str = (String) AnalyzeMessageFromServer.getData();
+		if(str.equals("false"))
+		{
+			JOptionPane.showMessageDialog(null, "The Order Dont Exist For This User", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+	}
 }

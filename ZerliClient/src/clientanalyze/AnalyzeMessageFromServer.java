@@ -172,6 +172,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  CHECK_EXIST_QOMPLAIN:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}
