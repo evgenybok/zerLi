@@ -242,6 +242,19 @@ public class AnalyzeMessageFromClient {
 
 		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
 				receivedMessage.getMessageData());	
+	case CHECK_ORDER_BY_USERID:
+		
+		String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(flag2);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());	
 		default:
 			return new Message(MessageType.ERROR, null);
 		}

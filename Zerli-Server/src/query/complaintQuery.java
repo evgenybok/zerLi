@@ -54,5 +54,24 @@ public class complaintQuery {
 		return "false";
 		
 	}
+	public static String CheckIfThereExistOrderForUserId(String userid_orderid)
+	{
+		String str[]= userid_orderid.split("@",2);
+		String query = ("SELECT OrderNumber FROM zerli.orders WHERE OrderNumber = '" + str[1] + "' AND UserID= '" + str[0] + "';");
+		String temp;
+		System.out.println(query);
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				temp = rs.getString("OrderNumber");
+				System.out.println("temp is     "+ temp);
+				return "true";
+			}
+		} catch (SQLException e) {
+			return "false";
+		}
+		return "false";
+	}
 
 }

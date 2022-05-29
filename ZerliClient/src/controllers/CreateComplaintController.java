@@ -71,30 +71,46 @@ public class CreateComplaintController {
 		checkIfFieldIsEmpty();
 		String user_id = userNameField.getText();
 		String orderid = OrderIdField.getText();
-		checkIfHaveExistComplaint(orderid);
-		int order_id = Integer.parseInt(orderid);
-		String description = DescriptionField.getText();
-		String handelerIdString = LoginScreenController.user.getID();
-		String refund = null;
-		String complainStatus = "WaitForHandle";
-		// now query for insert
-		Complain complain = new Complain(handelerIdString, user_id, order_id, description, complainStatus, refund);
-		try {
-			chat.accept(new Message(MessageType.INSERT_NEW_COMPLAIN, complain));
-			if (AnalyzeMessageFromServer.getData().equals(null))
-				return;
-
-		} catch (Exception e) {
-			return;
+		if((checkIfHaveExistComplaint(orderid))==true)
+		{
+			JOptionPane.showMessageDialog(null, "There is exist Complaint", "Info",JOptionPane.INFORMATION_MESSAGE);
 		}
-		;
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
-		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Customer Service Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();
+		else
+		{
+			if((checkIfThisUserHaveChoosenOrder(user_id,orderid))==false)
+			{
+				JOptionPane.showMessageDialog(null, "One or more fields are worng", "Info",JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+			{
+				int order_id = Integer.parseInt(orderid);
+				String description = DescriptionField.getText();
+				String handelerIdString = LoginScreenController.user.getID();
+				String refund = null;
+				String complainStatus = "WaitForHandle";
+				// now query for insert
+				Complain complain = new Complain(handelerIdString, user_id, order_id, description, complainStatus, refund);
+				try {
+					chat.accept(new Message(MessageType.INSERT_NEW_COMPLAIN, complain));
+					if (AnalyzeMessageFromServer.getData().equals(null))
+						return;
+
+				} catch (Exception e) {
+					return;
+				}
+				;
+				JOptionPane.showMessageDialog(null, "The Complaint Continue For Treatment", "Info",JOptionPane.INFORMATION_MESSAGE);
+				Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+				Scene scene = new Scene(parent);
+				Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				loginStage.setTitle("Customer Service Screen");
+				loginStage.setScene(scene);
+				loginStage.show();
+				loginStage.centerOnScreen();
+			}
+		}
+		
+		
 	}
 	public String getUserID(String OrderNumber) {
 		try {
@@ -136,27 +152,38 @@ public class CreateComplaintController {
 			return;
 		}
 	}
-	public  void checkIfHaveExistComplaint(String orderid)
+	public  boolean checkIfHaveExistComplaint(String orderid)
 	{
 		try {
 			chat.accept(new Message(MessageType.CHECK_EXIST_QOMPLAIN,orderid));
 			if (AnalyzeMessageFromServer.getData().equals(null))
-				return;
+				return false;
 
 		} catch (Exception e) {
-			return;
+			return false;
 		}
 		;
 		String str = (String) AnalyzeMessageFromServer.getData();
-		if(str.equals("true"))
+		if(str.equals("false"))
 		{
-			JOptionPane.showMessageDialog(null, "There Is Exist Compalin", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
+			return false;
 		}
+		return true;
 	}
-	public  void checkIfThisUserHaveChoosenOrder()
+	public  boolean checkIfThisUserHaveChoosenOrder(String userid,String orderid)
 	{
-		
-		
+		String str= userid + "@" + orderid;
+		try {
+			chat.accept(new Message(MessageType.CHECK_ORDER_BY_USERID, str));
+			if (AnalyzeMessageFromServer.getData().equals(null))
+					return false;
+		} catch (Exception e) {
+			return false;
+		}
+		;
+		String res=(String) AnalyzeMessageFromServer.getData();
+		if(res.equals("false"))
+			return false;
+		return true;
 	}
 }

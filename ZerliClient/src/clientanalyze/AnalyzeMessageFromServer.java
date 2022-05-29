@@ -180,6 +180,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  CHECK_ORDER_BY_USERID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}

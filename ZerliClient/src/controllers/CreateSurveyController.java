@@ -91,8 +91,7 @@ public class CreateSurveyController {
     	int surveyNumber= Integer.parseInt(survey_num);
     	Survey survey= new Survey(surveyNumber,surveyCreator,question);
     	//insert query
-    	insertSurveyToDB(survey);
-    	
+    	insertSurveyToDB(survey);	
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/FinishCreateSurvey.fxml")));
 		Scene scene = new Scene(parent);
 		Stage FinishSurveyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
