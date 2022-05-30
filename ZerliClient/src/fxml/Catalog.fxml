@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
    <children>
       <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -97,7 +97,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="38.0" prefWidth="53.0" stylesheets="@../../images/css/styleNew.css">
                                  <children>
-                                    <TextField fx:id="AmountLabel" alignment="CENTER" styleClass="search-box" stylesheets="@../../images/css/styleNew.css" text="0" />
+                                    <TextField fx:id="AmountLabel" alignment="CENTER" editable="false" styleClass="search-box" stylesheets="@../../images/css/styleNew.css" text="0" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="38.0" prefWidth="51.0">

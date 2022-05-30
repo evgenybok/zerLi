@@ -30,6 +30,7 @@ public class EchoServer extends AbstractServer {
     private Message message;
 
 
+
     // Constructors ****************************************************
 
     /**
@@ -89,5 +90,7 @@ public class EchoServer extends AbstractServer {
         	serverController.addText("ERROR - Could not listen for clients!");
         }
     }
+    
+
 }
 //End of EchoServer class

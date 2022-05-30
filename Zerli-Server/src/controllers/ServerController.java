@@ -28,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mainserver.EchoServer;
 import mainserver.ServerConnection;
 import query.ConnectToDB;
@@ -165,6 +166,7 @@ public class ServerController extends JFrame {
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/controllers/server.fxml")));
 		Scene scene = new Scene(root);
 		Image icon = new Image("icon.png");
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.getIcons().add(icon);
 		primaryStage.setTitle("ZerLi");
 		primaryStage.setScene(scene);

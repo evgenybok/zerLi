@@ -104,7 +104,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="38.0" prefWidth="53.0" stylesheets="@../../images/css/styleNew.css">
                                        <children>
-                                          <TextField fx:id="AmountLabel" alignment="CENTER" styleClass="search-box" stylesheets="@../../images/css/styleNew.css" text="0" />
+                                          <TextField fx:id="AmountLabel" alignment="CENTER" editable="false" styleClass="search-box" stylesheets="@../../images/css/styleNew.css" text="0" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="38.0" prefWidth="51.0">
