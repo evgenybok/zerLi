@@ -51,6 +51,11 @@ public class ItemInCartController extends CustomItemViewController {
 	Item item;
 	public static ArrayList<Item> originalSelectedProducts;
 	public static Map<Integer, ArrayList<String>> originalItemToAmounts;
+	// temporary map and array for the cart. (this is what is being sent to the
+	// checkout)
+	public static Map<Integer, ArrayList<String>> cartItemToAmountPremade;
+	public static ArrayList<Item> cartSelectedProducts;
+
 	static int originalBouquetCounter;
 	private int bouquetNumber = 1;
 
@@ -82,29 +87,49 @@ public class ItemInCartController extends CustomItemViewController {
 			amountLabel.setText(Integer.toString(amount));
 			ArrayList<String> updateItemAmount = new ArrayList<String>(); /* new array list to update amount */
 			/* Only done for the Custom Catalog */
-			if (!(item == null)) {
+			if (!(item == null) && item.getType().equals("Self Assembly")) {
 				updateItemAmount.add(Integer.toString(item.getID()));
 				updateItemAmount.add(Double.toString(item.getPrice()));
 				updateItemAmount.add(item.getImgSrc());
 				updateItemAmount.add(Integer.toString(amount));
-				itemToAmount.put(item.getID(), updateItemAmount);
+				customItemToAmount.put(item.getID(), updateItemAmount);
+			} else if (!(item == null) && (item.getType().equals("Premade"))) {
+
+				ArrayList<String> tempItemPremade = CatalogController.itemToAmount.get(item.getID());
+				int tempAmount = Integer.parseInt(tempItemPremade.get(3));
+				tempItemPremade.set(3, Integer.toString(tempAmount - 1));
+				CatalogController.itemToAmount.put(item.getID(), tempItemPremade);
 			}
 		}
 		if (amount == 0) {
 			MinBtn.setDisable(true);
 			/* Remove empty items from product array list and amount map */
 			int index = 0;
-			try {
-				for (Item i : selectedProducts)
-					if (i.equals(item)) {
-						selectedProducts.remove(index);
-						itemToAmount.remove(i.getID());
-						break;
-					} else
-						index++;
-			} catch (NullPointerException e) {
+			if (!(item == null) && item.getType().equals("Self Assembly")) {
+				try {
+					for (Item i : customSelectedProducts)
+						if (i.equals(item)) {
+							customSelectedProducts.remove(index);
+							customItemToAmount.remove(i.getID());
+							break;
+						} else
+							index++;
+				} catch (NullPointerException e) {
+				}
+				;
+			} else if (!(item == null) && (item.getType().equals("Premade"))) {
+				try {
+					for (Item i : CatalogController.selectedProducts)
+						if (i.equals(item)) {
+							CatalogController.selectedProducts.remove(index);
+							CatalogController.itemToAmount.remove(i.getID());
+							break;
+						} else
+							index++;
+				} catch (NullPointerException e) {
+				}
+				;
 			}
-			;
 		}
 		/*
 		 * setting single total item price label and total items pricelabel
@@ -144,7 +169,13 @@ public class ItemInCartController extends CustomItemViewController {
 				updateItem.add(Double.toString(item.getPrice()));
 				updateItem.add(item.getImgSrc());
 				updateItem.add(Integer.toString(amount));
-				itemToAmount.put(item.getID(), updateItem);
+				customItemToAmount.put(item.getID(), updateItem);
+			} else if (!(item == null) && (item.getType().equals("Premade"))) {
+
+				ArrayList<String> tempItemPremade = CatalogController.itemToAmount.get(item.getID());
+				int tempAmount = Integer.parseInt(tempItemPremade.get(3));
+				tempItemPremade.set(3, Integer.toString(tempAmount + 1));
+				CatalogController.itemToAmount.put(item.getID(), tempItemPremade);
 			}
 		}
 		if (amount > 0)
@@ -170,6 +201,8 @@ public class ItemInCartController extends CustomItemViewController {
 			totalPriceTemp += price;
 			CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
 		}
+		// update temp cart struct(map / arraylist) to send to checkout.
+
 	}
 
 	@FXML
@@ -184,7 +217,8 @@ public class ItemInCartController extends CustomItemViewController {
 					double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 					totalPriceTemp -= Double.parseDouble((bouquet[2])) * (Double.parseDouble(amountLabel.getText()));
 					CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
-					CartController.staticGrid.getChildren().remove(CartController.selectedProductsPremade.size() +CartController.customItemInCart.indexOf(bouquet));
+					CartController.staticGrid.getChildren().remove(CartController.selectedProductsPremade.size()
+							+ CartController.customItemInCart.indexOf(bouquet));
 					CartController.customItemInCart.remove(bouquet);
 					CustomCatalogController.bouquetCounter--;
 					return;
@@ -202,14 +236,14 @@ public class ItemInCartController extends CustomItemViewController {
 			CatalogController.premadeBouquetNumber--;
 		} else if (item.getType().equals("Self Assembly")) {
 
-			itemToAmount.remove(item.getID());
+			customItemToAmount.remove(item.getID());
 			double totalPriceTemp = Double
 					.parseDouble(CustomItemViewController.staticTotalItemPrice.getText().substring(1));
 			totalPriceTemp -= item.getPrice() * Double.parseDouble(amountLabel.getText());
 			CustomItemViewController.staticTotalItemPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
-			CustomItemViewController.staticGrid.getChildren().remove(selectedProducts.indexOf(item));
-			selectedProducts.remove(item);
-			if (itemToAmount.isEmpty())
+			CustomItemViewController.staticGrid.getChildren().remove(customSelectedProducts.indexOf(item));
+			customSelectedProducts.remove(item);
+			if (customItemToAmount.isEmpty())
 				CustomCatalogController.bouquetCounter--;
 		}
 
@@ -221,9 +255,8 @@ public class ItemInCartController extends CustomItemViewController {
 		 * Save original values on initialization in case 'Close' was clicked instead of
 		 * 'Save'
 		 */
-		originalBouquetCounter=CustomCatalogController.bouquetCounter;
-		originalSelectedProducts = new ArrayList<Item>(selectedProducts);
-		originalItemToAmounts = new HashMap<Integer, ArrayList<String>>(itemToAmount);
+		originalBouquetCounter = CustomCatalogController.bouquetCounter;
+		originalSelectedProducts = new ArrayList<Item>(CatalogController.selectedProducts);
+		originalItemToAmounts = new HashMap<Integer, ArrayList<String>>(CatalogController.itemToAmount);
 	}
-
 }

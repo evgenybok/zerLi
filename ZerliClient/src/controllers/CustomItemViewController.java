@@ -69,15 +69,15 @@ public class CustomItemViewController{
 	static Text staticTotalItemPrice;
 
 	static String totalPriceTemp;
-	public static ArrayList<Item> selectedProducts = CustomCatalogController.selectedProducts;
-	public static Map<Integer, ArrayList<String>> itemToAmount = CustomCatalogController.itemToAmount;
+	public static ArrayList<Item> customSelectedProducts = CustomCatalogController.selectedProducts;
+	public static Map<Integer, ArrayList<String>> customItemToAmount = CustomCatalogController.itemToAmount;
 	static double totalPrice;
 
 	@FXML
 	void btnClose(MouseEvent event) {
-		itemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
+		customItemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
 		CustomCatalogController.itemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
-		selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
+		customSelectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
 		CustomCatalogController.selectedProducts = new ArrayList<Item>(ItemInCartController.originalSelectedProducts);
 		totalPriceTemp=totalPriceTemp.substring(1);
 		totalPrice=Double.parseDouble(totalPriceTemp);
@@ -93,13 +93,13 @@ public class CustomItemViewController{
 		fxmlLoader.setLocation(getClass().getResource("/fxml/ItemInCart.fxml"));
 		fxmlLoader.load();
 		totalPrice = 0;
-		for (ArrayList<String> entry : itemToAmount.values()) {
+		for (ArrayList<String> entry : customItemToAmount.values()) {
 			double price = Double.parseDouble(entry.get(1));
 			int amount = Integer.parseInt(entry.get(3));
 			totalPrice += price * amount;
 		}
 		CustomCatalogController.totalPrice = totalPrice;
-		if (selectedProducts.isEmpty())
+		if (customSelectedProducts.isEmpty())
 		{
 			CustomCatalogController.staticViewCustomizedBouquet.setDisable(true);
 			CustomCatalogController.staticAddToCart.setDisable(true);
@@ -117,12 +117,12 @@ public class CustomItemViewController{
 		totalItemPrice.setText("\u20AA" + Double.toString(totalPrice));
 		totalPriceTemp=totalItemPrice.getText();
 		totalPriceText = totalItemPrice;
-		itemToAmount=CustomCatalogController.itemToAmount;
-		selectedProducts=CustomCatalogController.selectedProducts;
+		customItemToAmount=CustomCatalogController.itemToAmount;
+		customSelectedProducts=CustomCatalogController.selectedProducts;
 		int column = 0;
 		int row = 1;
 		ArrayList<Item> items = new ArrayList<>();
-		items = selectedProducts;
+		items = customSelectedProducts;
 		try {
 			grid.getChildren().clear();
 			for (int i = 0; i < items.size(); i++) {
@@ -131,7 +131,7 @@ public class CustomItemViewController{
 				AnchorPane anchorPane = fxmlLoader.load();
 
 				ItemInCartController itemInCartController = fxmlLoader.getController();
-				itemInCartController.setData(items.get(i), itemToAmount.get(items.get(i).getID()).get(3));
+				itemInCartController.setData(items.get(i), customItemToAmount.get(items.get(i).getID()).get(3));
 
 				if (column == 1) {
 					column = 0;

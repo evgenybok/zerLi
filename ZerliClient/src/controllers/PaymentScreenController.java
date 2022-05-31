@@ -51,7 +51,7 @@ import logic.User;
 public class PaymentScreenController {
 	String userID = LoginScreenController.user.getID();
 	String cardNum, date, CustomerCVV, Dorder;
-	double totalPrice = CartController.amountToPay;
+	double totalPrice = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 	double totalPriceAfterDeliveryFee;
 	boolean DeliveryFlag = false, DeliveryExpressFlag = false;
 	@FXML
@@ -270,6 +270,7 @@ public class PaymentScreenController {
 
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
+
 		CheckPayDetailsNoEmpty();
 		String adress, reciverName, phone, cvv;
 		if (DeliveryFlag) {
@@ -279,7 +280,7 @@ public class PaymentScreenController {
 		}
 		cvv = CVV.getText();
 		if (!cvv.equals(CustomerCVV)) {
-			JOptionPane.showMessageDialog(null, "CVV Number Is Wrng!!", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CVV Number Is Wrong!!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		} else {
 			Order.orderCount++;
@@ -288,8 +289,18 @@ public class PaymentScreenController {
 			Date orderDate = new Date();
 			String orderDateString = convertToDate(orderDate.toString());
 			String su = DateSupply.getValue().toString();
-			String tu = SupplyTime.getText();
-			String suplyDateTime = change(su, tu);
+			if (!checkSupplyTime()) // Checking if supply time values are right
+			{
+				JOptionPane.showMessageDialog(null, "Date format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			String tu = SupplyTime.getText(); // change
+			String supplyDateTime = change(su, tu);
+			if(supplyDateTime==null)
+			{
+				JOptionPane.showMessageDialog(null, "Date has already passed!", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			Dorder = CheckExpressDelivery();
 			String Status = "WaitForApprove";
 			String supplytype = CheckWhichSupplyMethod();
@@ -297,15 +308,18 @@ public class PaymentScreenController {
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
 			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
-					suplyDateTime, Status, supplytype, userID, null, adress, reciverName, phone, Dorder);
+					supplyDateTime, Status, supplytype, userID, null, adress, reciverName, phone, Dorder);
+
 			try {
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
-				//				
-				//if (AnalyzeMessageFromServer.getData().equals(null)) {
-				//	return;
-				//}
+				
+				/* Empty the current cart in checkout */
+				CatalogController.selectedProducts.clear();
+				CatalogController.itemToAmount.clear();
+
 				((Node) event.getSource()).getScene().getWindow().hide();
-				Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderComplete.fxml")));
+				Parent parent = FXMLLoader
+						.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderComplete.fxml")));
 				Scene scene = new Scene(parent);
 				Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				deliveryDetailsStage.setTitle("Shopping Cart");
@@ -320,6 +334,23 @@ public class PaymentScreenController {
 			return;
 		}
 
+	}
+
+	boolean checkSupplyTime() {
+		if (SupplyTime.getText().length() != 5)
+			return false;
+		String temp=SupplyTime.getText();
+		if(!(temp.charAt(2)==':'))
+		{
+			temp=temp.substring(0,2) + ":" + temp.substring(3,5);
+		}
+		String[] time = temp.split(":");
+		int hour = Integer.parseInt(time[0]);
+		int minutes = Integer.parseInt(time[1]);
+		if (((hour > 0 && hour < 24) && (minutes > 0 && minutes < 60)) && time[1].length() == 2)
+			return true;
+		else
+			return false;
 	}
 
 	void CheckPayDetailsNoEmpty() {
@@ -367,8 +398,12 @@ public class PaymentScreenController {
 		return "PickUp";
 	}
 
+	//????
 	public Date calSupplyDate() {
 		LocalDate localDate = DateSupply.getValue();
+		LocalDate today = LocalDate.now();
+		if (localDate.isBefore(today))
+			return null;
 		Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 		Date date = Date.from(instant);
 		int hour = Integer.parseInt(SupplyTime.getText().split(":")[0]);
@@ -389,6 +424,10 @@ public class PaymentScreenController {
 	}
 
 	public String change(String date, String time) {
+		LocalDate localDate = DateSupply.getValue();
+		LocalDate today = LocalDate.now();
+		if (localDate.isBefore(today))
+			return null;
 		String ans = date.replace('.', '-');
 		ans = ans + " " + time + ":00";
 		return ans;
