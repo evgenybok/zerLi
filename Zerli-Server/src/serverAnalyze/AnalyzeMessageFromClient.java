@@ -11,11 +11,13 @@ import logic.Account;
 import logic.Complain;
 import logic.Item;
 import logic.Order;
+import logic.SingleComplaint;
 import logic.SingleOrder;
 import logic.Survey;
 import logic.User;
 import ocsf.server.ConnectionToClient;
 import query.AccountDetailsQuery;
+import query.AddNewUserQuery;
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
@@ -32,6 +34,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Item> Items;
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
+		ArrayList<SingleComplaint> singlecomplaint;
 		int Num;
 		switch (receivedMessage.getMessageType()) {
 
@@ -222,15 +225,16 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.getMessageData());
 	case INSERT_NEW_SURVEY:
 		try {
-			SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
+			String s =SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
 			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(s);
 		} catch (Exception e) {
 			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			receivedMessage.setMessageData(null);
-		}
-		;
-	case CHECK_EXIST_QOMPLAIN:
-		
+		};
+		return new Message(MessageType.INSERT_NEW_SURVEY, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case CHECK_EXIST_QOMPLAIN:	
 		String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
 		try {
 			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -239,11 +243,9 @@ public class AnalyzeMessageFromClient {
 			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			receivedMessage.setMessageData(null);
 		}
-
 		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
 				receivedMessage.getMessageData());	
 	case CHECK_ORDER_BY_USERID:
-		
 		String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
 		try {
 			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -252,10 +254,75 @@ public class AnalyzeMessageFromClient {
 			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			receivedMessage.setMessageData(null);
 		}
-
 		return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());	
-		default:
+				receivedMessage.getMessageData());
+	case CHECK_IF_USERNAME_EXIST:
+		String str = AddNewUserQuery.checkIfUserExisting((String) receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(str);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		return new Message(MessageType.CHECK_IF_USERNAME_EXIST, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case INSERT_NEW_USER://@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		try {
+			AddNewUserQuery.InsertNewUser((User) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		};
+	case INSERT_NEW_ACCOUNT:
+		try {
+			AddNewUserQuery.InsertNewAccount((Account) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		};
+	case GET_COMPLAINTS:
+		singlecomplaint = complaintQuery.GetComplaints();
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(singlecomplaint);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		return new Message(MessageType.GET_COMPLAINTS, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case GET_COMPLAINT_BY_ID:
+		singlecomplaint = complaintQuery.GetSingleComplaintByUserId((String) receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(singlecomplaint);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		return new Message(MessageType.GET_COMPLAINT_BY_ID, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case UPDATE_REFUND:
+		try {
+			complaintQuery.UpdateAccountTotalRefund((String) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		};
+	case UPDATE_STATUS_COMPLAINT:
+		try {
+			complaintQuery.UpdateToHandled((String) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		};
+		default://;
+
 			return new Message(MessageType.ERROR, null);
 		}
 	}

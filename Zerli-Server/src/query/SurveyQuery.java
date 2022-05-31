@@ -25,7 +25,7 @@ public class SurveyQuery {
 		String temp= String.valueOf(lastSurveyNumber); 
 		return temp;
 	}
-	public static void InsertNewQuery(Survey survey)
+	public static String InsertNewQuery(Survey survey)
 	{
 		String query= "INSERT INTO zerli.survey VALUES("+survey.getSurveynum()+",'" +survey.getSurveyCreatorId()+"','" +survey.getQuestions().get(0)+"','" 
 				+survey.getQuestions().get(1)+"','" + survey.getQuestions().get(2)+"','" +survey.getQuestions().get(3)+"','" +survey.getQuestions().get(4)+"','" 
@@ -34,7 +34,8 @@ public class SurveyQuery {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
 		} catch (SQLException e) {
-			return;
-		}	
+			return "false";
+		}
+		return "true";
 	}
 }

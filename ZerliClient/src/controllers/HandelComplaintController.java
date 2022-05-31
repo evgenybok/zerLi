@@ -4,9 +4,12 @@ import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -17,8 +20,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.SingleComplaint;
+import logic.SingleOrder;
 
 public class HandelComplaintController {
 
@@ -42,6 +49,8 @@ public class HandelComplaintController {
 
     @FXML
     private Text userName;
+    @FXML
+    private VBox ComplaintLayout;
 
     @FXML
     void btnBack(MouseEvent event) throws IOException {
@@ -66,6 +75,57 @@ public class HandelComplaintController {
         this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
 		this.accountType.setText("Customer Service"); // accountType - may be handled from DB
     	this.userName.setText(LoginScreenController.user.getUsername()); //userName
-    }
+    	List<SingleComplaint> complaint = new ArrayList<>();
+		chat.accept(new Message(MessageType.GET_COMPLAINTS, LoginScreenController.user.getID()));
+		complaint = (ArrayList<SingleComplaint>) AnalyzeMessageFromServer.getData();
+		try {
 
+			for (int i = 0; i < complaint.size(); i++) {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
+				HBox hBox = fxmlLoader.load();
+				SingleComplaintController singleComplaintController = fxmlLoader.getController();
+				singleComplaintController.setData(complaint.get(i));
+				ComplaintLayout.getChildren().add(hBox);
+
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    @FXML
+    void Serach(MouseEvent event) {
+    	ArrayList<SingleComplaint> complain = new ArrayList<>();
+		String userid = IdSearch.getText();
+		ComplaintLayout.getChildren().clear();
+		if(IdSearch.getText().isEmpty())
+		{
+			initialize();
+		}
+		try {
+			chat.accept(new Message(MessageType.GET_COMPLAINT_BY_ID, userid));
+			if (AnalyzeMessageFromServer.getData().equals(null)) 
+				return;
+			
+		} catch (Exception e) {
+			return;
+		}
+		;
+		complain = (ArrayList<SingleComplaint>) AnalyzeMessageFromServer.getData();
+		try {
+
+			for (int i = 0; i < complain.size(); i++) {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
+				HBox hBox = fxmlLoader.load();
+				SingleComplaintController singleComplaintController = fxmlLoader.getController();
+				singleComplaintController.setData(complain.get(i)); 
+				ComplaintLayout.getChildren().add(hBox);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+    }
 }
+

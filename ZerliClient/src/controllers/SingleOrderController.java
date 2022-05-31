@@ -53,9 +53,6 @@ public class SingleOrderController {
         status.setText(singleOrder.getStatus());
         refund.setText(singleOrder.getRefund());
         storename.setText(singleOrder.getStoreId());
-
-
-
     }
 
 

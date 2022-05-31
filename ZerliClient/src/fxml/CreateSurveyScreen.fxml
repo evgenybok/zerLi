@@ -311,7 +311,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="847.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#CreateSurveyFunc" prefHeight="63.0" prefWidth="207.0" stylesheets="@../../images/css/styleNew.css" text="Create Survey">
+                        <Button fx:id="Submit" mnemonicParsing="false" onMouseClicked="#CreateSurveyFunc" prefHeight="63.0" prefWidth="207.0" stylesheets="@../../images/css/styleNew.css" text="Create Survey">
                            <styleClass>
                               <String fx:value="add-btn" />
                               <String fx:value="shadow" />

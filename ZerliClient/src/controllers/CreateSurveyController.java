@@ -26,7 +26,6 @@ import javafx.stage.Stage;
 import logic.Survey;
 
 public class CreateSurveyController {
-	private boolean flag;
 	public String survey_num;
     @FXML
     private ResourceBundle resources;
@@ -65,6 +64,9 @@ public class CreateSurveyController {
     private Text userName;
 
     @FXML
+    private Button Submit;
+
+    @FXML
     private Text SurveyNumber;
     @FXML
     void btnBack(MouseEvent event) throws IOException {
@@ -77,32 +79,47 @@ public class CreateSurveyController {
 		loginStage.centerOnScreen();
     }
     @FXML
-    void CreateSurveyFunc(MouseEvent event) throws IOException
+    void CreateSurveyFunc(MouseEvent event) throws IOException 
     {
-    	CheckIfEmpty();
-    	ArrayList<String> question = new ArrayList<>();
-    	question.add(Ques1.getText());
-    	question.add(Ques2.getText());
-    	question.add(Ques3.getText());
-    	question.add(Ques4.getText());
-    	question.add(Ques5.getText());
-    	question.add(Ques6.getText());
-    	String surveyCreator = LoginScreenController.user.getID();
-    	int surveyNumber= Integer.parseInt(survey_num);
-    	Survey survey= new Survey(surveyNumber,surveyCreator,question);
-    	//insert query
-    	insertSurveyToDB(survey);	
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/FinishCreateSurvey.fxml")));
-		Scene scene = new Scene(parent);
-		Stage FinishSurveyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		FinishSurveyStage .setScene(scene);
-		FinishSurveyStage .show();
-		FinishSurveyStage .centerOnScreen();
-    	
+    	if((CheckIfEmpty())==false)
+    	{
+    		JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Info",JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else
+    	{
+    			ArrayList<String> question = new ArrayList<>();
+            	question.add(Ques1.getText());
+            	question.add(Ques2.getText());
+            	question.add(Ques3.getText());
+            	question.add(Ques4.getText());
+            	question.add(Ques5.getText());
+            	question.add(Ques6.getText());
+            	String surveyCreator = LoginScreenController.user.getID();
+            	int surveyNumber= Integer.parseInt(survey_num);
+            	Survey survey= new Survey(surveyNumber,surveyCreator,question);
+            	//insert query
+            	if((insertSurveyToDB(survey))==true)
+            	{
+            		JOptionPane.showMessageDialog(null, "The Survey Was Added Succsessfully", "Info",JOptionPane.INFORMATION_MESSAGE);
+                	((Node) event.getSource()).getScene().getWindow().hide();
+                	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+                	Scene scene = new Scene(parent);
+                	Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                	customerStage.setTitle("Customer");
+                	customerStage.setScene(scene);
+                	customerStage.show();
+                	customerStage.centerOnScreen();
+            	}
+            	else
+            	{
+            		System.out.println("Ahalta zain");
+            	}
+    	}
     }
     @FXML
     void initialize() {
         assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
+        assert Submit != null : "fx:id=\"Submit\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
         assert Ques1 != null : "fx:id=\"Ques1\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
         assert Ques2 != null : "fx:id=\"Ques2\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
         assert Ques3 != null : "fx:id=\"Ques3\" was not injected: check your FXML file 'CreateSurveyScreen.fxml'.";
@@ -133,26 +150,26 @@ public class CreateSurveyController {
 		temp = (String)AnalyzeMessageFromServer.getData();
 		return temp;
     }  
-    public void insertSurveyToDB(Survey survey)
+    public boolean insertSurveyToDB(Survey survey)
     {
     	try {
 			chat.accept(new Message(MessageType.INSERT_NEW_SURVEY,survey));
-			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
-				return;
+			if (AnalyzeMessageFromServer.getData().equals(null)) 
+				return false;
 
 		} catch (Exception e) {
-			return;
+			return false;
 		};
+		String str = (String) AnalyzeMessageFromServer.getData();
+		if(str.equals("false")) return false;
+		return true;
     }
-    public void CheckIfEmpty()
+    public boolean CheckIfEmpty()
     {
     	if(Ques1.getText().isEmpty()||Ques2.getText().isEmpty()||Ques3.getText().isEmpty()||Ques4.getText().isEmpty()||
     			Ques5.getText().isEmpty()||Ques6.getText().isEmpty())
-    	{
-    		JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-    	}
-    	return;
+    			return false;
+    	return true;
+    	
     }
-
 }

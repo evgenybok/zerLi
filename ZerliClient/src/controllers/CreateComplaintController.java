@@ -86,7 +86,7 @@ public class CreateComplaintController {
 				int order_id = Integer.parseInt(orderid);
 				String description = DescriptionField.getText();
 				String handelerIdString = LoginScreenController.user.getID();
-				String refund = null;
+				double refund = 0.00;
 				String complainStatus = "WaitForHandle";
 				// now query for insert
 				Complain complain = new Complain(handelerIdString, user_id, order_id, description, complainStatus, refund);

@@ -12,10 +12,10 @@ public class Account implements Serializable{
 	private String CreditCardNumber;
 	private String ExpiryDate;
 	private String CVV;
-	private String TotalRefund;
+	private double TotalRefund;
 	private String Status;
 	
-	public Account(String User_ID,String CreditCardNumber,String ExpiryDate,String CVV,String TotalRefund,String Status)
+	public Account(String User_ID,String CreditCardNumber,String ExpiryDate,String CVV,double TotalRefund,String Status)
 	{
 		this.User_ID=User_ID;
 		this.CreditCardNumber=CreditCardNumber;
@@ -56,11 +56,11 @@ public class Account implements Serializable{
 		CVV = cVV;
 	}
 
-	public String getTotalRefund() {
+	public double getTotalRefund() {
 		return TotalRefund;
 	}
 
-	public void setTotalRefund(String totalRefund) {
+	public void setTotalRefund(double totalRefund) {
 		TotalRefund = totalRefund;
 	}
 

@@ -14,9 +14,9 @@ public class Complain  implements Serializable{
 	private int orderID;
 	private String description;
 	private String ComplainStatus;
-	private String Refund;
+	private double Refund;
 
-	public Complain(String HandleUserID,String complainUserID,int orderID,String description,String ComplainStatus,String Refund)
+	public Complain(String HandleUserID,String complainUserID,int orderID,String description,String ComplainStatus,double Refund)
 	{
 		this.HandleUserID=HandleUserID;
 		this.complainUserID=complainUserID;
@@ -65,11 +65,11 @@ public class Complain  implements Serializable{
 		ComplainStatus = complainStatus;
 	}
 
-	public String getRefund() {
+	public double getRefund() {
 		return Refund;
 	}
 
-	public void setRefund(String refund) {
+	public void setRefund(double refund) {
 		Refund = refund;
 	}
 	@Override

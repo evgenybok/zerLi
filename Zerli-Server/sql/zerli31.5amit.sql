@@ -39,7 +39,7 @@ CREATE TABLE `account_details` (
 
 LOCK TABLES `account_details` WRITE;
 /*!40000 ALTER TABLE `account_details` DISABLE KEYS */;
-INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259',NULL,'Active'),('0002','4580817918278719','07/2026','195',NULL,'Active');
+INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259','480.0','Active'),('0002','4580817918278719','07/2026','195','190.0','Active'),('makore','ma','mam','ma','0','Active');
 /*!40000 ALTER TABLE `account_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `complaint` (
   `OrderId` varchar(45) NOT NULL,
   `Description` varchar(1000) NOT NULL,
   `complainStatus` varchar(45) NOT NULL,
-  `Refund` varchar(45) NOT NULL,
+  `Refund` double NOT NULL,
   PRIMARY KEY (`HandelerUserID`,`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -67,7 +67,7 @@ CREATE TABLE `complaint` (
 
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
-INSERT INTO `complaint` VALUES ('5463','0001','10','LO KEF LI','WaitForHandle','null'),('5463','0001','4','lo tov','WaitForHandle','null'),('5463','0001','9','ANI OLEC LISHON','WaitForHandle','null');
+INSERT INTO `complaint` VALUES ('5463','0001','10','LO KEF LI','Handled',20),('5463','0002','11','Shaked lo Gavri','Handled',190),('5463','0001','15','ma kore','WaitForHandle',200),('5463','0001','6','ma kore','WaitForHandle',100),('5463','0002','8','ma kore','Handled',0),('5463','0002','9','lala ','WaitForHandle',0);
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,7 @@ CREATE TABLE `survey` (
 
 LOCK TABLES `survey` WRITE;
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
-INSERT INTO `survey` VALUES (1,'5463','MA kore','ma luz','ma','ma','ma','ma');
+INSERT INTO `survey` VALUES (1,'5463','MA kore','ma luz','ma','ma','ma','ma'),(2,'5463','dddd','dddd','aaaa','aaaa','aaaaa','aaaa'),(3,'5463','amit ','shitrit','yagever','ahi ','bolam','toda'),(4,'5463','Elad','Elad','Elad','Elad','Elad','Elad'),(5,'5463','k','k','k','k','k','shakwed');
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu2','cu2',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('delivery1','delivery1',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('branchMN1','branchMN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('customerSV','customerSV',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com');
+INSERT INTO `users` VALUES ('cu2','cu2',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',1,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -341,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-27 14:41:19
+-- Dump completed on 2022-05-31 13:00:00

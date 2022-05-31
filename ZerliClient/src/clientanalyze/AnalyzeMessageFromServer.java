@@ -9,6 +9,7 @@ import communication.MessageAnswer;
 import logic.Account;
 import logic.Complain;
 import logic.Item;
+import logic.SingleComplaint;
 import logic.SingleOrder;
 import logic.User;
 
@@ -167,7 +168,6 @@ public class AnalyzeMessageFromServer {
 		case INSERT_NEW_SURVEY:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
-
 			} else {
 				res = null;
 			}
@@ -181,6 +181,62 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 		case  CHECK_ORDER_BY_USERID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  CHECK_IF_USERNAME_EXIST:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  INSERT_NEW_USER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  INSERT_NEW_ACCOUNT:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_COMPLAINTS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_COMPLAINT_BY_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_REFUND:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_STATUS_COMPLAINT:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -216,6 +272,8 @@ public class AnalyzeMessageFromServer {
 				return (ArrayList<Account>) res;
 			if (((ArrayList<?>) res).get(0) instanceof Complain)
 				return (ArrayList<Complain>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleComplaint)
+				return (ArrayList<SingleComplaint>) res;
 			}
 			catch (IndexOutOfBoundsException e) {
 			};

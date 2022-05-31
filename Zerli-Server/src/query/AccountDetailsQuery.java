@@ -22,7 +22,7 @@ public class AccountDetailsQuery {
 				String creditCardNumber = rs.getString("CreditCardNumber");
 				String creditCardDate = rs.getString("ExpiryDate");
 				String CVV = rs.getString("CVV");
-				String refund = rs.getString("TotalRefund");
+				double refund = rs.getDouble("TotalRefund");
 				String status = rs.getString("Status");
 				if(userID.equals(user_ID))
 				{
