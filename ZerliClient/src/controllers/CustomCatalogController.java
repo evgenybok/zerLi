@@ -110,6 +110,12 @@ public class CustomCatalogController {
 	@FXML
 	private TextField txtColor;
 
+    @FXML
+    private Label lblOnSale;
+
+    @FXML
+    private Label lblSalePrice;
+
 	@FXML
 	private Button viewCustomizedBouquet;
 
@@ -468,6 +474,15 @@ public class CustomCatalogController {
 							flowerName.setText(item.getName());
 							flowerPrice.setText("\u20AA" + item.getPrice());
 							serialID.setText(Integer.toString(item.getID()));
+							if(item.isOnSale()) {
+								lblSalePrice.setText("\u20AA"+ item.getSalePrice());
+								lblSalePrice.setVisible(true);
+								lblOnSale.setVisible(true);
+							}
+							else {
+								lblSalePrice.setVisible(false);
+								lblOnSale.setVisible(false);
+							}
 						});
 					}
 				}

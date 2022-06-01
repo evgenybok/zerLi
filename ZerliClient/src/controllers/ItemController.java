@@ -23,6 +23,14 @@ public class ItemController {
     @FXML
     private Label serial;
 
+    @FXML
+    private Label lblOnSale;
+
+    @FXML
+    private Label lblSalePrice;
+
+    @FXML
+    private Label lblSlash;
 
     public void setData(Item item) {
 
@@ -33,6 +41,12 @@ public class ItemController {
        // img.setFitHeight(150);
        // img.setFitWidth(150);
         serial.setText(Integer.toString(item.getID()));
+        if(item.isOnSale()) {
+        	lblOnSale.setVisible(true);
+        	lblSalePrice.setText("\u20AA"+Double.toString(item.getSalePrice()));
+        	lblSalePrice.setVisible(true);
+        	lblSlash.setVisible(true);
+        }
     }
 
 

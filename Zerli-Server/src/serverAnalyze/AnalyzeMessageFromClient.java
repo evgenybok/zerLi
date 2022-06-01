@@ -18,6 +18,7 @@ import logic.User;
 import ocsf.server.ConnectionToClient;
 import query.AccountDetailsQuery;
 import query.AddNewUserQuery;
+import query.CatalogQuery;
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
@@ -130,6 +131,36 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+			
+		case UPDATE_CATALOG:
+			try {
+				CatalogQuery.UpdateCatalog((Item) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+				}
+			;
+			
+		case ADD_NEW_ITEM:
+			try {
+				CatalogQuery.AddNewItem((Item) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+				}
+			;
+			
+		case DELETE_ITEM:
+			try {
+				CatalogQuery.DeleteItem((Item) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+				}
+			;
 
 		case GET_ACCOUNT_DETAILS:
 			try {

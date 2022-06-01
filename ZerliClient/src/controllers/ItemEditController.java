@@ -1,10 +1,15 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
 
+import clientanalyze.AnalyzeMessageFromServer;
+import communication.Message;
+import communication.MessageType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.Item;
@@ -47,26 +54,154 @@ public class ItemEditController {
 	@FXML
 	private Button save;
 
-    @FXML
-    private Label saveMsg;
+	@FXML
+	private Label saveMsg;
+
+	@FXML
+	private ImageView itemImage;
+
+	@FXML
+	private CheckBox preCheckBox;
+
+	@FXML
+	private CheckBox selfCheckBox;
+
+	@FXML
+	private Button delete;
 
 	private Item currentItem = CatalogUpdateController.currentItem;
+	private Item updatedItem = new Item(0, null, null, 0, null, null, false, 0);
+	boolean newItemFlag = false;
 
 	@FXML
 	void btnClose(MouseEvent event) throws IOException {
-        Stage stage = (Stage) close.getScene().getWindow();
-        stage.close();
+		Stage stage = (Stage) close.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML
-	void btnSave(MouseEvent event) {
-		saveMsg.setText("Item Saved Successfully!");
-		saveMsg.setVisible(true);
+	void btnDelete(MouseEvent event) {
+		try {
+			chat.accept(new Message(MessageType.DELETE_ITEM, currentItem));
+		} catch (Exception e) {
+			System.out.println("DELETE ITEM COMM FAILED");
+			return;
+		}
+		JOptionPane.showMessageDialog(null, "Item deleted successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	@FXML
+	void btnSave(MouseEvent event) throws IOException {
+		if (newItemFlag == true) {
+			for (int i = 0; i < CatalogUpdateController.customItems.size(); i++) {
+				if (Integer.toString(CatalogUpdateController.customItems.get(i).getID()).equals(id.getText())) {
+					JOptionPane.showMessageDialog(null, "An item with the exact itemID already exists", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				for (int j = 0; j < CatalogUpdateController.premadeItems.size(); j++) {
+					if (Integer.toString(CatalogUpdateController.premadeItems.get(j).getID()).equals(id.getText())) {
+						JOptionPane.showMessageDialog(null, "An item with the exact itemID already exists", "Error",
+								JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+				}
+			}
+			if (preCheckBox.isSelected() && (!(id.getText().startsWith("2")) || !(id.getText().length() == 5))) {
+				JOptionPane.showMessageDialog(null, "Premade item ID form '2XXXX'", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			} else if (selfCheckBox.isSelected()
+					&& (!(id.getText().startsWith("1")) || !(id.getText().length() == 5))) {
+				JOptionPane.showMessageDialog(null, "Self Assembly item ID form '1XXXX'", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
+
+		try {
+			Double.parseDouble(price.getText());
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Wrong input in the price field!!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if ((selfCheckBox.isSelected() ^ preCheckBox.isSelected()) && !imagePath.getText().isEmpty()
+				&& !name.getText().isEmpty() && !color.getText().isEmpty()) {
+			if (selfCheckBox.isSelected())
+				updatedItem.setType("Self Assembly");
+			else
+				updatedItem.setType("Premade");
+			updatedItem.setID(Integer.parseInt(id.getText()));
+			updatedItem.setImgSrc(imagePath.getText());
+			updatedItem.setName(name.getText());
+			updatedItem.setPrice(Double.parseDouble(price.getText()));
+			updatedItem.setColor(color.getText());
+			updatedItem.setOnSale(checkBoxSale.isSelected());
+			if (checkBoxSale.isSelected()) {
+				try {
+					Double.parseDouble(salePrice.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Wrong input in the sale price field!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				updatedItem.setSalePrice(Double.parseDouble(salePrice.getText()));
+			}
+			if (newItemFlag == false) {
+				try {
+					chat.accept(new Message(MessageType.UPDATE_CATALOG, updatedItem));
+				} catch (Exception e) {
+					System.out.println("UPDATE CATALOG COMM FAILED");
+					return;
+				}
+			} else {
+				try {
+					chat.accept(new Message(MessageType.ADD_NEW_ITEM, updatedItem));
+				} catch (Exception e) {
+					System.out.println("ADD NEW ITEM COMM FAILED");
+					return;
+				}
+			}
+			saveMsg.setText("Item Saved Successfully!");
+			saveMsg.setVisible(true);
+		} else
+			JOptionPane.showMessageDialog(null, "Wrong input in one or more fields!!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+
+	}
+
+	@FXML
+	void premadeSelected(MouseEvent event) {
+		if (preCheckBox.isSelected()) {
+			selfCheckBox.setDisable(true);
+			selfCheckBox.setSelected(false);
+		} else {
+			selfCheckBox.setDisable(false);
+		}
+	}
+
+	@FXML
+	void selfSelected(MouseEvent event) {
+		if (selfCheckBox.isSelected()) {
+			preCheckBox.setDisable(true);
+			preCheckBox.setSelected(false);
+		} else {
+			preCheckBox.setDisable(false);
+		}
+	}
+
+	@FXML
+	void onSaleSelected(MouseEvent event) {
+		if (checkBoxSale.isSelected()) {
+			salePrice.setDisable(false);
+		} else
+			salePrice.setDisable(true);
 	}
 
 	@FXML
 	void initialize() {
-		if(currentItem==null) {
+		if (currentItem == null) {
 			id.setText("");
 			imagePath.setText("");
 			name.setText("");
@@ -74,16 +209,24 @@ public class ItemEditController {
 			color.setText("");
 			checkBoxSale.setSelected(false);
 			salePrice.setText("");
-		}
-		else{
+			salePrice.setDisable(true);
+			newItemFlag = true;
+			delete.setVisible(false);
+		} else {
 			id.setText(Integer.toString(currentItem.getID()));
+			id.setDisable(true);
+			preCheckBox.setSelected(currentItem.getType().equals("Premade"));
+			selfCheckBox.setSelected(currentItem.getType().equals("Self Assembly"));
+			preCheckBox.setDisable(true);
+			selfCheckBox.setDisable(true);
 			imagePath.setText(currentItem.getImgSrc());
 			name.setText(currentItem.getName());
 			price.setText(Double.toString(currentItem.getPrice()));
 			color.setText(currentItem.getColor());
-			/* sale checkbox and sale price 
-			 * if(currentItem.get) salePrice.setText("SALE");
-			 */
+			Image itemImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream(currentItem.getImgSrc())));
+			itemImage.setImage(itemImg);
+			checkBoxSale.setSelected(currentItem.isOnSale());
+			salePrice.setText(Double.toString(currentItem.getSalePrice()));
 		}
 
 	}

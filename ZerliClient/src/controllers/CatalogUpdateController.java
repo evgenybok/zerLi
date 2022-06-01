@@ -49,8 +49,8 @@ public class CatalogUpdateController {
 	@FXML
 	private ScrollPane premadeScroll;
 
-	ArrayList<Item> premadeItems = new ArrayList<>();
-	ArrayList<Item> customItems = new ArrayList<>();
+	static ArrayList<Item> premadeItems = new ArrayList<>();
+	static ArrayList<Item> customItems = new ArrayList<>();
 	ArrayList<Item> selectedItems = new ArrayList<>();
 	Integer[][] premadeID;
 	Integer[][] customID;
@@ -98,6 +98,7 @@ public class CatalogUpdateController {
 				if (customItems.get(i).getID() == customID[rowIndex - 1][colIndex])
 					currentItem = customItems.get(i);
 			}
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage itemEditStage = new Stage();

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomCatalogController">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomCatalogController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
          <children>
@@ -26,7 +26,7 @@
                <left>
                   <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/style.css" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="72.0" prefWidth="435.0">
                            <children>
                               <Label prefHeight="49.0" prefWidth="140.0" text="Zer-Li" textFill="#004d00">
                                  <font>
@@ -48,12 +48,35 @@
                               <TextField fx:id="customName" layoutX="236.0" layoutY="-3.0" promptText="Type here" />
                            </children>
                         </Pane>
-                        <VBox alignment="CENTER" prefHeight="632.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/style.css">
+                        <VBox alignment="CENTER" prefHeight="657.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/style.css">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
                            <children>
-                              <HBox prefHeight="85.0" prefWidth="325.0">
+                              <HBox prefHeight="61.0" prefWidth="335.0">
+                                 <children>
+                                    <Label fx:id="lblOnSale" prefHeight="45.0" prefWidth="130.0" text="ON SALE" textFill="RED" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="lblSalePrice" prefHeight="45.0" prefWidth="114.0" text="₪29.90" textFill="RED" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="70.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="82.0" prefWidth="325.0">
                                  <children>
                                     <Label fx:id="flowerName" prefHeight="81.0" prefWidth="195.0" text="Tulips bouqet" textFill="#004d00">
                                        <font>
@@ -73,7 +96,7 @@
                                     </Label>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="10.0" top="10.0" />
+                                    <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
                               <ImageView fx:id="flowerImage" fitHeight="221.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">

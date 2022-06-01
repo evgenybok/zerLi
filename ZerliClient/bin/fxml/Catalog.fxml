@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CatalogController">
    <children>
       <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -38,14 +38,34 @@
                         <Insets />
                      </VBox.margin>
                   </Pane>
-                  <VBox alignment="CENTER" prefHeight="563.0" prefWidth="335.0" stylesheets="@../../images/css/style.css">
+                  <VBox alignment="CENTER" prefHeight="645.0" prefWidth="335.0" stylesheets="@../../images/css/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
                      <children>
-                        <HBox prefHeight="107.0" prefWidth="325.0">
+                        <HBox prefHeight="37.0" prefWidth="335.0">
                            <children>
-                              <Label fx:id="flowerName" prefHeight="100.0" prefWidth="220.0" text="Tulips bouqet" textFill="#004d00" wrapText="true">
+                              <Label fx:id="lblOnSale" prefHeight="45.0" prefWidth="130.0" text="ON SALE" textFill="RED" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="lblSalePrice" prefHeight="45.0" prefWidth="114.0" text="₪29.90" textFill="RED" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="70.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="325.0">
+                           <children>
+                              <Label fx:id="flowerName" prefHeight="72.0" prefWidth="212.0" text="Tulips bouqet" textFill="#004d00" wrapText="true">
                                  <font>
                                     <Font name="Cambria Bold" size="26.0" />
                                  </font>
@@ -53,12 +73,12 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="flowerPrice" prefHeight="58.0" prefWidth="151.0" text="₪29.90" textFill="#004d00">
+                              <Label fx:id="flowerPrice" prefHeight="58.0" prefWidth="148.0" text="₪29.90" textFill="#004d00">
                                  <font>
                                     <Font name="Cambria" size="30.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="20.0" top="17.0" />
+                                    <Insets left="20.0" top="7.0" />
                                  </HBox.margin>
                               </Label>
                            </children>

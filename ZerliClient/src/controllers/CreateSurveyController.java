@@ -171,5 +171,11 @@ public class CreateSurveyController {
     			return false;
     	return true;
     	
+		/*
+		 * { JOptionPane.showMessageDialog(null, "One or more fields are empty!",
+		 * "Error", JOptionPane.ERROR_MESSAGE); return false; }
+		 
+    	return true;
+    	*/
     }
 }

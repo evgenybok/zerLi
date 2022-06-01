@@ -12,21 +12,25 @@ public class Item implements Serializable {
 	private double price;
 	private String color;
 	private String type;
+	private boolean onSale;
+	private double salePrice;
 
-	public Item(int ID, String imgSrc, String name, double price, String color, String type) {
+	public Item(int ID, String imgSrc, String name, double price, String color, String type,boolean onSale,double salePrice) {
 		this.ID = ID;
 		this.imgSrc = imgSrc;
 		this.name = name;
 		this.price = price;
 		this.color = color;
 		this.type = type;
+		this.onSale = onSale;
+		this.salePrice = salePrice;		
 	}
 
 
 	@Override
 	public String toString() {
 		return "Item [ID=" + ID + ", imgSrc=" + imgSrc + ", name=" + name + ", price=" + price + ", color=" + color
-				+ ", type=" + type + "]";
+				+ ", type=" + type + ", onSale=" + onSale + ", salePrice=" + salePrice + "]";
 	}
 
 
@@ -77,5 +81,22 @@ public class Item implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public boolean isOnSale() {
+		return onSale;
+	}
 
+
+	public void setOnSale(boolean onSale) {
+		this.onSale = onSale;
+	}
+
+
+	public double getSalePrice() {
+		return salePrice;
+	}
+
+
+	public void setSalePrice(double salePrice) {
+		this.salePrice = salePrice;
+	}
 }

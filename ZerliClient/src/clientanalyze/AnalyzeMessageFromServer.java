@@ -101,7 +101,34 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+			
+		case UPDATE_CATALOG:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
+			} else {
+				res = null;
+			}
+			return;
+			
+		case ADD_NEW_ITEM:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case DELETE_ITEM:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+			
 		case GET_ACCOUNT_DETAILS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();

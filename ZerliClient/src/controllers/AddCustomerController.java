@@ -131,15 +131,29 @@ public class AddCustomerController {
     }
     public void InsertNewAccount(Account account)
     {
-
-    	try {
-			chat.accept(new Message(MessageType.INSERT_NEW_ACCOUNT,account));
-			if (AnalyzeMessageFromServer.getData().equals(null))
-				return;
-		} catch (Exception e) {
-			return;
-		};
-    	
+    	String Userid = userID.getText();
+    	String firstname = FirstName.getText();
+    	String lastname = LastName.getText();
+    	String creditnum = CreditCardNumber.getText();
+    	String expire = expireDate.getText();
+    	String cvv = CVV.getText();
+    	String mail = Email.getText();
+    	String phone = Phone.getText();
+    	String username= userName.getText();
+    	String password= Password.getText();
+    	String role= "customer";
+    	String Status="Active";
+    	if(CheckIfUserNameExist(username)==false)
+    	{
+    		JOptionPane.showMessageDialog(null, "This username Allreday Exist", "Info",JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else
+    	{
+    		User user= new User(username,password,false,Userid,firstname,lastname,role,phone,mail);
+    		Account account1 = new Account(Userid,creditnum,expire,cvv,0.00,Status);
+    		InsertNewUser(user);
+    		InsertNewAccount(account1);
+    	}
     }
 
     @FXML
