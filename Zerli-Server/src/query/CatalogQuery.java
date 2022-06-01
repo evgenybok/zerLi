@@ -12,7 +12,6 @@ public class CatalogQuery {
 				+ "',Price =" + updatedItem.getPrice() + ",Color ='" + updatedItem.getColor() + "',Type='"
 				+ updatedItem.getType() + "',onSale = " + updatedItem.isOnSale() + ",salePrice = "
 				+ updatedItem.getSalePrice() + " WHERE ID = '" + updatedItem.getID() + "';");
-		System.out.println(query);
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
@@ -26,7 +25,6 @@ public class CatalogQuery {
 		String query = ("INSERT INTO zerli.item VALUES(" + newItem.getID() + ",'" + newItem.getImgSrc() + "','"
 				+ newItem.getName() + "'," + newItem.getPrice() + ",'" + newItem.getColor() + "','" + newItem.getType()
 				+ "'," + newItem.isOnSale() + ", " + newItem.getSalePrice() + ");");
-		System.out.println(query);
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
@@ -36,12 +34,13 @@ public class CatalogQuery {
 	}
 
 	public static void DeleteItem(Item item) {
-		/*
-		 * String query =("DELETE FROM zerli.item WHERE id = "+item.getID()+";");
-		 * System.out.println(query); try { PreparedStatement st =
-		 * ConnectToDB.conn.prepareStatement(query); st.executeUpdate(); } catch
-		 * (SQLException e) { return; }
-		 */
-		
+		String query = ("DELETE FROM zerli.item WHERE id = " + item.getID() + ";");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+		}
+
 	}
 }

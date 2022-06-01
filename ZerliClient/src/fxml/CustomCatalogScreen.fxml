@@ -54,27 +54,27 @@
                            </VBox.margin>
                            <children>
                               <HBox prefHeight="61.0" prefWidth="335.0">
-                                 <children>
-                                    <Label fx:id="lblOnSale" prefHeight="45.0" prefWidth="130.0" text="ON SALE" textFill="RED" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label fx:id="lblSalePrice" prefHeight="45.0" prefWidth="114.0" text="₪29.90" textFill="RED" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="70.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
                                  <VBox.margin>
                                     <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
+                                 <children>
+                                    <ImageView fx:id="saleImg" fitHeight="73.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/images/sale1.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="lblSalePrice" prefHeight="45.0" prefWidth="151.0" text="₪" textFill="RED">
+                                       <font>
+                                          <Font name="Cambria Bold" size="40.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="30.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
                               </HBox>
                               <HBox prefHeight="82.0" prefWidth="325.0">
                                  <children>

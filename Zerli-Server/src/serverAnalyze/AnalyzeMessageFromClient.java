@@ -1,6 +1,5 @@
 package serverAnalyze;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import communication.Message;
@@ -36,7 +35,6 @@ public class AnalyzeMessageFromClient {
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
 		ArrayList<SingleComplaint> singlecomplaint;
-		int Num;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -73,7 +71,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.UPDATE, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ORDERS:
-			Orders = GetOrderQuery.GetOrders((String)receivedMessage.getMessageData());
+			Orders = GetOrderQuery.GetOrders((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(Orders);
@@ -131,7 +129,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case UPDATE_CATALOG:
 			try {
 				CatalogQuery.UpdateCatalog((Item) receivedMessage.getMessageData());
@@ -139,9 +137,11 @@ public class AnalyzeMessageFromClient {
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-				}
+			}
 			;
-			
+
+			return new Message(MessageType.UPDATE_CATALOG, receivedMessage.getMessageAnswer(), null);
+
 		case ADD_NEW_ITEM:
 			try {
 				CatalogQuery.AddNewItem((Item) receivedMessage.getMessageData());
@@ -149,9 +149,11 @@ public class AnalyzeMessageFromClient {
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-				}
+			}
 			;
-			
+
+			return new Message(MessageType.ADD_NEW_ITEM, receivedMessage.getMessageAnswer(), null);
+
 		case DELETE_ITEM:
 			try {
 				CatalogQuery.DeleteItem((Item) receivedMessage.getMessageData());
@@ -159,8 +161,10 @@ public class AnalyzeMessageFromClient {
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-				}
+			}
 			;
+
+			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ACCOUNT_DETAILS:
 			try {
@@ -190,169 +194,175 @@ public class AnalyzeMessageFromClient {
 					receivedMessage.getMessageData());
 		case INSERT_NEW_ORDER:
 			try {
-			GetOrderQuery.InsertNewOrder((Order) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		;
+				GetOrderQuery.InsertNewOrder((Order) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
 		case GET_STORE_ID:
 			try {
-				storeID= StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
+				storeID = StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(storeID);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			};
+			}
+			;
 			return new Message(MessageType.GET_STORE_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-	case GET_ORDER_BY_ID:
-		Orders = GetOrderQuery.GetOrderByIdAndUserId((String)receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(Orders);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
+		case GET_ORDER_BY_ID:
+			Orders = GetOrderQuery.GetOrderByIdAndUserId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(Orders);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
 
-		return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case GET_USERID_BY_ORDERID:
-		storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String)receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(storeID);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
+			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_USERID_BY_ORDERID:
+			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(storeID);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
 
-		return new Message(MessageType.GET_USERID_BY_ORDERID, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case INSERT_NEW_COMPLAIN:
-		try {
-			complaintQuery.InsertNewComplain((Complain) receivedMessage.getMessageData());
-		receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-	} catch (Exception e) {
-		receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-		receivedMessage.setMessageData(null);
-	}
-	;
-	case GET_SURVEY_NUMBER:
-		
-		String SurveyNum = SurveyQuery.getNumberOfNextSurvey();
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(SurveyNum);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
+			return new Message(MessageType.GET_USERID_BY_ORDERID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case INSERT_NEW_COMPLAIN:
+			try {
+				complaintQuery.InsertNewComplain((Complain) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		case GET_SURVEY_NUMBER:
 
-		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case INSERT_NEW_SURVEY:
-		try {
-			String s =SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(s);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		};
-		return new Message(MessageType.INSERT_NEW_SURVEY, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case CHECK_EXIST_QOMPLAIN:	
-		String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(flag);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());	
-	case CHECK_ORDER_BY_USERID:
-		String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(flag2);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case CHECK_IF_USERNAME_EXIST:
-		String str = AddNewUserQuery.checkIfUserExisting((String) receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(str);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		return new Message(MessageType.CHECK_IF_USERNAME_EXIST, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case INSERT_NEW_USER://@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		try {
-			AddNewUserQuery.InsertNewUser((User) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		};
-	case INSERT_NEW_ACCOUNT:
-		try {
-			AddNewUserQuery.InsertNewAccount((Account) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		};
-	case GET_COMPLAINTS:
-		singlecomplaint = complaintQuery.GetComplaints();
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(singlecomplaint);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		return new Message(MessageType.GET_COMPLAINTS, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case GET_COMPLAINT_BY_ID:
-		singlecomplaint = complaintQuery.GetSingleComplaintByUserId((String) receivedMessage.getMessageData());
-		try {
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			receivedMessage.setMessageData(singlecomplaint);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		}
-		return new Message(MessageType.GET_COMPLAINT_BY_ID, receivedMessage.getMessageAnswer(),
-				receivedMessage.getMessageData());
-	case UPDATE_REFUND:
-		try {
-			complaintQuery.UpdateAccountTotalRefund((String) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		};
-	case UPDATE_STATUS_COMPLAINT:
-		try {
-			complaintQuery.UpdateToHandled((String) receivedMessage.getMessageData());
-			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-		} catch (Exception e) {
-			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-			receivedMessage.setMessageData(null);
-		};
-		default://;
+			String SurveyNum = SurveyQuery.getNumberOfNextSurvey();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(SurveyNum);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+
+			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case INSERT_NEW_SURVEY:
+			try {
+				String s = SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(s);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+			return new Message(MessageType.INSERT_NEW_SURVEY, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case CHECK_EXIST_QOMPLAIN:
+			String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(flag);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case CHECK_ORDER_BY_USERID:
+			String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(flag2);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case CHECK_IF_USERNAME_EXIST:
+			String str = AddNewUserQuery.checkIfUserExisting((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(str);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.CHECK_IF_USERNAME_EXIST, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case INSERT_NEW_USER:// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			try {
+				AddNewUserQuery.InsertNewUser((User) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		case INSERT_NEW_ACCOUNT:
+			try {
+				AddNewUserQuery.InsertNewAccount((Account) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		case GET_COMPLAINTS:
+			singlecomplaint = complaintQuery.GetComplaints();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singlecomplaint);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_COMPLAINTS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_COMPLAINT_BY_ID:
+			singlecomplaint = complaintQuery.GetSingleComplaintByUserId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singlecomplaint);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_COMPLAINT_BY_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_REFUND:
+			try {
+				complaintQuery.UpdateAccountTotalRefund((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		case UPDATE_STATUS_COMPLAINT:
+			try {
+				complaintQuery.UpdateToHandled((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		default:// ;
 
 			return new Message(MessageType.ERROR, null);
 		}

@@ -316,7 +316,11 @@ public class PaymentScreenController {
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
-
+				CustomCatalogController.customItemInCart.clear();
+				/*
+				 * CustomCatalogController.itemToAmount.clear();
+				 * CustomCatalogController.selectedProducts.clear();
+				 */
 				((Node) event.getSource()).getScene().getWindow().hide();
 				Parent parent = FXMLLoader
 						.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderComplete.fxml")));

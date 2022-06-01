@@ -110,11 +110,11 @@ public class CustomCatalogController {
 	@FXML
 	private TextField txtColor;
 
-    @FXML
-    private Label lblOnSale;
+	@FXML
+	private ImageView saleImg;
 
-    @FXML
-    private Label lblSalePrice;
+	@FXML
+	private Label lblSalePrice;
 
 	@FXML
 	private Button viewCustomizedBouquet;
@@ -133,7 +133,6 @@ public class CustomCatalogController {
 	private int bouquetNumber = 1;
 	private ArrayList<Item> items;
 
-
 	@FXML
 	void btnAddToCart(MouseEvent event) {
 		if (!selectedProducts.isEmpty()) {
@@ -145,11 +144,11 @@ public class CustomCatalogController {
 			}
 			if (customName.getText().equals("")) {
 				String[] data = new String[] { "MyBouquet" + Integer.toString(bouquetCounter + 1),
-						customItemDetails.toString(), Double.toString(totalPrice),Integer.toString(bouquetNumber++) };
+						customItemDetails.toString(), Double.toString(totalPrice), Integer.toString(bouquetNumber++) };
 				customItemInCart.add(bouquetCounter, data);
 			} else {
 				String[] data = new String[] { customName.getText(), customItemDetails.toString(),
-						Double.toString(totalPrice) ,Integer.toString(bouquetNumber++)};
+						Double.toString(totalPrice), Integer.toString(bouquetNumber++) };
 				customItemInCart.add(bouquetCounter, data);
 			}
 
@@ -208,7 +207,10 @@ public class CustomCatalogController {
 				if (selectedProducts.get(i).getID() == Integer.parseInt(serialID.getText())) {
 					ArrayList<String> details = new ArrayList<String>();
 					details.add(selectedProducts.get(i).getName());
-					details.add(Double.toString(selectedProducts.get(i).getPrice()));
+					if (selectedProducts.get(i).isOnSale()) {
+						details.add(Double.toString(selectedProducts.get(i).getSalePrice()));
+					} else
+						details.add(Double.toString(selectedProducts.get(i).getPrice()));
 					details.add(selectedProducts.get(i).getImgSrc());
 					if (itemToAmount.containsKey(Integer.parseInt(serialID.getText()))) {
 						if (!amountChanged) {
@@ -221,8 +223,12 @@ public class CustomCatalogController {
 					} else
 						details.add(AmountLabel.getText());
 					itemToAmount.put(Integer.parseInt(serialID.getText()), details);
-					totalPrice += Integer.parseInt(itemToAmount.get(selectedProducts.get(i).getID()).get(3))
-							* selectedProducts.get(i).getPrice();
+					if (selectedProducts.get(i).isOnSale()) {
+						totalPrice += Integer.parseInt(itemToAmount.get(selectedProducts.get(i).getID()).get(3))
+								* selectedProducts.get(i).getSalePrice();
+					} else
+						totalPrice += Integer.parseInt(itemToAmount.get(selectedProducts.get(i).getID()).get(3))
+								* selectedProducts.get(i).getPrice();
 				}
 			}
 			if (!selectedProducts.isEmpty() && !CustomerScreenController.accountStatus.equals("Frozen")) {
@@ -466,6 +472,22 @@ public class CustomCatalogController {
 				}
 
 				anchorPane.setId(Integer.toString(catalogProducts.get(i).getID()));
+				flowerImage.setImage(new Image(Objects
+						.requireNonNull(getClass().getResourceAsStream(catalogProducts.get(i).getImgSrc().toString()))));
+				flowerName.setText(catalogProducts.get(i).getName());
+				flowerPrice.setText("\u20AA" + catalogProducts.get(i).getPrice());
+				serialID.setText(Integer.toString(catalogProducts.get(i).getID()));
+				if (catalogProducts.get(i).isOnSale()) {
+					lblSalePrice.setText("\u20AA" + catalogProducts.get(i).getSalePrice());
+					lblSalePrice.setVisible(true);
+					Image saleImage = new Image(
+							(Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+					saleImg.setImage(saleImage);
+					saleImg.setVisible(true);
+				} else {
+					lblSalePrice.setVisible(false);
+					saleImg.setVisible(false);
+				}
 				for (Item item : catalogProducts) {
 					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
 						anchorPane.setOnMouseClicked(evt -> {
@@ -474,14 +496,16 @@ public class CustomCatalogController {
 							flowerName.setText(item.getName());
 							flowerPrice.setText("\u20AA" + item.getPrice());
 							serialID.setText(Integer.toString(item.getID()));
-							if(item.isOnSale()) {
-								lblSalePrice.setText("\u20AA"+ item.getSalePrice());
+							if (item.isOnSale()) {
+								lblSalePrice.setText("\u20AA" + item.getSalePrice());
 								lblSalePrice.setVisible(true);
-								lblOnSale.setVisible(true);
-							}
-							else {
+								Image saleImage = new Image(
+										(Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+								saleImg.setImage(saleImage);
+								saleImg.setVisible(true);
+							} else {
 								lblSalePrice.setVisible(false);
-								lblOnSale.setVisible(false);
+								saleImg.setVisible(false);
 							}
 						});
 					}

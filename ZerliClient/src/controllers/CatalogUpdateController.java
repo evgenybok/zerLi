@@ -59,12 +59,13 @@ public class CatalogUpdateController {
 	@FXML
 	void btnAddNewItem(MouseEvent event) throws IOException {
 		currentItem = null;
+		((Node) event.getSource()).getScene().getWindow().hide();
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 		Parent root1 = (Parent) fxmlLoader.load();
-		Stage itemEditStage = new Stage();
-		itemEditStage.initModality(Modality.APPLICATION_MODAL);
+		Scene scene = new Scene(root1);
+		Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		itemEditStage.setTitle("Item Edit");
-		itemEditStage.setScene((new Scene(root1)));
+		itemEditStage.setScene((scene));
 		itemEditStage.show();
 		itemEditStage.centerOnScreen();
 	}
@@ -98,13 +99,13 @@ public class CatalogUpdateController {
 				if (customItems.get(i).getID() == customID[rowIndex - 1][colIndex])
 					currentItem = customItems.get(i);
 			}
-			
+			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
-			Stage itemEditStage = new Stage();
-			itemEditStage.initModality(Modality.APPLICATION_MODAL);
+			Scene scene = new Scene(root1);
+			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");
-			itemEditStage.setScene((new Scene(root1)));
+			itemEditStage.setScene((scene));
 			itemEditStage.show();
 			itemEditStage.centerOnScreen();
 		}
@@ -125,12 +126,13 @@ public class CatalogUpdateController {
 				if (premadeItems.get(i).getID() == premadeID[rowIndex - 1][colIndex])
 					currentItem = premadeItems.get(i);
 			}
+			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
-			Stage itemEditStage = new Stage();
-			itemEditStage.initModality(Modality.APPLICATION_MODAL);
+			Scene scene = new Scene(root1);
+			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");
-			itemEditStage.setScene((new Scene(root1)));
+			itemEditStage.setScene((scene));
 			itemEditStage.show();
 			itemEditStage.centerOnScreen();
 

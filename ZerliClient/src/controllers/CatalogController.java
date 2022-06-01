@@ -94,10 +94,10 @@ public class CatalogController {
 
 	@FXML
 	private TextField txtColor;
-	
-    @FXML
-    private Label lblOnSale;
 
+    @FXML
+    private ImageView saleImg;
+    
     @FXML
     private Label lblSalePrice;
 
@@ -365,6 +365,22 @@ public class CatalogController {
 				}
 
 				anchorPane.setId(Integer.toString(selectedItems.get(i).getID()));
+				flowerImage.setImage(new Image(Objects
+						.requireNonNull(getClass().getResourceAsStream(selectedItems.get(i).getImgSrc().toString()))));
+				flowerName.setText(selectedItems.get(i).getName());
+				flowerPrice.setText("\u20AA" + selectedItems.get(i).getPrice());
+				serialID.setText(Integer.toString(selectedItems.get(i).getID()));
+				if(selectedItems.get(i).isOnSale()) {
+					lblSalePrice.setText("\u20AA"+ selectedItems.get(i).getSalePrice());
+					lblSalePrice.setVisible(true);
+		            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+		            saleImg.setImage(saleImage);
+					saleImg.setVisible(true);
+				}
+				else {
+					lblSalePrice.setVisible(false);
+					saleImg.setVisible(false);
+				}
 				for (Item item : selectedItems) {
 					if (Integer.toString(item.getID()).equals(anchorPane.getId())) {
 						anchorPane.setOnMouseClicked(evt -> {
@@ -376,11 +392,13 @@ public class CatalogController {
 							if(item.isOnSale()) {
 								lblSalePrice.setText("\u20AA"+ item.getSalePrice());
 								lblSalePrice.setVisible(true);
-								lblOnSale.setVisible(true);
+					            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+					            saleImg.setImage(saleImage);
+								saleImg.setVisible(true);
 							}
 							else {
 								lblSalePrice.setVisible(false);
-								lblOnSale.setVisible(false);
+								saleImg.setVisible(false);
 							}
 						});
 					}

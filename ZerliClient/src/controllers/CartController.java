@@ -21,11 +21,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import logic.Item;
 
 public class CartController {
-	  @FXML
-	    private Button AddGreeting;
+	@FXML
+	private Button AddGreeting;
 	@FXML
 	private Button close;
 
@@ -55,22 +56,22 @@ public class CartController {
 
 	@FXML
 	private Text totalItemPrice;
-	
+
 	static Text totalItemsPrice;
 	static GridPane staticGrid;
 
-    @FXML
-    private Button checkOut;
-
+	@FXML
+	private Button checkOut;
 
 	public static ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
 	public static Map<Integer, ArrayList<String>> itemToAmountPremade = CatalogController.itemToAmount;
-	public static double amountToPay=0;
+	public static double amountToPay = 0;
 	public boolean flag = true;
-    @FXML
-    void btnCheckout(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
+
+	@FXML
+	void btnCheckout(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreenNew2.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -78,10 +79,11 @@ public class CartController {
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-    }
-    @FXML
-    void btnGreeting(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
+	}
+
+	@FXML
+	void btnGreeting(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddGreeting.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -89,26 +91,25 @@ public class CartController {
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-    }
+	}
+
 	@FXML
 	void btnClose(MouseEvent event) {
 		Stage stage = (Stage) close.getScene().getWindow();
 		stage.close();
 	}
 
-	
 	@FXML
 	void initialize() {
-		amountToPay=0;
-		staticGrid=grid;
-		totalItemsPrice=totalItemPrice;
+		amountToPay = 0;
+		staticGrid = grid;
+		totalItemsPrice = totalItemPrice;
 		int column = 0;
 		int row = 1;
 		Map<Integer, ArrayList<String>> itemAmount = new HashMap<Integer, ArrayList<String>>();
 		ArrayList<Item> items = new ArrayList<>();
 		itemAmount = itemToAmountPremade;
 		items = selectedProductsPremade;
-
 
 		try {
 			grid.getChildren().clear();
@@ -120,7 +121,12 @@ public class CartController {
 
 				ItemInCartController itemInCartController = fxmlLoader.getController();
 				itemInCartController.setData(items.get(i), itemAmount.get(items.get(i).getID()).get(3));
-				amountToPay += Integer.parseInt(itemAmount.get(items.get(i).getID()).get(3)) * items.get(i).getPrice();
+				if (items.get(i).isOnSale()) {
+					amountToPay += Integer.parseInt(itemAmount.get(items.get(i).getID()).get(3))
+							* items.get(i).getSalePrice();
+				} else
+					amountToPay += Integer.parseInt(itemAmount.get(items.get(i).getID()).get(3))
+							* items.get(i).getPrice();
 				if (column == 1) {
 					column = 0;
 					row++;
@@ -140,7 +146,7 @@ public class CartController {
 				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
 				grid.setMaxHeight(Region.USE_PREF_SIZE);
 			}
-			for(int i = 0; i < customItemInCart.size(); i++) {
+			for (int i = 0; i < customItemInCart.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/ItemInCart.fxml"));
 				AnchorPane anchorPane = fxmlLoader.load();
@@ -167,7 +173,7 @@ public class CartController {
 				grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
 				grid.setMaxHeight(Region.USE_PREF_SIZE);
 			}
-			totalItemPrice.setText("\u20AA" +Double.toString(amountToPay));
+			totalItemPrice.setText("\u20AA" + Double.toString(amountToPay));
 
 		} catch (IOException e) {
 			e.printStackTrace();

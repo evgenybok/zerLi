@@ -32,6 +32,9 @@ public class ItemController {
     @FXML
     private Label lblSlash;
 
+    @FXML
+    private ImageView saleImg;
+
     public void setData(Item item) {
 
         priceLabel.setText("\u20AA"+item.getPrice());
@@ -42,7 +45,10 @@ public class ItemController {
        // img.setFitWidth(150);
         serial.setText(Integer.toString(item.getID()));
         if(item.isOnSale()) {
-        	lblOnSale.setVisible(true);
+        	//lblOnSale.setVisible(true);
+            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+            saleImg.setImage(saleImage);
+        	saleImg.setVisible(true);
         	lblSalePrice.setText("\u20AA"+Double.toString(item.getSalePrice()));
         	lblSalePrice.setVisible(true);
         	lblSlash.setVisible(true);

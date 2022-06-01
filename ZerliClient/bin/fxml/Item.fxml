@@ -54,6 +54,11 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <ImageView fx:id="saleImg" fitHeight="46.0" fitWidth="57.0" layoutX="86.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../images/images/sale1.png" />
+         </image>
+      </ImageView>
    </children>
    <styleClass>
       <String fx:value="flowers-item" />

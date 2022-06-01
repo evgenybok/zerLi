@@ -50,12 +50,12 @@ public class Query {
 	}
 
 	public static boolean Disconnect(User user) {
-		String query = ("SELECT * FROM zerli.users;");
+		String query = ("SELECT * FROM zerli.users WHERE id="+user.getID()+";");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				String query1 = ("UPDATE users SET LoggedIn=false WHERE id=" + user.getID() + ";");
+				String query1 = ("UPDATE users SET LoggedIn="+false+";");
 				st.executeUpdate(query1);
 				return true;
 			}
@@ -65,31 +65,33 @@ public class Query {
 			return false;
 		}
 	}
+
 	/**
-     * @return ArrayList of users in DB
-     */
-    public static ArrayList<User> GetUsersDB() {
-        ArrayList<User> users = new ArrayList<>();
-        String query = "SELECT FROM zerli.users;";
-        try {
-            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                String username = rs.getString("Username");
-                String password = rs.getString("Password");
-                boolean Loggedin = rs.getBoolean("LoggedIn");
-                String ID = rs.getString("id");
-                String Firstname = rs.getString("FirstName");
-                String Lastname = rs.getString("LastName");
-                String role = rs.getString("Role");
-                String Phonenumber = rs.getString("PhoneNumber");
-                String Email = rs.getString("Email");
-                users.add(new User(username, password, Loggedin, ID, Firstname, Lastname, role, Phonenumber, Email));
-            }
-        } catch (SQLException e) {
-        }
-        return users;
-    }
+	 * @return ArrayList of users in DB
+	 */
+	public static ArrayList<User> GetUsersDB() {
+		ArrayList<User> users = new ArrayList<>();
+		String query = "SELECT FROM zerli.users;";
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String username = rs.getString("Username");
+				String password = rs.getString("Password");
+				boolean Loggedin = rs.getBoolean("LoggedIn");
+				String ID = rs.getString("id");
+				String Firstname = rs.getString("FirstName");
+				String Lastname = rs.getString("LastName");
+				String role = rs.getString("Role");
+				String Phonenumber = rs.getString("PhoneNumber");
+				String Email = rs.getString("Email");
+				users.add(new User(username, password, Loggedin, ID, Firstname, Lastname, role, Phonenumber, Email));
+			}
+		} catch (SQLException e) {
+		}
+		return users;
+	}
+
 	public static String getItemName(String data) {
 		String query = ("SELECT * FROM zerli.item;");
 		HashMap<String, ArrayList<String>> map = new HashMap<>();
@@ -111,7 +113,7 @@ public class Query {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int OrderID = rs.getInt("ID");
-				//String imgSrc = rs.getString("imgSrc");
+				// String imgSrc = rs.getString("imgSrc");
 				String Name = rs.getString("Name");
 				double price = rs.getDouble("Price");
 				String Color = rs.getString("Color");
@@ -133,22 +135,22 @@ public class Query {
 		}
 	}
 
-	public static ArrayList<Item> GetPremadeItems(){ 
-		String query = ("SELECT * FROM zerli.item WHERE ID LIKE '2%';");
+	public static ArrayList<Item> GetPremadeItems() {
+		String query = "SELECT * FROM zerli.item WHERE ID LIKE '2%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-					int ID = rs.getInt("ID");
-					String imgSrc = rs.getString("imgSrc");
-					String Name = rs.getString("Name");
-					Double Price = rs.getDouble("Price");
-					String Color = rs.getString("color");
-					String Type = rs.getString("Type");
-					boolean onSale= rs.getBoolean("onSale");
-					Double salePrice=rs.getDouble("salePrice");
-					items.add(new Item(ID,imgSrc,Name,Price,Color,Type,onSale,salePrice));
+				int ID = rs.getInt("ID");
+				String imgSrc = rs.getString("imgSrc");
+				String Name = rs.getString("Name");
+				Double Price = rs.getDouble("Price");
+				String Color = rs.getString("color");
+				String Type = rs.getString("Type");
+				boolean onSale = rs.getBoolean("onSale");
+				Double salePrice = rs.getDouble("salePrice");
+				items.add(new Item(ID, imgSrc, Name, Price, Color, Type, onSale, salePrice));
 			}
 		} catch (SQLException e) {
 
@@ -156,23 +158,23 @@ public class Query {
 		return items;
 
 	}
-	
-	public static ArrayList<Item> GetSelfAssemblyItems(){ 
-		String query = ("SELECT * FROM zerli.item WHERE ID LIKE '1%';");
+
+	public static ArrayList<Item> GetSelfAssemblyItems() {
+		String query = "SELECT * FROM zerli.item WHERE ID LIKE '1%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-					int ID = rs.getInt("ID");
-					String imgSrc = rs.getString("imgSrc");
-					String Name = rs.getString("Name");
-					Double Price = rs.getDouble("Price");
-					String Color = rs.getString("color");
-					String Type = rs.getString("Type");
-					boolean onSale= rs.getBoolean("onSale");
-					Double salePrice=rs.getDouble("salePrice");
-					items.add(new Item(ID,imgSrc,Name,Price,Color,Type,onSale,salePrice));
+				int ID = rs.getInt("ID");
+				String imgSrc = rs.getString("imgSrc");
+				String Name = rs.getString("Name");
+				Double Price = rs.getDouble("Price");
+				String Color = rs.getString("color");
+				String Type = rs.getString("Type");
+				boolean onSale = rs.getBoolean("onSale");
+				Double salePrice = rs.getDouble("salePrice");
+				items.add(new Item(ID, imgSrc, Name, Price, Color, Type, onSale, salePrice));
 			}
 		} catch (SQLException e) {
 

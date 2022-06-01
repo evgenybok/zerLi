@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.awt.Color;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,9 +64,16 @@ public class ItemInCartController extends CustomItemViewController {
 	public void setData(Item item, String amount) {
 		this.item = item;
 		amountLabel.setText(amount);
-		priceLabel.setText("\u20AA" + item.getPrice()); // shekel unicode
+		if (!item.isOnSale()) {
+			priceLabel.setText("\u20AA" + item.getPrice()); // shekel unicode
+			totalPriceLabel.setText("\u20AA" + Double.toString(Integer.parseInt(amount) * item.getPrice()));
+		}
+		else {
+			priceLabel.setText("\u20AA" + item.getSalePrice()); // shekel unicode
+			totalPriceLabel.setText("\u20AA" + Double.toString(Integer.parseInt(amount) * item.getSalePrice()));
+		}
 		nameLabel.setText(item.getName());
-		totalPriceLabel.setText("\u20AA" + Double.toString(Integer.parseInt(amount) * item.getPrice()));
+
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
 		img.setImage(image);
 	}
@@ -73,8 +82,11 @@ public class ItemInCartController extends CustomItemViewController {
 		bouquetNumber = Integer.parseInt(customItemData[3]);
 		amountLabel.setText("1");
 		priceLabel.setText("\u20AA" + customItemData[2].toString());
-		nameLabel.setText(customItemData[0] + ": " + customItemData[1]);
 		totalPriceLabel.setText("\u20AA" + customItemData[2]);
+		/*
+		 * if (item.isOnSale()) { //price label font color }
+		 */
+		nameLabel.setText(customItemData[0] + ": " + customItemData[1]);
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/SA2.png"))));
 		img.setImage(image);
 	}
