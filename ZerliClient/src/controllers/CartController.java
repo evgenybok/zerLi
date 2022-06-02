@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -21,20 +23,29 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import logic.Item;
 
 public class CartController {
 	@FXML
 	private Button AddGreeting;
+
+	@FXML
+	private Button checkOut;
+
 	@FXML
 	private Button close;
+
+	@FXML
+	private Label creditAmount;
 
 	@FXML
 	private GridPane grid;
 
 	@FXML
 	private Label lblTotalPrice;
+
+	@FXML
+	private Label lblZerLiCredit;
 
 	@FXML
 	private ScrollPane scrollPane;
@@ -52,16 +63,13 @@ public class CartController {
 	private Label titlePrice;
 
 	@FXML
-	public static Label titleTotalPrice;
+	private Label titleTotalPrice;
 
 	@FXML
 	private Text totalItemPrice;
 
 	static Text totalItemsPrice;
 	static GridPane staticGrid;
-
-	@FXML
-	private Button checkOut;
 
 	public static ArrayList<String[]> customItemInCart = CustomCatalogController.customItemInCart;
 	public static ArrayList<Item> selectedProductsPremade = CatalogController.selectedProducts;
@@ -71,6 +79,10 @@ public class CartController {
 
 	@FXML
 	void btnCheckout(MouseEvent event) throws IOException {
+		if (grid.getChildren().isEmpty() || Double.parseDouble(totalItemPrice.getText().substring(1)) == 0) {
+			JOptionPane.showMessageDialog(null, "Your cart is empty!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreenNew2.fxml")));
 		Scene scene = new Scene(parent);
@@ -104,6 +116,7 @@ public class CartController {
 		amountToPay = 0;
 		staticGrid = grid;
 		totalItemsPrice = totalItemPrice;
+		creditAmount.setText((Double.toString(CustomerScreenController.accountZerliCredit)));
 		int column = 0;
 		int row = 1;
 		Map<Integer, ArrayList<String>> itemAmount = new HashMap<Integer, ArrayList<String>>();

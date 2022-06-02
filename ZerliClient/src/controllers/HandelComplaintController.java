@@ -25,7 +25,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleComplaint;
-import logic.SingleOrder;
 
 public class HandelComplaintController {
 
@@ -65,7 +64,8 @@ public class HandelComplaintController {
 		loginStage.centerOnScreen();
     }
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void initialize() {
         assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
         assert IdSearch != null : "fx:id=\"IdSearch\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
@@ -93,7 +93,8 @@ public class HandelComplaintController {
 			e.printStackTrace();
 		}
     }
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void Serach(MouseEvent event) {
     	ArrayList<SingleComplaint> complain = new ArrayList<>();
 		String userid = IdSearch.getText();

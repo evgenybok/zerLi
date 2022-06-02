@@ -3,7 +3,6 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -29,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,15 +43,6 @@ public class PaymentScreenController {
 	double totalPrice = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 	double totalPriceAfterDeliveryFee;
 	boolean DeliveryFlag = false, DeliveryExpressFlag = false;
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private DatePicker DateSupply;
-	@FXML
-	private TextField SupplyTime;
-	@FXML
-	private URL location;
 
 	@FXML
 	private TextField Adress;
@@ -64,42 +54,13 @@ public class PaymentScreenController {
 	private Button Back;
 
 	@FXML
-	private TextField CVV;
+	private ImageView BitCoinImg;
 
-	@FXML
-	private TextField CardDate;
-
-	@FXML
-	private TextField CardNum;
-
-	@FXML
-	private DatePicker Dates;
-
-	@FXML
-	private Button Pay;
-
-	@FXML
-	private TextField Phone;
-
-	@FXML
-	private TextField ReciverName;
-
-	@FXML
-	private ComboBox<String> StoreName;
-
-	@FXML
-	private CheckBox DeliveryBox;
-
-	@FXML
-	private CheckBox PickUpBox;
 	@FXML
 	private ImageView BoxImg;
 
 	@FXML
-	private ImageView DeliveryImg;
-
-	@FXML
-	private ImageView MailImg;
+	private TextField CVV;
 
 	@FXML
 	private ImageView Card1Img;
@@ -108,15 +69,61 @@ public class PaymentScreenController {
 	private ImageView Card2Img;
 
 	@FXML
-	private ImageView BitCoinImg;
+	private TextField CardDate;
+
+	@FXML
+	private TextField CardNum;
+
 	@FXML
 	private ImageView CheckoutImg;
+
 	@FXML
-	private Text delviryFee;
+	private DatePicker DateSupply;
+
 	@FXML
-	private TextField totalPriceLabel;
+	private CheckBox DeliveryBox;
+
+	@FXML
+	private ImageView DeliveryImg;
+
 	@FXML
 	private CheckBox ExpPick;
+
+	@FXML
+	private ImageView MailImg;
+
+	@FXML
+	private Button Pay;
+
+	@FXML
+	private TextField Phone;
+
+	@FXML
+	private CheckBox PickUpBox;
+
+	@FXML
+	private TextField ReciverName;
+
+	@FXML
+	private ComboBox<String> StoreName;
+
+	@FXML
+	private TextField SupplyTime;
+
+	@FXML
+	private Label amountToPay;
+
+	@FXML
+	private Label creditAmount;
+
+	@FXML
+	private Text delviryFee;
+
+	@FXML
+	private Label lblTotalAmount;
+
+	@FXML
+	private Label lblZerLiCredit;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -135,8 +142,8 @@ public class PaymentScreenController {
 		if (DeliveryBox.isSelected()) {
 			PickUpBox.setDisable(true);
 			ExpPick.setDisable(true);
-			delviryFee.setText("12.90");
-			changeAmount(12.90);
+			delviryFee.setText("12.00");
+			changeAmount(12.00);
 			DeliveryFlag = true;
 			DeliveryExpressFlag = false;
 		} else {
@@ -178,8 +185,8 @@ public class PaymentScreenController {
 			PickUpBox.setDisable(true);
 			DeliveryExpressFlag = true;
 			DeliveryFlag = true;
-			delviryFee.setText("12.90");
-			changeAmount(12.90);
+			delviryFee.setText("12.00");
+			changeAmount(12.00);
 		} else {
 			DeliveryFlag = false;
 			DeliveryExpressFlag = false;
@@ -258,6 +265,7 @@ public class PaymentScreenController {
 		changeAmount(0.00);
 		delviryFee.setText("0.00");
 		showCreditDetail();
+		creditAmount.setText((Double.toString(CustomerScreenController.accountZerliCredit)));
 	}
 
 	@FXML
@@ -288,8 +296,7 @@ public class PaymentScreenController {
 			}
 			String tu = SupplyTime.getText(); // change
 			String supplyDateTime = change(su, tu);
-			if(supplyDateTime==null)
-			{
+			if (supplyDateTime == null) {
 				JOptionPane.showMessageDialog(null, "Date has already passed!", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -304,17 +311,14 @@ public class PaymentScreenController {
 
 			try {
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
-				
+
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
 				CustomCatalogController.customItemInCart.clear();
-				CustomCatalogController.bouquetCounter=0;
+				CustomCatalogController.bouquetCounter = 0;
 
-				/*
-				 * CustomCatalogController.itemToAmount.clear();
-				 * CustomCatalogController.selectedProducts.clear();
-				 */
+				AddGreetingController.Greeting = null;
 				((Node) event.getSource()).getScene().getWindow().hide();
 				Parent parent = FXMLLoader
 						.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderComplete.fxml")));
@@ -337,10 +341,9 @@ public class PaymentScreenController {
 	boolean checkSupplyTime() {
 		if (SupplyTime.getText().length() != 5)
 			return false;
-		String temp=SupplyTime.getText();
-		if(!(temp.charAt(2)==':'))
-		{
-			temp=temp.substring(0,2) + ":" + temp.substring(3,5);
+		String temp = SupplyTime.getText();
+		if (!(temp.charAt(2) == ':')) {
+			temp = temp.substring(0, 2) + ":" + temp.substring(3, 5);
 		}
 		String[] time = temp.split(":");
 		int hour = Integer.parseInt(time[0]);
@@ -386,7 +389,15 @@ public class PaymentScreenController {
 
 	void changeAmount(Double deliveryFee) {
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
-		totalPriceLabel.setText(Double.toString(totalPriceAfterDeliveryFee));
+		double temp = totalPrice - CustomerScreenController.accountZerliCredit; // 30-60=-30
+		double toReduce = 0;
+		if (temp < 0) {
+			toReduce = CustomerScreenController.accountZerliCredit + temp; // 60+-30=30
+			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
+					+ totalPriceAfterDeliveryFee + "-" + toReduce + ")");
+		} else
+			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee-CustomerScreenController.accountZerliCredit) + " ("
+					+ totalPriceAfterDeliveryFee + "-" + CustomerScreenController.accountZerliCredit + ")");
 	}
 
 	private String CheckWhichSupplyMethod() {
@@ -396,7 +407,7 @@ public class PaymentScreenController {
 		return "PickUp";
 	}
 
-	//????
+	// ????
 	public Date calSupplyDate() {
 		LocalDate localDate = DateSupply.getValue();
 		LocalDate today = LocalDate.now();

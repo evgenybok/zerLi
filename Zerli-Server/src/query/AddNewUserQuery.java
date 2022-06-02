@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import logic.Account;
-import logic.Complain;
 import logic.User;
 
 public class AddNewUserQuery {

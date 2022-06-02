@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import logic.Complain;
 import logic.SingleComplaint;
-import logic.SingleOrder;
 
 public class complaintQuery {
 

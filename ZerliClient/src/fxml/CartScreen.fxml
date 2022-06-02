@@ -79,7 +79,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="229.0" text=" Total Items Price:">
+            <Label fx:id="lblTotalPrice" prefHeight="52.0" prefWidth="207.0" text=" Total Items Price:">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                </font>
@@ -87,7 +87,10 @@
             <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="172.13671875">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-               </font></Text>
+               </font>
+               <HBox.margin>
+                  <Insets top="1.0" />
+               </HBox.margin></Text>
             <VBox alignment="CENTER" prefHeight="60.0" prefWidth="148.0">
                <children>
                   <Button fx:id="AddGreeting" mnemonicParsing="false" onMouseClicked="#btnGreeting" prefHeight="38.0" prefWidth="124.0" style="-fx-background-radius: 20;" styleClass="newbuttom" stylesheets="@../../images/css/styleNew.css" text="Add Greeting">
@@ -130,10 +133,37 @@
       <HBox prefHeight="115.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label prefHeight="30.0" prefWidth="85.0" text="My Cart" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="22.0" />
-         </font>
-      </Label>
+      <HBox prefHeight="33.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="30.0" prefWidth="85.0" text="My Cart">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="300.0" top="2.0" />
+               </HBox.margin>
+            </Label>
+            <HBox prefHeight="33.0" prefWidth="315.0">
+               <children>
+                  <Label fx:id="lblZerLiCredit" prefHeight="24.0" prefWidth="125.0" text="Zer-Li Credit:">
+                     <font>
+                        <Font name="Cambria Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="120.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="creditAmount" prefHeight="24.0" prefWidth="66.0" text="₪">
+                     <font>
+                        <Font name="Cambria Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
    </top>
 </BorderPane>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -73,7 +74,7 @@ public class CustomerSurveyController {
         Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
     	PersonImage.setImage(personImage);
     	Image surveyImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-survey-100.png")));
-    	survImage.setImage(personImage);
+    	survImage.setImage(surveyImage);
     }
 
 }

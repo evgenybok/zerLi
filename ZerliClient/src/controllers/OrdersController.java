@@ -160,9 +160,14 @@ public class OrdersController {
 
 					}
 					// supply time after 1hour - no refund
-					else if (x.before(calendar2.getTime())) {
+					else if (x.before(calendar2.getTime())&& x.after(date)) {
 						toCancel.setRefund((toCancel.getPrice()) * 0);
 
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"The option to cancel this order has expired, in case you did not receive the order - a refund will be issued to your account",
+								"Info", JOptionPane.INFORMATION_MESSAGE);
+						return;
 					}
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -172,9 +177,9 @@ public class OrdersController {
 						JOptionPane.INFORMATION_MESSAGE);
 				flagExists = true;
 				initialize();
-			} 
+			}
 		}
-		if (flagExists==false) {
+		if (flagExists == false) {
 			JOptionPane.showMessageDialog(null, "Wrong Order Number!!!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}

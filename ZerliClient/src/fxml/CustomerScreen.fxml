@@ -180,6 +180,20 @@
                   <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="79.0" prefWidth="800.0">
                      <children>
                         <HBox prefHeight="122.0" prefWidth="115.0" />
+                        <HBox prefHeight="79.0" prefWidth="296.0">
+                           <children>
+                              <Label fx:id="lblZerLiCredit" prefHeight="24.0" prefWidth="125.0" text="Zer-Li Credit:">
+                                 <font>
+                                    <Font name="Cambria Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="creditAmount" text="₪">
+                                 <font>
+                                    <Font name="Cambria Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                   <ImageView fx:id="CustomCatalogImage" fitHeight="82.0" fitWidth="77.0" layoutX="533.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">

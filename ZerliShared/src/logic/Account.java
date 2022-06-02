@@ -2,7 +2,7 @@ package logic;
 
 import java.io.Serializable;
 
-public class Account implements Serializable{
+public class Account implements Serializable {
 
 	/**
 	 * 
@@ -14,16 +14,33 @@ public class Account implements Serializable{
 	private String CVV;
 	private double TotalRefund;
 	private String Status;
-	
-	public Account(String User_ID,String CreditCardNumber,String ExpiryDate,String CVV,double TotalRefund,String Status)
-	{
-		this.User_ID=User_ID;
-		this.CreditCardNumber=CreditCardNumber;
-		this.ExpiryDate=ExpiryDate;
-		this.CVV=CVV;
-		this.TotalRefund=TotalRefund;
-		this.Status=Status;
+	private double ZerliCredit;
+
+	public Account(String User_ID, String CreditCardNumber, String ExpiryDate, String CVV, double TotalRefund,
+			String Status, double ZerliCredit) {
+		this.User_ID = User_ID;
+		this.CreditCardNumber = CreditCardNumber;
+		this.ExpiryDate = ExpiryDate;
+		this.CVV = CVV;
+		this.TotalRefund = TotalRefund;
+		this.Status = Status;
+		this.ZerliCredit = ZerliCredit;
 	}
+
+	
+
+	public Account(String User_ID, String CreditCardNumber, String ExpiryDate, String CVV, double TotalRefund,
+			String Status) {
+		this.User_ID = User_ID;
+		this.CreditCardNumber = CreditCardNumber;
+		this.ExpiryDate = ExpiryDate;
+		this.CVV = CVV;
+		this.TotalRefund = TotalRefund;
+		this.Status = Status;
+	}
+
+
+
 	public String getUser_ID() {
 		return User_ID;
 	}
@@ -72,8 +89,16 @@ public class Account implements Serializable{
 		Status = status;
 	}
 
+	public double getZerliCredit() {
+		return ZerliCredit;
+	}
+
+	public void setZerliCredit(double zerliCredit) {
+		ZerliCredit = zerliCredit;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-		
+
 }

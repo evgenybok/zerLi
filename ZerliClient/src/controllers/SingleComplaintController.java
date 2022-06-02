@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.SingleComplaint;
-import logic.SingleOrder;
 
 public class SingleComplaintController {
 	public static  String user_id;

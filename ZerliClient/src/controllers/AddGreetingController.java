@@ -18,54 +18,49 @@ import javafx.stage.Stage;
 public class AddGreetingController {
 	public static String Greeting;
 	@FXML
-    private Button Back;
-	 @FXML
-	    private ResourceBundle resources;
+	private Button Back;
+	@FXML
+	private ResourceBundle resources;
 
-	    @FXML
-	    private URL location;
+	@FXML
+	private URL location;
 
-	    @FXML
-	    private Button done;
+	@FXML
+	private Button done;
 
-	    @FXML
-	    private TextArea txtGreeting;
-	    
-	    @FXML
-	    void btnDone(MouseEvent event) throws IOException {
-	    	if(txtGreeting.getText().isEmpty())
-	    	{
-	    		Greeting=null;
-	    	}
-	    	else
-	    	{
-	    		Greeting=txtGreeting.getText();
-	    		
-	    	}
-	    	((Node) event.getSource()).getScene().getWindow().hide();
-			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
-			Scene scene = new Scene(parent);
-			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			deliveryDetailsStage.setTitle("Shopping Cart");
-			deliveryDetailsStage.setScene(scene);
-			deliveryDetailsStage.show();
-			deliveryDetailsStage.centerOnScreen();
-	    }
-	    @FXML
-	    void btnBack(MouseEvent event) throws IOException {
-	    	((Node) event.getSource()).getScene().getWindow().hide();
-			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
-			Scene scene = new Scene(parent);
-			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			deliveryDetailsStage.setTitle("Shopping Cart");
-			deliveryDetailsStage.setScene(scene);
-			deliveryDetailsStage.show();
-			deliveryDetailsStage.centerOnScreen();
-	    }
+	@FXML
+	private TextArea txtGreeting;
 
-	    @FXML
-	    void initialize() {
-	        // Image greetingimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Greeting.jpg")));
-	        // GreetingImage.setImage(greetingimage);
-	    }
+	@FXML
+	void btnDone(MouseEvent event) throws IOException {
+			Greeting = txtGreeting.getText();
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		deliveryDetailsStage.setTitle("Shopping Cart");
+		deliveryDetailsStage.setScene(scene);
+		deliveryDetailsStage.show();
+		deliveryDetailsStage.centerOnScreen();
+	}
+
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+		Scene scene = new Scene(parent);
+		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		deliveryDetailsStage.setTitle("Shopping Cart");
+		deliveryDetailsStage.setScene(scene);
+		deliveryDetailsStage.show();
+		deliveryDetailsStage.centerOnScreen();
+	}
+
+	@FXML
+	void initialize() {
+		txtGreeting.setText(Greeting);
+		// Image greetingimage = new
+		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Greeting.jpg")));
+		// GreetingImage.setImage(greetingimage);
+	}
 }
