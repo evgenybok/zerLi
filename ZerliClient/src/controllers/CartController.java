@@ -22,7 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.Item;
 
 public class CartController {
@@ -83,32 +85,69 @@ public class CartController {
 			JOptionPane.showMessageDialog(null, "Your cart is empty!", "Info", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreenNew2.fxml")));
-		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Checkout");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
+		Stage stage;
+		try {
+			stage = CustomCatalogController.customCatalogStage;
+			stage.hide();
+		} catch (Exception e) {
+		}
+
+		try {
+			stage = CatalogController.premadeCatalogStage;
+			stage.hide();
+		} catch (Exception e) {
+		}
+        try {
+            stage = CustomerScreenController.customerScreenStage;
+            stage.hide();
+        } catch (Exception e) {
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/PaymentScreenNew2.fxml")));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage paymentScreen = new Stage();
+        paymentScreen.initModality(Modality.APPLICATION_MODAL);
+        paymentScreen.initStyle(StageStyle.UNDECORATED);
+        paymentScreen.setTitle("Checkout");
+        paymentScreen.setScene((new Scene(root1)));
+        paymentScreen.show();
+        paymentScreen.centerOnScreen();
 	}
 
 	@FXML
 	void btnGreeting(MouseEvent event) throws IOException {
-		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddGreeting.fxml")));
-		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Greeting");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/AddGreeting.fxml")));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage cartDetailsScreen = new Stage();
+        cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+        cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+        cartDetailsScreen.setTitle("Greeting");
+        cartDetailsScreen.setScene((new Scene(root1)));
+        cartDetailsScreen.show();
+        cartDetailsScreen.centerOnScreen();
 	}
 
 	@FXML
 	void btnClose(MouseEvent event) {
 		Stage stage = (Stage) close.getScene().getWindow();
 		stage.close();
+
+		Stage stage1;
+		try {
+			stage1 = CustomCatalogController.customCatalogStage;
+			stage1.show();
+		} catch (Exception e) {
+		}
+		try {
+			stage1 = CatalogController.premadeCatalogStage;
+			stage1.show();
+		} catch (Exception e) {
+		}
+        try {
+            stage = CustomerScreenController.customerScreenStage;
+            stage.show();
+        } catch (Exception e) {
+        }
+
 	}
 
 	@FXML

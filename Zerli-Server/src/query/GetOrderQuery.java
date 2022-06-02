@@ -162,4 +162,30 @@ public class GetOrderQuery {
 
 	}
 
+	public static void UpdateRefundUsed(String details) {
+		String[] str = details.split("@", 2);
+		double refundUsed = Double.parseDouble(str[0]);
+		double totalRefund = 0;
+		String query = ("SELECT TotalRefund FROM zerli.account_details WHERE User_ID = '" + str[1] + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				totalRefund = rs.getDouble("TotalRefund");
+			}
+		} catch (SQLException e) {
+
+		}
+		double updatedRefund = totalRefund - refundUsed;
+		String query2 = ("UPDATE account_details SET TotalRefund=" + updatedRefund + " WHERE User_ID = '" + str[1]
+				+ "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query2);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+
+		}
+	}
+
 }

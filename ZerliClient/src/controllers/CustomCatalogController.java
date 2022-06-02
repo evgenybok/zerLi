@@ -122,6 +122,8 @@ public class CustomCatalogController {
 	static Button staticViewCustomizedBouquet;
 
 	static Button staticAddToCart;
+	
+	public static Stage customCatalogStage;	//*********************
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
 	private ArrayList<Item> catalogProducts = new ArrayList<Item>();
@@ -299,6 +301,8 @@ public class CustomCatalogController {
 	@FXML
 	void btnMyCart(MouseEvent event) {
 		try {
+			customCatalogStage = (Stage) addToCart.getScene().getWindow(); //*********************
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage cartDetailsScreen = new Stage();

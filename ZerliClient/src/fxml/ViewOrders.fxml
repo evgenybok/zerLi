@@ -49,7 +49,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="22.0">
                            <children>
-                              <Text fx:id="UserName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                              <Text fx:id="UserName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                                  <font>
                                     <Font name="Cambria" size="20.0" />
                                  </font>
@@ -82,7 +82,7 @@
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="44.0">
                            <children>
-                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" wrappingWidth="142.13671875">
+                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="142.13671875">
                                  <font>
                                     <Font name="Cambria" size="20.0" />
                                  </font>
@@ -226,45 +226,66 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="934.0" spacing="5.0" style="-fx-background-color: d3d3d3;">
                      <children>
-                        <Label fx:id="orderNum1" prefHeight="29.0" prefWidth="97.0" text=" Order Num">
+                        <Label fx:id="orderNum1" prefHeight="29.0" prefWidth="70.0" text=" Order #">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
                         </Label>
                         <Label fx:id="price1" alignment="CENTER" prefHeight="29.0" prefWidth="61.0" text="Price">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="shop1" alignment="CENTER" prefHeight="29.0" prefWidth="139.0" text="Store Name">
+                        <Label fx:id="shop1" alignment="CENTER" prefHeight="29.0" prefWidth="90.0" text="Store Name">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="orderDate1" alignment="CENTER" prefHeight="29.0" prefWidth="157.0" text="Order Date">
+                        <Label fx:id="orderDate1" alignment="CENTER" prefHeight="29.0" prefWidth="93.0" text="Order Date">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="deliveryDate1" alignment="CENTER" prefHeight="29.0" prefWidth="160.0" text="Supply Date">
+                        <Label fx:id="deliveryDate1" alignment="CENTER" prefHeight="29.0" prefWidth="96.0" text="Supply Date">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="80.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="supplyType1" alignment="CENTER" prefHeight="29.0" prefWidth="154.0" text="Supply Type">
+                        <Label fx:id="supplyType1" alignment="CENTER" prefHeight="29.0" prefWidth="92.0" text="Supply Type">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="80.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="status1" alignment="CENTER" prefHeight="29.0" prefWidth="87.0" text="Status">
+                        <Label fx:id="status1" alignment="CENTER" prefHeight="29.0" prefWidth="50.0" text="Status">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="refund1" alignment="CENTER" prefHeight="29.0" prefWidth="126.0" text="Refund">
+                        <Label fx:id="refund1" alignment="CENTER" prefHeight="29.0" prefWidth="57.0" text="Refund">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
                         </Label>
                      </children>
                   </HBox>

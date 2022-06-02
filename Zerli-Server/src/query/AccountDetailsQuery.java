@@ -23,10 +23,9 @@ public class AccountDetailsQuery {
 				String CVV = rs.getString("CVV");
 				double refund = rs.getDouble("TotalRefund");
 				String status = rs.getString("Status");
-				double zerliCredit = rs.getDouble("ZerLiCredit");
 				if(userID.equals(user_ID))
 				{
-					details.add(new Account(user_ID,creditCardNumber,creditCardDate,CVV,refund,status,zerliCredit));
+					details.add(new Account(user_ID,creditCardNumber,creditCardDate,CVV,refund,status));
 				break;
 				}
 			}

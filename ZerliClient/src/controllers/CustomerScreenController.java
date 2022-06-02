@@ -84,8 +84,10 @@ public class CustomerScreenController {
 	
 	@FXML
 	private Label creditAmount;
-
+	
+	public static Stage customerScreenStage;
 	public static String accountStatus;
+	public static String userID;
 	public static double accountZerliCredit;
 
 	@FXML
@@ -103,6 +105,7 @@ public class CustomerScreenController {
 
 	@FXML
 	void btnCart(MouseEvent event) {
+		customerScreenStage = (Stage) btnCart.getScene().getWindow();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -165,7 +168,8 @@ public class CustomerScreenController {
 			@SuppressWarnings("unchecked")
 			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
 			accountStatus = account.get(0).getStatus();
-			accountZerliCredit = account.get(0).getZerliCredit();
+			accountZerliCredit = account.get(0).getTotalRefund();
+			userID=account.get(0).getUser_ID();
 		} catch (NullPointerException e) {
 		}
 		;

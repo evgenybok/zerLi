@@ -32,6 +32,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.Item;
 
 public class CatalogController {
@@ -100,6 +101,9 @@ public class CatalogController {
     
     @FXML
     private Label lblSalePrice;
+    
+	@FXML
+	public static Stage premadeCatalogStage;
 
 	static Button addToCart;
 
@@ -165,15 +169,17 @@ public class CatalogController {
 
 	@FXML
 	void btnMyCart(MouseEvent event) throws IOException {
+		premadeCatalogStage = (Stage) AddToCartBtn.getScene().getWindow();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage cartDetailsScreen = new Stage();
-			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-			cartDetailsScreen.setTitle("Cart Details");
-			cartDetailsScreen.setScene((new Scene(root1)));
-			cartDetailsScreen.show();
-			cartDetailsScreen.centerOnScreen();
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage cartDetailsScreen = new Stage();
+            cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+            cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+            cartDetailsScreen.setTitle("Cart Details");
+            cartDetailsScreen.setScene((new Scene(root1)));
+            cartDetailsScreen.show();
+            cartDetailsScreen.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

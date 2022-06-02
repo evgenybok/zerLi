@@ -171,6 +171,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case UPDATE_USED_REFUND:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		case GET_STORE_ID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
