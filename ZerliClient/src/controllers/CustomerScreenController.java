@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.Account;
 
 public class CustomerScreenController {
@@ -108,13 +109,14 @@ public class CustomerScreenController {
 		customerScreenStage = (Stage) btnCart.getScene().getWindow();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage cartDetailsScreen = new Stage();
-			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-			cartDetailsScreen.setTitle("Cart Details");
-			cartDetailsScreen.setScene((new Scene(root1)));
-			cartDetailsScreen.show();
-			cartDetailsScreen.centerOnScreen();
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage cartDetailsScreen = new Stage();
+            cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+            cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+            cartDetailsScreen.setTitle("Cart Details");
+            cartDetailsScreen.setScene((new Scene(root1)));
+            cartDetailsScreen.show();
+            cartDetailsScreen.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

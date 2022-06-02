@@ -111,32 +111,22 @@ public class OrdersController {
 	@FXML
 	void btnCancelOrder(MouseEvent event) {
 		boolean flagExists = false;
-		int orderNumber = 0;
-		try {
-			orderNumber = Integer.parseInt(cancelOrderNumber.getText());
-		} catch (NumberFormatException e1) {
-			JOptionPane.showMessageDialog(null, "Wrong input!!!", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
 		for (int i = 0; i < Orders.size(); i++) {
 			if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Cancelled")) {
-				JOptionPane.showMessageDialog(null, "This order was already cancelled!","Info", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "This order is already cancelled!!!", "Error",
+						JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Delivered")) {
-				JOptionPane.showMessageDialog(null, "This order was already delivered!","Info", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "This order is already delivered!!!", "Error",
+						JOptionPane.ERROR_MESSAGE);
 				return;
-			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
-					&& Orders.get(i).getStatus().equals("Compensation")) {
-				JOptionPane.showMessageDialog(null, "This order was already handled!","Info", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
-					&& Orders.get(i).getStatus().equals("Cancel Request")) {
-				JOptionPane.showMessageDialog(null, "Cancel request in progress!","Info", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
-					&& (Orders.get(i).getStatus().equals("Approved") || Orders.get(i).getStatus().equals("Pending"))) {
+			}
+
+			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
+					&& (Orders.get(i).getStatus().equals("Approved")
+							|| Orders.get(i).getStatus().equals("WaitForApprove"))) {
 				toCancel = Orders.get(i);
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = new Date();
@@ -171,7 +161,7 @@ public class OrdersController {
 
 					}
 					// supply time after 1hour - no refund
-					else if (x.before(calendar2.getTime()) && x.after(date)) {
+					else if (x.before(calendar2.getTime())&& x.after(date)) {
 						toCancel.setRefund((toCancel.getPrice()) * 0);
 
 					} else {
@@ -238,6 +228,7 @@ public class OrdersController {
 		ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
 		AccountStatus.setText(account.get(0).getStatus());
 		UserName.setText(LoginScreenController.user.getUsername());
+		//accountZerliCredit = account.get(0).getZerliCredit();
 		OrdersLayout.getChildren().clear();
 		// List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 		chat.accept(new Message(MessageType.GET_ORDERS, LoginScreenController.user.getID()));

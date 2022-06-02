@@ -102,6 +102,7 @@ public class CartController {
             stage.hide();
         } catch (Exception e) {
         }
+    	((Node) event.getSource()).getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/PaymentScreenNew2.fxml")));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage paymentScreen = new Stage();
@@ -143,8 +144,8 @@ public class CartController {
 		} catch (Exception e) {
 		}
         try {
-            stage = CustomerScreenController.customerScreenStage;
-            stage.show();
+            stage1 = CustomerScreenController.customerScreenStage;
+            stage1.show();
         } catch (Exception e) {
         }
 

@@ -13,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AddGreetingController {
 	public static String Greeting;
@@ -35,25 +37,37 @@ public class AddGreetingController {
 	void btnDone(MouseEvent event) throws IOException {
 			Greeting = txtGreeting.getText();
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
-		Scene scene = new Scene(parent);
-		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		deliveryDetailsStage.setTitle("Shopping Cart");
-		deliveryDetailsStage.setScene(scene);
-		deliveryDetailsStage.show();
-		deliveryDetailsStage.centerOnScreen();
+		try {
+			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+			Scene scene = new Scene(parent);
+			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			deliveryDetailsStage.initModality(Modality.APPLICATION_MODAL);
+			deliveryDetailsStage.setTitle("Shopping Cart");
+			deliveryDetailsStage.setScene(scene);
+			deliveryDetailsStage.show();
+			deliveryDetailsStage.centerOnScreen();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
-		Scene scene = new Scene(parent);
-		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		deliveryDetailsStage.setTitle("Shopping Cart");
-		deliveryDetailsStage.setScene(scene);
-		deliveryDetailsStage.show();
-		deliveryDetailsStage.centerOnScreen();
+		try {
+			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+			Scene scene = new Scene(parent);
+			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			deliveryDetailsStage.initModality(Modality.APPLICATION_MODAL);
+			deliveryDetailsStage.setTitle("Shopping Cart");
+			deliveryDetailsStage.setScene(scene);
+			deliveryDetailsStage.show();
+			deliveryDetailsStage.centerOnScreen();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 	@FXML

@@ -27,9 +27,8 @@ CREATE TABLE `account_details` (
   `CreditCardNumber` varchar(256) NOT NULL,
   `ExpiryDate` varchar(256) NOT NULL,
   `CVV` varchar(45) NOT NULL,
-  `TotalRefund` varchar(256) DEFAULT NULL,
+  `TotalRefund` double NOT NULL DEFAULT '0',
   `Status` varchar(45) NOT NULL,
-  `ZerLiCredit` double DEFAULT '0',
   PRIMARY KEY (`User_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -40,7 +39,7 @@ CREATE TABLE `account_details` (
 
 LOCK TABLES `account_details` WRITE;
 /*!40000 ALTER TABLE `account_details` DISABLE KEYS */;
-INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259','480.0','Active',60),('0002','4580817918278719','07/2026','195','210.0','Frozen',50),('makore','ma','mam','ma','0','Active',NULL);
+INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259',270,'Active'),('0002','4580817918278719','07/2026','195',190,'Frozen'),('makore','ma','mam','ma',0,'Active');
 /*!40000 ALTER TABLE `account_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +57,9 @@ CREATE TABLE `complaint` (
   `Description` varchar(1000) NOT NULL,
   `complainStatus` varchar(45) NOT NULL,
   `Refund` double NOT NULL,
-  PRIMARY KEY (`HandelerUserID`,`OrderId`)
+  `sotreID` varchar(45) NOT NULL,
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,7 +69,7 @@ CREATE TABLE `complaint` (
 
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
-INSERT INTO `complaint` VALUES ('5463','0001','10','LO KEF LI','Handled',20),('5463','0002','11','Shaked lo Gavri','Handled',190),('5463','0001','15','ma kore','WaitForHandle',200),('5463','0001','6','ma kore','WaitForHandle',100),('5463','0002','8','ma kore','Handled',0),('5463','0002','9','lala ','Handled',20);
+INSERT INTO `complaint` VALUES ('5463','0001','1','LO KEF LI','Handled',20,'2000','2022-03-03 00:00:00'),('5463','0001','3','Shaked lo Gavri','Handled',190,'2000','2022-04-03 00:00:00'),('5463','0002','5','ma kore','WaitForHandle',200,'2000','2022-06-05 00:00:00'),('5463','0002','9','lala ','WaitForHandle',500,'2004','2023-07-12 00:00:00');
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,15 +81,14 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
-  `ID` int NOT NULL,
-  `imgSrc` varchar(255) DEFAULT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Price` double NOT NULL,
-  `Color` varchar(30) NOT NULL,
-  `Type` varchar(40) NOT NULL,
-  `onSale` tinyint NOT NULL,
-  `salePrice` double DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `ID` int DEFAULT NULL,
+  `imgSrc` text,
+  `Name` text,
+  `Price` int DEFAULT NULL,
+  `Color` text,
+  `Type` text,
+  `onSale` int DEFAULT NULL,
+  `salePrice` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,7 +98,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (10000,'/images/iris.png','Iris',28,'Blue','Self Assembly',1,25),(10003,'/images/Passion.png','Passion',35,'Yellow','Self Assembly',1,25),(10004,'/images/asterFlower.jpg','Aster',20,'Purple','Self Assembly',0,0),(10005,'/images/daisyFlower.png','Daisy',22,'White','Self Assembly',0,NULL),(10006,'/images/irisFlower.jpg','Purple Iris',25,'Purple','Self Assembly',1,20),(10007,'/images/lilyFlower.png','Lily',25,'White','Self Assembly',1,18),(10008,'/images/pinkLilyflower.jpg','Pink Lily',28,'Pink','Self Assembly',0,NULL),(10009,'/images/yellowTulipFlower.png','Yellow Tulip',16,'Yellow','Self Assembly',0,NULL),(10010,'/images/plumeriaFlower.jpg','Plumeria',22,'Yellow','Self Assembly',0,NULL),(10011,'/images/poppyFlower.png','Poppy',15,'Red','Self Assembly',0,NULL),(10012,'/images/purpleRoseFlower.png','Purple Rose',25,'Purple','Self Assembly',0,NULL),(10013,'/images/redRoseFlower.png','Red Rose',20,'Red','Self Assembly',0,NULL),(10014,'/images/tulipFlower.png','Tulip',15,'Red','Self Assembly',0,NULL),(10015,'/images/whiteRoseFlower.png','White Rose',22,'White','Self Assembly',0,NULL),(10016,'/images/whiteTulipFlower.png','White Tulip',16,'White','Self Assembly',0,NULL),(10017,'/images/zinniaFlower.jpg','Zinnia',26,'Red','Self Assembly',0,NULL),(10018,'/images/greenVase.png','Green Vase',45,'Green','Self Assembly',0,NULL),(10019,'/images/highballGlassVase.jpg','Highball Glass Vase',65,'Glass','Self Assembly',0,NULL),(10020,'/images/redVase.png','Red Vase',50,'Red','Self Assembly',0,NULL),(20001,'/images/mixedRosesBouquet.png','Mixed Roses',300,'Mixed','Premade',0,NULL),(20002,'/images/rosesBouquet.png','Premium Roses',320,'Red','Premade',1,250),(20003,'/images/pinkRosesBouquet.png','Pink Roses',280,'Pink','Premade',1,150),(20004,'/images/tulipBouquet.png','Red Tulips',150,'Red','Premade',0,NULL),(20005,'/images/whiteRosesBouquet.png','White Roses',280,'White','Premade',0,NULL),(20006,'/images/yellowTulipBouquet.png','Yellow Tulips',170,'Yellow','Premade',0,NULL),(20007,'/images/desertCactus.png','Desert Cactus',58,'Green','Premade',0,0),(20008,'/images/cactus.png','Cactus',45,'Green','Premade',1,39),(20010,'/images/pinkWeddingBouquet.jpg','Pink Wedding Bouquet',420,'Pink','Premade',0,NULL),(20011,'/images/whiteWeddingBouquet.jpg','White Wedding Bouquet',425,'White','Premade',1,325),(22221,'/images/1.jpg','Peach Roses',380,'Pink','Premade',1,310),(22222,'/images/2.jpg','Pink Rose',350,'Pink','Premade',1,290);
+INSERT INTO `item` VALUES (10000,'/images/iris.png','Iris',28,'Blue','Self Assembly',1,'25'),(10003,'/images/Passion.png','Passion',35,'Yellow','Self Assembly',1,'25'),(10004,'/images/asterFlower.jpg','Aster',20,'Purple','Self Assembly',0,'0'),(10005,'/images/daisyFlower.png','Daisy',22,'White','Self Assembly',0,NULL),(10006,'/images/irisFlower.jpg','Purple Iris',25,'Purple','Self Assembly',1,'20'),(10007,'/images/lilyFlower.png','Lily',25,'White','Self Assembly',1,'18'),(10008,'/images/pinkLilyflower.jpg','Pink Lily',28,'Pink','Self Assembly',0,NULL),(10009,'/images/yellowTulipFlower.png','Yellow Tulip',16,'Yellow','Self Assembly',0,NULL),(10010,'/images/plumeriaFlower.jpg','Plumeria',22,'Yellow','Self Assembly',0,NULL),(10011,'/images/poppyFlower.png','Poppy',15,'Red','Self Assembly',0,NULL),(10012,'/images/purpleRoseFlower.png','Purple Rose',25,'Purple','Self Assembly',0,NULL),(10013,'/images/redRoseFlower.png','Red Rose',20,'Red','Self Assembly',0,NULL),(10014,'/images/tulipFlower.png','Tulip',15,'Red','Self Assembly',0,NULL),(10015,'/images/whiteRoseFlower.png','White Rose',22,'White','Self Assembly',0,NULL),(10016,'/images/whiteTulipFlower.png','White Tulip',16,'White','Self Assembly',0,NULL),(10017,'/images/zinniaFlower.jpg','Zinnia',26,'Red','Self Assembly',0,NULL),(10018,'/images/greenVase.png','Green Vase',45,'Green','Self Assembly',0,NULL),(10019,'/images/highballGlassVase.jpg','Highball Glass Vase',65,'Glass','Self Assembly',0,NULL),(10020,'/images/redVase.png','Red Vase',50,'Red','Self Assembly',0,NULL),(20001,'/images/mixedRosesBouquet.png','Mixed Roses',300,'Mixed','Premade',0,NULL),(20002,'/images/rosesBouquet.png','Premium Roses',320,'Red','Premade',1,'250'),(20003,'/images/pinkRosesBouquet.png','Pink Roses',280,'Pink','Premade',1,'150'),(20004,'/images/tulipBouquet.png','Red Tulips',150,'Red','Premade',0,NULL),(20005,'/images/whiteRosesBouquet.png','White Roses',280,'White','Premade',0,NULL),(20006,'/images/yellowTulipBouquet.png','Yellow Tulips',170,'Yellow','Premade',0,NULL),(20007,'/images/desertCactus.png','Desert Cactus',58,'Green','Premade',0,'0'),(20008,'/images/cactus.png','Cactus',45,'Green','Premade',1,'39'),(20010,'/images/pinkWeddingBouquet.jpg','Pink Wedding Bouquet',420,'Pink','Premade',0,NULL),(20011,'/images/whiteWeddingBouquet.jpg','White Wedding Bouquet',425,'White','Premade',1,'325'),(22221,'/images/1.jpg','Peach Roses',380,'Pink','Premade',1,'310'),(22222,'/images/2.jpg','Pink Rose',350,'Pink','Premade',1,'290');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,14 +138,14 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderNumber` int NOT NULL,
   `Price` double NOT NULL,
-  `GreetingCard` varchar(1000) DEFAULT '""',
+  `GreetingCard` varchar(1000) DEFAULT NULL,
   `StoreID` varchar(50) NOT NULL,
   `OrderDate` datetime NOT NULL,
   `SupplyDate` datetime NOT NULL,
   `Status` varchar(45) NOT NULL,
   `SupplyType` varchar(45) NOT NULL,
   `UserID` varchar(45) NOT NULL,
-  `Refund` double DEFAULT '0',
+  `Refund` double NOT NULL DEFAULT '0',
   `SupplyAdress` varchar(45) DEFAULT NULL,
   `RecieverName` varchar(45) DEFAULT NULL,
   `RecieverPhone` varchar(10) DEFAULT NULL,
@@ -160,36 +160,8 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',NULL,'Nargilos','amit','0506576399',NULL),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL,NULL),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Delivered','PickUp','0001',0,NULL,NULL,NULL,NULL),(4,70,NULL,'2007','2022-03-20 08:40:00','2022-02-01 00:00:00','Cancelled','Delivery','0001',0,NULL,NULL,NULL,NULL),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Delivered','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(7,96,NULL,'2016','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(8,312.9,'ssss','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','WaitForApprove','Delivery','0001',NULL,'akko','amit','005056045','Regular'),(9,912.9,'ssss','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','WaitForApprove','Delivery','0001',NULL,'akko','amit','0343423','Regular'),(10,312.9,'ma kore','2005','2022-05-26 12:10:00','2022-06-02 22:30:00','Cancelled','Delivery','0001',312,'kerem','elad','06056050','Regular'),(11,312.9,'null','2000','2022-05-26 10:49:00','2022-06-06 12:30:00','WaitForApprove','Delivery','0001',NULL,'amit','amit','amit','Regular');
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',0,'Nargilos','amit','0506576399','Express'),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',0,'akko','amit','0506576399','Regular'),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Compensation','PickUp','0001',0,'akko','amit','0506576399','Regular'),(4,70,NULL,'2003','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',0,'akko','amit','0506576399','Regular'),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Cancelled','Delivery','0002',0,'akko','amit','0506576399','Regular'),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Cancelled','PickUp','0001',0,'akko','amit','0506576399','Regular'),(7,96,'B-Day','2005','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',0,'akko','amit','0506576399','Regular'),(8,312,'B-Day','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','Delivered','Delivery','0001',0,'akko','amit','0506576399','Regular'),(9,912,'B-Day','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','Compensation','Delivery','0001',0,'akko','amit','0506576399','Regular'),(10,312,'B-Day','2005','2022-05-26 12:10:00','2022-05-03 10:30:00','Cancel Request','Delivery','0001',0,'kerem','elad','0506576399','Regular'),(11,312,'B-Day','2000','2022-05-26 10:49:00','2022-05-02 23:30:00','Delivered','Delivery','0001',0,'amit','amit','0506576399','Regular'),(12,52,'B-Day','2000','2022-06-02 05:45:00','2022-06-03 20:46:00','Pending','Delivery','0001',0,'Bait','Billy','0506576399','Regular'),(13,535,'B-Day','2004','2022-06-02 06:56:00','2022-06-03 21:56:00','Pending','PickUp','0001',0,'akko','ev','0506576399','Express'),(14,262,'B-Day','2004','2022-06-02 09:11:00','2022-06-03 01:00:00','Pending','Delivery','0001',0,'givat ram','ev','0506576399','Regular');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `store`
---
-
-DROP TABLE IF EXISTS `store`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `store` (
-  `IDstore` varchar(45) NOT NULL,
-  `Area` varchar(45) NOT NULL,
-  `Location` varchar(45) NOT NULL,
-  `StoreName` varchar(45) NOT NULL,
-  `ManagerID` varchar(45) NOT NULL,
-  `Sales` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`IDstore`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `store`
---
-
-LOCK TABLES `store` WRITE;
-/*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` VALUES ('2000','South','Beer-Shva','zerli_beershva','4545',NULL),('2001','East','Haifa','zerli_haifa','4546',NULL),('2002','North','Acre','zeli_acre','4547',NULL);
-/*!40000 ALTER TABLE `store` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -275,7 +247,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu2','cu2',1,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billy','Dilly','Marketing','0556669999','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
+INSERT INTO `users` VALUES ('cu','cu',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('mn2','mn2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billiy','Dilly','Marketing','0558859595','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('sp','sp',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -288,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 12:21:00
+-- Dump completed on 2022-06-02 23:18:35
