@@ -98,7 +98,6 @@ public class AddCustomerController {
     		customerStage.setScene(scene);
     		customerStage.show();
     		customerStage.centerOnScreen();
-    		
     	}
     }
     public boolean CheckIfUserNameExist(String username)
@@ -162,7 +161,7 @@ public class AddCustomerController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Customer");
+		customerStage.setTitle("Branch Manager Screen");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();

@@ -57,7 +57,9 @@ CREATE TABLE `complaint` (
   `Description` varchar(1000) NOT NULL,
   `complainStatus` varchar(45) NOT NULL,
   `Refund` double NOT NULL,
-  PRIMARY KEY (`HandelerUserID`,`OrderId`)
+  `sotreID` varchar(45) NOT NULL,
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +69,7 @@ CREATE TABLE `complaint` (
 
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
-INSERT INTO `complaint` VALUES ('5463','0001','10','LO KEF LI','Handled',20),('5463','0002','11','Shaked lo Gavri','Handled',190),('5463','0001','15','ma kore','WaitForHandle',200),('5463','0001','6','ma kore','WaitForHandle',100),('5463','0002','8','ma kore','Handled',0),('5463','0002','9','lala ','WaitForHandle',0);
+INSERT INTO `complaint` VALUES ('5463','0001','1','LO KEF LI','Handled',20,'2000','2022-03-03 00:00:00'),('5463','0001','3','Shaked lo Gavri','Handled',190,'2000','2022-04-03 00:00:00'),('5463','0002','5','ma kore','WaitForHandle',200,'2000','2022-06-05 00:00:00'),('5463','0002','9','lala ','WaitForHandle',500,'2004','2023-07-12 00:00:00');
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +187,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',NULL,'Nargilos','amit','0506576399',NULL),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL,NULL),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(4,70,NULL,'2007','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',NULL,NULL,NULL,NULL,NULL),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(7,96,NULL,'2016','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(8,312.9,'ssss','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','WaitForApprove','Delivery','0001','null','akko','amit','005056045','Regular'),(9,912.9,'ssss','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','WaitForApprove','Delivery','0001','null','akko','amit','0343423','Regular'),(10,312.9,'ma kore','2005','2022-05-26 12:10:00','2022-05-03 10:30:00','WaitForApprove','Delivery','0001','null','kerem','elad','06056050','Regular'),(11,312.9,'null','2000','2022-05-26 10:49:00','2022-05-03 12:30:00','WaitForApprove','Delivery','0001','null','amit','amit','amit','Regular');
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',NULL,'Nargilos','amit','0506576399','Express'),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',NULL,NULL,NULL,NULL,'Regular'),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(4,70,NULL,'2007','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',NULL,NULL,NULL,NULL,NULL),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Approved','PickUp','0001',NULL,NULL,NULL,NULL,NULL),(7,96,NULL,'2016','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',NULL,NULL,NULL,NULL,NULL),(8,312.9,'ssss','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','WaitForApprove','Delivery','0001','null','akko','amit','005056045','Regular'),(9,912.9,'ssss','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','WaitForApprove','Delivery','0001','null','akko','amit','0343423','Regular'),(10,312.9,'ma kore','2005','2022-05-26 12:10:00','2022-05-03 10:30:00','WaitForApprove','Delivery','0001','null','kerem','elad','06056050','Regular'),(11,312.9,'null','2000','2022-05-26 10:49:00','2022-05-03 12:30:00','WaitForApprove','Delivery','0001','null','amit','amit','amit','Regular');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +330,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu2','cu2',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',1,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
+INSERT INTO `users` VALUES ('cu2','cu2',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('branchMN2','branchMN2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',1,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('customerSP','customerSP',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -341,4 +343,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 13:00:00
+-- Dump completed on 2022-06-02 12:01:19

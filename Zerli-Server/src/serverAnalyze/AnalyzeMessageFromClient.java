@@ -11,6 +11,7 @@ import logic.Complain;
 import logic.Item;
 import logic.Order;
 import logic.SingleComplaint;
+import logic.SingleDelivery;
 import logic.SingleOrder;
 import logic.Survey;
 import logic.User;
@@ -18,6 +19,7 @@ import ocsf.server.ConnectionToClient;
 import query.AccountDetailsQuery;
 import query.AddNewUserQuery;
 import query.CatalogQuery;
+import query.DeliveryQuery;
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
@@ -35,6 +37,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
 		ArrayList<SingleComplaint> singlecomplaint;
+		ArrayList<SingleDelivery> singleDelivery;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -375,6 +378,17 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+		case GET_SINGLE_DELIVERY:
+			singleDelivery = DeliveryQuery.getOrderForDelivey();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleDelivery);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SINGLE_DELIVERY, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 		default:// ;
 
 			return new Message(MessageType.ERROR, null);

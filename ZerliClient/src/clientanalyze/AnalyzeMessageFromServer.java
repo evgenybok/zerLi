@@ -10,6 +10,7 @@ import logic.Account;
 import logic.Complain;
 import logic.Item;
 import logic.SingleComplaint;
+import logic.SingleDelivery;
 import logic.SingleOrder;
 import logic.User;
 
@@ -280,6 +281,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  GET_SINGLE_DELIVERY:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}
@@ -310,6 +319,8 @@ public class AnalyzeMessageFromServer {
 				return (ArrayList<Complain>) res;
 			if (((ArrayList<?>) res).get(0) instanceof SingleComplaint)
 				return (ArrayList<SingleComplaint>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleDelivery)
+				return (ArrayList<SingleDelivery>) res;
 			}
 			catch (IndexOutOfBoundsException e) {
 			};

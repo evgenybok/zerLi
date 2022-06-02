@@ -20,7 +20,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ManagerScreenController {
-
     @FXML
     private ResourceBundle resources;
 
