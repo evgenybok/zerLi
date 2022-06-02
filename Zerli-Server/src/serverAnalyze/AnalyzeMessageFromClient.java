@@ -225,6 +225,19 @@ public class AnalyzeMessageFromClient {
 
 			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+			
+		case CANCEL_ORDER:
+			try {
+				GetOrderQuery.CancelOrder((SingleOrder) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+
+			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
+			
 		case GET_USERID_BY_ORDERID:
 			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
 			try {

@@ -5,7 +5,7 @@ import static controllers.IPScreenController.chat;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-import static controllers.IPScreenController.chat;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
@@ -17,12 +17,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.Item;
 
@@ -73,13 +71,13 @@ public class CatalogUpdateController {
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/WorkerScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
 		Scene scene = new Scene(parent);
-		Stage workerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		workerStage.setTitle("Home Screen");
-		workerStage.setScene(scene);
-		workerStage.show();
-		workerStage.centerOnScreen();
+		Stage marketingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		marketingStage.setTitle("Home Screen");
+		marketingStage.setScene(scene);
+		marketingStage.show();
+		marketingStage.centerOnScreen();
 	}
 
 

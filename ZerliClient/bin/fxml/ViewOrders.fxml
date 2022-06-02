@@ -200,6 +200,23 @@
                         <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                      </font>
                   </Label>
+                  <Button fx:id="cancelOrder" mnemonicParsing="false" onMouseClicked="#btnCancelOrder" prefHeight="34.0" prefWidth="134.0" stylesheets="@../../images/css/styleNew.css" text="Cancel Order" textFill="#004d00">
+                     <font>
+                        <Font name="Cambria Bold" size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="520.0" />
+                     </HBox.margin>
+                  </Button>
+                  <TextField fx:id="cancelOrderNumber" prefHeight="25.0" prefWidth="78.0" promptText="No.">
+                     <HBox.margin>
+                        <Insets left="2.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />

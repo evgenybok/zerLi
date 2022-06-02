@@ -12,11 +12,11 @@ public class SingleOrder implements Serializable {
     private String SupplyDate;
     private String SupplyType;
     private String StoreId;
-    private String Refund;
+    private double Refund;
     private String Status;
 
     public SingleOrder(int OrderNumber,double Price,String StoreID,String OrderDate,String SupplyDate
-            ,String SupplyType,String Refund, String Status){
+            ,String SupplyType,double Refund, String Status){
 
         this.OrderNumber=OrderNumber;
         this.Price=Price;
@@ -85,11 +85,11 @@ public class SingleOrder implements Serializable {
         StoreId = storeId;
     }
 
-    public String getRefund() {
+    public double getRefund() {
         return Refund;
     }
 
-    public void setRefund(String refund) {
+    public void setRefund(double refund) {
         Refund = refund;
     }
 

@@ -2,17 +2,12 @@ package controllers;
 
 import static controllers.IPScreenController.chat;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,12 +19,9 @@ import javax.swing.JOptionPane;
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,8 +37,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
 import logic.Order;
-import logic.Time;
-import logic.User;
 
 public class PaymentScreenController {
 	String userID = LoginScreenController.user.getID();
@@ -200,6 +190,7 @@ public class PaymentScreenController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	void GetStoreName(MouseEvent event) {
 		ArrayList<String> storeName = new ArrayList<>();
@@ -217,6 +208,7 @@ public class PaymentScreenController {
 		StoreName.setItems(FXCollections.observableArrayList(storeName));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void showCreditDetail() {
 		ArrayList<Account> accountCreditDetails = new ArrayList<>();
 		try {
@@ -304,11 +296,11 @@ public class PaymentScreenController {
 			Dorder = CheckExpressDelivery();
 			String Status = "WaitForApprove";
 			String supplytype = CheckWhichSupplyMethod();
-			String refund = null;
+			double refund = 0;
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
 			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
-					supplyDateTime, Status, supplytype, userID, null, adress, reciverName, phone, Dorder);
+					supplyDateTime, Status, supplytype, userID, refund, adress, reciverName, phone, Dorder);
 
 			try {
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
@@ -317,6 +309,8 @@ public class PaymentScreenController {
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
 				CustomCatalogController.customItemInCart.clear();
+				CustomCatalogController.bouquetCounter=0;
+
 				/*
 				 * CustomCatalogController.itemToAmount.clear();
 				 * CustomCatalogController.selectedProducts.clear();

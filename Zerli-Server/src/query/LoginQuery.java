@@ -23,7 +23,7 @@ public class LoginQuery {
                 String role = rs2.getString("Role");
                 String id1 = rs2.getString("id");
                 if(role.equals("customer")) {
-                    String query3 ="SELECT Status FROM zerli.account WHERE IdCustomer='"+id1+"'";
+                    String query3 ="SELECT Status FROM zerli.account_details WHERE User_ID='"+id1+"'";
                     PreparedStatement st3= ConnectToDB.conn.prepareStatement(query3);
                     ResultSet rs3=st3.executeQuery();
                     while (rs3.next()) {

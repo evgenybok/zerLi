@@ -79,6 +79,15 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+			
+		case CANCEL_ORDER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = (String) receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
+					
 		case GET_USERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();

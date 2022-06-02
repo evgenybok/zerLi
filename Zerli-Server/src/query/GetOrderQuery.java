@@ -24,15 +24,15 @@ public class GetOrderQuery {
 				String SupplyDate = rs.getString("SupplyDate");
 				String Status = rs.getString("Status");
 				String SupplyType = rs.getString("SupplyType");
-				String Refund=rs.getString("Refund");
-				orders.add(new SingleOrder(OrderNumber, Price,StoreID,OrderDate,SupplyDate ,SupplyType ,Refund ,Status));
+				double Refund = rs.getDouble("Refund");
+				orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
+						Status));
 			}
 		} catch (SQLException e) {
 
 		}
 		return orders;
 	}
-
 
 	public static boolean Update(String updatedData) {
 		String[] str = updatedData.split("#", 3);
@@ -97,31 +97,34 @@ public class GetOrderQuery {
 			return "Error";
 		}
 	}
-	public static void InsertNewOrder(Order order) throws SQLException 
-	{
-		int lastOrderNumber=0;
+
+	public static void InsertNewOrder(Order order) throws SQLException {
+		int lastOrderNumber = 0;
 		String sql = "SELECT MAX(OrderNumber) AS OrderNumber FROM orders";
 		PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
-		    lastOrderNumber = rs.getInt("OrderNumber");  // access the max value
+			lastOrderNumber = rs.getInt("OrderNumber"); // access the max value
 		}
 		lastOrderNumber++;
-		String query= "INSERT INTO zerli.orders VALUES("+lastOrderNumber+"," +order.getPrice()+",'" +order.getGreetingCard()+"','" 
-				+order.getShop()+"','" + order.getOrderDate()+"','" +order.getSupplyDate()+"','" +order.getStatus()+"','" +order.getSupplyType()+"','"
-						+order.getUserID()+"','" +null+"','"+order.getSupplyAddress()+"','"+order.getReceiverName()+"','"
-				+order.getReceiverPhone()+"','" +order.getDOrder()+"');";
+		String query = "INSERT INTO zerli.orders VALUES(" + lastOrderNumber + "," + order.getPrice() + ",'"
+				+ order.getGreetingCard() + "','" + order.getShop() + "','" + order.getOrderDate() + "','"
+				+ order.getSupplyDate() + "','" + order.getStatus() + "','" + order.getSupplyType() + "','"
+				+ order.getUserID() + "'," + order.getRefund() + ",'" + order.getSupplyAddress() + "','"
+				+ order.getReceiverName() + "','" + order.getReceiverPhone() + "','" + order.getDOrder() + "');";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			return;
-		}	
+		}
 		return;
 	}
+
 	public static ArrayList<SingleOrder> GetOrderByIdAndUserId(String orderID) {
 		String[] user = orderID.split("@", 2);
-		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + user[0] + "' AND UserID ='" + user[1] +"';");
+		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + user[0] + "' AND UserID ='" + user[1]
+				+ "';");
 		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -134,16 +137,29 @@ public class GetOrderQuery {
 				String SupplyDate = rs.getString("SupplyDate");
 				String Status = rs.getString("Status");
 				String SupplyType = rs.getString("SupplyType");
-				String Refund=rs.getString("Refund");
-				orders.add(new SingleOrder(OrderNumber, Price,StoreID,OrderDate,SupplyDate ,SupplyType ,Refund ,Status));
+				double Refund = rs.getDouble("Refund");
+				orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
+						Status));
 				return orders;
 			}
 		} catch (SQLException e) {
 			orders = new ArrayList<SingleOrder>();
-			return  orders;
+			return orders;
 		}
 		return orders;
 	}
 
+	public static void CancelOrder(SingleOrder singleOrder) {
+		String query = ("UPDATE orders SET Status = 'Cancelled', Refund =" + singleOrder.getRefund()
+				+ " WHERE OrderNumber = '" + singleOrder.getOrderNumber() + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+
+	}
 
 }

@@ -3,7 +3,11 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +16,6 @@ import javax.swing.JOptionPane;
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -84,6 +87,15 @@ public class OrdersController {
 	private ImageView Search;
 
 	@FXML
+	private Button cancelOrder;
+
+	@FXML
+	private TextField cancelOrderNumber;
+
+	List<SingleOrder> Orders = new ArrayList<SingleOrder>();
+	SingleOrder toCancel = new SingleOrder(0, 0, null, null, null, null, 0, null);
+
+	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
@@ -96,20 +108,93 @@ public class OrdersController {
 	}
 
 	@FXML
+	void btnCancelOrder(MouseEvent event) {
+		boolean flagExists = false;
+		for (int i = 0; i < Orders.size(); i++) {
+			if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
+					&& Orders.get(i).getStatus().equals("Cancelled")) {
+				JOptionPane.showMessageDialog(null, "This order is already cancelled!!!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
+					&& Orders.get(i).getStatus().equals("Delivered")) {
+				JOptionPane.showMessageDialog(null, "This order is already delivered!!!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
+					&& (Orders.get(i).getStatus().equals("Approved")
+							|| Orders.get(i).getStatus().equals("WaitForApprove"))) {
+				toCancel = Orders.get(i);
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = new Date();
+				String string1 = formatter.format(date);
+				try {
+					// this time 3 hours ago
+					Date time3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(string1);
+					Calendar calendar1 = Calendar.getInstance();
+					calendar1.setTime(time3);
+					calendar1.add(Calendar.HOUR_OF_DAY, 3);
+
+					// this time 1 hour ago
+					Date time1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(string1);
+					Calendar calendar2 = Calendar.getInstance();
+					calendar2.setTime(time1);
+					calendar2.add(Calendar.HOUR_OF_DAY, 1);
+
+					// supply time
+					Date timeSupply = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(toCancel.getSupplyDate());
+					Calendar calendar3 = Calendar.getInstance();
+					calendar3.setTime(timeSupply);
+
+					Date x = calendar3.getTime();
+					// supply time between 3hours to 1hour - 50% refund
+					if (x.after(calendar2.getTime()) && x.before(calendar1.getTime())) {
+						toCancel.setRefund((toCancel.getPrice()) * 0.5);
+
+					}
+					// supply time before 3hours - full refund
+					else if (x.after(calendar1.getTime())) {
+						toCancel.setRefund((toCancel.getPrice()) * 1);
+
+					}
+					// supply time after 1hour - no refund
+					else if (x.before(calendar2.getTime())) {
+						toCancel.setRefund((toCancel.getPrice()) * 0);
+
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				chat.accept(new Message(MessageType.CANCEL_ORDER, toCancel));
+				JOptionPane.showMessageDialog(null, "Order Cancelled Successfully!", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+				flagExists = true;
+				initialize();
+			} 
+		}
+		if (flagExists==false) {
+			JOptionPane.showMessageDialog(null, "Wrong Order Number!!!", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@FXML
 	void btnSearch(MouseEvent event) {
 		ArrayList<SingleOrder> order = new ArrayList<>();
 		String OrderId = IdText.getText();
-		OrderId=OrderId + "@" + LoginScreenController.user.getID();
+		OrderId = OrderId + "@" + LoginScreenController.user.getID();
 		OrdersLayout.getChildren().clear();
-		if(IdText.getText().isEmpty())
-		{
+		if (IdText.getText().isEmpty()) {
 			initialize();
 		}
 		try {
 			chat.accept(new Message(MessageType.GET_ORDER_BY_ID, OrderId));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
-			
+
 		} catch (Exception e) {
 			return;
 		}
@@ -133,27 +218,8 @@ public class OrdersController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-		assert lblZerLi != null : "fx:id=\"lblZerLi\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert UserName != null : "fx:id=\"UserName\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert PersonImage != null : "fx:id=\"PersonImage\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert AccountType != null : "fx:id=\"AccountType\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert AccountStatus != null
-				: "fx:id=\"AccountStatus\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert OrdersLayout != null
-				: "fx:id=\"OrdersLayout\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert orderNum != null : "fx:id=\"orderNum\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert price != null : "fx:id=\"price\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert shop != null : "fx:id=\"shop\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert orderDate != null : "fx:id=\"orderDate\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert deliveryDate != null
-				: "fx:id=\"deliveryDate\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert supplyType != null : "fx:id=\"supplyType\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-		assert refund != null : "fx:id=\"refund\" was not injected: check your FXML file 'ViewOrders.fxml'.";
-
-		List<SingleOrder> Orders = new ArrayList<SingleOrder>();
+		OrdersLayout.getChildren().clear();
+		// List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 		chat.accept(new Message(MessageType.GET_ORDERS, LoginScreenController.user.getID()));
 		Orders = (ArrayList<SingleOrder>) AnalyzeMessageFromServer.getData();
 		try {

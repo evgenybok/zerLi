@@ -134,13 +134,9 @@
             <HBox alignment="BOTTOM_CENTER" prefHeight="102.0" prefWidth="846.0" />
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="846.0">
                <children>
-                  <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="      Update Catalog">
+                  <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="?">
                      <graphic>
-                        <ImageView fx:id="catalogImage" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/images/Catalog.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="catalogImage" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
@@ -157,7 +153,7 @@
             <HBox prefHeight="50.0" prefWidth="100.0" />
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="846.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+                  <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="?">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>

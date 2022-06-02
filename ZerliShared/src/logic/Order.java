@@ -1,8 +1,6 @@
 package logic;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
 
 public class Order implements Serializable {
 	/**
@@ -21,14 +19,14 @@ public class Order implements Serializable {
 	private String Status;
 	private String supplyType;
 	private String userID;
-	private String refund;
+	private double refund;
 	private String supplyAddress;
 	private String receiverName;
 	private String receiverPhone;
 	
 
 	public Order(int orderNumber, double price, String greetingCard, String shop,
-			String orderDate,String supplyDate, String Status,String SupplyType,String userID, String refund,String supplyAddress,
+			String orderDate,String supplyDate, String Status,String SupplyType,String userID, double refund,String supplyAddress,
 			String receiverName,String receiverPhone,String dOrder) {
 		this.orderNumber = orderNumber;
 		this.price = price;
@@ -92,11 +90,11 @@ public class Order implements Serializable {
 		this.userID = userID;
 	}
 
-	public String getRefund() {
+	public double getRefund() {
 		return refund;
 	}
 
-	public void setRefund(String refund) {
+	public void setRefund(double refund) {
 		this.refund = refund;
 	}
 

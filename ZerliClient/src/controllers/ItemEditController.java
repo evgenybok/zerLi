@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import javax.swing.JOptionPane;
 
-import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -75,14 +74,14 @@ public class ItemEditController {
 
 	@FXML
 	void btnClose(MouseEvent event) throws IOException {
-    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
+		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 		Scene scene = new Scene(parent);
-        parent.getStylesheets().add("css/style.css");
-        Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        catalogUpdateStage.setTitle("Catalog Update");
-        catalogUpdateStage.setScene(scene);
-        catalogUpdateStage.show();
-        catalogUpdateStage.centerOnScreen();
+		parent.getStylesheets().add("css/style.css");
+		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogUpdateStage.setTitle("Catalog Update");
+		catalogUpdateStage.setScene(scene);
+		catalogUpdateStage.show();
+		catalogUpdateStage.centerOnScreen();
 	}
 
 	@FXML
@@ -94,14 +93,14 @@ public class ItemEditController {
 			return;
 		}
 		JOptionPane.showMessageDialog(null, "Item deleted successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
-    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
+		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 		Scene scene = new Scene(parent);
-        parent.getStylesheets().add("css/style.css");
-        Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        catalogUpdateStage.setTitle("Catalog Update");
-        catalogUpdateStage.setScene(scene);
-        catalogUpdateStage.show();
-        catalogUpdateStage.centerOnScreen();
+		parent.getStylesheets().add("css/style.css");
+		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogUpdateStage.setTitle("Catalog Update");
+		catalogUpdateStage.setScene(scene);
+		catalogUpdateStage.show();
+		catalogUpdateStage.centerOnScreen();
 	}
 
 	@FXML
@@ -180,15 +179,16 @@ public class ItemEditController {
 			saveMsg.setText("Item Saved Successfully!");
 			saveMsg.setVisible(true);
 			JOptionPane.showMessageDialog(null, "Item Saved Successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
-	    	Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
+			Parent parent = FXMLLoader
+					.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 			Scene scene = new Scene(parent);
-	        parent.getStylesheets().add("css/style.css");
-	        Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        catalogUpdateStage.setTitle("Catalog Update");
-	        catalogUpdateStage.setScene(scene);
-	        catalogUpdateStage.show();
-	        catalogUpdateStage.centerOnScreen();
-	        
+			parent.getStylesheets().add("css/style.css");
+			Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			catalogUpdateStage.setTitle("Catalog Update");
+			catalogUpdateStage.setScene(scene);
+			catalogUpdateStage.show();
+			catalogUpdateStage.centerOnScreen();
+
 		} else
 			JOptionPane.showMessageDialog(null, "Wrong input in one or more fields!!!", "Error",
 					JOptionPane.ERROR_MESSAGE);
@@ -250,7 +250,9 @@ public class ItemEditController {
 			Image itemImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream(currentItem.getImgSrc())));
 			itemImage.setImage(itemImg);
 			checkBoxSale.setSelected(currentItem.isOnSale());
-			salePrice.setText(Double.toString(currentItem.getSalePrice()));
+			if (checkBoxSale.isSelected())
+				salePrice.setText(Double.toString(currentItem.getSalePrice()));
+			else salePrice.setDisable(true);
 		}
 
 	}
