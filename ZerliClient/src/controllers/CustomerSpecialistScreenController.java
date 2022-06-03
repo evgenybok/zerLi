@@ -1,10 +1,10 @@
 package controllers;
 
-import java.awt.Image;
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.util.Objects;
 
-import static controllers.IPScreenController.chat;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -46,7 +46,6 @@ public class CustomerSpecialistScreenController {
 
     @FXML
     void btnAnalyseSurvey(MouseEvent event) {
-    	
     	try {
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SPAnalyseSurveyScreen.fxml")));
 			Scene scene = new Scene(parent);

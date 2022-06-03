@@ -246,7 +246,7 @@ CREATE TABLE `survey_answers` (
 
 LOCK TABLES `survey_answers` WRITE;
 /*!40000 ALTER TABLE `survey_answers` DISABLE KEYS */;
-INSERT INTO `survey_answers` VALUES (1,1,7,8,7,7,5,10),(2,1,9,9,10,8,8,9),(3,1,10,10,10,10,10,10);
+INSERT INTO `survey_answers` VALUES (1,1,7,8,7,7,5,10),(2,1,9,9,10,8,8,9),(3,1,10,10,10,10,10,10),(4,2,8,8,8,8,8,8),(5,2,6,6,6,6,6,6);
 /*!40000 ALTER TABLE `survey_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-03 20:37:04
+-- Dump completed on 2022-06-03 21:29:49
