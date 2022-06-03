@@ -15,22 +15,22 @@
             <Insets left="10.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="price" alignment="CENTER" prefHeight="23.0" prefWidth="76.0" text="19.90">
+      <Label fx:id="price" alignment="CENTER" prefHeight="23.0" prefWidth="76.0" text="19.0">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="storename" alignment="CENTER" prefHeight="23.0" prefWidth="101.0" text="Acre">
+      <Label fx:id="storename" alignment="CENTER" prefHeight="23.0" prefWidth="101.0" text="2010">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderdate" alignment="CENTER" prefHeight="23.0" prefWidth="200.0" text="29/01/2020 10:30">
+      <Label fx:id="orderdate" alignment="CENTER" prefHeight="23.0" prefWidth="200.0" text="2022-03-20 10:30:00">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="supplydate" alignment="CENTER" prefHeight="23.0" prefWidth="182.0" text="32/03/2021 12:30">
+      <Label fx:id="supplydate" alignment="CENTER" prefHeight="23.0" prefWidth="182.0" text="2022-03-20 10:30:00">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
@@ -40,12 +40,15 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="status" alignment="CENTER" prefHeight="23.0" prefWidth="79.0" text="Active">
+      <Label fx:id="status" alignment="CENTER" prefHeight="49.0" prefWidth="79.0" text="Approved" wrapText="true">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
       </Label>
-      <Label fx:id="refund" alignment="CENTER" prefHeight="23.0" prefWidth="79.0" text="0.00">
+      <Label fx:id="refund" alignment="CENTER" prefHeight="23.0" prefWidth="67.0" text="0.00">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>

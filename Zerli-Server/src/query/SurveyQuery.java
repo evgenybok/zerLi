@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import logic.Survey;
 import logic.SurveyAnswer;
-import logic.User;
 
 public class SurveyQuery {
 	public static String getNumberOfNextSurvey()
