@@ -415,7 +415,17 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.UPDATE_STATUS_COMPLAINT, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-
+			
+		case GET_SURVEY_ANSWERS:
+            try {
+                receivedMessage.setMessageData(SurveyQuery.GetSurveyAnswers());
+                receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+            } catch (Exception e) {
+                receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+                receivedMessage.setMessageData(null);
+            }
+            return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
+                    receivedMessage.getMessageData());
 		case GET_SINGLE_DELIVERY:
 			singleDelivery = DeliveryQuery.getOrderForDelivey();
 			try {

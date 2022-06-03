@@ -357,14 +357,14 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 
-	/*	case GET_SURVEY_ANSWERS:
+		case GET_SURVEY_ANSWERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
 			} else {
 				res = null;
 			}
-			return;*/
+			return;
 		default:
 			break;
 		}
