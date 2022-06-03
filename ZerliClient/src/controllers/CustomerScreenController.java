@@ -189,12 +189,6 @@ public class CustomerScreenController {
 		CustomCatalogImage.setImage(custumCatalogImage);
 		Image myCartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
 		CartImage.setImage(myCartImage);
-		// Image ordersImage = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-list-64.png")));
-		// OrdersImage.setImage(ordersImage);
-		// Image cartImage = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
-		// CartImage.setImage(cartImage);
 
 	}
 }

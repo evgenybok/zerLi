@@ -170,6 +170,7 @@ public class CatalogController {
 	@FXML
 	void btnMyCart(MouseEvent event) throws IOException {
 		premadeCatalogStage = (Stage) AddToCartBtn.getScene().getWindow();
+		
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
             Parent root1 = (Parent) fxmlLoader.load();

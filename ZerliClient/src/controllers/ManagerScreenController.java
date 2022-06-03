@@ -90,20 +90,27 @@ public class ManagerScreenController {
 
     @FXML
     void btnViewOrders(MouseEvent event) throws IOException {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BMViewOrders.fxml")));
+		Scene scene = new Scene(parent);
+		Stage ordersStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		ordersStage.setTitle("View Orders");
+		ordersStage.setScene(scene);
+		ordersStage.show();
+		ordersStage.centerOnScreen();
    
     }
 
     @FXML
     void btnViewReports(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
- 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReportsNew.fxml")));
 		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Reports Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();
+		Stage reportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		reportStage.setTitle("Reports Screen");
+		reportStage.setScene(scene);
+		reportStage.show();
+		reportStage.centerOnScreen();
     }
 
     @FXML

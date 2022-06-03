@@ -28,86 +28,89 @@ import logic.SingleComplaint;
 
 public class HandelComplaintController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private TextField IdSearch;
+	@FXML
+	private TextField IdSearch;
 
-    @FXML
-    private Text accountStatus;
+	@FXML
+	private Text accountStatus;
 
-    @FXML
-    private Text accountType;
+	@FXML
+	private Text accountType;
 
-    @FXML
-    private Text userName;
-    @FXML
-    private VBox ComplaintLayout;
+	@FXML
+	private Text userName;
+	@FXML
+	private VBox ComplaintLayout;
 
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-    	((Node)event.getSource()).getScene().getWindow().hide();
- 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Create Survey Screen");
 		loginStage.setScene(scene);
 		loginStage.show();
 		loginStage.centerOnScreen();
-    }
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@FXML
-    void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-        assert IdSearch != null : "fx:id=\"IdSearch\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-        assert accountStatus != null : "fx:id=\"accountStatus\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-        this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
+	void initialize() {
+		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
+		assert IdSearch != null : "fx:id=\"IdSearch\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
+		assert accountStatus != null
+				: "fx:id=\"accountStatus\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
+		assert accountType != null
+				: "fx:id=\"accountType\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
+		assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
+		this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
 		this.accountType.setText("Customer Service"); // accountType - may be handled from DB
-    	this.userName.setText(LoginScreenController.user.getUsername()); //userName
-    	List<SingleComplaint> complaint = new ArrayList<>();
+		this.userName.setText(LoginScreenController.user.getUsername()); // userName
+		List<SingleComplaint> complaint = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_COMPLAINTS, LoginScreenController.user.getID()));
 		complaint = (ArrayList<SingleComplaint>) AnalyzeMessageFromServer.getData();
-		try {
+		if (!(complaint == null)) {
+			try {
+				for (int i = 0; i < complaint.size(); i++) {
+					FXMLLoader fxmlLoader = new FXMLLoader();
+					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
+					HBox hBox = fxmlLoader.load();
+					SingleComplaintController singleComplaintController = fxmlLoader.getController();
+					singleComplaintController.setData(complaint.get(i));
+					ComplaintLayout.getChildren().add(hBox);
 
-			for (int i = 0; i < complaint.size(); i++) {
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
-				HBox hBox = fxmlLoader.load();
-				SingleComplaintController singleComplaintController = fxmlLoader.getController();
-				singleComplaintController.setData(complaint.get(i));
-				ComplaintLayout.getChildren().add(hBox);
-
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-    }
-    @SuppressWarnings("unchecked")
+	}
+
+	@SuppressWarnings("unchecked")
 	@FXML
-    void Serach(MouseEvent event) {
-    	ArrayList<SingleComplaint> complain = new ArrayList<>();
+	void Serach(MouseEvent event) {
+		ArrayList<SingleComplaint> complain = new ArrayList<>();
 		String userid = IdSearch.getText();
 		ComplaintLayout.getChildren().clear();
-		if(IdSearch.getText().isEmpty())
-		{
+		if (IdSearch.getText().isEmpty()) {
 			initialize();
 		}
 		try {
 			chat.accept(new Message(MessageType.GET_COMPLAINT_BY_ID, userid));
-			if (AnalyzeMessageFromServer.getData().equals(null)) 
+			if (AnalyzeMessageFromServer.getData().equals(null))
 				return;
-			
+
 		} catch (Exception e) {
 			return;
 		}
@@ -120,13 +123,12 @@ public class HandelComplaintController {
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
 				HBox hBox = fxmlLoader.load();
 				SingleComplaintController singleComplaintController = fxmlLoader.getController();
-				singleComplaintController.setData(complain.get(i)); 
+				singleComplaintController.setData(complain.get(i));
 				ComplaintLayout.getChildren().add(hBox);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-    }
+	}
 }
-

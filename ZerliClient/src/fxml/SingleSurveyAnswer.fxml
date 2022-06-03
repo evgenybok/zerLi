@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingleSurveyController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="947.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+         <children>
+            <Label fx:id="userID" prefHeight="30.0" prefWidth="52.0" text="30">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" right="45.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="surveyNumber" prefHeight="30.0" prefWidth="95.0" text="777">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <VBox prefHeight="100.0" prefWidth="23.0" />
+            <Label fx:id="question1" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="question2" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="question3" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="question4" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="question5" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="question6" prefHeight="30.0" prefWidth="86.0" text="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</HBox>
