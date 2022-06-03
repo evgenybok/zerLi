@@ -1,8 +1,15 @@
 package controllers;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import communication.Message;
+import communication.MessageType;
+
+import static controllers.IPScreenController.chat;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+//import logic.MyFile;
 
 public class SurveyReportController {
 
@@ -64,7 +72,30 @@ public class SurveyReportController {
 
     @FXML
     void btnSave(MouseEvent event) {
-
+		/*
+		 * String report=textConclusion.getText();
+		 * 
+		 * //String [] n = message.split("\\\\"); MyFile msg= new MyFile(report);
+		 * msg.setFileName("AnalysisReprort" + surveyNumber.getText()); //String
+		 * LocalfilePath="C:\\Users\\classroom\\Desktop\\" +
+		 * ((MyFile)msg).getFileName();
+		 * 
+		 * //String LocalfilePath="/Reports";
+		 * 
+		 * //System.out.println(LocalfilePath);
+		 * 
+		 * try{ File newFile = new File ("/Reports");
+		 * 
+		 * byte [] mybytearray = new byte [(int)newFile.length()]; FileInputStream fis =
+		 * new FileInputStream(newFile); BufferedInputStream bis = new
+		 * BufferedInputStream(fis);
+		 * 
+		 * msg.initArray(mybytearray.length); msg.setSize(mybytearray.length);
+		 * 
+		 * bis.read(msg.getMybytearray(),0,mybytearray.length); chat.accept(new
+		 * Message(MessageType.SAVE_ANALYSIS, report)); } catch (Exception e) {
+		 * System.out.println("Error send (Files)msg) to Server"); }
+		 */
     	
     	//add name at the end of the report.
     	String conclusion=textConclusion.getText();
