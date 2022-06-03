@@ -110,10 +110,6 @@ public class CreateSurveyController {
                 	customerStage.show();
                 	customerStage.centerOnScreen();
             	}
-            	else
-            	{
-            		System.out.println("Ahalta zain");
-            	}
     	}
     }
     @FXML

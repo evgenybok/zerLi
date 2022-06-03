@@ -82,7 +82,6 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-
 			return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
@@ -100,6 +99,7 @@ public class AnalyzeMessageFromClient {
 				return new Message(MessageType.GET_SELECTED_ORDER, receivedMessage.getMessageAnswer(),
 						receivedMessage.getMessageData());
 			}
+
 		case GET_USERS:
 			UsersArr = Query.GetUsersDB();
 			receivedMessage.setMessageData(UsersArr);
@@ -142,7 +142,6 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-
 			return new Message(MessageType.UPDATE_CATALOG, receivedMessage.getMessageAnswer(), null);
 
 		case ADD_NEW_ITEM:
@@ -154,7 +153,6 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-
 			return new Message(MessageType.ADD_NEW_ITEM, receivedMessage.getMessageAnswer(), null);
 
 		case DELETE_ITEM:
@@ -166,7 +164,6 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-
 			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
 
 		case GET_ACCOUNT_DETAILS:
@@ -179,7 +176,6 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-
 			return new Message(MessageType.GET_ACCOUNT_DETAILS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
@@ -195,6 +191,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case INSERT_NEW_ORDER:
 			try {
 				GetOrderQuery.InsertNewOrder((Order) receivedMessage.getMessageData());
@@ -204,6 +201,21 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+			return new Message(MessageType.INSERT_NEW_ORDER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
+		case UPDATE_USED_REFUND:
+			try {
+				GetOrderQuery.UpdateRefundUsed((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+			return new Message(MessageType.INSERT_NEW_ORDER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
 		case GET_STORE_ID:
 			try {
 				storeID = StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
@@ -216,6 +228,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.GET_STORE_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case GET_ORDER_BY_ID:
 			Orders = GetOrderQuery.GetOrderByIdAndUserId((String) receivedMessage.getMessageData());
 			try {
@@ -225,10 +238,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-
 			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case CANCEL_ORDER:
 			try {
 				GetOrderQuery.CancelOrder((SingleOrder) receivedMessage.getMessageData());
@@ -238,9 +250,8 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-
 			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
-			
+
 		case GET_USERID_BY_ORDERID:
 			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
 			try {
@@ -253,6 +264,7 @@ public class AnalyzeMessageFromClient {
 
 			return new Message(MessageType.GET_USERID_BY_ORDERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case INSERT_NEW_COMPLAIN:
 			try {
 				complaintQuery.InsertNewComplain((Complain) receivedMessage.getMessageData());
@@ -262,8 +274,10 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-		case GET_SURVEY_NUMBER:
+			return new Message(MessageType.INSERT_NEW_COMPLAIN, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 
+		case GET_SURVEY_NUMBER:
 			String SurveyNum = SurveyQuery.getNumberOfNextSurvey();
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -275,6 +289,7 @@ public class AnalyzeMessageFromClient {
 
 			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case INSERT_NEW_SURVEY:
 			try {
 				String s = SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
@@ -287,6 +302,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.INSERT_NEW_SURVEY, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case CHECK_EXIST_QOMPLAIN:
 			String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
 			try {
@@ -298,6 +314,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case CHECK_ORDER_BY_USERID:
 			String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
 			try {
@@ -309,6 +326,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case CHECK_IF_USERNAME_EXIST:
 			String str = AddNewUserQuery.checkIfUserExisting((String) receivedMessage.getMessageData());
 			try {
@@ -320,6 +338,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.CHECK_IF_USERNAME_EXIST, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case INSERT_NEW_USER:// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 			try {
 				AddNewUserQuery.InsertNewUser((User) receivedMessage.getMessageData());
@@ -329,6 +348,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+			return new Message(MessageType.INSERT_NEW_USER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
 		case INSERT_NEW_ACCOUNT:
 			try {
 				AddNewUserQuery.InsertNewAccount((Account) receivedMessage.getMessageData());
@@ -338,6 +360,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+			return new Message(MessageType.INSERT_NEW_ACCOUNT, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
 		case GET_COMPLAINTS:
 			singlecomplaint = complaintQuery.GetComplaints();
 			try {
@@ -349,6 +374,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_COMPLAINTS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case GET_COMPLAINT_BY_ID:
 			singlecomplaint = complaintQuery.GetSingleComplaintByUserId((String) receivedMessage.getMessageData());
 			try {
@@ -360,6 +386,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_COMPLAINT_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case UPDATE_REFUND:
 			try {
 				complaintQuery.UpdateAccountTotalRefund((String) receivedMessage.getMessageData());
@@ -369,6 +396,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+			return new Message(MessageType.UPDATE_REFUND, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
 		case UPDATE_STATUS_COMPLAINT:
 			try {
 				complaintQuery.UpdateToHandled((String) receivedMessage.getMessageData());
@@ -378,6 +408,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+			return new Message(MessageType.UPDATE_STATUS_COMPLAINT, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
 		case GET_SINGLE_DELIVERY:
 			singleDelivery = DeliveryQuery.getOrderForDelivey();
 			try {
@@ -389,7 +422,31 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_SINGLE_DELIVERY, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-		default:// ;
+
+		case GET_STORE_ORDERS:
+			Orders = GetOrderQuery.getStoreOrders((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageData(Orders);
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_SURVEY_ANSWERS:
+			try {
+				receivedMessage.setMessageData(SurveyQuery.GetSurveyAnswers());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
+		default:
 
 			return new Message(MessageType.ERROR, null);
 		}

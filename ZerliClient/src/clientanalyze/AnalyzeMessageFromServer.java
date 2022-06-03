@@ -12,6 +12,7 @@ import logic.Item;
 import logic.SingleComplaint;
 import logic.SingleDelivery;
 import logic.SingleOrder;
+import logic.SurveyAnswer;
 import logic.User;
 
 public class AnalyzeMessageFromServer {
@@ -24,9 +25,9 @@ public class AnalyzeMessageFromServer {
 
 		case CONFIRM_IP:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
-				res="Failed";
+				res = "Failed";
 			} else {
-				res="Success";
+				res = "Success";
 				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 					break;
 				}
@@ -80,7 +81,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+
 		case CANCEL_ORDER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = (String) receivedMessage.getMessageData();
@@ -88,7 +89,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-					
+
 		case GET_USERS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -102,7 +103,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+
 		case GET_SELFASSEMBLY_ITEMS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -111,7 +112,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+
 		case UPDATE_CATALOG:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -120,7 +121,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+
 		case ADD_NEW_ITEM:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -138,7 +139,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-			
+
 		case GET_ACCOUNT_DETAILS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -164,6 +165,14 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 		case INSERT_NEW_ORDER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case UPDATE_USED_REFUND:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -209,7 +218,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  CHECK_EXIST_QOMPLAIN:
+		case CHECK_EXIST_QOMPLAIN:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -217,7 +226,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  CHECK_ORDER_BY_USERID:
+		case CHECK_ORDER_BY_USERID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -225,7 +234,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  CHECK_IF_USERNAME_EXIST:
+		case CHECK_IF_USERNAME_EXIST:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -233,7 +242,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  INSERT_NEW_USER:
+		case INSERT_NEW_USER:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -241,7 +250,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  INSERT_NEW_ACCOUNT:
+		case INSERT_NEW_ACCOUNT:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -249,7 +258,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  GET_COMPLAINTS:
+		case GET_COMPLAINTS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -257,7 +266,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  GET_COMPLAINT_BY_ID:
+		case GET_COMPLAINT_BY_ID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -265,7 +274,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  UPDATE_REFUND:
+		case UPDATE_REFUND:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -273,7 +282,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  UPDATE_STATUS_COMPLAINT:
+		case UPDATE_STATUS_COMPLAINT:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -281,7 +290,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  GET_SINGLE_DELIVERY:
+		case GET_SINGLE_DELIVERY:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -289,6 +298,25 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+
+		case GET_STORE_ORDERS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case GET_SURVEY_ANSWERS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
 		default:
 			break;
 		}
@@ -305,25 +333,27 @@ public class AnalyzeMessageFromServer {
 			return (Complain) res;
 		if (res instanceof ArrayList<?>) {
 			try {
-			if (((ArrayList<?>) res).get(0) instanceof User)
-				return (ArrayList<User>) res;
-			if (((ArrayList<?>) res).get(0) instanceof SingleOrder)
-				return (ArrayList<SingleOrder>) res;
-			if (((ArrayList<?>) res).get(0) instanceof Item)
-				return (ArrayList<Item>) res;
-			if (((ArrayList<?>) res).get(0) instanceof String)
-				return (ArrayList<String>) res;
-			if (((ArrayList<?>) res).get(0) instanceof Account)
-				return (ArrayList<Account>) res;
-			if (((ArrayList<?>) res).get(0) instanceof Complain)
-				return (ArrayList<Complain>) res;
-			if (((ArrayList<?>) res).get(0) instanceof SingleComplaint)
-				return (ArrayList<SingleComplaint>) res;
-			if (((ArrayList<?>) res).get(0) instanceof SingleDelivery)
-				return (ArrayList<SingleDelivery>) res;
+				if (((ArrayList<?>) res).get(0) instanceof User)
+					return (ArrayList<User>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SingleOrder)
+					return (ArrayList<SingleOrder>) res;
+				if (((ArrayList<?>) res).get(0) instanceof Item)
+					return (ArrayList<Item>) res;
+				if (((ArrayList<?>) res).get(0) instanceof String)
+					return (ArrayList<String>) res;
+				if (((ArrayList<?>) res).get(0) instanceof Account)
+					return (ArrayList<Account>) res;
+				if (((ArrayList<?>) res).get(0) instanceof Complain)
+					return (ArrayList<Complain>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SingleComplaint)
+					return (ArrayList<SingleComplaint>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SingleDelivery)
+					return (ArrayList<SingleDelivery>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SurveyAnswer)
+					return (ArrayList<SurveyAnswer>) res;
+			} catch (IndexOutOfBoundsException e) {
 			}
-			catch (IndexOutOfBoundsException e) {
-			};
+			;
 		}
 		return null;
 

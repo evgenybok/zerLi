@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrdersController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnalyseSurveyController">
    <left>
       <VBox prefHeight="800.0" prefWidth="366.0" BorderPane.alignment="CENTER">
          <children>
@@ -73,22 +73,14 @@
                               <Insets bottom="5.0" top="30.0" />
                            </VBox.margin>
                            <children>
-                              <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" textAlignment="CENTER" wrappingWidth="121.13671875">
+                              <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Service Specialist" textAlignment="CENTER" wrappingWidth="301.13671875">
                                  <font>
                                     <Font name="Cambria" size="25.0" />
                                  </font>
                               </Text>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="44.0">
-                           <children>
-                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="142.13671875">
-                                 <font>
-                                    <Font name="Cambria" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="44.0" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0">
@@ -121,7 +113,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="371.0">
                            <children>
-                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Customer Screen" textFill="#004d00">
+                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text="Customer Service Specialist" textFill="#004d00">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -151,7 +143,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="590.0">
                            <children>
-                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="179.0" text="Search by ID:">
+                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="285.0" text="Search Survey by ID:">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                  </font>
@@ -195,12 +187,12 @@
             </HBox>
             <HBox prefHeight="53.0" prefWidth="833.0">
                <children>
-                  <Label text=" Orders List:">
+                  <Label text="Survey List:">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Button fx:id="cancelOrder" mnemonicParsing="false" onMouseClicked="#btnCancelOrder" prefHeight="34.0" prefWidth="134.0" stylesheets="@../../images/css/styleNew.css" text="Cancel Order" textFill="#004d00">
+                  <Button fx:id="createReport" mnemonicParsing="false" onMouseClicked="#btnCreateReport" prefHeight="34.0" prefWidth="145.0" stylesheets="@../../images/css/styleNew.css" text="Create Report" textFill="#004d00">
                      <font>
                         <Font name="Cambria Bold" size="18.0" />
                      </font>
@@ -212,7 +204,7 @@
                         <Insets left="520.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="cancelOrderNumber" prefHeight="25.0" prefWidth="78.0" promptText="No.">
+                  <TextField fx:id="createReportNumber" prefHeight="25.0" prefWidth="78.0" promptText="No.">
                      <HBox.margin>
                         <Insets left="2.0" top="5.0" />
                      </HBox.margin>
@@ -226,28 +218,28 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="934.0" spacing="5.0" style="-fx-background-color: d3d3d3;">
                      <children>
-                        <Label fx:id="orderNum1" prefHeight="29.0" prefWidth="70.0" text=" Order #">
+                        <Label fx:id="surveyID" prefHeight="29.0" prefWidth="48.0" text=" ID">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="price1" alignment="CENTER" prefHeight="29.0" prefWidth="61.0" text="Price">
+                        <Label fx:id="price" alignment="CENTER" prefHeight="29.0" prefWidth="127.0" text="Survey Number">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="shop1" alignment="CENTER" prefHeight="29.0" prefWidth="90.0" text="Store Name">
+                        <Label fx:id="question1" alignment="CENTER" prefHeight="29.0" prefWidth="90.0" text="Question 1">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="orderDate1" alignment="CENTER" prefHeight="29.0" prefWidth="93.0" text="Order Date">
+                        <Label fx:id="question2" alignment="CENTER" prefHeight="29.0" prefWidth="93.0" text="Question 2">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -255,36 +247,36 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="deliveryDate1" alignment="CENTER" prefHeight="29.0" prefWidth="96.0" text="Supply Date">
+                        <Label fx:id="question3" alignment="CENTER" prefHeight="29.0" prefWidth="96.0" text="Question 3">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="80.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="supplyType1" alignment="CENTER" prefHeight="29.0" prefWidth="92.0" text="Supply Type">
+                        <Label fx:id="question4" alignment="CENTER" prefHeight="29.0" prefWidth="92.0" text="Question 4">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="80.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="status1" alignment="CENTER" prefHeight="29.0" prefWidth="50.0" text="Status">
+                        <Label fx:id="question5" alignment="CENTER" prefHeight="29.0" prefWidth="87.0" text="Question 5">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="refund1" alignment="CENTER" prefHeight="29.0" prefWidth="57.0" text="Refund">
+                        <Label fx:id="question6" alignment="CENTER" prefHeight="29.0" prefWidth="100.0" text="Question 6">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="35.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
                      </children>

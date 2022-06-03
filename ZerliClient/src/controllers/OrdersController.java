@@ -30,6 +30,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Account;
 import logic.SingleOrder;
 
 public class OrdersController {
@@ -223,6 +224,11 @@ public class OrdersController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
+		ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
+		AccountStatus.setText(account.get(0).getStatus());
+		UserName.setText(LoginScreenController.user.getUsername());
+		//accountZerliCredit = account.get(0).getZerliCredit();
 		OrdersLayout.getChildren().clear();
 		// List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 		chat.accept(new Message(MessageType.GET_ORDERS, LoginScreenController.user.getID()));

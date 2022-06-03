@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.Account;
 
 public class CustomerScreenController {
@@ -84,8 +85,10 @@ public class CustomerScreenController {
 	
 	@FXML
 	private Label creditAmount;
-
+	
+	public static Stage customerScreenStage;
 	public static String accountStatus;
+	public static String userID;
 	public static double accountZerliCredit;
 
 	@FXML
@@ -103,15 +106,17 @@ public class CustomerScreenController {
 
 	@FXML
 	void btnCart(MouseEvent event) {
+		customerScreenStage = (Stage) btnCart.getScene().getWindow();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage cartDetailsScreen = new Stage();
-			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-			cartDetailsScreen.setTitle("Cart Details");
-			cartDetailsScreen.setScene((new Scene(root1)));
-			cartDetailsScreen.show();
-			cartDetailsScreen.centerOnScreen();
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage cartDetailsScreen = new Stage();
+            cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+            cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+            cartDetailsScreen.setTitle("Cart Details");
+            cartDetailsScreen.setScene((new Scene(root1)));
+            cartDetailsScreen.show();
+            cartDetailsScreen.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +170,8 @@ public class CustomerScreenController {
 			@SuppressWarnings("unchecked")
 			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
 			accountStatus = account.get(0).getStatus();
-			accountZerliCredit = account.get(0).getZerliCredit();
+			accountZerliCredit = account.get(0).getTotalRefund();
+			userID=account.get(0).getUser_ID();
 		} catch (NullPointerException e) {
 		}
 		;
@@ -183,12 +189,6 @@ public class CustomerScreenController {
 		CustomCatalogImage.setImage(custumCatalogImage);
 		Image myCartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
 		CartImage.setImage(myCartImage);
-		// Image ordersImage = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-list-64.png")));
-		// OrdersImage.setImage(ordersImage);
-		// Image cartImage = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/complaint.png")));
-		// CartImage.setImage(cartImage);
 
 	}
 }

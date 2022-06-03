@@ -3,10 +3,12 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +35,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
@@ -125,6 +129,8 @@ public class PaymentScreenController {
 	@FXML
 	private Label lblZerLiCredit;
 
+	private double refundUsed = 0;
+
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -184,9 +190,26 @@ public class PaymentScreenController {
 			DeliveryBox.setDisable(true);
 			PickUpBox.setDisable(true);
 			DeliveryExpressFlag = true;
-			DeliveryFlag = true;
+			DeliveryFlag = false;
 			delviryFee.setText("12.00");
 			changeAmount(12.00);
+			Date currDate = new Date(System.currentTimeMillis());
+            Calendar supplyDateCalendar = Calendar.getInstance();
+            supplyDateCalendar.setTime(currDate);
+            supplyDateCalendar.add(Calendar.HOUR, 3);
+            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String temp = formatter1.format(supplyDateCalendar.getTime());
+            String[] split = temp.split(" ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(split[0], formatter);
+            SupplyTime.setText(split[1]);
+            DateSupply.setValue(localDate);
+
+            SupplyTime.setDisable(true);
+            SupplyTime.setOpacity(1.0);
+
+            DateSupply.setDisable(true);
+            DateSupply.setOpacity(1.0);
 		} else {
 			DeliveryFlag = false;
 			DeliveryExpressFlag = false;
@@ -194,6 +217,8 @@ public class PaymentScreenController {
 			changeAmount(0.00);
 			PickUpBox.setDisable(false);
 			DeliveryBox.setDisable(false);
+			SupplyTime.setDisable(false);
+			DateSupply.setDisable(false);
 		}
 	}
 
@@ -237,36 +262,6 @@ public class PaymentScreenController {
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
 
-	@FXML
-	void initialize() {
-
-		Image checkoutImg = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-card-payment-50.png")));
-		CheckoutImg.setImage(checkoutImg);
-		Image boxImg = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-packing-50.png")));
-		BoxImg.setImage(boxImg);
-		Image mailImg = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-letterbox-50 (1).png")));
-		MailImg.setImage(mailImg);
-		Image car1Img = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-mastercard-48.png")));
-		Card1Img.setImage(car1Img);
-		Image card2Img = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-visa-48.png")));
-		Card2Img.setImage(card2Img);
-		Image bitcoinImg = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-bitcoin-48.png")));
-		BitCoinImg.setImage(bitcoinImg);
-		Image deliveryImg = new Image(
-				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-deliver-food-50 (1).png")));
-		DeliveryImg.setImage(deliveryImg);
-		Area.setItems(FXCollections.observableArrayList("North", "East", "Center", "South"));
-		changeAmount(0.00);
-		delviryFee.setText("0.00");
-		showCreditDetail();
-		creditAmount.setText((Double.toString(CustomerScreenController.accountZerliCredit)));
-	}
 
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
@@ -296,22 +291,52 @@ public class PaymentScreenController {
 			}
 			String tu = SupplyTime.getText(); // change
 			String supplyDateTime = change(su, tu);
-			if (supplyDateTime == null) {
-				JOptionPane.showMessageDialog(null, "Date has already passed!", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
+			if (DeliveryFlag) {
+				Date currDate = new Date(System.currentTimeMillis());
+				Calendar currentCalendar = Calendar.getInstance();
+				currentCalendar.setTime(currDate);
+				currentCalendar.add(Calendar.HOUR_OF_DAY, 3);
+				try {
+					Date time3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(supplyDateTime);
+					Calendar supplyDateCalendar = Calendar.getInstance();
+					supplyDateCalendar.setTime(time3);
+
+					Date x = supplyDateCalendar.getTime();
+					if (x.before(currentCalendar.getTime())) {
+						JOptionPane.showMessageDialog(null, "Delivery takes at least 3 hours.", "Error",
+								JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			Dorder = CheckExpressDelivery();
-			String Status = "WaitForApprove";
+			String Status = "Pending";
 			String supplytype = CheckWhichSupplyMethod();
 			double refund = 0;
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
+			if(phone.length()!=10)
+            {
+                JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
 					supplyDateTime, Status, supplytype, userID, refund, adress, reciverName, phone, Dorder);
 
 			try {
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
-
+				if (refundUsed > 0) {
+					StringBuilder sb = new StringBuilder();
+					sb.append(refundUsed);
+					sb.append("@");
+					sb.append(CustomerScreenController.userID);
+					chat.accept(new Message(MessageType.UPDATE_USED_REFUND, sb.toString()));
+				}
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
@@ -319,16 +344,15 @@ public class PaymentScreenController {
 				CustomCatalogController.bouquetCounter = 0;
 
 				AddGreetingController.Greeting = null;
-				((Node) event.getSource()).getScene().getWindow().hide();
-				Parent parent = FXMLLoader
-						.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderComplete.fxml")));
-				Scene scene = new Scene(parent);
-				Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				deliveryDetailsStage.setTitle("Shopping Cart");
-				deliveryDetailsStage.setScene(scene);
-				deliveryDetailsStage.show();
-				deliveryDetailsStage.centerOnScreen();
-
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderComplete.fxml")));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage cartDetailsScreen = new Stage();
+                cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+                cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+                cartDetailsScreen.setTitle("Shopping Cart");
+                cartDetailsScreen.setScene((new Scene(root1)));
+                cartDetailsScreen.show();
+                cartDetailsScreen.centerOnScreen();
 			} catch (Exception e) {
 				return;
 			}
@@ -348,7 +372,7 @@ public class PaymentScreenController {
 		String[] time = temp.split(":");
 		int hour = Integer.parseInt(time[0]);
 		int minutes = Integer.parseInt(time[1]);
-		if (((hour > 0 && hour < 24) && (minutes > 0 && minutes < 60)) && time[1].length() == 2)
+		if (((hour > 0 && hour <= 24) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
 			return true;
 		else
 			return false;
@@ -395,9 +419,13 @@ public class PaymentScreenController {
 			toReduce = CustomerScreenController.accountZerliCredit + temp; // 60+-30=30
 			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + toReduce + ")");
-		} else
-			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee-CustomerScreenController.accountZerliCredit) + " ("
+			refundUsed = toReduce;
+		} else {
+			amountToPay.setText("\u20AA"
+					+ Double.toString(totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + CustomerScreenController.accountZerliCredit + ")");
+			refundUsed = CustomerScreenController.accountZerliCredit;
+		}
 	}
 
 	private String CheckWhichSupplyMethod() {
@@ -457,5 +485,36 @@ public class PaymentScreenController {
 			return "Express";
 		}
 		return "Regular";
+	}
+	
+	@FXML
+	void initialize() {
+
+		Image checkoutImg = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-card-payment-50.png")));
+		CheckoutImg.setImage(checkoutImg);
+		Image boxImg = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-packing-50.png")));
+		BoxImg.setImage(boxImg);
+		Image mailImg = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-letterbox-50 (1).png")));
+		MailImg.setImage(mailImg);
+		Image car1Img = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-mastercard-48.png")));
+		Card1Img.setImage(car1Img);
+		Image card2Img = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-visa-48.png")));
+		Card2Img.setImage(card2Img);
+		Image bitcoinImg = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-bitcoin-48.png")));
+		BitCoinImg.setImage(bitcoinImg);
+		Image deliveryImg = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-deliver-food-50 (1).png")));
+		DeliveryImg.setImage(deliveryImg);
+		Area.setItems(FXCollections.observableArrayList("North", "East", "Center", "South"));
+		changeAmount(0.00);
+		delviryFee.setText("0.00");
+		showCreditDetail();
+		creditAmount.setText((Double.toString(CustomerScreenController.accountZerliCredit)));
 	}
 }

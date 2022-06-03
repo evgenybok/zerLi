@@ -18,7 +18,7 @@ public class GetOrderQuery {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int OrderNumber = rs.getInt("OrderNumber");
-				int Price = rs.getInt("Price");
+				double Price = rs.getDouble("Price");
 				String StoreID = rs.getString("StoreID");
 				String OrderDate = rs.getString("OrderDate");
 				String SupplyDate = rs.getString("SupplyDate");
@@ -131,7 +131,7 @@ public class GetOrderQuery {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int OrderNumber = rs.getInt("OrderNumber");
-				int Price = rs.getInt("Price");
+				double Price = rs.getDouble("Price");
 				String StoreID = rs.getString("StoreID");
 				String OrderDate = rs.getString("OrderDate");
 				String SupplyDate = rs.getString("SupplyDate");
@@ -162,4 +162,70 @@ public class GetOrderQuery {
 
 	}
 
+	public static void UpdateRefundUsed(String details) {
+		String[] str = details.split("@", 2);
+		double refundUsed = Double.parseDouble(str[0]);
+		double totalRefund = 0;
+		String query = ("SELECT TotalRefund FROM zerli.account_details WHERE User_ID = '" + str[1] + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				totalRefund = rs.getDouble("TotalRefund");
+			}
+		} catch (SQLException e) {
+
+		}
+		double updatedRefund = totalRefund - refundUsed;
+		String query2 = ("UPDATE account_details SET TotalRefund=" + updatedRefund + " WHERE User_ID = '" + str[1]
+				+ "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query2);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+
+		}
+	}
+
+	public static ArrayList<SingleOrder> getStoreOrders(String bmID) {
+		String query = ("SELECT * FROM zerli.stores;");
+		int tempStoreID = 0;
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				if (bmID.equals(rs.getString("IDmanager"))) {
+					tempStoreID = rs.getInt("IDStore");
+				}
+			}
+
+		} catch (SQLException e) {
+			return null;
+		}
+		String query1 = ("SELECT * FROM zerli.orders;");
+		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query1);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int OrderNumber = rs.getInt("OrderNumber");
+				double Price = rs.getDouble("Price");
+				String StoreID = rs.getString("StoreID");
+				String OrderDate = rs.getString("OrderDate");
+				String SupplyDate = rs.getString("SupplyDate");
+				String Status = rs.getString("Status");
+				String SupplyType = rs.getString("SupplyType");
+				double Refund = rs.getDouble("Refund");
+
+				if (tempStoreID == Integer.parseInt(StoreID))
+					orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
+							Status));
+				//int OrderNumber,double Price,String StoreID,String OrderDate,String SupplyDate,String SupplyType,double Refund, String Status)
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+		return orders;
+	}
 }

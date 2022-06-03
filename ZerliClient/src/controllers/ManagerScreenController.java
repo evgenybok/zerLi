@@ -2,11 +2,14 @@ package controllers;
 
 import static controllers.IPScreenController.chat;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -18,34 +21,35 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Account;
 
 public class ManagerScreenController {
-    @FXML
-    private ResourceBundle resources;
+	 @FXML
+	    private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	    @FXML
+	    private URL location;
 
-    @FXML
-    private Button EditInfo;
+	    @FXML
+	    private Text userName;
 
-    @FXML
-    private Button Logout;
+	    @FXML
+	    private Text accountType;
 
-    @FXML
-    private Text accountType;
+	    @FXML
+	    private Button Logout;
 
-    @FXML
-    private Button addCustomer;
+	    @FXML
+	    private Button viewReports;
 
-    @FXML
-    private Text userName;
+	    @FXML
+	    private Button addCustomer;
 
-    @FXML
-    private Button viewOrders;
+	    @FXML
+	    private Button EditInfo;
 
-    @FXML
-    private Button viewReports;
+	    @FXML
+	    private Button viewOrders;
 
     @FXML
     void btnAdd(MouseEvent event) throws IOException {
@@ -86,24 +90,39 @@ public class ManagerScreenController {
 
     @FXML
     void btnViewOrders(MouseEvent event) throws IOException {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BMViewOrders.fxml")));
+		Scene scene = new Scene(parent);
+		Stage ordersStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		ordersStage.setTitle("View Orders");
+		ordersStage.setScene(scene);
+		ordersStage.show();
+		ordersStage.centerOnScreen();
    
     }
 
     @FXML
     void btnViewReports(MouseEvent event) throws IOException {
     	((Node)event.getSource()).getScene().getWindow().hide();
- 		chat.accept(new Message(MessageType.LOGOUT,LoginScreenController.user));
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReportsNew.fxml")));
 		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Reports Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();
+		Stage reportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		reportStage.setTitle("Reports Screen");
+		reportStage.setScene(scene);
+		reportStage.show();
+		reportStage.centerOnScreen();
     }
 
     @FXML
     void initialize() {
+    	try {
+			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
+			@SuppressWarnings("unchecked")
+			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
+			userName.setText(account.get(0).getUser_ID());
+		} catch (NullPointerException e) {
+		}
+		;
     }
 
 }

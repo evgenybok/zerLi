@@ -14,20 +14,6 @@ public class Account implements Serializable {
 	private String CVV;
 	private double TotalRefund;
 	private String Status;
-	private double ZerliCredit;
-
-	public Account(String User_ID, String CreditCardNumber, String ExpiryDate, String CVV, double TotalRefund,
-			String Status, double ZerliCredit) {
-		this.User_ID = User_ID;
-		this.CreditCardNumber = CreditCardNumber;
-		this.ExpiryDate = ExpiryDate;
-		this.CVV = CVV;
-		this.TotalRefund = TotalRefund;
-		this.Status = Status;
-		this.ZerliCredit = ZerliCredit;
-	}
-
-	
 
 	public Account(String User_ID, String CreditCardNumber, String ExpiryDate, String CVV, double TotalRefund,
 			String Status) {
@@ -87,14 +73,6 @@ public class Account implements Serializable {
 
 	public void setStatus(String status) {
 		Status = status;
-	}
-
-	public double getZerliCredit() {
-		return ZerliCredit;
-	}
-
-	public void setZerliCredit(double zerliCredit) {
-		ZerliCredit = zerliCredit;
 	}
 
 	public static long getSerialversionuid() {
