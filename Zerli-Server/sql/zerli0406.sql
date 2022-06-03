@@ -69,7 +69,7 @@ CREATE TABLE `complaint` (
 
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
-INSERT INTO `complaint` VALUES ('5463','0001','1','LO KEF LI','Handled',20,'2000','2022-03-03 00:00:00'),('5463','0001','3','Shaked lo Gavri','Handled',190,'2000','2022-04-03 00:00:00'),('5463','0002','5','ma kore','WaitForHandle',200,'2000','2022-06-05 00:00:00'),('5463','0002','9','lala ','WaitForHandle',500,'2004','2023-07-12 00:00:00');
+INSERT INTO `complaint` VALUES ('5463','0001','1','LO KEF LI','Handled',20,'2000','2022-03-03 00:00:00'),('5463','0001','3','Shaked lo Gavri','Handled',190,'2000','2022-04-03 00:00:00'),('5463','0002','5','ma kore','Handled',0,'2000','2022-06-05 00:00:00'),('5463','0002','9','lala ','Handled',500,'2004','2023-07-12 00:00:00');
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,8 +140,8 @@ CREATE TABLE `orders` (
   `Price` double NOT NULL,
   `GreetingCard` varchar(1000) DEFAULT NULL,
   `StoreID` varchar(50) NOT NULL,
-  `OrderDate` datetime NOT NULL,
-  `SupplyDate` datetime NOT NULL,
+  `OrderDate` varchar(50) NOT NULL,
+  `SupplyDate` varchar(50) NOT NULL,
   `Status` varchar(45) NOT NULL,
   `SupplyType` varchar(45) NOT NULL,
   `UserID` varchar(45) NOT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Approved','Delivery','0001',0,'Nargilos','amit','0506576399','Express'),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',0,'akko','amit','0506576399','Regular'),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Compensation','PickUp','0001',0,'akko','amit','0506576399','Regular'),(4,70,NULL,'2003','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',0,'akko','amit','0506576399','Regular'),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Cancelled','Delivery','0002',0,'akko','amit','0506576399','Regular'),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Cancelled','PickUp','0001',0,'akko','amit','0506576399','Regular'),(7,96,'B-Day','2005','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',0,'akko','amit','0506576399','Regular'),(8,312,'B-Day','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','Delivered','Delivery','0001',0,'akko','amit','0506576399','Regular'),(9,912,'B-Day','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','Compensation','Delivery','0001',0,'akko','amit','0506576399','Regular'),(10,312,'B-Day','2005','2022-05-26 12:10:00','2022-05-03 10:30:00','Cancel Request','Delivery','0001',0,'kerem','elad','0506576399','Regular'),(11,312,'B-Day','2000','2022-05-26 10:49:00','2022-05-02 23:30:00','Delivered','Delivery','0001',0,'amit','amit','0506576399','Regular'),(12,52,'B-Day','2000','2022-06-02 05:45:00','2022-06-03 20:46:00','Pending','Delivery','0001',0,'Bait','Billy','0506576399','Regular'),(13,535,'B-Day','2004','2022-06-02 06:56:00','2022-06-03 21:56:00','Pending','PickUp','0001',0,'akko','ev','0506576399','Express'),(14,262,'B-Day','2004','2022-06-02 09:11:00','2022-06-03 01:00:00','Pending','Delivery','0001',0,'givat ram','ev','0506576399','Regular');
+INSERT INTO `orders` VALUES (1,20,'Happy Birthday','2000','2022-02-12 10:30:00','2022-01-09 00:00:00','Cancelled','Delivery','0001',0,'Nargilos','amit','0506576399','Express'),(2,30,'My Condolences','2001','2022-03-20 08:40:00','2022-01-01 00:00:00','Approved','PickUp','0002',0,'akko','amit','0506576399','Regular'),(3,18,NULL,'2000','2022-02-12 10:30:00','2022-02-03 00:00:00','Compensation','PickUp','0001',0,'akko','amit','0506576399','Regular'),(4,70,NULL,'2003','2022-03-20 08:40:00','2022-02-01 00:00:00','Approved','Delivery','0001',0,'akko','amit','0506576399','Regular'),(5,55,'Happy Birthday','2000','2022-03-22 14:40:00','2022-03-22 00:00:00','Cancelled','Delivery','0002',0,'akko','amit','0506576399','Regular'),(6,162,'Happy Passover','2003','2022-02-28 09:40:00','2022-02-28 00:00:00','Cancelled','PickUp','0001',0,'akko','amit','0506576399','Regular'),(7,96,'B-Day','2005','2022-03-26 15:55:00','2022-03-26 00:00:00','Approved','Delivery','0002',0,'akko','amit','0506576399','Regular'),(8,312,'B-Day','2000','2022-05-25 11:45:00','2022-05-02 10:30:00','Delivered','Delivery','0001',0,'akko','amit','0506576399','Regular'),(9,912,'B-Day','2004','2022-05-25 11:49:00','2022-05-04 10:30:00','Compensation','Delivery','0001',0,'akko','amit','0506576399','Regular'),(10,312,'B-Day','2005','2022-05-26 12:10:00','2022-05-03 10:30:00','Cancel Request','Delivery','0001',0,'kerem','elad','0506576399','Regular'),(11,312,'B-Day','2000','2022-05-26 10:49:00','2022-05-02 23:30:00','Delivered','Delivery','0001',0,'amit','amit','0506576399','Regular'),(12,52,'B-Day','2000','2022-06-02 05:45:00','2022-06-03 20:46:00','Cancelled','Delivery','0001',0,'Bait','Billy','0506576399','Regular'),(13,535,'B-Day','2004','2022-06-02 06:56:00','2022-06-03 21:56:00','Pending','PickUp','0001',0,'akko','ev','0506576399','Express'),(14,262,'B-Day','2004','2022-06-02 09:11:00','2022-06-03 01:00:00','Pending','Delivery','0001',0,'givat ram','ev','0506576399','Regular');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +175,7 @@ CREATE TABLE `stores` (
   `IDstore` int NOT NULL,
   `area` varchar(45) NOT NULL,
   `storeName` varchar(45) NOT NULL,
-  `IDmanger` varchar(45) NOT NULL,
+  `IDmanager` varchar(45) NOT NULL,
   PRIMARY KEY (`IDstore`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -186,7 +186,7 @@ CREATE TABLE `stores` (
 
 LOCK TABLES `stores` WRITE;
 /*!40000 ALTER TABLE `stores` DISABLE KEYS */;
-INSERT INTO `stores` VALUES (2000,'North','zerli_Akko','1111'),(2001,'South','zerli_Beer-Sheba','4545'),(2003,'Center','zerli_Tel-Aviv','4545'),(2004,'North','zerli_Karmiel','1111'),(2005,'North','zerli_Maker','4545'),(2006,'South','zerli_Dimona','1111');
+INSERT INTO `stores` VALUES (2000,'North','zerli_Akko','1111'),(2001,'South','zerli_Beer-Sheba','4545'),(2003,'Center','zerli_Tel-Aviv','4545'),(2004,'North','zerli_Karmiel','5678'),(2005,'North','zerli_Maker','4545'),(2006,'South','zerli_Dimona','1234');
 /*!40000 ALTER TABLE `stores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,8 +216,38 @@ CREATE TABLE `survey` (
 
 LOCK TABLES `survey` WRITE;
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
-INSERT INTO `survey` VALUES (1,'5463','MA kore','ma luz','ma','ma','ma','ma'),(2,'5463','dddd','dddd','aaaa','aaaa','aaaaa','aaaa'),(3,'5463','amit ','shitrit','yagever','ahi ','bolam','toda'),(4,'5463','Elad','Elad','Elad','Elad','Elad','Elad'),(5,'5463','k','k','k','k','k','shakwed');
+INSERT INTO `survey` VALUES (1,'5463','Did you find the stores conveniently located?','Did you find the store hours appropriate for you shopping needs?','Were the stores atmosphere and decoration appealing?','Was there a good selection of products?','Was the merchendise sold of high quality?','Were you satisfied with your purchase?');
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `survey_answers`
+--
+
+DROP TABLE IF EXISTS `survey_answers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `survey_answers` (
+  `ID` int NOT NULL,
+  `SurveyNumber` int DEFAULT NULL,
+  `Q1` int DEFAULT NULL,
+  `Q2` int DEFAULT NULL,
+  `Q3` int DEFAULT NULL,
+  `Q4` int DEFAULT NULL,
+  `Q5` int DEFAULT NULL,
+  `Q6` int DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `survey_answers`
+--
+
+LOCK TABLES `survey_answers` WRITE;
+/*!40000 ALTER TABLE `survey_answers` DISABLE KEYS */;
+INSERT INTO `survey_answers` VALUES (1,1,7,8,7,7,5,10),(2,1,9,9,10,8,8,9),(3,1,10,10,10,10,10,10);
+/*!40000 ALTER TABLE `survey_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -247,7 +277,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu','cu',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('mn2','mn2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billiy','Dilly','Marketing','0558859595','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('sp','sp',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
+INSERT INTO `users` VALUES ('cu','cu',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('mn2','mn2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billiy','Dilly','Marketing','0558859595','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('sp','sp',1,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -260,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 23:18:35
+-- Dump completed on 2022-06-03 20:37:04
