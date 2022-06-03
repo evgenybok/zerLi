@@ -51,15 +51,76 @@ public class AcceptDeliveryScreenController {
 
     @FXML
     private Text userName;
-
     @FXML
-    void SearchByOrderID(MouseEvent event) {
+    public void SearchByOrderID(MouseEvent event) {
+    	if(orderIDtext.getText().isEmpty())
+    	{
+    		DeliveryLayout.getChildren().clear();
+    		initialize();
+    	}
+    	else
+    	{
+    		DeliveryLayout.getChildren().clear();
+    		try {
+    			chat.accept(new Message(MessageType.GET_SINGLE_DELIVERY_BY_ORDER_ID,orderIDtext.getText()));
+    			if (AnalyzeMessageFromServer.getData().equals(null)) 
+    				return;
 
+    		} catch (Exception e) {
+    			return;
+    		};
+    		
+    		ArrayList<SingleDelivery> list = (ArrayList<SingleDelivery>)AnalyzeMessageFromServer.getData();
+    		try {
+    			for (int i = 0; i < list.size(); i++) {
+    				FXMLLoader fxmlLoader = new FXMLLoader();
+    				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+    				HBox hBox = fxmlLoader.load();
+    				SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
+    				singleDeliveryController.setData(list.get(i));
+    				DeliveryLayout.getChildren().add(hBox);
+
+    			}
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
     }
-
     @FXML
     void SearchByStoreID(MouseEvent event) {
+    	if(storeText.getText().isEmpty())
+    	{
+    		DeliveryLayout.getChildren().clear();
+    		initialize();
+    	}
+    	else
+    	{
+    		DeliveryLayout.getChildren().clear();
+    		try {
+    			chat.accept(new Message(MessageType.GET_SINGLE_DELIVERY_BY_STORE_ID,storeText.getText()));
+    			if (AnalyzeMessageFromServer.getData().equals(null)) 
+    				return;
 
+    		} catch (Exception e) {
+    			return;
+    		};
+    		
+    		ArrayList<SingleDelivery> list = (ArrayList<SingleDelivery>)AnalyzeMessageFromServer.getData();
+    		try {
+    			for (int i = 0; i < list.size(); i++) {
+    				FXMLLoader fxmlLoader = new FXMLLoader();
+    				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+    				HBox hBox = fxmlLoader.load();
+    				SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
+    				singleDeliveryController.setData(list.get(i));
+    				DeliveryLayout.getChildren().add(hBox);
+
+    			}
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
     }
 
     @FXML

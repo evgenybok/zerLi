@@ -44,13 +44,14 @@ public class DeliveryLoginScreenController {
 
     @FXML
     private Text userName;
-
+    public static Stage acceptStage ;
     @FXML
     void AcceptOrder(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AcceptDeliveryScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		acceptStage = customerStage;
 		customerStage.setTitle("Accept Orders");
 		customerStage.setScene(scene);
 		customerStage.show();
@@ -60,7 +61,7 @@ public class DeliveryLoginScreenController {
     @FXML
     void ViewMyOrder(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliverySelfOrder.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliverySelfOrders.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Self Delivery Orders");
@@ -88,7 +89,7 @@ public class DeliveryLoginScreenController {
         assert IncomeRep != null : "fx:id=\"IncomeRep\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
         assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
         assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        userName.setText(LoginScreenController.user.getFirstName());
+        userName.setText(LoginScreenController.user.getUsername());
         AccountStatus.setText("Active");
     }
 }

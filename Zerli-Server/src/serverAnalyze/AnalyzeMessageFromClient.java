@@ -13,6 +13,7 @@ import logic.Order;
 import logic.SingleComplaint;
 import logic.SingleDelivery;
 import logic.SingleOrder;
+import logic.SingleSelfDelivery;
 import logic.Survey;
 import logic.User;
 import ocsf.server.ConnectionToClient;
@@ -38,6 +39,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Account> creditDetails;
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
+		ArrayList<SingleSelfDelivery> singleSelfDelivery;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -422,31 +424,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_SINGLE_DELIVERY, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-
-		case GET_STORE_ORDERS:
-			Orders = GetOrderQuery.getStoreOrders((String) receivedMessage.getMessageData());
-			try {
-				receivedMessage.setMessageData(Orders);
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			} catch (Exception e) {
-				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				receivedMessage.setMessageData(null);
-			}
-			return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
-			
-		case GET_SURVEY_ANSWERS:
-			try {
-				receivedMessage.setMessageData(SurveyQuery.GetSurveyAnswers());
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			} catch (Exception e) {
-				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				receivedMessage.setMessageData(null);
-			}
-			return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
-
-		default:
+		default:// ;
 
 			return new Message(MessageType.ERROR, null);
 		}

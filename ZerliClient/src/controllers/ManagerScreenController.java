@@ -2,14 +2,11 @@ package controllers;
 
 import static controllers.IPScreenController.chat;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -18,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -50,6 +49,10 @@ public class ManagerScreenController {
 
 	    @FXML
 	    private Button viewOrders;
+    @FXML
+    private ImageView accIMG;
+    @FXML
+    private ImageView viewIMG;
 
     @FXML
     void btnAdd(MouseEvent event) throws IOException {

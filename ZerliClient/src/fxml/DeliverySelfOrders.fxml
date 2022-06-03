@@ -142,45 +142,10 @@
                                  <children>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="194.0">
                                        <children>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="438.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="184.0" text="Search by Store:">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="25.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                             </children>
-                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="438.0" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="259.0">
-                                       <children>
-                                          <TextField fx:id="storeText" alignment="CENTER" prefHeight="50.0" prefWidth="209.0" promptText="Enter Store Id" style="-fx-background-radius: 10;">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <HBox prefHeight="53.0" prefWidth="73.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" onMouseClicked="#SearchByStoreID" style="-fx-background-color: transparent;">
-                                                   <graphic>
-                                                      <ImageView fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByStoreID" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../images/images/icons8-search-50.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="18.0" />
                                     <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="224.0">
                                        <children>
                                           <VBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="438.0">
@@ -207,7 +172,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <Button mnemonicParsing="false" onMouseClicked="#SearchByOrderID" prefHeight="53.0" prefWidth="81.0" style="-fx-background-color: transparent;">
                                              <graphic>
-                                                <ImageView fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="searchButton" fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../images/images/icons8-search-50.png" />
                                                    </image>
@@ -225,7 +190,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="63.0" prefWidth="900.0">
+                  <HBox prefHeight="78.0" prefWidth="900.0">
                      <children>
                         <Label prefHeight="43.0" prefWidth="298.0" text="Delivery Self List:">
                            <font>
@@ -233,10 +198,62 @@
                            </font>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="102.0" prefWidth="900.0" style="-fx-background-color: d3d3d3;">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Order ID">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Deliver ID">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Customer Date">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Suuply Date">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Status">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
                   </HBox>
                   <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                      <content>
-                        <VBox fx:id="DeliveryLayout" prefHeight="573.0" prefWidth="899.0" />
+                        <VBox fx:id="DeliveryLayout" prefHeight="573.0" prefWidth="900.0" />
                      </content>
                   </ScrollPane>
                </children>

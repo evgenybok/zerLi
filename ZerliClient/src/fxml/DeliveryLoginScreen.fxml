@@ -15,7 +15,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeliveryLoginScreenController">
    <left>
       <VBox prefHeight="800.0" prefWidth="349.0" BorderPane.alignment="CENTER">
@@ -85,7 +84,7 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="151.13671875">
+                        <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Active)" textAlignment="CENTER" wrappingWidth="151.13671875">
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>
@@ -118,7 +117,7 @@
          <children>
             <AnchorPane prefHeight="800.0" prefWidth="771.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <Button alignment="BOTTOM_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#AcceptOrder" prefHeight="150.0" prefWidth="480.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Accept Order" textFill="#004d00">
+                  <Button alignment="BOTTOM_CENTER" layoutX="123.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#AcceptOrder" prefHeight="189.0" prefWidth="480.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Accept Order" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -127,7 +126,7 @@
                         <Font name="Cambria Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#ViewMyOrder" prefHeight="150.0" prefWidth="491.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="viewMyOrder" textFill="#004d00">
+                  <Button alignment="BOTTOM_CENTER" layoutX="123.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#ViewMyOrder" prefHeight="189.0" prefWidth="480.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="View My Order" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -158,11 +157,16 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="122.0" prefWidth="769.0">
-                     <children>
-                        <HBox prefHeight="122.0" prefWidth="115.0" />
-                     </children>
-                  </HBox>
+                  <ImageView fx:id="accIMG" fitHeight="119.0" fitWidth="140.0" layoutX="299.0" layoutY="193.0" onMouseClicked="#AcceptOrder" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/Delivery1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="viewIMG" fitHeight="125.0" fitWidth="114.0" layoutX="300.0" layoutY="415.0" onMouseClicked="#ViewMyOrder" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/Delivery2.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
