@@ -172,7 +172,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <Button mnemonicParsing="false" onMouseClicked="#SearchByOrderID" prefHeight="53.0" prefWidth="81.0" style="-fx-background-color: transparent;">
                                              <graphic>
-                                                <ImageView fx:id="searchButton" fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../images/images/icons8-search-50.png" />
                                                    </image>
@@ -190,7 +190,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="78.0" prefWidth="900.0">
+                  <HBox prefHeight="63.0" prefWidth="900.0">
                      <children>
                         <Label prefHeight="43.0" prefWidth="298.0" text="Delivery Self List:">
                            <font>
@@ -198,62 +198,10 @@
                            </font>
                         </Label>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="102.0" prefWidth="900.0" style="-fx-background-color: d3d3d3;">
-                     <children>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Order ID">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Deliver ID">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Customer Date">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Suuply Date">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Status">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
                   </HBox>
                   <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                      <content>
-                        <VBox fx:id="DeliveryLayout" prefHeight="573.0" prefWidth="900.0" />
+                        <VBox fx:id="DeliveryLayout" prefHeight="573.0" prefWidth="899.0" />
                      </content>
                   </ScrollPane>
                </children>

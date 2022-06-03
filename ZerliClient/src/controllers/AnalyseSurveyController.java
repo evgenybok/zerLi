@@ -117,7 +117,7 @@ public class AnalyseSurveyController {
 		// chat-send to server the report number
 		// take it from the next screen
 		List<SurveyAnswer> surveyAnswer = new ArrayList<>();
-		chat.accept(new Message(MessageType.GET_SURVEY_ANSWERS, null));
+		//chat.accept(new Message(MessageType.GET_SURVEY_ANSWERS, null));
 		surveyAnswer = (List<SurveyAnswer>) AnalyzeMessageFromServer.getData();
 		averageScore = new int[7]; // average score of all questions for survey 'reportNumber'.
 		int counter = 0;

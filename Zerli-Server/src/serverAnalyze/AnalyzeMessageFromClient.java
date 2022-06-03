@@ -21,6 +21,8 @@ import query.AccountDetailsQuery;
 import query.AddNewUserQuery;
 import query.CatalogQuery;
 import query.DeliveryQuery;
+import logic.SingleSelfDelivery;
+
 import query.GetOrderQuery;
 import query.Query;
 import query.StoresQuery;
@@ -40,6 +42,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
+		
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -424,6 +427,82 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_SINGLE_DELIVERY, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+		case GET_SINGLE_DELIVERY_BY_STORE_ID:
+			singleDelivery = DeliveryQuery.getSingleDeliveryByStoreId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleDelivery);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SINGLE_DELIVERY_BY_STORE_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_SINGLE_DELIVERY_BY_ORDER_ID:
+			singleDelivery = DeliveryQuery.getSingleDeliveryByOrderId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleDelivery);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SINGLE_DELIVERY_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_DELIVERY_STATUS:
+			String res = DeliveryQuery.UpdateDeliveryStatus((String) receivedMessage.getMessageData());	
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(res);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.UPDATE_DELIVERY_STATUS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case INSERT_TO_DELIVERY_TABLE:
+			String res2 =DeliveryQuery.InsertSingleSelfDelivery((SingleSelfDelivery) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(res2);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.INSERT_TO_DELIVERY_TABLE, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_REFUND_BY_ORDERID:
+			try {
+				DeliveryQuery.UpdateRefundByOrderId((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			};
+		case VIEW_SELF_DELIVERY_DETAILS:
+			singleSelfDelivery = DeliveryQuery.getSingleSelfOrder((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleSelfDelivery);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID:
+			singleSelfDelivery = DeliveryQuery.getSingleSelfOrderByOrderId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleSelfDelivery);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+
 		default:// ;
 
 			return new Message(MessageType.ERROR, null);

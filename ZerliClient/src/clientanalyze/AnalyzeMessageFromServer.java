@@ -13,6 +13,7 @@ import logic.SingleComplaint;
 import logic.SingleDelivery;
 import logic.SingleOrder;
 import logic.SurveyAnswer;
+import logic.SingleSelfDelivery;
 import logic.User;
 
 public class AnalyzeMessageFromServer {
@@ -307,8 +308,47 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  GET_SINGLE_DELIVERY_BY_STORE_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-		case GET_SURVEY_ANSWERS:
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_SINGLE_DELIVERY_BY_ORDER_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_DELIVERY_STATUS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  INSERT_TO_DELIVERY_TABLE:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_REFUND_BY_ORDERID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  VIEW_SELF_DELIVERY_DETAILS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -317,6 +357,14 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 
+	/*	case GET_SURVEY_ANSWERS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;*/
 		default:
 			break;
 		}
@@ -351,6 +399,9 @@ public class AnalyzeMessageFromServer {
 					return (ArrayList<SingleDelivery>) res;
 				if (((ArrayList<?>) res).get(0) instanceof SurveyAnswer)
 					return (ArrayList<SurveyAnswer>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SingleSelfDelivery)
+					return (ArrayList<SingleSelfDelivery>) res;
+
 			} catch (IndexOutOfBoundsException e) {
 			}
 			;
