@@ -126,7 +126,7 @@ public class OrdersController {
 
 			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& (Orders.get(i).getStatus().equals("Approved")
-							|| Orders.get(i).getStatus().equals("WaitForApprove"))) {
+							|| Orders.get(i).getStatus().equals("Pending"))) {
 				toCancel = Orders.get(i);
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = new Date();

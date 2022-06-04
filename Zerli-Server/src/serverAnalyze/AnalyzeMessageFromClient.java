@@ -545,7 +545,10 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			;
+			return new Message(MessageType.UPDATE_REFUND_BY_ORDERID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+			
 		case VIEW_SELF_DELIVERY_DETAILS:
 			singleSelfDelivery = DeliveryQuery.getSingleSelfOrder((String) receivedMessage.getMessageData());
 			try {
@@ -676,7 +679,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			;
+			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
 		case UPDATE_ORDER_STATUS_BY_MANAGER:
 			try {
 				GetOrderQuery.UpdateOrderStatusByManager((String) receivedMessage.getMessageData());
@@ -685,7 +690,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			;
+			return new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
 
 		default:// ;
 

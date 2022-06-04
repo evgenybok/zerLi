@@ -83,12 +83,6 @@ public class DeliveryLoginScreenController {
     }
     @FXML
     void initialize() {
-        assert AccountStatus != null : "fx:id=\"AccountStatus\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        assert AccountType != null : "fx:id=\"AccountType\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        assert ComplaintRep != null : "fx:id=\"ComplaintRep\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        assert IncomeRep != null : "fx:id=\"IncomeRep\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        assert Logout != null : "fx:id=\"Logout\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'DeliveryLoginScreen.fxml'.";
         userName.setText(LoginScreenController.user.getUsername());
         AccountStatus.setText("Active");
     }

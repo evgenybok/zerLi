@@ -23,13 +23,14 @@ public class AddNewUserQuery {
 	 * @return true string if user exists, false string if doesn't exist.
 	 */
 	public static String checkIfUserExisting(String username) {
-		String query = ("SELECT  Username FROM zerli.users WHERE Username = '" + username + "';");
+		String query = ("SELECT * FROM zerli.users WHERE Username = '" + username + "';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				String user = rs.getString("Username");
-				return "true";
+				if(user.equals(username))
+					return "true";
 			}
 		} catch (SQLException e) {
 			return "false";

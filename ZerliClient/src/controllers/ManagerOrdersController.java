@@ -114,26 +114,14 @@ public class ManagerOrdersController {
 				singleManageOrdersController.setData(order.get(i));
 				OrdersLayout.getChildren().add(hBox);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
 
     @FXML
     void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert IdText != null : "fx:id=\"IdText\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert OrderId != null : "fx:id=\"OrderId\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert OrdersLayout != null : "fx:id=\"OrdersLayout\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert Price != null : "fx:id=\"Price\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert Search != null : "fx:id=\"Search\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert Status != null : "fx:id=\"Status\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert SupplyType != null : "fx:id=\"SupplyType\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert UserId != null : "fx:id=\"UserId\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert orderDate != null : "fx:id=\"orderDate\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert refund1 != null : "fx:id=\"refund1\" was not injected: check your FXML file 'ManageOrders.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'ManageOrders.fxml'.";
+
         InsertToTable();
     }
     public void InsertToTable()
@@ -152,7 +140,7 @@ public class ManagerOrdersController {
 				OrdersLayout.getChildren().add(hBox);
 
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }

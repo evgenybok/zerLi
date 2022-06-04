@@ -254,7 +254,7 @@ public class GetOrderQuery {
 	
 	public static ArrayList<SingleManageOrder> GetManagerOrders() {
 		ArrayList<SingleManageOrder> list= new  ArrayList<>();
-		String query = ("SELECT * FROM zerli.orders WHERE Status='WaitForApprove'");
+		String query = ("SELECT * FROM zerli.orders WHERE Status='Pending'");
 		 try {
 				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 				ResultSet rs = st.executeQuery();

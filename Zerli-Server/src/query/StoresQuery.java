@@ -46,7 +46,7 @@ public class StoresQuery {
 
 	public static String GetStoreIdByWorkerID(String ID)
 	{
-		String query = "SELECT IDstore FROM zerli.stores WHERE IDmanger='" + ID + "'";
+		String query = "SELECT IDstore FROM zerli.stores WHERE IDmanager='" + ID + "'";
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();

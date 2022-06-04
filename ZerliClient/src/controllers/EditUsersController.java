@@ -115,17 +115,6 @@ public class EditUsersController {
 
     @FXML
     void initialize() {
-        assert Action != null : "fx:id=\"Action\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert FirstName != null : "fx:id=\"FirstName\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert IdText != null : "fx:id=\"IdText\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert LastName != null : "fx:id=\"LastName\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert Search != null : "fx:id=\"Search\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert Status != null : "fx:id=\"Status\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert UserID != null : "fx:id=\"UserID\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert UsersLayout != null : "fx:id=\"UsersLayout\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'EditUsers.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'EditUsers.fxml'.";
         InsertToTable();
     }
     public void InsertToTable()

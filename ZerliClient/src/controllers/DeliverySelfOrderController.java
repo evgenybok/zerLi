@@ -78,7 +78,7 @@ public class DeliverySelfOrderController {
     				DeliveryLayout.getChildren().add(hBox);
 
     			}
-    		} catch (IOException e) {
+    		} catch (Exception e) {
     			e.printStackTrace();
     		}
     	}
@@ -119,7 +119,7 @@ public class DeliverySelfOrderController {
 				singleSelfDeliveryController.setData(list.get(i));
 				DeliveryLayout.getChildren().add(hBox);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
     }
