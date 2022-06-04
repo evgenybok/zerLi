@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: zerli
+-- Host: 127.0.0.1    Database: zerli2
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -74,6 +74,32 @@ INSERT INTO `complaint` VALUES ('5463','0001','1','LO KEF LI','Handled',20,'2000
 UNLOCK TABLES;
 
 --
+-- Table structure for table `complaintreport`
+--
+
+DROP TABLE IF EXISTS `complaintreport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `complaintreport` (
+  `StoreID` text,
+  `QuarterNumber` text,
+  `Year` text,
+  `GotRefund` text,
+  `DidntGotRefund` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `complaintreport`
+--
+
+LOCK TABLES `complaintreport` WRITE;
+/*!40000 ALTER TABLE `complaintreport` DISABLE KEYS */;
+INSERT INTO `complaintreport` VALUES ('StoreID','QuarterNumber','Year','GotRefund','DidntGotRefund');
+/*!40000 ALTER TABLE `complaintreport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `delivery`
 --
 
@@ -96,6 +122,34 @@ LOCK TABLES `delivery` WRITE;
 /*!40000 ALTER TABLE `delivery` DISABLE KEYS */;
 INSERT INTO `delivery` VALUES (1,2222,'2022-06-02 11:30:00','2022-06-03 06:40:33'),(4,2222,'2022-02-01 21:40:00','2022-06-03 11:05:14'),(8,2222,'2022-05-02 10:30:00','2022-06-03 10:55:24');
 /*!40000 ALTER TABLE `delivery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `incomereport`
+--
+
+DROP TABLE IF EXISTS `incomereport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `incomereport` (
+  `Week1` text,
+  `Week2` text,
+  `Week3` text,
+  `Week4` text,
+  `Month` text,
+  `Year` text,
+  `StoreID` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incomereport`
+--
+
+LOCK TABLES `incomereport` WRITE;
+/*!40000 ALTER TABLE `incomereport` DISABLE KEYS */;
+INSERT INTO `incomereport` VALUES ('Week1','Week2','Week3','Week4','Month','Year','StoreID');
+/*!40000 ALTER TABLE `incomereport` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -302,7 +356,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu','cu',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('mn2','mn2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billiy','Dilly','Marketing','0558859595','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('sp','sp',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
+INSERT INTO `users` VALUES ('cu','cu',0,'0001','Nir','Nir','customer','0252621154','nir@gmail.com'),('cu1','cu1',0,'0002','dan','dan','customer','0522151487','dan@gmail.com'),('worker1','worker1',0,'0010','amit','shitrit','worker','0522656444','amit@gmail.com'),('worker2','worker2',0,'0011','shaked','arish','worker','0554488778','shaked@gmail.com'),('mn2','mn2',0,'1111','ivgeni','vaxler','branch manager','0521514485','evgenyvex@gmail.com'),('de','de',0,'2222','itzhak','moshe','Delivery','0522221153','ronny@gmail.com'),('market','market',0,'3333','Billiy','Dilly','Marketing','0558859595','market@gmail.com'),('MN1','MN1',0,'4545','evgeny','vexler','branch manager','0454848455','evgenyBM@gmail.com'),('branchMN3','branchMN3',0,'4546','Tomer','cohen','branch manager','0507812237','Tomer@gmail.com'),('sp','sp',0,'4643','evgeny','boka','customer specialist','0559448488','evgeny@gmail.com'),('branchMN4','branchMN4',0,'4647','Jhonny','Depp','branch manager','0523741829','Jhonny@gmail.com'),('branchMN5','branchMN5',0,'4648','Amit','Arish','branch manager','0541238967','Amit2@gmail.com'),('branchMN6','branchMN6',0,'4649','Elad','Jarrar','branch manager','0548912234','elad2@gmail.com'),('sv','sv',0,'5463','amr','jarrar','customer service','0559484848','amr@gmail.com'),('ceo','ceo',0,'5555','elad','raizing','ceo','0555448478','elad@gmail.com'),('ma','ma',0,'makore','makore','makore','customer','ma','ma');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -315,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-03 23:29:04
+-- Dump completed on 2022-06-04 13:54:06

@@ -270,7 +270,7 @@ public class AnalyzeMessageFromClient {
 			receivedMessage.setMessageData(null);
 		}
 
-		case GET_ORDER_BY_ID:
+		/*case GET_ORDER_BY_ID:
 			Orders = GetOrderQuery.GetOrderByIdAndUserId((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -280,7 +280,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
+					receivedMessage.getMessageData());*/
 
 		case CANCEL_ORDER:
 			try {
@@ -293,7 +293,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
 
-		case GET_USERID_BY_ORDERID:
+		/*case GET_USERID_BY_ORDERID:
 			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -304,7 +304,7 @@ public class AnalyzeMessageFromClient {
 			}
 
 			return new Message(MessageType.GET_USERID_BY_ORDERID, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
+					receivedMessage.getMessageData());*/
 
 		case INSERT_NEW_COMPLAIN:
 			try {
@@ -412,11 +412,11 @@ public class AnalyzeMessageFromClient {
 				return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
 						receivedMessage.getMessageData());
 
-		default:
+		/*default:
 			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
+					receivedMessage.getMessageData());*/
 
-		case INSERT_NEW_SURVEY:
+		/*case INSERT_NEW_SURVEY:
 			try {
 				String s = SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -427,9 +427,9 @@ public class AnalyzeMessageFromClient {
 			}
 			;
 			return new Message(MessageType.INSERT_NEW_SURVEY, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
+					receivedMessage.getMessageData());*/
 
-		case CHECK_EXIST_QOMPLAIN:
+		/*case CHECK_EXIST_QOMPLAIN:
 			String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
@@ -451,7 +451,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
+					receivedMessage.getMessageData());*/
 
 		case CHECK_IF_USERNAME_EXIST:
 			String str = AddNewUserQuery.checkIfUserExisting((String) receivedMessage.getMessageData());
