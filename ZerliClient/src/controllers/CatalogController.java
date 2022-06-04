@@ -96,12 +96,12 @@ public class CatalogController {
 	@FXML
 	private TextField txtColor;
 
-    @FXML
-    private ImageView saleImg;
-    
-    @FXML
-    private Label lblSalePrice;
-    
+	@FXML
+	private ImageView saleImg;
+
+	@FXML
+	private Label lblSalePrice;
+
 	@FXML
 	public static Stage premadeCatalogStage;
 
@@ -115,7 +115,7 @@ public class CatalogController {
 
 	ArrayList<Item> selectedItems = new ArrayList<>();
 	ArrayList<Item> items = new ArrayList<>();
-	static int premadeBouquetNumber=0;
+	static int premadeBouquetNumber = 0;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -145,7 +145,7 @@ public class CatalogController {
 			AddToCartBtn.setDisable(true);
 		if (amount > 0)
 			AddToCartBtn.setDisable(false);
-		if(CustomerScreenController.accountStatus.equals("Frozen"))
+		if (CustomerScreenController.accountStatus.equals("Frozen"))
 			AddToCartBtn.setDisable(true);
 	}
 
@@ -170,17 +170,17 @@ public class CatalogController {
 	@FXML
 	void btnMyCart(MouseEvent event) throws IOException {
 		premadeCatalogStage = (Stage) AddToCartBtn.getScene().getWindow();
-		
+
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage cartDetailsScreen = new Stage();
-            cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-            cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
-            cartDetailsScreen.setTitle("Cart Details");
-            cartDetailsScreen.setScene((new Scene(root1)));
-            cartDetailsScreen.show();
-            cartDetailsScreen.centerOnScreen();
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage cartDetailsScreen = new Stage();
+			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+			cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+			cartDetailsScreen.setTitle("Cart Details");
+			cartDetailsScreen.setScene((new Scene(root1)));
+			cartDetailsScreen.show();
+			cartDetailsScreen.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -268,8 +268,13 @@ public class CatalogController {
 			else
 				to = Double.parseDouble(txtTo.getText());
 			for (Item item : items) {
-				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade"))
-					tempSelectedItems.add(item);
+				if (item.isOnSale()) {
+					if (item.getSalePrice() >= from && item.getSalePrice() <= to && item.getType().equals("Premade"))
+						tempSelectedItems.add(item);
+				} else {
+					if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade"))
+						tempSelectedItems.add(item);
+				}
 			}
 			selectedItems = new ArrayList<Item>(tempSelectedItems);
 			initialize();
@@ -295,7 +300,6 @@ public class CatalogController {
 		} else
 			JOptionPane.showMessageDialog(null, "No bouquets found with the color " + color + ".", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
-
 	}
 
 	@FXML
@@ -311,16 +315,34 @@ public class CatalogController {
 		else
 			to = Double.parseDouble(txtTo.getText());
 		if (!(txtColor.getText().isEmpty())) {
+			String color = txtColor.getText();
+			color.toLowerCase();
+			color = color.substring(0, 1).toUpperCase() + color.substring(1);
+			chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
+			items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
 			for (Item item : items) {
-				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")
-						&& txtColor.getText().equals(item.getColor())) {
-					tempSelectedItems.add(item);
+				if (item.isOnSale()) {
+					if (item.getSalePrice() >= from && item.getSalePrice() <= to && item.getType().equals("Premade")
+							&& color.equals(item.getColor())) {
+						tempSelectedItems.add(item);
+					}
+				} else {
+					if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")
+							&& color.equals(item.getColor())) {
+						tempSelectedItems.add(item);
+					}
 				}
 			}
 		} else {
 			for (Item item : items) {
-				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")) {
-					tempSelectedItems.add(item);
+				if (item.isOnSale()) {
+					if (item.getSalePrice() >= from && item.getSalePrice() <= to && item.getType().equals("Premade")) {
+						tempSelectedItems.add(item);
+					}
+				} else {
+					if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade")) {
+						tempSelectedItems.add(item);
+					}
 				}
 			}
 		}
@@ -377,14 +399,14 @@ public class CatalogController {
 				flowerName.setText(selectedItems.get(i).getName());
 				flowerPrice.setText("\u20AA" + selectedItems.get(i).getPrice());
 				serialID.setText(Integer.toString(selectedItems.get(i).getID()));
-				if(selectedItems.get(i).isOnSale()) {
-					lblSalePrice.setText("\u20AA"+ selectedItems.get(i).getSalePrice());
+				if (selectedItems.get(i).isOnSale()) {
+					lblSalePrice.setText("\u20AA" + selectedItems.get(i).getSalePrice());
 					lblSalePrice.setVisible(true);
-		            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
-		            saleImg.setImage(saleImage);
+					Image saleImage = new Image(
+							(Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+					saleImg.setImage(saleImage);
 					saleImg.setVisible(true);
-				}
-				else {
+				} else {
 					lblSalePrice.setVisible(false);
 					saleImg.setVisible(false);
 				}
@@ -396,14 +418,14 @@ public class CatalogController {
 							flowerName.setText(item.getName());
 							flowerPrice.setText("\u20AA" + item.getPrice());
 							serialID.setText(Integer.toString(item.getID()));
-							if(item.isOnSale()) {
-								lblSalePrice.setText("\u20AA"+ item.getSalePrice());
+							if (item.isOnSale()) {
+								lblSalePrice.setText("\u20AA" + item.getSalePrice());
 								lblSalePrice.setVisible(true);
-					            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
-					            saleImg.setImage(saleImage);
+								Image saleImage = new Image(
+										(Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+								saleImg.setImage(saleImage);
 								saleImg.setVisible(true);
-							}
-							else {
+							} else {
 								lblSalePrice.setVisible(false);
 								saleImg.setVisible(false);
 							}

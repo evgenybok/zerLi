@@ -308,7 +308,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  GET_SINGLE_DELIVERY_BY_STORE_ID:
+		case GET_SINGLE_DELIVERY_BY_STORE_ID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -316,7 +316,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  GET_SINGLE_DELIVERY_BY_ORDER_ID:
+		case GET_SINGLE_DELIVERY_BY_ORDER_ID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -324,7 +324,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  UPDATE_DELIVERY_STATUS:
+		case UPDATE_DELIVERY_STATUS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -332,7 +332,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  INSERT_TO_DELIVERY_TABLE:
+		case INSERT_TO_DELIVERY_TABLE:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -340,7 +340,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  UPDATE_REFUND_BY_ORDERID:
+		case UPDATE_REFUND_BY_ORDERID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -348,7 +348,7 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
-		case  VIEW_SELF_DELIVERY_DETAILS:
+		case VIEW_SELF_DELIVERY_DETAILS:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
@@ -366,45 +366,50 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 
+		case GET_STORE_ID_BY_WORKER_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-			case GET_STORE_ID_BY_WORKER_ID:
-				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-					res = receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
 
-				} else {
-					res = null;
-				}
-				return;
+		case GRAPH_STATISTICS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-			case GRAPH_STATISTICS:
-				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-					res = receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
 
-				} else {
-					res = null;
-				}
-				return;
+		case INCOME_REPORT:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
+			} else {
+				res = null;
+			}
+			return;
 
-			case INCOME_REPORT:
-				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-					res = receivedMessage.getMessageData();
+		case GET_STORE_NAME_BY_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-				} else {
-					res = null;
-				}
-				return;
+			} else {
+				res = null;
+			}
+			return;
 
-			case GET_STORE_NAME_BY_ID:
-				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-					res = receivedMessage.getMessageData();
+		case SAVE_ANALYSIS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
 
-				} else {
-					res = null;
-				}
-				return;
-
-
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}

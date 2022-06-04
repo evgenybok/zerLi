@@ -225,6 +225,17 @@ public class ItemEditController {
 
 	@FXML
 	void initialize() {
+		if(LoginScreenController.user.getRole().equals("worker")) {
+			salePrice.setDisable(true);
+			checkBoxSale.setDisable(true);
+		}
+		else {
+			delete.setVisible(false);
+			imagePath.setDisable(true);
+			name.setDisable(true);
+			price.setDisable(true);
+			color.setDisable(true);
+		}
 		if (currentItem == null) {
 			id.setText("");
 			imagePath.setText("");

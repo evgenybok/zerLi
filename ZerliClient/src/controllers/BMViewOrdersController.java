@@ -236,7 +236,7 @@ public class BMViewOrdersController {
 				singleOrderController.setData(Orders.get(i));
 				OrdersLayout.getChildren().add(hBox);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

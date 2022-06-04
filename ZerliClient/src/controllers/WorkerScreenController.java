@@ -63,16 +63,15 @@ public class WorkerScreenController {
 
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
-		/*
-		 * Parent parent =
-		 * FXMLLoader.load((Objects.requireNonNull(getClass().getResource(
-		 * "/fxml/CatalogUpdate.fxml")))); Scene scene = new Scene(parent);
-		 * parent.getStylesheets().add("css/style.css"); Stage catalogUpdateStage =
-		 * (Stage) ((Node) event.getSource()).getScene().getWindow();
-		 * catalogUpdateStage.setTitle("Catalog Update");
-		 * catalogUpdateStage.setScene(scene); catalogUpdateStage.show();
-		 * catalogUpdateStage.centerOnScreen();
-		 */
+		  Parent parent =
+		  FXMLLoader.load((Objects.requireNonNull(getClass().getResource(
+		  "/fxml/CatalogUpdate.fxml")))); Scene scene = new Scene(parent);
+		  parent.getStylesheets().add("css/style.css"); Stage catalogUpdateStage =
+		  (Stage) ((Node) event.getSource()).getScene().getWindow();
+		  catalogUpdateStage.setTitle("Catalog Update");
+		  catalogUpdateStage.setScene(scene); catalogUpdateStage.show();
+		  catalogUpdateStage.centerOnScreen();
+		 
 	}
 
 	@FXML

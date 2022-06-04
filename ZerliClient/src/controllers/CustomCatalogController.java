@@ -350,10 +350,12 @@ public class CustomCatalogController {
 				to = Integer.MAX_VALUE;
 			else
 				to = Double.parseDouble(txtTo.getText());
-			for (Item item : items) {
-				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Premade"))
-					tempSelectedItems.add(item);
-			}
+			chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
+            items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+            for (Item item : items) {
+                if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Self Assembly"))
+                    tempSelectedItems.add(item);
+            }
 			catalogProducts = new ArrayList<Item>(tempSelectedItems);
 			initialize();
 			return;

@@ -190,13 +190,13 @@ public class GetOrderQuery {
 
 	public static ArrayList<SingleOrder> getStoreOrders(String bmID) {
 		String query = ("SELECT * FROM zerli.stores;");
-		int tempStoreID = 0;
+		String tempStoreID =null;
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				if (bmID.equals(rs.getString("IDmanager"))) {
-					tempStoreID = rs.getInt("IDStore");
+					tempStoreID = rs.getString("IDStore");
 				}
 			}
 
@@ -218,7 +218,7 @@ public class GetOrderQuery {
 				String SupplyType = rs.getString("SupplyType");
 				double Refund = rs.getDouble("Refund");
 
-				if (tempStoreID == Integer.parseInt(StoreID))
+				if (tempStoreID.equals(StoreID))
 					orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
 							Status));
 				//int OrderNumber,double Price,String StoreID,String OrderDate,String SupplyDate,String SupplyType,double Refund, String Status)

@@ -133,32 +133,26 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="102.0" prefWidth="846.0" />
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="846.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="?">
+                  <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="427.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="      Update Catalog">
                      <graphic>
-                        <ImageView fx:id="catalogImage" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="catalogImage" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/images/Catalog.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
                   </Button>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="100.0" />
             <HBox alignment="CENTER" prefHeight="125.0" prefWidth="846.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="455.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="?">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>

@@ -140,7 +140,9 @@ public class CatalogUpdateController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-
+		if(LoginScreenController.user.getRole().equals("Marketing")) {
+			addNewItem.setVisible(false);
+		}
 		// premade grid
 		premadeGrid.getChildren().clear();
 		int column = 0;
