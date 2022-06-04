@@ -11,9 +11,14 @@ import logic.Complain;
 import logic.Item;
 import logic.SingleComplaint;
 import logic.SingleDelivery;
+import logic.SingleManageOrder;
 import logic.SingleOrder;
+<<<<<<< HEAD
 import logic.SurveyAnswer;
 import logic.SingleSelfDelivery;
+=======
+import logic.SingleUser;
+>>>>>>> stash
 import logic.User;
 
 public class AnalyzeMessageFromServer {
@@ -410,6 +415,54 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  GET_USERS_BY_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_MANAGER_ORDERS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_ORDER_BY_ORDER_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  GET_USER_BY_USER_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_STATUS_BY_MANAGER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_ORDER_STATUS_BY_MANAGER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}
@@ -427,6 +480,7 @@ public class AnalyzeMessageFromServer {
 		if (res instanceof ArrayList<?>) {
 
 			try {
+<<<<<<< HEAD
 				if (((ArrayList<?>) res).get(0) instanceof User)
 					return (ArrayList<User>) res;
 				if (((ArrayList<?>) res).get(0) instanceof SingleOrder)
@@ -449,6 +503,28 @@ public class AnalyzeMessageFromServer {
 					return (ArrayList<SingleSelfDelivery>) res;
 
 			} catch (IndexOutOfBoundsException e) {
+=======
+			if (((ArrayList<?>) res).get(0) instanceof User)
+				return (ArrayList<User>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleOrder)
+				return (ArrayList<SingleOrder>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Item)
+				return (ArrayList<Item>) res;
+			if (((ArrayList<?>) res).get(0) instanceof String)
+				return (ArrayList<String>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Account)
+				return (ArrayList<Account>) res;
+			if (((ArrayList<?>) res).get(0) instanceof Complain)
+				return (ArrayList<Complain>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleComplaint)
+				return (ArrayList<SingleComplaint>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleDelivery)
+				return (ArrayList<SingleDelivery>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleUser)
+				return (ArrayList<SingleUser>) res;
+			if (((ArrayList<?>) res).get(0) instanceof SingleManageOrder)
+				return (ArrayList<SingleManageOrder>) res;
+>>>>>>> stash
 			}
 			;
 		}

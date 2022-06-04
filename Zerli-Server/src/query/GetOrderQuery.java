@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import logic.Order;
+import logic.SingleManageOrder;
 import logic.SingleOrder;
+import logic.SingleUser;
 
 public class GetOrderQuery {
 
@@ -159,7 +161,29 @@ public class GetOrderQuery {
 			e.printStackTrace();
 			return;
 		}
+	}
 
+
+	public static ArrayList<SingleManageOrder> GetOrderById(String orderID) {
+		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + orderID + "';");
+		ArrayList<SingleManageOrder> list = new ArrayList<>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				int orderId = rs.getInt("OrderNumber");
+				String userId = rs.getString("UserID");
+				double price = rs.getInt("Price");
+				String orderDate = rs.getString("OrderDate");
+				String SupplyType = rs.getString("SupplyType");
+				String status=rs.getString("Status");
+				list.add(new SingleManageOrder(orderId,userId,price,orderDate,SupplyType,status));
+			}
+		} catch (SQLException e) {
+			list = new ArrayList<SingleManageOrder>();
+			return list;
+		}
+		return list;
 	}
 
 	public static void UpdateRefundUsed(String details) {
@@ -228,4 +252,37 @@ public class GetOrderQuery {
 		}
 		return orders;
 	}
+	
+	public static ArrayList<SingleManageOrder> GetManagerOrders() {
+		ArrayList<SingleManageOrder> list= new  ArrayList<>();
+		String query = ("SELECT * FROM zerli.orders WHERE Status='WaitForApprove'");
+		 try {
+				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+				ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+					int orderId = rs.getInt("OrderNumber");
+					String userId = rs.getString("UserID");
+					double price = rs.getInt("Price");
+					String orderDate = rs.getString("OrderDate");
+					String SupplyType = rs.getString("SupplyType");
+					String status=rs.getString("Status");
+					list.add(new SingleManageOrder(orderId,userId,price,orderDate,SupplyType,status));	
+				}
+			} catch (SQLException e) {
+				return null;
+			}
+			return list;
+	}
+
+	public static void UpdateOrderStatusByManager(String OrderId) {
+		String query = ("UPDATE zerli.orders SET Status='Approved' WHERE OrderNumber="+ OrderId + ";");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
 }
+

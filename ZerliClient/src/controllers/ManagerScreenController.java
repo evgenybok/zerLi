@@ -73,7 +73,7 @@ public class ManagerScreenController {
     @FXML
     void btnEdit(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/AddNewCustomer.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EditUsers.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -97,16 +97,14 @@ public class ManagerScreenController {
 
     @FXML
     void btnViewOrders(MouseEvent event) throws IOException {
-
-    	((Node)event.getSource()).getScene().getWindow().hide();
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BMViewOrders.fxml")));
+    	((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ManageOrders.fxml")));
 		Scene scene = new Scene(parent);
-		Stage ordersStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		ordersStage.setTitle("View Orders");
-		ordersStage.setScene(scene);
-		ordersStage.show();
-		ordersStage.centerOnScreen();
-   
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setTitle("Manager Orders");
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
     }
 
     @FXML

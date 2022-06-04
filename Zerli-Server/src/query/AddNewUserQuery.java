@@ -3,8 +3,11 @@ package query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import logic.Account;
+import logic.SingleDelivery;
+import logic.SingleUser;
 import logic.User;
 
 public class AddNewUserQuery {
@@ -49,6 +52,58 @@ public class AddNewUserQuery {
 			return;
 		}
 	}
+	public static ArrayList<SingleUser> GetUserDetials()
+	{
+		ArrayList<SingleUser> list= new  ArrayList<>();
+		 String query = ("SELECT * FROM zerli.users WHERE Role = 'customer';");
+		 try {
+				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+				ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+					String status=null;
+					String userID = rs.getString("id");
+					String firstName = rs.getString("FirstName");
+					String lastName = rs.getString("LastName");
+					String query2 = ("SELECT Status FROM zerli.account_details WHERE User_ID = '"+ userID + "';");
+					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
+					ResultSet rs2 = st2.executeQuery();
+					while (rs2.next()) {
+					status = rs2.getString("Status");
+					}
+					list.add(new SingleUser(userID,firstName,lastName,status));	
+					}
+			} catch (SQLException e) {
+				return null;
+			}
+			return list;
+	}
+	public static ArrayList<SingleUser> GetUserByUserId(String UserId)
+	{
+		 ArrayList<SingleUser> list= new  ArrayList<>();
+		 String query = ("SELECT * FROM zerli.users WHERE id = '" + UserId + "';");
+		 try {
+				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+				ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+					String status=null;
+					String userID = rs.getString("id");
+					String firstName = rs.getString("FirstName");
+					String lastName = rs.getString("LastName");
+					String query2 = ("SELECT Status FROM zerli.account_details WHERE User_ID = '"+ UserId + "';");
+					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
+					ResultSet rs2 = st2.executeQuery();
+					while (rs2.next()) {
+					status = rs2.getString("Status");
+					}
+					list.add(new SingleUser(userID,firstName,lastName,status));	
+					}
+			} catch (SQLException e) {
+				return null;
+			}
+			return list;
+	}
+	
+	
 	
 
 }

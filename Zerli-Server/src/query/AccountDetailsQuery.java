@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import logic.Account;
+import logic.SingleOrder;
 
 public class AccountDetailsQuery {
 	
@@ -35,5 +36,19 @@ public class AccountDetailsQuery {
 			return null;
 		}
 		return details;
+	}
+	public static void UpdateStatusByManager(String accountDetails) {
+		String[] AccountDetails=accountDetails.split("@");
+		String Status = AccountDetails[0];
+		String UserId = AccountDetails[1];
+		String query = ("UPDATE zerli.account_details SET Status='" + Status +"' WHERE User_ID='"+ UserId + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+
 	}
 }

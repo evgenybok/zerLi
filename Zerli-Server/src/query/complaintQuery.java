@@ -142,7 +142,6 @@ public class complaintQuery {
 	public static void UpdateToHandled(String orderid)
 	{
 		String query = ("UPDATE complaint SET complainStatus = 'Handled' WHERE OrderId = '" + orderid +"';");
-		System.out.println(query);
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();

@@ -19,8 +19,10 @@ import logic.Item;
 import logic.Order;
 import logic.SingleComplaint;
 import logic.SingleDelivery;
+import logic.SingleManageOrder;
 import logic.SingleOrder;
 import logic.SingleSelfDelivery;
+import logic.SingleUser;
 import logic.Survey;
 import logic.User;
 import ocsf.server.ConnectionToClient;
@@ -48,7 +50,8 @@ public class AnalyzeMessageFromClient {
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
-
+		ArrayList<SingleUser> singleUser;
+		ArrayList<SingleManageOrder> singleManageOrder;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -489,6 +492,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_SINGLE_DELIVERY, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
 		case GET_SINGLE_DELIVERY_BY_STORE_ID:
 			singleDelivery = DeliveryQuery.getSingleDeliveryByStoreId((String) receivedMessage.getMessageData());
 			try {
@@ -619,6 +623,70 @@ public class AnalyzeMessageFromClient {
 
 			return new Message(MessageType.SAVE_ANALYSIS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
+		case GET_USERS_BY_ID:
+			singleUser = AddNewUserQuery.GetUserDetials();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleUser);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_USERS_BY_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_MANAGER_ORDERS:
+			singleManageOrder = GetOrderQuery.GetManagerOrders();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleManageOrder);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_MANAGER_ORDERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_ORDER_BY_ORDER_ID:
+			singleManageOrder = GetOrderQuery.GetOrderById((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleManageOrder);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_ORDER_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_USER_BY_USER_ID:
+			singleUser = AddNewUserQuery.GetUserByUserId((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(singleUser);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_USER_BY_USER_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_STATUS_BY_MANAGER:
+			try {
+				AccountDetailsQuery.UpdateStatusByManager((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+		case UPDATE_ORDER_STATUS_BY_MANAGER:
+			try {
+				GetOrderQuery.UpdateOrderStatusByManager((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
+
 		default:// ;
 
 			return new Message(MessageType.ERROR, null);
