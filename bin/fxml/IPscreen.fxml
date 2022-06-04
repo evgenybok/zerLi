@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="ServerStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.IPScreenController">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="202.0" style="-fx-background-color: d3d3d3;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="202.0">
+               <children>
+                  <Label fx:id="lblZerli" prefHeight="45.0" prefWidth="79.0" text="ZerLi" textFill="#004d00">
+                     <font>
+                        <Font name="Cambria Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#004d00" glyphName="LEAF" size="30" />
+               </children>
+            </HBox>
+            <Line endX="100.0" smooth="false" startX="-100.0" strokeWidth="5.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblIPConnect" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="197.0" text="IP Connection" textFill="#004d00">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="400.0" prefWidth="395.0" style="-fx-background-color: e6ffcc;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="129.0" prefWidth="395.0">
+               <children>
+                  <ImageView fx:id="flowerImage" fitHeight="126.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/images/IPflower.png" />
+                     </image>
+                  </ImageView>
+               </children></HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="395.0">
+               <children>
+                  <Label fx:id="lblEnterIP" text="Please Enter Server IP" textFill="#004d00">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="395.0">
+               <children>
+                  <TextField fx:id="txtIP" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" stylesheets="@../../images/css/styleNew.css" text="localhost">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="add-btn" />
+                     </styleClass>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="118.0" prefWidth="395.0">
+               <children>
+                  <Button fx:id="Connect" mnemonicParsing="false" onMouseClicked="#btnConnect" prefHeight="53.0" prefWidth="114.0" stylesheets="@../../images/css/styleNew.css" text="Connect" textFill="#004d00">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <font>
+                        <Font name="Cambria" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>

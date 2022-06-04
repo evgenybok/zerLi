@@ -1,0 +1,37 @@
+.right-bar{
+	-fx-background-color: #d3d3d3;
+}
+.add-btn{
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 30;
+}
+.shadow{
+	-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+.logo{
+background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63dea7d1da6d362d1e9a/ZerliClient/images/images/IPflower.png); }
+
+.reportbtn{
+	-fx-background-color: #b3ffff;
+	-fx-background-radius: 30;
+}
+.paneback{
+-fx-background-color: #e6ffcc;
+}
+.body{
+-fx-background-color: linear-gradient(rgb(255, 255, 255), rgb(230, 255, 204),transparent);
+}
+.newbuttom{
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 10;
+}
+.circleprofil{
+	-fx-background-radius: 0 0 50 50;
+	-fx-background-color: #737373;
+}
+.zerli{
+-fx-background-color: #737373;
+}
+.check-box .box {
+  -fx-background-radius: 30;
+}

@@ -4,11 +4,13 @@ import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
+
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -94,6 +97,7 @@ public class ManagerScreenController {
 
     @FXML
     void btnViewOrders(MouseEvent event) throws IOException {
+
     	((Node)event.getSource()).getScene().getWindow().hide();
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/BMViewOrders.fxml")));
 		Scene scene = new Scene(parent);
