@@ -10,8 +10,18 @@ import logic.SingleDelivery;
 import logic.SingleUser;
 import logic.User;
 
+/**
+ * @author Evgeny
+ * this class contains 'adding new user' related queries based on the DB.
+ *
+ */
 public class AddNewUserQuery {
 	
+	/**
+	 * @param username - username of the user.
+	 * Checking if the username exists in the DB.
+	 * @return true string if user exists, false string if doesn't exist.
+	 */
 	public static String checkIfUserExisting(String username) {
 		String query = ("SELECT  Username FROM zerli.users WHERE Username = '" + username + "';");
 		try {
@@ -27,6 +37,10 @@ public class AddNewUserQuery {
 		return "false";
 	}
 	
+	/**
+	 * @param user - logic User, details of the user.
+	 * Adds a new user to the DB.
+	 */
 	public static void InsertNewUser(User user)
 	{
 		String query= "INSERT INTO zerli.users VALUES('"+user.getUsername()+"','"+user.getPassword()+"'," + user.isLoggedIn()+",'" 
@@ -40,6 +54,10 @@ public class AddNewUserQuery {
 			return;
 		}	
 	}
+	/**
+	 * @param account - logic account, details of account
+	 * Adds a new account to the DB.
+	 */
 	public static void InsertNewAccount(Account account)
 	{
 		String query= "INSERT INTO zerli.account_details VALUES('"+account.getUser_ID()+"','"+account.getCreditCardNumber()+"','" +account.getExpiryDate()+"','" 

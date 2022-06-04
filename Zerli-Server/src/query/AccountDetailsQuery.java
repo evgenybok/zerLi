@@ -8,8 +8,18 @@ import java.util.ArrayList;
 import logic.Account;
 import logic.SingleOrder;
 
+/**
+ * @author Evgeny
+ * this class contains account details related queries based on the DB.
+ *
+ */
 public class AccountDetailsQuery {
 	
+	/**
+	 * @param userID - id number of the user.
+	 * This method returns an array list of account details for all users.
+	 * @return ArrayList of account.
+	 */
 	public static ArrayList<Account> GetAccountDetails(String userID) 
 	{
 		String query = ("SELECT * FROM zerli.account_details;");

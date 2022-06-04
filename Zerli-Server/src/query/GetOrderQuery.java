@@ -245,7 +245,6 @@ public class GetOrderQuery {
 				if (tempStoreID.equals(StoreID))
 					orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
 							Status));
-				//int OrderNumber,double Price,String StoreID,String OrderDate,String SupplyDate,String SupplyType,double Refund, String Status)
 			}
 		} catch (SQLException e) {
 			return null;

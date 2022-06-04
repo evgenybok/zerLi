@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="571.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SurveyReportController">
+<BorderPane prefHeight="571.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SurveyReportController">
    <center>
       <AnchorPane prefHeight="674.0" prefWidth="836.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
@@ -172,7 +172,7 @@
                   </Button>
                </children>
             </HBox>
-            <TextField fx:id="path" layoutX="370.0" layoutY="441.0" prefHeight="34.0" prefWidth="413.0" promptText="C:\desktop\SurveyNumber.pdf" />
+            <TextField fx:id="path" layoutX="370.0" layoutY="441.0" prefHeight="34.0" prefWidth="413.0" promptText="C:\Reports\SurveyNumber.pdf" />
             <Label layoutX="371.0" layoutY="424.0" text="Choose path and file name:" />
          </children>
       </AnchorPane>

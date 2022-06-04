@@ -8,8 +8,18 @@ import java.util.ArrayList;
 import logic.Complain;
 import logic.SingleComplaint;
 
+/**
+ * @author Evgeny
+ * this class contains 'Complaint' related queries based on the DB.
+ *
+ */
 public class complaintQuery {
 
+	/**
+	 * @param OrderId - id number of an order.
+	 * Finds the corresponding user id with the given order id number in the DB.
+	 * @return userid associated with given order id
+	 */
 	public static String GetUserIDbyOrderNumberQuery(String OrderId) {
 		String userid=null;
 		String query = ("SELECT UserID FROM zerli.orders WHERE OrderNumber = '" + OrderId + "';");
@@ -26,6 +36,10 @@ public class complaintQuery {
 		return userid;
 	}
 	
+	/**
+	 * @param complain - logic Complain, contains details of a complaint.
+	 * Method inserts a new complaint in the DB.
+	 */
 	public static void InsertNewComplain(Complain complain)
 	{
 		String query= "INSERT INTO zerli.complaint VALUES('"+complain.getHandleUserID()+"','"+complain.getComplainUserID()+"'," +complain.getOrderID()+",'" 
@@ -37,6 +51,11 @@ public class complaintQuery {
 			return;
 		}	
 	}
+	/**
+	 * @param orderid - id number of order.
+	 * Method checks if given order has a complaint.
+	 * @return String true if complaint exists, false otherwise.
+	 */
 	public static String CheckComplaintExist(String orderid)
 	{
 		String temp;
@@ -54,6 +73,11 @@ public class complaintQuery {
 		return "false";
 		
 	}
+	/**
+	 * @param userid_orderid - user id number and order id number in one string.
+	 * Checks if there is an order number with given order number and user id.
+	 * @return true string if exists, false string otherwise.
+	 */
 	public static String CheckIfThereExistOrderForUserId(String userid_orderid)
 	{
 		String str[]= userid_orderid.split("@",2);
@@ -71,6 +95,10 @@ public class complaintQuery {
 		}
 		return "false";
 	}
+	/**
+	 * Method gathers in the array list all of the complaints which are needed to be handled.
+	 * @return ArrayList of logic single complaint
+	 */
 	public static ArrayList<SingleComplaint> GetComplaints()
 	{
 		String query = ("SELECT * FROM zerli.complaint WHERE complainStatus = 'WaitForHandle';");
@@ -89,6 +117,11 @@ public class complaintQuery {
 		}
 		return singlecomplaint;
 	}
+	/**
+	 * @param userid - id number of the user.
+	 * Method gets all single complaints made by given userid.
+	 * @return Arraylist of logic Single Complaint of complaints made by the given userid.
+	 */
 	public static ArrayList<SingleComplaint> GetSingleComplaintByUserId(String userid)
 	{
 		String query = ("SELECT * FROM zerli.complaint WHERE complainUserID = '" + userid +"';");
@@ -108,6 +141,10 @@ public class complaintQuery {
 		}
 		return singlecomplaint;
 	}
+	/**
+	 * @param details - refund amount, user id, order id.
+	 * Method updates the total refund amount in the db based on given parameters. 
+	 */
 	public static void UpdateAccountTotalRefund(String details)
 	{
 		double total=0;
@@ -139,6 +176,10 @@ public class complaintQuery {
 			return;
 		}
 	}
+	/**
+	 * @param orderid - id number of the order.
+	 * Updates complaint in the DB based on given order id number.
+	 */
 	public static void UpdateToHandled(String orderid)
 	{
 		String query = ("UPDATE complaint SET complainStatus = 'Handled' WHERE OrderId = '" + orderid +"';");
