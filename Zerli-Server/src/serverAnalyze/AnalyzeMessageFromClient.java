@@ -1,5 +1,6 @@
 package serverAnalyze;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import communication.Message;
@@ -17,6 +18,7 @@ import logic.SingleSelfDelivery;
 import logic.Survey;
 import logic.User;
 import ocsf.server.ConnectionToClient;
+import query.*;
 import query.AccountDetailsQuery;
 import query.AddNewUserQuery;
 import query.CatalogQuery;
@@ -41,7 +43,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
-		
+
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -86,6 +88,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
+
 			return new Message(MessageType.GET_ORDERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
@@ -180,6 +183,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
+
 			return new Message(MessageType.GET_ACCOUNT_DETAILS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
@@ -222,16 +226,49 @@ public class AnalyzeMessageFromClient {
 
 		case GET_STORE_ID:
 			try {
-				storeID = StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
+				storeID= StoresQuery.GetStoreId((String) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(storeID);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
-			}
-			;
+			};
 			return new Message(MessageType.GET_STORE_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+
+			case GET_STORE_ID_BY_WORKER_ID:
+				try {
+					storeID= StoresQuery.GetStoreIdByWorkerID((String) receivedMessage.getMessageData());
+					receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+					receivedMessage.setMessageData(storeID);
+				} catch (Exception e) {
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+					receivedMessage.setMessageData(null);
+				};
+				return new Message(MessageType.GET_STORE_ID_BY_WORKER_ID, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+
+	case GET_ORDER_BY_ID:
+		Orders = GetOrderQuery.GetOrderByIdAndUserId((String)receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(Orders);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case GET_USERID_BY_ORDERID:
+		storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String)receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(storeID);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
 
 		case GET_ORDER_BY_ID:
 			Orders = GetOrderQuery.GetOrderByIdAndUserId((String) receivedMessage.getMessageData());
@@ -291,6 +328,91 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 
+		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case INSERT_NEW_SURVEY:
+		try {
+			SurveyQuery.InsertNewQuery((Survey) receivedMessage.getMessageData());
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+		;
+	case CHECK_EXIST_QOMPLAIN:
+
+		String flag = complaintQuery.CheckComplaintExist((String) receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(flag);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+	case CHECK_ORDER_BY_USERID:
+
+		String flag2 = complaintQuery.CheckIfThereExistOrderForUserId((String) receivedMessage.getMessageData());
+		try {
+			receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			receivedMessage.setMessageData(flag2);
+		} catch (Exception e) {
+			receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+			receivedMessage.setMessageData(null);
+		}
+
+		return new Message(MessageType.CHECK_ORDER_BY_USERID, receivedMessage.getMessageAnswer(),
+				receivedMessage.getMessageData());
+
+
+		case INCOME_REPORT:
+				ArrayList<String>arr=new ArrayList<>();
+				arr = (ArrayList<String>) receivedMessage.getMessageData();
+
+				ReportQuery.CreateIncomeReports(arr.get(0),arr.get(1),arr.get(2));
+				try {
+					receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+					receivedMessage.setMessageData(arr);
+				} catch (Exception e) {
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+					receivedMessage.setMessageData(null);
+				}
+				return new Message(MessageType.INCOME_REPORT, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+
+
+			case GRAPH_STATISTICS:
+				ArrayList<String>GraphArr=new ArrayList<>();
+				ArrayList<String>GraphArr2=new ArrayList<>();
+				GraphArr = (ArrayList<String>) receivedMessage.getMessageData();
+				GraphArr2=ReportQuery.GetIncomeGraphStatistics(GraphArr.get(0), GraphArr.get(1), GraphArr.get(2));
+				try {
+					receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+					receivedMessage.setMessageData(GraphArr2);
+				} catch (Exception e) {
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+					receivedMessage.setMessageData(null);
+				}
+				return new Message(MessageType.INCOME_REPORT, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+
+
+
+			case GET_STORE_NAME_BY_ID:
+				try {
+					data = StoresQuery.GetStoreNameByID((String) receivedMessage.getMessageData());
+					receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+					receivedMessage.setMessageData(data);
+				} catch (Exception e) {
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+					receivedMessage.setMessageData(null);
+				};
+				return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
+						receivedMessage.getMessageData());
+
+		default:
 			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
@@ -414,7 +536,7 @@ public class AnalyzeMessageFromClient {
 			;
 			return new Message(MessageType.UPDATE_STATUS_COMPLAINT, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 
 		case GET_SINGLE_DELIVERY:
 			singleDelivery = DeliveryQuery.getOrderForDelivey();
@@ -450,7 +572,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_SINGLE_DELIVERY_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		case UPDATE_DELIVERY_STATUS:
-			String res = DeliveryQuery.UpdateDeliveryStatus((String) receivedMessage.getMessageData());	
+			String res = DeliveryQuery.UpdateDeliveryStatus((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(res);
@@ -501,7 +623,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_SURVEY_ANSWERS:
             try {
                 receivedMessage.setMessageData(SurveyQuery.GetSurveyAnswers());

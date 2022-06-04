@@ -365,6 +365,46 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+
+
+			case GET_STORE_ID_BY_WORKER_ID:
+				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+					res = receivedMessage.getMessageData();
+
+				} else {
+					res = null;
+				}
+				return;
+
+			case GRAPH_STATISTICS:
+				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+					res = receivedMessage.getMessageData();
+
+				} else {
+					res = null;
+				}
+				return;
+
+
+			case INCOME_REPORT:
+				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+					res = receivedMessage.getMessageData();
+
+				} else {
+					res = null;
+				}
+				return;
+
+			case GET_STORE_NAME_BY_ID:
+				if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+					res = receivedMessage.getMessageData();
+
+				} else {
+					res = null;
+				}
+				return;
+
+
 		default:
 			break;
 		}
@@ -380,6 +420,7 @@ public class AnalyzeMessageFromServer {
 		if (res instanceof Complain)
 			return (Complain) res;
 		if (res instanceof ArrayList<?>) {
+
 			try {
 				if (((ArrayList<?>) res).get(0) instanceof User)
 					return (ArrayList<User>) res;
