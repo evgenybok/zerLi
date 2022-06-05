@@ -8,9 +8,17 @@ import java.util.ArrayList;
 import logic.SingleDelivery;
 import logic.SingleSelfDelivery;
 
-
+/**
+ * @author Evgeny
+ * this class contains 'Delivery' related queries based on the DB.
+ *
+ */
 public class DeliveryQuery {
 	
+	/**
+	 * Method returns an array list of orders which are approved and are ready for delivery.
+	 * @return Array list of orders which are ready for delivery.
+	 */
 	public static ArrayList<SingleDelivery> getOrderForDelivey()
 	{
 		ArrayList<SingleDelivery> list= new  ArrayList<>();
@@ -33,6 +41,11 @@ public class DeliveryQuery {
 			}
 			return list;
 	}
+	/**
+	 * @param Storeid - id number of store.
+	 * Method returns an array list of deliveries which are approved, have given store id, and are ready for delivery.
+	 * @return Array list of logic Single Delivery.
+	 */
 	public static ArrayList<SingleDelivery> getSingleDeliveryByStoreId(String Storeid)
 	{
 		ArrayList<SingleDelivery> list= new  ArrayList<>();
@@ -55,6 +68,11 @@ public class DeliveryQuery {
 			}
 			return list;
 	}
+	/**
+	 * @param Orderid - id number of order.
+	 * Method returns an array list of deliveries which are approved, have given order id, and are ready for delivery.
+	 * @return Array list of logic Single Delivery.
+	 */
 	public static ArrayList<SingleDelivery> getSingleDeliveryByOrderId(String Orderid)
 	{
 		ArrayList<SingleDelivery> list= new  ArrayList<>();
@@ -77,6 +95,11 @@ public class DeliveryQuery {
 			}
 			return list;
 	}
+	/**
+	 * @param Orderid - id number of order.
+	 * Method updates the delivery status of the given order id number.
+	 * @return String true if update was successful, string false otherwise.
+	 */
 	public static String UpdateDeliveryStatus(String Orderid)
 	{
 		 String query = ("UPDATE orders SET Status= 'Delivered' WHERE OrderNumber = '" + Orderid + "';");
@@ -88,6 +111,11 @@ public class DeliveryQuery {
 			}
 			return "True";
 	}
+	/**
+	 * @param us - logic Single Self Delivery, contains delivery details.
+	 * Inserts given delivery to the DB.
+	 * @return String true if inserted, string false otherwise.
+	 */
 	public static String InsertSingleSelfDelivery(SingleSelfDelivery us)
 	{
 		String query = ("INSERT INTO zerli.delivery VALUES(" + us.getOrderID() + ",'" +us.getHandle_id()+ "','" +us.getCustomerSupplyDate() +
@@ -100,6 +128,10 @@ public class DeliveryQuery {
 		}
 		return "True";
 	}
+	/**
+	 * @param orderid - id number of order.
+	 * Updates total refund amount in DB based on given order id number.
+	 */
 	public static void UpdateRefundByOrderId(String orderid)
 	{
 		int order_id= Integer.parseInt(orderid);
@@ -140,7 +172,11 @@ public class DeliveryQuery {
 					return;
 				}	
 	}
-	
+	/**
+	 * @param handleUser - id number of the delivery handler.
+	 * Method returns an array list of logic Single Self Delivery from the DB with the given handler ID number.
+	 * @return Arraylist of logic Single Self Delivery.
+	 */
 	public static ArrayList<SingleSelfDelivery> getSingleSelfOrder(String handleUser)
 	{
 		ArrayList<SingleSelfDelivery> list= new  ArrayList<>();
@@ -160,6 +196,12 @@ public class DeliveryQuery {
 			}
 			return list;
 	}
+	
+	/**
+	 * @param orderid - order id number.
+	 * Method returns an array list of logic Single Self Delivery from the DB with the given order ID number.
+	 * @return Arraylist of logic Single Self Delivery.
+	 */
 	public static ArrayList<SingleSelfDelivery> getSingleSelfOrderByOrderId(String orderid)
 	{
 		ArrayList<SingleSelfDelivery> list= new  ArrayList<>();

@@ -30,6 +30,10 @@ import logic.SingleDelivery;
 import logic.SingleManageOrder;
 import logic.SingleUser;
 
+/**
+ * @author Evgeny
+ * Manager can edit user info in this screen.
+ */
 public class EditUsersController {
 	@FXML
 	private Label Action;
@@ -118,6 +122,9 @@ public class EditUsersController {
 		InsertToTable();
 	}
 
+    /**
+     * Initializes data
+     */
 	public void InsertToTable() {
 		ArrayList<SingleUser> list = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_USERS_BY_ID, null));

@@ -27,6 +27,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleDelivery;
 
+/**
+ * @author Evgeny
+ * Controller for the delivery screen, shows deliveries and worker can search
+ * delivery by store id or order ID.
+ */
 public class AcceptDeliveryScreenController {
 
 	@FXML
@@ -56,6 +61,10 @@ public class AcceptDeliveryScreenController {
     @FXML
     private ImageView avatarImg;
 
+	/**
+     * @param event
+     * shows in the table the deliveries corresponding with the order id entered.
+     */
 	@FXML
 	public void SearchByOrderID(MouseEvent event) {
 		if (orderIDtext.getText().isEmpty()) {
@@ -85,11 +94,15 @@ public class AcceptDeliveryScreenController {
 
 				}
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 	}
 
+	/**
+     * @param event
+     * shows in the table the deliveries corresponding with the store id entered.
+     */
 	@FXML
 	void SearchByStoreID(MouseEvent event) {
 		if (storeText.getText().isEmpty()) {
@@ -119,12 +132,17 @@ public class AcceptDeliveryScreenController {
 
 				}
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 
 	}
 
+	 /**
+     * closes current screen and opens the delivery login screen.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -147,6 +165,9 @@ public class AcceptDeliveryScreenController {
 		InsertToTable();
 	}
 
+	/**
+     * fills the table with all of the deliveries in the DB.
+     */
 	public void InsertToTable() {
 		ArrayList<SingleDelivery> list = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_SINGLE_DELIVERY, null));
@@ -162,7 +183,7 @@ public class AcceptDeliveryScreenController {
 
 			}
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 

@@ -71,6 +71,10 @@ public class AddNewUserQuery {
 			return;
 		}
 	}
+	/**
+	 * Return array list from the DB of all users with the role of customer
+	 * @return array list of logic Single User of those whose role matches customer
+	 */
 	public static ArrayList<SingleUser> GetUserDetials()
 	{
 		ArrayList<SingleUser> list= new  ArrayList<>();
@@ -96,6 +100,11 @@ public class AddNewUserQuery {
 			}
 			return list;
 	}
+	/**
+	 * Returns all data from the DB with matching User ID number
+	 * @param UserId
+	 * @return array list of logic Single User with matching given ID number
+	 */
 	public static ArrayList<SingleUser> GetUserByUserId(String UserId)
 	{
 		 ArrayList<SingleUser> list= new  ArrayList<>();

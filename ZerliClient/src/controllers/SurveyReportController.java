@@ -19,6 +19,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Customer specialist can see average score of selected survey and add his conclusions and save them to a PDF file.
+ */
 public class SurveyReportController {
 
 	@FXML
@@ -54,6 +58,10 @@ public class SurveyReportController {
 	@FXML
 	private TextField path;
 
+	/**
+	 * Sends the user back to the survey analyse selection screen
+	 * @param event
+	 */
 	@FXML
 	void btnBack(MouseEvent event) {
 		try {
@@ -72,12 +80,15 @@ public class SurveyReportController {
 		}
 	}
 
+	/**
+	 * Saves report in specified location as a PDF document.
+	 * @param event
+	 */
 	@FXML
 	void btnSave(MouseEvent event) {
 		String[] report = new String[2];
 		String conclusion = textConclusion.getText();
 		conclusion += "\n Report analysed by:" + LoginScreenController.user.getUsername() + ".";
-		// conclusion = conclusion.replace("\n", "").replace("\r", "");
 		report[0] = conclusion;
 		String filePath = path.getText();
 		report[1] = filePath;
@@ -88,6 +99,9 @@ public class SurveyReportController {
 		}
 	}
 
+	/**
+	 * Initialization of data shown on screen.
+	 */
 	@FXML
 	void initialize() {
 		// AnalyseSurveyController.averageScore[0];

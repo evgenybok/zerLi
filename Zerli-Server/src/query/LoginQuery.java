@@ -6,8 +6,19 @@ import java.sql.SQLException;
 
 import ocsf.server.ConnectionToClient;
 
+/**
+ * @author Evgeny
+ * this class contains 'Login' related queries based on the DB.
+ *
+ */
 public class LoginQuery {
 
+    /**
+     * @param loginInfo - username,password of user
+     * @param client - OCSF client information
+     * updates login status in DB of given user when logging in.
+     * @return
+     */
     public static String Login(String loginInfo, ConnectionToClient client) {
         String[] login = loginInfo.split("@"); // username@password
         String query ="UPDATE users SET LoggedIn=true WHERE Username='"+login[0]+"' AND Password='"+login[1]+"'";

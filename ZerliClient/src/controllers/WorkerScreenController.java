@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the Worker role can get to this screen, can update the catalog.
+ */
 public class WorkerScreenController {
 
 	@FXML
@@ -39,6 +43,11 @@ public class WorkerScreenController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * User can log out of the system and return to the Login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -53,6 +62,11 @@ public class WorkerScreenController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * User can update the catalog, items data,catalog type.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
@@ -66,6 +80,9 @@ public class WorkerScreenController {
 
 	}
 
+	/**
+	 * Initialization of data on screen.
+	 */
 	@FXML
 	void initialize() {
 		this.accountType.setText("Store Worker"); // accountType - may be handled from DB

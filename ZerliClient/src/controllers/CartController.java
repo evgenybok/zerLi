@@ -27,6 +27,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * User can view the current cart with the items inside here.
+ */
 public class CartController {
 	@FXML
 	private Button AddGreeting;
@@ -79,6 +83,12 @@ public class CartController {
 	public static double amountToPay = 0;
 	public boolean flag = true;
 
+	/**
+	 * Moves the user to the checkout screen to view the cart
+	 * and choose to proceed to payment if he is done.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnCheckout(MouseEvent event) throws IOException {
 		if (grid.getChildren().isEmpty() || Double.parseDouble(totalItemPrice.getText().substring(1)) == 0) {
@@ -115,6 +125,12 @@ public class CartController {
         paymentScreen.centerOnScreen();
 	}
 
+	/**
+	 * Opens the greeting screen to allow the
+	 * user to add a greeting to his order.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnGreeting(MouseEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/AddGreeting.fxml")));
@@ -129,6 +145,10 @@ public class CartController {
         cartDetailsScreen.centerOnScreen();
 	}
 
+	/**
+	 * Closes current screen and takes the user back to his previous screen.
+	 * @param event
+	 */
 	@FXML
 	void btnClose(MouseEvent event) {
 		Stage stage = (Stage) close.getScene().getWindow();
@@ -153,6 +173,9 @@ public class CartController {
 
 	}
 
+	/**
+	 * Fills the cart with the items the user chose to buy.
+	 */
 	@FXML
 	void initialize() {
 		amountToPay = 0;

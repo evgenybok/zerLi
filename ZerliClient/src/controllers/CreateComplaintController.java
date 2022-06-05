@@ -3,6 +3,12 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -23,7 +29,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Complain;
+import logic.SingleComplaint;
 
+/**
+ * @author Evgeny Customer service worker can fill a complaint made by a
+ *         customer.
+ */
 public class CreateComplaintController {
 	@FXML
 	private Button Back;
@@ -49,6 +60,12 @@ public class CreateComplaintController {
 	@FXML
 	private TextField userNameField;
 
+	/**
+	 * Sends the user back to the customer service main screen
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -63,6 +80,13 @@ public class CreateComplaintController {
 		complaintScreen.centerOnScreen();
 	}
 
+	/**
+	 * Sumbits written complaint and adds it to the DB with the Pending status.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSubmit(MouseEvent event) throws IOException {
 		checkIfFieldIsEmpty();
@@ -79,10 +103,13 @@ public class CreateComplaintController {
 				String description = DescriptionField.getText();
 				String handelerIdString = LoginScreenController.user.getID();
 				double refund = 0.00;
-				String complainStatus = "WaitForHandle";
+				String complainStatus = "Pending";
+				LocalDateTime date=LocalDateTime.now();
+				chat.accept(new Message(MessageType.GET_STORE_ID_BY_ORDER_ID, orderid + "@" + user_id));
+				String storeID=(String) AnalyzeMessageFromServer.getData();
 				// now query for insert
 				Complain complain = new Complain(handelerIdString, user_id, order_id, description, complainStatus,
-						refund);
+						refund,storeID,date,false);
 				try {
 					chat.accept(new Message(MessageType.INSERT_NEW_COMPLAIN, complain));
 					if (AnalyzeMessageFromServer.getData().equals(null))
@@ -108,6 +135,12 @@ public class CreateComplaintController {
 
 	}
 
+	/**
+	 * Gets user id number with the given order number
+	 * 
+	 * @param OrderNumber
+	 * @return
+	 */
 	public String getUserID(String OrderNumber) {
 		try {
 			chat.accept(new Message(MessageType.GET_USERID_BY_ORDERID, OrderNumber));
@@ -122,6 +155,9 @@ public class CreateComplaintController {
 		return str;
 	}
 
+	/**
+	 * Initialize data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
@@ -130,6 +166,9 @@ public class CreateComplaintController {
 		this.accountType.setText("Customer Service"); // accountType -
 	}
 
+	/**
+	 * Checking if fields are empty
+	 */
 	public void checkIfFieldIsEmpty() {
 		if (userNameField.getText().isEmpty() || OrderIdField.getText().isEmpty()
 				|| DescriptionField.getText().isEmpty()) {
@@ -138,6 +177,12 @@ public class CreateComplaintController {
 		}
 	}
 
+	/**
+	 * Checking if given order has a complaint
+	 * 
+	 * @param orderid
+	 * @return
+	 */
 	public boolean checkIfHaveExistComplaint(String orderid) {
 		try {
 			chat.accept(new Message(MessageType.CHECK_EXIST_QOMPLAIN, orderid));
@@ -155,6 +200,13 @@ public class CreateComplaintController {
 		return true;
 	}
 
+	/**
+	 * Checks if there is an order number with given order number and user id.
+	 * 
+	 * @param userid
+	 * @param orderid
+	 * @return
+	 */
 	public boolean checkIfThisUserHaveChoosenOrder(String userid, String orderid) {
 		String str = userid + "@" + orderid;
 		try {

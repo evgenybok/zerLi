@@ -24,6 +24,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Allows the user to edit the opened item's data.
+ */
 public class ItemEditController {
 
 	@FXML
@@ -72,6 +76,11 @@ public class ItemEditController {
 	private Item updatedItem = new Item(0, null, null, 0, null, null, false, 0);
 	boolean newItemFlag = false;
 
+	/**
+	 * Closes current screen and opens Catalog Update screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnClose(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
@@ -84,6 +93,11 @@ public class ItemEditController {
 		catalogUpdateStage.centerOnScreen();
 	}
 
+	/**
+	 * Removes the item from the catalog.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnDelete(MouseEvent event) throws IOException {
 		try {
@@ -103,6 +117,11 @@ public class ItemEditController {
 		catalogUpdateStage.centerOnScreen();
 	}
 
+	/**
+	 * Saves the updated item's data in the DB and catalog.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnSave(MouseEvent event) throws IOException {
 		if (newItemFlag == true) {
@@ -195,6 +214,11 @@ public class ItemEditController {
 
 	}
 
+
+	/**
+	 * Checkbox if the selected item is premade.
+	 * @param event
+	 */
 	@FXML
 	void premadeSelected(MouseEvent event) {
 		if (preCheckBox.isSelected()) {
@@ -205,6 +229,11 @@ public class ItemEditController {
 		}
 	}
 
+
+	/**
+	 * Checkbox if the selected item is custom made.
+	 * @param event
+	 */
 	@FXML
 	void selfSelected(MouseEvent event) {
 		if (selfCheckBox.isSelected()) {
@@ -215,6 +244,10 @@ public class ItemEditController {
 		}
 	}
 
+	/**
+	 * Checkbox if the selected item is on sale.
+	 * @param event
+	 */
 	@FXML
 	void onSaleSelected(MouseEvent event) {
 		if (checkBoxSale.isSelected()) {
@@ -223,6 +256,9 @@ public class ItemEditController {
 			salePrice.setDisable(true);
 	}
 
+	/**
+	 * Initialization of data on the screen.
+	 */
 	@FXML
 	void initialize() {
 		if(LoginScreenController.user.getRole().equals("worker")) {

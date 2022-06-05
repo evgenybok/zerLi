@@ -36,8 +36,18 @@ import query.StoresQuery;
 import query.SurveyQuery;
 import query.complaintQuery;
 
+/**
+ * @author Evgeny
+ * This class Analyses the messages sent from the client and handles them accordingly.
+ *
+ */
 public class AnalyzeMessageFromClient {
 
+	/**
+	 * @param receivedMessage - Type: used in switch case, Answer:sent to the server later, data:object of data which is sent and received.
+	 * @param client - OCSF client information.
+	 * @return based on case from Type in receivedMessage, handles the case and sends a response to the server.
+	 */
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
 		User user;
 		String storeID;
@@ -46,6 +56,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Item> Items;
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
+		ArrayList<Complain> complaint;
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
@@ -689,6 +700,60 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			return new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case GET_WORKERS:
+			try {
+				receivedMessage.setMessageData(Query.GetWorkers());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_WORKERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case UPDATE_ROLE_BY_MANAGER:
+			try {
+				AccountDetailsQuery.UpdateRoleByManager((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_STORE_ID_BY_ORDER_ID:
+			try {
+				receivedMessage.setMessageData(GetOrderQuery.GetStoreIDByOrderID((String) receivedMessage.getMessageData()));
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_STORE_ID_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_ALL_COMPLAINTS:
+			try {
+				receivedMessage.setMessageData((ArrayList<Complain>)complaintQuery.GetAllComplaints());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_ALL_COMPLAINTS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case UPDATE_REMINDER_FOR_HANDLER:
+			try {
+				complaintQuery.UpdateReminder((int)receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case CANCEL_ORDER_STATUS_BY_MANAGER:

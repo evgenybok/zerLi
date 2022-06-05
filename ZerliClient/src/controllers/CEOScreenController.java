@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the CEO role can get to this screen, can view various reports and create a new report.
+ */
 public class CEOScreenController {
 
 	@FXML
@@ -61,6 +65,11 @@ public class CEOScreenController {
 
 	}
 
+	/**
+	 * Shows the chosen area and date income report.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnIncome(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -74,6 +83,11 @@ public class CEOScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * CEO logs out and returns to login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();

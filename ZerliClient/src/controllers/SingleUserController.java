@@ -26,6 +26,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.SingleUser;
 
+/**
+ * @author Evgeny
+ * A single user for the manager screen to show data and update status.
+ */
 public class SingleUserController {
 
 	@FXML
@@ -48,6 +52,11 @@ public class SingleUserController {
 	@FXML
 	private ComboBox<String> StatusCombo;
 
+	/**
+	 * Updates status of customer
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnSubmit(MouseEvent event) throws IOException {
 		String Status = StatusCombo.getValue();
@@ -72,6 +81,10 @@ public class SingleUserController {
 
 	}
 
+	/**
+	 * Sets the right data for a single user from the DB.
+	 * @param singleUser
+	 */
 	public void setData(SingleUser singleUser) {
 		UserID.setText(singleUser.getUserId());
 		FirstName.setText(singleUser.getFirstName());
@@ -79,6 +92,9 @@ public class SingleUserController {
 		Status.setText(singleUser.getStatus());
 	}
 
+	/**
+	 * Initializes shown table
+	 */
 	@FXML
 	void initialize() {
 		StatusCombo.setItems(FXCollections.observableArrayList("Active", "Frozen"));

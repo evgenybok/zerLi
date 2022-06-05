@@ -7,12 +7,23 @@ import common.ChatIF;
 import communication.Message;
 import ocsf.client.AbstractClient;
 
+/**
+ * @author Evgeny
+ * Used to communicate with the server
+ */
 public class ChatClient extends AbstractClient {
 
 	ChatIF clientUI;
 	public static boolean waitingForResponse = false;
 	public static boolean Success = false;
 
+	/**
+	 * Constructor for the client
+	 * @param host
+	 * @param port
+	 * @param clientUI
+	 * @throws IOException
+	 */
 	public ChatClient(String host, int port, ChatIF clientUI) throws IOException {
 		super(host, port);
 		this.clientUI = clientUI;
@@ -23,6 +34,9 @@ public class ChatClient extends AbstractClient {
 		}
 	}
 
+	/**
+	 * Handles message received from the server using OCSF
+	 */
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 		waitingForResponse = false;

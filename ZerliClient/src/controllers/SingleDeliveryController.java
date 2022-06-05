@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import logic.SingleComplaint;
 import logic.SingleDelivery;
 
+/**
+ * @author Evgeny
+ * Single delivery used when delivery user views orders data and confirm delivery
+ */
 public class SingleDeliveryController {
 	public static String order_id;
 	public static String customersupplydate;
@@ -48,6 +52,11 @@ public class SingleDeliveryController {
 	@FXML
 	private Label supplydate;
 
+	/**
+	 * Confirm the delivery of the order
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void ConfirmBtn(MouseEvent event) throws IOException {
 		customersupplydate = supplydate.getText();
@@ -63,6 +72,10 @@ public class SingleDeliveryController {
 		cartDetailsScreen.centerOnScreen();
 	}
 
+	/**
+	 * Sets data for the current shown order
+	 * @param singleDelivery
+	 */
 	public void setData(SingleDelivery singleDelivery) {
 		String res = String.valueOf(singleDelivery.getOrderid());
 		orderid.setText(res);
@@ -72,10 +85,6 @@ public class SingleDeliveryController {
 		reciverPhone.setText(singleDelivery.getReciverphone());
 		dOrder.setText(singleDelivery.getDorder());
 		address.setText(singleDelivery.getAddress());
-	}
-
-	@FXML
-	void initialize() {
 	}
 
 }

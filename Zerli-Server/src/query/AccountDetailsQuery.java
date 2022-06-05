@@ -48,6 +48,10 @@ public class AccountDetailsQuery {
 		return details;
 	}
 
+	/**
+	 * Updates given account's status to the given status.
+	 * @param accountDetails - account status and account user id
+	 */
 	public static void UpdateStatusByManager(String accountDetails) {
 		String[] AccountDetails = accountDetails.split("@");
 		String Status = AccountDetails[0];
@@ -75,5 +79,23 @@ public class AccountDetailsQuery {
 
 		}
 
+	}
+	/**
+	 * Updates given account's role to the given role by the manager.
+	 * @param accountDetails - account role and account user id
+	 */
+	public static void UpdateRoleByManager(String accountDetails) {
+		String[] AccountDetails=accountDetails.split("@");
+		String Role = AccountDetails[0];
+		String UserId = AccountDetails[1];
+		String query = ("UPDATE zerli.users SET Role='" + Role +"' WHERE id='"+ UserId + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
 	}
 }

@@ -5,8 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author Evgeny
+ * this class contains 'Store' related queries based on the DB.
+ *
+ */
 public class StoresQuery {
 
+	/**
+	 * @param area- name of the area.
+	 * @return List of stores inside given area.
+	 */
 	public static ArrayList<String> GetStoreName(String area) {
 		String query = "SELECT storeName FROM zerli.stores WHERE area='" + area + "'";
 		// String query = ("SELECT * FROM zerli.stores;");
@@ -25,6 +34,10 @@ public class StoresQuery {
 		return stores;
 	}
 	
+	/**
+	 * @param Name- name of store.
+	 * @return store id number of given store name.
+	 */
 	public static String GetStoreId(String Name)
 	{
 		String query = "SELECT IDstore FROM zerli.stores WHERE storeName='" + Name + "'";
@@ -43,7 +56,10 @@ public class StoresQuery {
 	}
 
 
-
+	/**
+	 * @param ID- id number of manager.
+	 * @return id number of store which is managed by the manager with given id from the DB.
+	 */
 	public static String GetStoreIdByWorkerID(String ID)
 	{
 		String query = "SELECT IDstore FROM zerli.stores WHERE IDmanager='" + ID + "'";
@@ -61,6 +77,10 @@ public class StoresQuery {
 		return null;
 	}
 
+	/**
+	 * @param ID- id number of store.
+	 * @return store name with given store id from the DB.
+	 */
 	public static ArrayList<String> GetStoreNameByID(String ID) {
 		String query = "SELECT storeName FROM zerli.stores WHERE IDstore = '" + ID + "'";
 		// String query = ("SELECT * FROM zerli.stores;");

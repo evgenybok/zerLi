@@ -36,6 +36,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Shows the custom catalog, here the user can choose which items to add to the cart.
+ */
 public class CustomCatalogController {
 
 	@FXML
@@ -138,6 +142,10 @@ public class CustomCatalogController {
 	private int bouquetNumber = 1;
 	private ArrayList<Item> items;
 
+	/**
+	 * Button to add the selected product and amount to the cart.
+	 * @param event
+	 */
 	@FXML
 	void btnAddToCart(MouseEvent event) {
 		if (!selectedProducts.isEmpty()) {
@@ -175,6 +183,10 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * Adds the custom items to a bouquet made of various items which can later be named and added to the cart
+	 * @param event
+	 */
 	// @SuppressWarnings({ "unchecked" })
 	@FXML
 	void btnAddToCustomArrangement(MouseEvent event) {
@@ -182,11 +194,6 @@ public class CustomCatalogController {
 			JOptionPane.showMessageDialog(null, "You can not add 0 items to the customized bouquet!", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			/*
-			 * ArrayList<Item> items = new ArrayList<>(); chat.accept(new
-			 * Message(MessageType.GET_SELFASSEMBLY_ITEMS, null)); items = (ArrayList<Item>)
-			 * AnalyzeMessageFromServer.getData();
-			 */
 
 			boolean flag = false;
 			for (Item item : items) {
@@ -249,6 +256,11 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * closes current screen and opens the customer screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		selectedProducts.clear();
@@ -269,6 +281,10 @@ public class CustomCatalogController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Sets selected item field with the data from given item.
+	 * @param item
+	 */
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
 		flowerPrice.setText("\u20AA" + item.getPrice()); // unicode for shekel
@@ -277,6 +293,10 @@ public class CustomCatalogController {
 		serialID.setText(Integer.toString(item.getID()));
 	}
 
+	/**
+	 * increments the amount of currently shown item to add to the cart.
+	 * @param event
+	 */
 	@FXML
 	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
@@ -289,6 +309,10 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * decrements the amount of currently shown item to add to the cart.
+	 * @param event
+	 */
 	@FXML
 	void btnMin(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
@@ -301,6 +325,10 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * Opens the cart screen to show the user which items are inside his cart.
+	 * @param event
+	 */
 	@FXML
 	void btnMyCart(MouseEvent event) {
 		try {
@@ -321,6 +349,10 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * Opens a new screen in which the user can view his customized bouquet.
+	 * @param event
+	 */
 	@FXML
 	void btnViewCustomizedBouquet(MouseEvent event) {
 		try {
@@ -343,6 +375,10 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * Search by color - filters the catalog to match the selected color input.
+	 * @param event
+	 */
 	@FXML
 	void clkColor(MouseEvent event) {
 		String color;
@@ -395,6 +431,10 @@ public class CustomCatalogController {
 					JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Serach by price - filters the current catalog to match the selected price range.
+	 * @param event
+	 */
 	@FXML
 	void clkPriceRange(MouseEvent event) {
 		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
@@ -435,6 +475,9 @@ public class CustomCatalogController {
 		}
 	}
 
+	/**
+	 * Initialization: shows all of the avaliable items from the DB that are self assembly (custom) in the table.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {

@@ -8,6 +8,10 @@ import logic.Item;
 
 import java.util.Objects;
 
+/**
+ * @author Evgeny
+ * Sets the data of the given item in the row of the table it is added to.
+ */
 public class ItemController {
 
 	@FXML
@@ -34,6 +38,10 @@ public class ItemController {
 	@FXML
 	private ImageView saleImg;
 
+    /**
+     * Sets the item labels based on given item data.
+     * @param item
+     */
 	public void setData(Item item) {
 
 		try {

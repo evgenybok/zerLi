@@ -25,6 +25,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Survey;
 
+/**
+ * @author Evgeny
+ * Customer service user can create a survey with questions here.
+ */
 public class CreateSurveyController {
 	public String survey_num;
 	@FXML
@@ -63,6 +67,11 @@ public class CreateSurveyController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * Sends the user back to the customer service screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
@@ -75,6 +84,11 @@ public class CreateSurveyController {
 		csScreen.centerOnScreen();
 	}
 
+	/**
+	 * Creates a new survey with the entered question on screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void CreateSurveyFunc(MouseEvent event) throws IOException {
 		if ((CheckIfEmpty()) == false) {
@@ -109,6 +123,9 @@ public class CreateSurveyController {
 		}
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
@@ -119,6 +136,10 @@ public class CreateSurveyController {
 		SurveyNumber.setText(survey_num);
 	}
 
+	/**
+	 * Gets the next serial survey number
+	 * @return new survey number
+	 */
 	public String getSurveyNumber() {
 		String temp;
 		try {
@@ -134,6 +155,11 @@ public class CreateSurveyController {
 		return temp;
 	}
 
+	/**
+	 * Inserts the filled survey to the DB
+	 * @param survey
+	 * @return true if successful, false otherwise.
+	 */
 	public boolean insertSurveyToDB(Survey survey) {
 		try {
 			chat.accept(new Message(MessageType.INSERT_NEW_SURVEY, survey));
@@ -150,17 +176,14 @@ public class CreateSurveyController {
 		return true;
 	}
 
+	/**
+	 * Check if any of the question fields are empty.
+	 * @return false if fields are empty, true otherwise
+	 */
 	public boolean CheckIfEmpty() {
 		if (Ques1.getText().isEmpty() || Ques2.getText().isEmpty() || Ques3.getText().isEmpty()
 				|| Ques4.getText().isEmpty() || Ques5.getText().isEmpty() || Ques6.getText().isEmpty())
 			return false;
 		return true;
-
-		/*
-		 * { JOptionPane.showMessageDialog(null, "One or more fields are empty!",
-		 * "Error", JOptionPane.ERROR_MESSAGE); return false; }
-		 * 
-		 * return true;
-		 */
 	}
 }

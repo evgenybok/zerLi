@@ -25,6 +25,10 @@ import javafx.stage.Stage;
 import static controllers.IPScreenController.chat;
 import static controllers.ReportsController.*;
 
+/**
+ * @author Evgeny
+ * Branch manager can view his store's income report and its data here.
+ */
 public class IncomeReportController {
 
 	@FXML
@@ -49,6 +53,11 @@ public class IncomeReportController {
 	@FXML
 	private Label branchLabel;
 
+	/**
+	 * Sends the user back to the branch manager main screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -63,6 +72,9 @@ public class IncomeReportController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		double maxWeek = 0;

@@ -23,6 +23,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.SingleManageOrder;
 
+/**
+ * @author Evgeny
+ * A single order for the delivery user to view, delivery user can approve orders with status Pending
+ */
 public class SingleManageOrdersController {
 
 	@FXML
@@ -51,6 +55,11 @@ public class SingleManageOrdersController {
 	@FXML
 	private Button Approve;
 
+	/**
+	 * Delivery user can approve pending orders.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnApprove(MouseEvent event) throws IOException {
 		if (Status.getText().equals("Pending")) {
@@ -90,6 +99,10 @@ public class SingleManageOrdersController {
 		manageOrdersScreen.centerOnScreen();
 	}
 
+	/**
+	 * Sets data to show on screen
+	 * @param singleManageOrder
+	 */
 	public void setData(SingleManageOrder singleManageOrder) {
 		String res = String.valueOf(singleManageOrder.getOrderId());
 		OrderId.setText(res);
@@ -99,10 +112,4 @@ public class SingleManageOrdersController {
 		SupplyType.setText(singleManageOrder.getSupplyType());
 		Status.setText(singleManageOrder.getStatus());
 	}
-
-	@FXML
-	void initialize() {
-
-	}
-
 }

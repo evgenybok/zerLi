@@ -26,6 +26,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleManageOrder;
 
+/**
+ * @author Evgeny
+ * Manager can view the orders of his store and approve pending orders.
+ */
 public class ManagerOrdersController {
 
 	@FXML
@@ -67,6 +71,11 @@ public class ManagerOrdersController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * Sends the manager back to the branch manager screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private ImageView avatarImg;
 
@@ -83,6 +92,10 @@ public class ManagerOrdersController {
 		managerScreen.centerOnScreen();
 	}
 
+	/**
+	 * Searches for a specific order based on user input and shows it in the table
+	 * @param event
+	 */
 	@FXML
 	void btnSearch(MouseEvent event) {
 		ArrayList<SingleManageOrder> order = new ArrayList<>();
@@ -117,6 +130,9 @@ public class ManagerOrdersController {
 		}
 	}
 
+	/**
+	 * Initialization of data on screen
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
@@ -125,6 +141,9 @@ public class ManagerOrdersController {
 		InsertToTable();
 	}
 
+	/**
+	 * Inserts the needed data from the DB to the table.
+	 */
 	public void InsertToTable() {
 		ArrayList<SingleManageOrder> list = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, LoginScreenController.user.getID().toString()));

@@ -3,9 +3,18 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.net.URL;
+import java.time.LocalDateTime;
+>>>>>>> branch 'Do_Not_Touch' of https://github.com/evgenybok/zerLi.git
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -24,8 +33,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Complain;
 import logic.SingleComplaint;
 
+/**
+ * @author Evgeny Customer service user can handle existing complaint by the
+ *         user.
+ */
 public class HandelComplaintController {
 
 	@FXML
@@ -46,6 +60,12 @@ public class HandelComplaintController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * Sends the user back to the customer service main screen
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -60,7 +80,11 @@ public class HandelComplaintController {
 		csScreen.centerOnScreen();
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Initializes data shown on screen Checks if time passed since complaint was
+	 * created is more than 24 hours
+	 */
+	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
@@ -71,6 +95,30 @@ public class HandelComplaintController {
 		List<SingleComplaint> complaint = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_COMPLAINTS, LoginScreenController.user.getID()));
 		complaint = (ArrayList<SingleComplaint>) AnalyzeMessageFromServer.getData();
+
+		chat.accept(new Message(MessageType.GET_ALL_COMPLAINTS, null));
+		ArrayList<Complain> allComplaint = new ArrayList<>();
+		try {
+			allComplaint = (ArrayList<Complain>) AnalyzeMessageFromServer.getData();
+		} catch (Exception e) {
+		}
+		;
+		Calendar currentCalendar = Calendar.getInstance();
+		currentCalendar.add(Calendar.HOUR_OF_DAY, 24);
+		for (Complain comp : allComplaint) {
+			Calendar complaintTime = Calendar.getInstance();
+			complaintTime.set(comp.getDateCreated().getYear(), comp.getDateCreated().getMonthValue(),
+					comp.getDateCreated().getDayOfMonth(), comp.getDateCreated().getHour() + 24,
+					comp.getDateCreated().getMinute(), comp.getDateCreated().getSecond());
+			if (complaintTime.after(currentCalendar) && comp.getComplainStatus().equals("WaitForHandle")
+					&& !comp.isReminderToHandle()) // 24 hours
+			{
+				chat.accept(new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, comp.getOrderID()));
+				JOptionPane.showMessageDialog(null,
+						"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!", "Information",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
 		if (!(complaint == null)) {
 			try {
 				for (int i = 0; i < complaint.size(); i++) {
@@ -80,7 +128,6 @@ public class HandelComplaintController {
 					SingleComplaintController singleComplaintController = fxmlLoader.getController();
 					singleComplaintController.setData(complaint.get(i));
 					ComplaintLayout.getChildren().add(hBox);
-
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -88,6 +135,11 @@ public class HandelComplaintController {
 		}
 	}
 
+	/**
+	 * Search complaint by user ID
+	 * 
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void Serach(MouseEvent event) {

@@ -5,11 +5,13 @@ import java.net.ServerSocket;
 
 import javax.swing.JFrame;
 
+/**
+ * @author Evgeny
+ * Singleton for the server to create only one instance at a time.
+ *
+ */
 public class SingleServer extends JFrame implements Runnable {
 	// Server singleton
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int PORT = 5555;
 

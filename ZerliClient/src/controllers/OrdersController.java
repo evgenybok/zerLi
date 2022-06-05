@@ -34,6 +34,10 @@ import javafx.stage.Stage;
 import logic.Account;
 import logic.SingleOrder;
 
+/**
+ * @author Evgeny
+ * Here the user can view and manage his orders.
+ */
 public class OrdersController {
 
 	@FXML
@@ -99,6 +103,12 @@ public class OrdersController {
 	List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 	SingleOrder toCancel = new SingleOrder(0, 0, null, null, null, null, 0, null);
 
+
+	/**
+	 * Sends the user back to the customer screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -112,6 +122,11 @@ public class OrdersController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * User can cancel selected order only if it is in status "Approved"
+	 * User gets compensated based on the time left for delivery.
+	 * @param event
+	 */
 	@FXML
 	void btnCancelOrder(MouseEvent event) {
 		boolean flagExists = false;
@@ -195,6 +210,10 @@ public class OrdersController {
 		}
 	}
 
+	/**
+	 * Allows the user to search for a specific order.
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSearch(MouseEvent event) {
@@ -230,6 +249,9 @@ public class OrdersController {
 		}
 	}
 
+	/**
+	 * Initialization of data on screen.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {

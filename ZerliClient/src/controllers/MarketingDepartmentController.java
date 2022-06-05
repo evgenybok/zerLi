@@ -20,6 +20,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the Marketing role can get to this screen, can view various reports and create a new report.
+ */
 public class MarketingDepartmentController {
 
 	@FXML
@@ -46,6 +50,11 @@ public class MarketingDepartmentController {
 	@FXML
 	private Label accTypeScreen;
 
+	/**
+	 * Logs the user out of the system and opens the login screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -60,6 +69,11 @@ public class MarketingDepartmentController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * Allows the marketing worker to update the catalog and put items on sale/
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
@@ -73,6 +87,9 @@ public class MarketingDepartmentController {
 		catalogUpdateStage.centerOnScreen();
 	}
 
+	/**
+	 * Data initialization on screen
+	 */
 	@FXML
 	void initialize() {
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName

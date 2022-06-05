@@ -35,6 +35,14 @@ public class User implements Serializable {
 		Email = email;
 	}
 
+	public User(String iD,String username, String password, String role)
+	{
+		ID=iD;
+		Username=username;
+		Password=password;
+		Role=role;
+	}
+	
 	public User(String username, String password) {
 		super();
 		Username = username;

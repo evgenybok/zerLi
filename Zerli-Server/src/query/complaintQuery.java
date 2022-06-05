@@ -3,6 +3,7 @@ package query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import logic.Complain;
@@ -141,6 +142,52 @@ public class complaintQuery {
 		}
 		return singlecomplaint;
 	}
+	public static ArrayList<SingleComplaint> GetComplaintByUserId(String userid)
+	{
+		String query = ("SELECT * FROM zerli.complaint WHERE complainUserID = '" + userid +"';");
+		ArrayList<SingleComplaint> singlecomplaint = new ArrayList<>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String Userid=rs.getString("complainUserID");
+				String orderid=rs.getString("OrderId");
+				String description=rs.getString("Description");
+				singlecomplaint.add(new SingleComplaint(Userid,orderid,description));
+			}
+		} catch (SQLException e) {
+			
+		}
+		return singlecomplaint;
+	}
+	
+	/**
+	 * Returns all the complaints from the DB
+	 * @return ArrayList of complain logic.
+	 */
+	public static ArrayList<Complain> GetAllComplaints()
+	{
+		String query = ("SELECT * FROM zerli.complaint;");
+		ArrayList<Complain> complaints = new ArrayList<>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String handleUserID=rs.getString("HandelerUserID");
+				String complainUserID=rs.getString("complainUserID");
+				int orderid=rs.getInt("OrderId");
+				String description=rs.getString("Description");
+				String ComplainStatus=rs.getString("complainStatus");
+				double Refund=rs.getDouble("Refund");
+				String storeID=rs.getString("sotreID");
+				LocalDateTime dateCreated=rs.getTimestamp("Date").toLocalDateTime();
+				boolean reminderToHandle=rs.getBoolean("ReminderToHandle");
+				complaints.add(new Complain(handleUserID,complainUserID,orderid,description,ComplainStatus,Refund,storeID,dateCreated,reminderToHandle));
+			}
+		} catch (SQLException e) {
+		}
+		return complaints;
+	}
 	/**
 	 * @param details - refund amount, user id, order id.
 	 * Method updates the total refund amount in the db based on given parameters. 
@@ -183,6 +230,21 @@ public class complaintQuery {
 	public static void UpdateToHandled(String orderid)
 	{
 		String query = ("UPDATE complaint SET complainStatus = 'Handled' WHERE OrderId = '" + orderid +"';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+		}	
+	}
+	
+	/**
+	 * Updates the reminder table in the DB.
+	 * @param orderid
+	 */
+	public static void UpdateReminder(int orderid)
+	{
+		String query = ("UPDATE complaint SET ReminderToHandle = true WHERE OrderId = " + orderid +";");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
