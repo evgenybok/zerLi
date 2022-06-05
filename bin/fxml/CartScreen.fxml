@@ -61,7 +61,7 @@
                   </Label>
                </children>
             </HBox>
-            <ScrollPane fx:id="scrollPane" prefHeight="342.0" prefWidth="700.0" styleClass="transparentTwo" stylesheets="@../../images/css/style.css">
+            <ScrollPane fx:id="scrollPane" prefHeight="342.0" prefWidth="700.0" styleClass="transparentTwo" stylesheets="@../../images/css/styleNew.css">
                <content>
                   <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>
@@ -104,7 +104,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="16.0" />
                      </font>
                      <stylesheets>
-                        <URL value="@../../images/css/style.css" />
+                        <URL value="@../../images/css/styleNew.css" />
                         <URL value="@../../images/css/styleNew.css" />
                      </stylesheets>
                   </Button>
@@ -117,7 +117,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="16.0" />
                      </font>
                      <stylesheets>
-                        <URL value="@../../images/css/style.css" />
+                        <URL value="@../../images/css/styleNew.css" />
                         <URL value="@../../images/css/styleNew.css" />
                      </stylesheets>
                   </Button>

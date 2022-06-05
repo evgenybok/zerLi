@@ -6,13 +6,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import communication.MessageAnswer;
 import logic.Item;
 import logic.Order;
 import logic.SingleOrder;
+import logic.SingleWorker;
 import logic.User;
 
+/**
+ * @author Evgeny this class contains 'General Queries' related queries based on
+ *         the DB.
+ *
+ */
 public class Query {
 
+	/**
+	 * @param user- logic User, contains user details. updates login status in DB of
+	 *              given user when logging in. changes logged in status in DB.
+	 * @return logic User of user details.
+	 */
 	public static User Login(User user) {
 		String query = "SELECT * FROM zerli.users;";
 		try {
@@ -23,19 +35,34 @@ public class Query {
 				String password = rs.getString("Password");
 				boolean Loggedin = rs.getBoolean("LoggedIn");
 				String ID = rs.getString("id");
+				String firstName = rs.getString("FirstName");
+				String lasName = rs.getString("LastName");
 				String role = rs.getString("Role");
-				if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && !Loggedin) {
-					query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
-					user = new User(username, password, true, ID, role);
-					st.executeUpdate(query);
+				String phoneNumber = rs.getString("PhoneNumber");
+				String email = rs.getString("Email");
+				if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+					if (!Loggedin) {
+						query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
+						user = new User(username, password, true, ID, firstName, lasName, role, phoneNumber, email,
+								true);
+						st.executeUpdate(query);
+						return user;
+					} else if (Loggedin) {
+						user = new User(username, password, false, ID, role, true);
+						return user;
+					}
 				}
+
 			}
-			return user;
+			return user = new User(null, null, false, null, null, false);
 		} catch (SQLException e) {
-			return user;
+			return null;
 		}
 	}
 
+	/**
+	 * Disconnects all user from the DB.
+	 */
 	public static void DisconnectAll() {
 		String query = ("SELECT * FROM zerli.users;");
 		try {
@@ -49,18 +76,18 @@ public class Query {
 		}
 	}
 
+	/**
+	 * @param user- logic User, contains user details. Disconnects given single
+	 *              user.
+	 * @return true if update was successful, false otherwise.
+	 */
 	public static boolean Disconnect(User user) {
-		String query = ("SELECT * FROM zerli.users WHERE id="+user.getID()+";");
+		String query = ("UPDATE users SET LoggedIn=false WHERE id='" + user.getID() + "' AND Username='"
+				+ user.getUsername() + "';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				String query1 = ("UPDATE users SET LoggedIn="+false+";");
-				st.executeUpdate(query1);
-				return true;
-			}
-
-			return false;
+			st.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			return false;
 		}
@@ -92,6 +119,10 @@ public class Query {
 		return users;
 	}
 
+	/**
+	 * @param data - order number, array list of item details
+	 * @return item name of given order.
+	 */
 	public static String getItemName(String data) {
 		String query = ("SELECT * FROM zerli.item;");
 		HashMap<String, ArrayList<String>> map = new HashMap<>();
@@ -135,6 +166,9 @@ public class Query {
 		}
 	}
 
+	/**
+	 * @return array list of logic item of premade items
+	 */
 	public static ArrayList<Item> GetPremadeItems() {
 		String query = "SELECT * FROM zerli.item WHERE ID LIKE '2%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -159,6 +193,9 @@ public class Query {
 
 	}
 
+	/**
+	 * @return arraylist of logic item of self assembly items.
+	 */
 	public static ArrayList<Item> GetSelfAssemblyItems() {
 		String query = "SELECT * FROM zerli.item WHERE ID LIKE '1%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -181,6 +218,25 @@ public class Query {
 		}
 		return items;
 
+	}
+
+	public static ArrayList<SingleWorker> GetWorkers() {
+		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'customer service';";
+		ArrayList<SingleWorker> workers = new ArrayList<SingleWorker>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while(rs.next())
+			{
+				String id=rs.getString("id");
+				String firstname=rs.getString("FirstName");
+				String lastname=rs.getString("LastName");
+				String role=rs.getString("Role");
+				workers.add(new SingleWorker(id,firstname,lastname,role));
+			}
+		} catch (SQLException e) {
+		}
+		return workers;
 	}
 
 }

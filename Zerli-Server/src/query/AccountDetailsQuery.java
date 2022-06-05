@@ -9,19 +9,18 @@ import logic.Account;
 import logic.SingleOrder;
 
 /**
- * @author Evgeny
- * this class contains account details related queries based on the DB.
+ * @author Evgeny this class contains account details related queries based on
+ *         the DB.
  *
  */
 public class AccountDetailsQuery {
-	
+
 	/**
-	 * @param userID - id number of the user.
-	 * This method returns an array list of account details for all users.
+	 * @param userID - id number of the user. This method returns an array list of
+	 *               account details for all users.
 	 * @return ArrayList of account.
 	 */
-	public static ArrayList<Account> GetAccountDetails(String userID) 
-	{
+	public static ArrayList<Account> GetAccountDetails(String userID) {
 		String query = ("SELECT * FROM zerli.account_details;");
 		ArrayList<Account> details = new ArrayList<>();
 		try {
@@ -34,24 +33,30 @@ public class AccountDetailsQuery {
 				String CVV = rs.getString("CVV");
 				double refund = rs.getDouble("TotalRefund");
 				String status = rs.getString("Status");
-				if(userID.equals(user_ID))
-				{
-					details.add(new Account(user_ID,creditCardNumber,creditCardDate,CVV,refund,status));
-				break;
+				int ordersAmount = rs.getInt("OrdersAmount");
+				if (userID.equals(user_ID)) {
+					details.add(
+							new Account(user_ID, creditCardNumber, creditCardDate, CVV, refund, status, ordersAmount));
+					break;
 				}
 			}
-			if(details.isEmpty())
-				details=null;
+			if (details.isEmpty())
+				details = null;
 		} catch (SQLException e) {
 			return null;
 		}
 		return details;
 	}
+
+	/**
+	 * Updates given account's status to the given status.
+	 * @param accountDetails - account status and account user id
+	 */
 	public static void UpdateStatusByManager(String accountDetails) {
-		String[] AccountDetails=accountDetails.split("@");
+		String[] AccountDetails = accountDetails.split("@");
 		String Status = AccountDetails[0];
 		String UserId = AccountDetails[1];
-		String query = ("UPDATE zerli.account_details SET Status='" + Status +"' WHERE User_ID='"+ UserId + "';");
+		String query = ("UPDATE zerli.account_details SET Status='" + Status + "' WHERE User_ID='" + UserId + "';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
@@ -60,5 +65,37 @@ public class AccountDetailsQuery {
 			return;
 		}
 
+	}
+
+	public static void UpdateOrdersAmount(Account account) {
+		int ordersAmount = account.getOrdersAmount() + 1;
+		String query = ("UPDATE account_details SET OrdersAmount=" + ordersAmount + " WHERE User_ID = '"
+				+ account.getUser_ID() + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+
+		}
+
+	}
+	/**
+	 * Updates given account's role to the given role by the manager.
+	 * @param accountDetails - account role and account user id
+	 */
+	public static void UpdateRoleByManager(String accountDetails) {
+		String[] AccountDetails=accountDetails.split("@");
+		String Role = AccountDetails[0];
+		String UserId = AccountDetails[1];
+		String query = ("UPDATE zerli.users SET Role='" + Role +"' WHERE id='"+ UserId + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
 	}
 }

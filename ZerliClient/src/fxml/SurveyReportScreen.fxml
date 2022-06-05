@@ -173,7 +173,7 @@
                </children>
             </HBox>
             <TextField fx:id="path" layoutX="370.0" layoutY="441.0" prefHeight="34.0" prefWidth="413.0" promptText="C:\Reports\SurveyNumber.pdf" />
-            <Label layoutX="371.0" layoutY="424.0" text="Choose path and file name:" />
+            <Label layoutX="371.0" layoutY="424.0" text="Choose path and file name: (for example: C:\Reports\SurveyNumber.pdf)" />
          </children>
       </AnchorPane>
    </center>

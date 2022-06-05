@@ -5,9 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	private String Username;
 	private String Password;
 	private boolean LoggedIn;
@@ -17,6 +19,7 @@ public class User implements Serializable {
 	private String Role;
 	private String PhoneNumber;
 	private String Email;
+	private boolean Exists;
 
 	public User(String username, String password, boolean loggedIn, String iD, String firstName, String lastName,
 			String role, String phoneNumber, String email) {
@@ -31,6 +34,14 @@ public class User implements Serializable {
 		PhoneNumber = phoneNumber;
 		Email = email;
 	}
+
+	public User(String iD,String username, String password, String role)
+	{
+		ID=iD;
+		Username=username;
+		Password=password;
+		Role=role;
+	}
 	
 	public User(String username, String password) {
 		super();
@@ -38,13 +49,29 @@ public class User implements Serializable {
 		Password = password;
 	}
 
-	public User(String username, String password, boolean loggedIn, String iD, String role) {
+	public User(String username, String password, boolean loggedIn, String iD, String role, boolean exists) {
 		super();
 		Username = username;
 		Password = password;
 		LoggedIn = loggedIn;
 		ID = iD;
 		Role = role;
+		Exists = exists;
+	}
+
+	public User(String username, String password, boolean loggedIn, String iD, String firstName, String lastName,
+			String role, String phoneNumber, String email, boolean exists) {
+		super();
+		Username = username;
+		Password = password;
+		LoggedIn = loggedIn;
+		ID = iD;
+		FirstName = firstName;
+		LastName = lastName;
+		Role = role;
+		PhoneNumber = phoneNumber;
+		Email = email;
+		Exists = exists;
 	}
 
 	public String getUsername() {
@@ -124,5 +151,13 @@ public class User implements Serializable {
 		return "User [Username=" + Username + ", Password=" + Password + ", LoggedIn=" + LoggedIn + ", ID=" + ID
 				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Role=" + Role + ", PhoneNumber="
 				+ PhoneNumber + ", Email=" + Email + "]";
+	}
+
+	public boolean isExists() {
+		return Exists;
+	}
+
+	public void setExists(boolean exists) {
+		Exists = exists;
 	}
 }

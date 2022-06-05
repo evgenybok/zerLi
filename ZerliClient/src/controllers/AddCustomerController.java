@@ -1,8 +1,10 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.util.Objects;
-import static controllers.IPScreenController.chat;
+
 import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
@@ -15,12 +17,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
 import logic.User;
 
+/**
+ * @author Evgeny
+ * The branch manager can register a new customer in this screen in the DB.
+ */
 public class AddCustomerController {
 
 	@FXML
@@ -65,6 +73,14 @@ public class AddCustomerController {
 	@FXML
 	private Text userTitle;
 
+    @FXML
+    private ImageView avatarImg;
+
+	/**
+     * Registers a new customer with the filled parameters in the DB.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnAdd(MouseEvent event) throws IOException {
 		String Userid = userID.getText();
@@ -95,13 +111,14 @@ public class AddCustomerController {
 			return;
 		} else {
 			User user = new User(username, password, false, Userid, firstname, lastname, role, phone, mail);
-			Account account = new Account(Userid, creditnum, expire, cvv, 0.00, Status);
+			Account account = new Account(Userid, creditnum, expire, cvv, 0.00, Status,0);
 			InsertNewUser(user);
 			InsertNewAccount(account);
 			JOptionPane.showMessageDialog(null, "This user Added Succsesfully", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			customerStage.setTitle("Customer");
@@ -110,6 +127,11 @@ public class AddCustomerController {
 			customerStage.centerOnScreen();
 		}
 	}
+		/**
+		 * Checks if current string contains anything that is not a number.
+		 * @param str String
+		 * @return true if only numbers, false otherwise.
+		 */
 		private boolean ContainsChar(String str) {
 			for(int i = 0; i<str.length();i++) {
 				if(!(str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
@@ -119,6 +141,11 @@ public class AddCustomerController {
 			return true;
 		}
 	
+		/**
+	     * Method that checks if there is another account with the entered username in the DB.
+	     * @param username
+	     * @return
+	     */
 	public boolean CheckIfUserNameExist(String username) {
 		try {
 			chat.accept(new Message(MessageType.CHECK_IF_USERNAME_EXIST, username));
@@ -136,6 +163,10 @@ public class AddCustomerController {
 		return true;
 	}
 
+	/**
+     * Inserts the newly created account to table Users in the DB.
+     * @param user
+     */
 	public void InsertNewUser(User user) {
 
 		try {
@@ -148,21 +179,11 @@ public class AddCustomerController {
 		;
 	}
 
+	/**
+     * Inserts the newly created account to table Accoun_details in the DB.
+     * @param account - logic Account, contains account information.
+     */
 	public void InsertNewAccount(Account account) {
-		//String Userid = userID.getText();
-		//String firstname = FirstName.getText();
-		//String lastname = LastName.getText();
-		//String creditnum = CreditCardNumber.getText();
-		//String expire = expireDate.getText();
-		//String cvv = CVV.getText();
-		//String mail = Email.getText();
-		//String phone = Phone.getText();
-		//String username = userName.getText();
-		//String password = Password.getText();
-		//String role = "customer";
-		//String Status = "Active";
-		//User user = new User(username, password, false, Userid, firstname, lastname, role, phone, mail);
-		//Account account1 = new Account(Userid, creditnum, expire, cvv, 0.00, Status);
 		try {
 			chat.accept(new Message(MessageType.INSERT_NEW_ACCOUNT, account));
 			if (AnalyzeMessageFromServer.getData().equals(null))
@@ -171,25 +192,31 @@ public class AddCustomerController {
 			return;
 		}
 		;
-		//InsertNewUser(user);
-		//InsertNewAccount(account1);
 	}
 
+	/**
+     * closes current screen and opens the branch manager login screen.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Branch Manager Screen");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
+		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		managerScreen.setTitle("Branch Manager Screen");
+		managerScreen.setScene(scene);
+		managerScreen.show();
+		managerScreen.centerOnScreen();
 	}
 
 	@FXML
 	void initialize() {
-
+		userTitle.setText(LoginScreenController.user.getUsername());
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 	}
 
 }

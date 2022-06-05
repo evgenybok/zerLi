@@ -32,9 +32,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="77.0" prefWidth="425.0">
+            <HBox prefHeight="77.0" prefWidth="425.0" spacing="90.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="77.0" prefWidth="136.0">
                      <children>
                         <Button fx:id="yesBtn" mnemonicParsing="false" onMouseClicked="#YesClick" prefHeight="42.0" prefWidth="72.0" style="-fx-background-color: d3d3d3; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Yes">
                            <HBox.margin>
@@ -42,12 +42,15 @@
                            </HBox.margin>
                         </Button>
                      </children>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
                   </HBox>
-                  <HBox prefHeight="77.0" prefWidth="236.0">
+                  <HBox prefHeight="77.0" prefWidth="135.0">
                      <children>
                         <Button fx:id="NoBtn" mnemonicParsing="false" onMouseClicked="#NoClick" prefHeight="42.0" prefWidth="72.0" style="-fx-background-color: d3d3d3; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" text="No">
                            <HBox.margin>
-                              <Insets left="60.0" top="15.0" />
+                              <Insets right="25.0" top="15.0" />
                            </HBox.margin>
                         </Button>
                      </children>

@@ -3,11 +3,12 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -19,67 +20,99 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import logic.Complain;
 import logic.SingleComplaint;
 
+/**
+ * @author Evgeny Customer service user can handle existing complaint by the
+ *         user.
+ */
 public class HandelComplaintController {
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private Button Back;
 
 	@FXML
-	private TextField IdSearch;
+	private VBox ComplaintLayout;
 
 	@FXML
-	private Text accountStatus;
+	private TextField IdSearch;
 
 	@FXML
 	private Text accountType;
 
 	@FXML
-	private Text userName;
-	@FXML
-	private VBox ComplaintLayout;
+	private ImageView avatarImg;
 
+	@FXML
+	private Text userName;
+
+	/**
+	 * Sends the user back to the customer service main screen
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Create Survey Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();
+		Stage csScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		csScreen.setTitle("Customer Service Screen");
+		csScreen.setScene(scene);
+		csScreen.show();
+		csScreen.centerOnScreen();
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Initializes data shown on screen Checks if time passed since complaint was
+	 * created is more than 24 hours
+	 */
+	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void initialize() {
-		assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-		assert IdSearch != null : "fx:id=\"IdSearch\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-		assert accountStatus != null
-				: "fx:id=\"accountStatus\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-		assert accountType != null
-				: "fx:id=\"accountType\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-		assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'HandelComplaint.fxml'.";
-		this.accountStatus.setText("CONFIRMED"); // accountStatus - need to be handled from DB
-		this.accountType.setText("Customer Service"); // accountType - may be handled from DB
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
+		this.accountType.setText("Customer Service"); // accountType
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 		List<SingleComplaint> complaint = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_COMPLAINTS, LoginScreenController.user.getID()));
 		complaint = (ArrayList<SingleComplaint>) AnalyzeMessageFromServer.getData();
+
+		chat.accept(new Message(MessageType.GET_ALL_COMPLAINTS, null));
+		ArrayList<Complain> allComplaint = new ArrayList<>();
+		try {
+			allComplaint = (ArrayList<Complain>) AnalyzeMessageFromServer.getData();
+		} catch (Exception e) {
+		}
+		;
+		Calendar currentCalendar = Calendar.getInstance();
+		currentCalendar.add(Calendar.HOUR_OF_DAY, 24);
+		for (Complain comp : allComplaint) {
+			Calendar complaintTime = Calendar.getInstance();
+			complaintTime.set(comp.getDateCreated().getYear(), comp.getDateCreated().getMonthValue(),
+					comp.getDateCreated().getDayOfMonth(), comp.getDateCreated().getHour() + 24,
+					comp.getDateCreated().getMinute(), comp.getDateCreated().getSecond());
+			if (complaintTime.after(currentCalendar) && comp.getComplainStatus().equals("WaitForHandle")
+					&& !comp.isReminderToHandle()) // 24 hours
+			{
+				chat.accept(new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, comp.getOrderID()));
+				JOptionPane.showMessageDialog(null,
+						"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!", "Information",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
 		if (!(complaint == null)) {
 			try {
 				for (int i = 0; i < complaint.size(); i++) {
@@ -89,7 +122,6 @@ public class HandelComplaintController {
 					SingleComplaintController singleComplaintController = fxmlLoader.getController();
 					singleComplaintController.setData(complaint.get(i));
 					ComplaintLayout.getChildren().add(hBox);
-
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -97,6 +129,11 @@ public class HandelComplaintController {
 		}
 	}
 
+	/**
+	 * Search complaint by user ID
+	 * 
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void Serach(MouseEvent event) {

@@ -3,6 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -41,6 +42,10 @@ import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
+/**
+ * @author Evgeny
+ * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.
+ */
 public class PaymentScreenController {
 	String userID = LoginScreenController.user.getID();
 	String cardNum, date, CustomerCVV, Dorder;
@@ -124,17 +129,28 @@ public class PaymentScreenController {
 	private Text delviryFee;
 
 	@FXML
+	private Label discount;
+
+	@FXML
 	private Label lblTotalAmount;
 
 	@FXML
 	private Label lblZerLiCredit;
 
 	private double refundUsed = 0;
+	private double finalPriceToPay = 0;
 
+	/**
+	 * closes current screen and opens the Cart screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
+		parent.getStylesheets().add("css/transTextArea.css");
 		Scene scene = new Scene(parent);
 		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		deliveryDetailsStage.setTitle("Shopping Cart");
@@ -143,6 +159,10 @@ public class PaymentScreenController {
 		deliveryDetailsStage.centerOnScreen();
 	}
 
+	/**
+	 * Marks the selection of delivery and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void DeliveryBtn(MouseEvent event) {
 		if (DeliveryBox.isSelected()) {
@@ -162,6 +182,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Marks the selection of pickup and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void PickBtn(MouseEvent event) {
 
@@ -184,6 +208,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Marks the selection of express delivery and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void expressPickBtn(MouseEvent event) {
 		if (ExpPick.isSelected()) {
@@ -194,22 +222,22 @@ public class PaymentScreenController {
 			delviryFee.setText("12.00");
 			changeAmount(12.00);
 			Date currDate = new Date(System.currentTimeMillis());
-            Calendar supplyDateCalendar = Calendar.getInstance();
-            supplyDateCalendar.setTime(currDate);
-            supplyDateCalendar.add(Calendar.HOUR, 3);
-            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            String temp = formatter1.format(supplyDateCalendar.getTime());
-            String[] split = temp.split(" ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate localDate = LocalDate.parse(split[0], formatter);
-            SupplyTime.setText(split[1]);
-            DateSupply.setValue(localDate);
+			Calendar supplyDateCalendar = Calendar.getInstance();
+			supplyDateCalendar.setTime(currDate);
+			supplyDateCalendar.add(Calendar.HOUR, 3);
+			SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String temp = formatter1.format(supplyDateCalendar.getTime());
+			String[] split = temp.split(" ");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.parse(split[0], formatter);
+			SupplyTime.setText(split[1]);
+			DateSupply.setValue(localDate);
 
-            SupplyTime.setDisable(true);
-            SupplyTime.setOpacity(1.0);
+			SupplyTime.setDisable(true);
+			SupplyTime.setOpacity(1.0);
 
-            DateSupply.setDisable(true);
-            DateSupply.setOpacity(1.0);
+			DateSupply.setDisable(true);
+			DateSupply.setOpacity(1.0);
 		} else {
 			DeliveryFlag = false;
 			DeliveryExpressFlag = false;
@@ -222,6 +250,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Gets the store name from the DB.
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void GetStoreName(MouseEvent event) {
@@ -240,6 +272,9 @@ public class PaymentScreenController {
 		StoreName.setItems(FXCollections.observableArrayList(storeName));
 	}
 
+	/**
+	 * Sets permanant fields of the user from the DB.
+	 */
 	@SuppressWarnings("unchecked")
 	public void showCreditDetail() {
 		ArrayList<Account> accountCreditDetails = new ArrayList<>();
@@ -262,7 +297,11 @@ public class PaymentScreenController {
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
 
-
+	/**
+	 * Finishes the payment and adds the order to the DB based on the parameters entered.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
 
@@ -319,16 +358,16 @@ public class PaymentScreenController {
 			double refund = 0;
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
-			if(phone.length()!=10)
-            {
-                JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
+			if (phone.length() != 10) {
+				JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			Order order = new Order(Order.orderCount, finalPriceToPay, greeting, storeid, orderDateString,
 					supplyDateTime, Status, supplytype, userID, refund, adress, reciverName, phone, Dorder);
-
 			try {
+				chat.accept(new Message(MessageType.UPDATE_ORDERS_AMOUNT, CustomerScreenController.fullAcc));
+
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
 				if (refundUsed > 0) {
 					StringBuilder sb = new StringBuilder();
@@ -344,15 +383,17 @@ public class PaymentScreenController {
 				CustomCatalogController.bouquetCounter = 0;
 
 				AddGreetingController.Greeting = null;
+				((Node) event.getSource()).getScene().getWindow().hide();
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderComplete.fxml")));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage cartDetailsScreen = new Stage();
-                cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-                cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
-                cartDetailsScreen.setTitle("Shopping Cart");
-                cartDetailsScreen.setScene((new Scene(root1)));
-                cartDetailsScreen.show();
-                cartDetailsScreen.centerOnScreen();
+				Parent root1 = (Parent) fxmlLoader.load();
+				root1.getStylesheets().add("css/styleNew.css");
+				Stage cartDetailsScreen = new Stage();
+				cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+				cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+				cartDetailsScreen.setTitle("Shopping Cart");
+				cartDetailsScreen.setScene((new Scene(root1)));
+				cartDetailsScreen.show();
+				cartDetailsScreen.centerOnScreen();
 			} catch (Exception e) {
 				return;
 			}
@@ -362,6 +403,10 @@ public class PaymentScreenController {
 
 	}
 
+	/**
+	 * Checks if the supply time entered is valid.
+	 * @return true if valid, false otherwise.
+	 */
 	boolean checkSupplyTime() {
 		if (SupplyTime.getText().length() != 5)
 			return false;
@@ -372,12 +417,14 @@ public class PaymentScreenController {
 		String[] time = temp.split(":");
 		int hour = Integer.parseInt(time[0]);
 		int minutes = Integer.parseInt(time[1]);
-		if (((hour > 0 && hour <= 24) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
+		if (((hour >= 0 && hour <= 23) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
 			return true;
 		else
 			return false;
 	}
-
+	/**
+	 * Checking for empty fields input
+	 */
 	void CheckPayDetailsNoEmpty() {
 
 		if (DeliveryFlag == true) {
@@ -392,9 +439,11 @@ public class PaymentScreenController {
 			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		///////////////////// need to check the comobox and date in same way*/
 	}
-
+	/**
+	 * Gets store ID from the DB.
+	 * @return store ID number
+	 */
 	private String getStoreId() {
 		String storeName = StoreName.getValue();
 		try {
@@ -411,23 +460,46 @@ public class PaymentScreenController {
 
 	}
 
+	/**
+	 * Chanages order amount based on the refund avaliable in the account.
+	 * @param deliveryFee
+	 */
 	void changeAmount(Double deliveryFee) {
+		/*
+		 * if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) { totalPrice *=
+		 * 0.8; String.format("{0:0.00}", totalPrice); System.out.println(totalPrice); }
+		 */
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
-		double temp = totalPrice - CustomerScreenController.accountZerliCredit; // 30-60=-30
+		double temp = totalPrice - CustomerScreenController.accountZerliCredit;
 		double toReduce = 0;
 		if (temp < 0) {
-			toReduce = CustomerScreenController.accountZerliCredit + temp; // 60+-30=30
+			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+				totalPriceAfterDeliveryFee *= 0.8;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+			}
+			toReduce = CustomerScreenController.accountZerliCredit + temp;
 			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + toReduce + ")");
 			refundUsed = toReduce;
+			finalPriceToPay = totalPriceAfterDeliveryFee - toReduce;
 		} else {
+			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+				totalPriceAfterDeliveryFee *= 0.8;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+			}
 			amountToPay.setText("\u20AA"
 					+ Double.toString(totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + CustomerScreenController.accountZerliCredit + ")");
 			refundUsed = CustomerScreenController.accountZerliCredit;
+			finalPriceToPay = totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit;
 		}
+
 	}
 
+	/**
+	 * Checking supply method.
+	 * @return String pickup / delivery.
+	 */
 	private String CheckWhichSupplyMethod() {
 		if (DeliveryFlag) {
 			return "Delivery";
@@ -435,7 +507,10 @@ public class PaymentScreenController {
 		return "PickUp";
 	}
 
-	// ????
+	/**
+	 * Calculating the supply date
+	 * @return new supply date.
+	 */
 	public Date calSupplyDate() {
 		LocalDate localDate = DateSupply.getValue();
 		LocalDate today = LocalDate.now();
@@ -453,6 +528,11 @@ public class PaymentScreenController {
 		return c.getTime();
 	}
 
+	/**
+	 * Converts string to the given format
+	 * @param mydate
+	 * @return date with the given format
+	 */
 	public String convertToDate(String mydate) {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:00");
@@ -460,6 +540,12 @@ public class PaymentScreenController {
 		return mydate;
 	}
 
+	/*
+	 * changes the date and time's format
+	 * @param date
+	 * @param time
+	 * @return new date and time format
+	 */
 	public String change(String date, String time) {
 		LocalDate localDate = DateSupply.getValue();
 		LocalDate today = LocalDate.now();
@@ -471,7 +557,12 @@ public class PaymentScreenController {
 	}
 
 	// Here we only show to the customer *************5454 we use this method only
-	// for secure
+	// for secure payment
+	/**
+	 * Hides the credit card number except for the final 4 digits.
+	 * @param number
+	 * @return new partially hidden credit card number
+	 */
 	public String ChangeCreditCard(String number) {
 		StringBuilder hideNumber = new StringBuilder(number);
 		for (int i = 0; i < number.length() - 4; i++) {
@@ -480,16 +571,26 @@ public class PaymentScreenController {
 		return hideNumber.toString();
 	}
 
+	/**
+	 * Checking delivery type.
+	 * @return String express / regular delivery.
+	 */
 	private String CheckExpressDelivery() {
 		if (DeliveryExpressFlag) {
 			return "Express";
 		}
 		return "Regular";
 	}
-	
+
+	/**
+	 * data initialization
+	 */
 	@FXML
 	void initialize() {
-
+		if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+			discount.setVisible(true);
+		} else
+			discount.setVisible(false);
 		Image checkoutImg = new Image(
 				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-card-payment-50.png")));
 		CheckoutImg.setImage(checkoutImg);

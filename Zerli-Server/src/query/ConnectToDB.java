@@ -9,11 +9,12 @@ import controllers.ServerController;
 import mainserver.EchoServer;
 
 
+/**
+ * @author Evgeny
+ * this class contains the connection to the DB.
+ *
+ */
 public class ConnectToDB extends ServerController{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2568961513728853135L;
 	public static Connection conn;
 

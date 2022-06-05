@@ -54,7 +54,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>
@@ -128,9 +128,9 @@
                <children>
                   <Button fx:id="analyseSurvey" mnemonicParsing="false" onMouseClicked="#btnAnalyseSurvey" prefHeight="111.0" prefWidth="387.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="       Analyse Survey">
                      <graphic>
-                        <ImageView fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="anaImg" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/images/icons8-list-64.png" />
+                              <Image url="@../../images/images/orders.png" />
                            </image>
                         </ImageView>
                      </graphic>

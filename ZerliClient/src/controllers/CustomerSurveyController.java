@@ -18,6 +18,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Allows the store worker to fill the input the suvery feedback received from the customer
+ */
 public class CustomerSurveyController {
 
     @FXML
@@ -50,10 +54,16 @@ public class CustomerSurveyController {
     @FXML
     private ImageView survImage;
    
+    /**
+     * Sends the user back to the customer screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnBack(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -62,15 +72,11 @@ public class CustomerSurveyController {
 		customerStage.centerOnScreen();
     }
 
+    /**
+     * Data initialization shown on screen
+     */
     @FXML
     void initialize() {
-        assert AccountStatus != null : "fx:id=\"AccountStatus\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert AccountType != null : "fx:id=\"AccountType\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert PersonImage != null : "fx:id=\"PersonImage\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert UserName != null : "fx:id=\"UserName\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert lblStartMsg != null : "fx:id=\"lblStartMsg\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
-        assert lblZerLi != null : "fx:id=\"lblZerLi\" was not injected: check your FXML file 'CustomerSurvey.fxml'.";
         Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
     	PersonImage.setImage(personImage);
     	Image surveyImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-survey-100.png")));

@@ -19,6 +19,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Customer specialist can see average score of selected survey and add his conclusions and save them to a PDF file.
+ */
 public class SurveyReportController {
 
 	@FXML
@@ -51,32 +55,40 @@ public class SurveyReportController {
 	@FXML
 	private Button save;
 
-    @FXML
-    private TextField path;
+	@FXML
+	private TextField path;
 
+	/**
+	 * Sends the user back to the survey analyse selection screen
+	 * @param event
+	 */
 	@FXML
 	void btnBack(MouseEvent event) {
 		try {
 			Parent parent = FXMLLoader
 					.load(Objects.requireNonNull(getClass().getResource("/fxml/SPAnalyseSurveyScreen.fxml")));
+			parent.getStylesheets().add("/css/styleNew.css");
 			Scene scene = new Scene(parent);
-			Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			loginStage.setTitle("Analyse Survey");
-			loginStage.setScene(scene);
-			loginStage.show();
-			loginStage.centerOnScreen();
+			Stage analyzeScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			analyzeScreen.setTitle("Analyse Survey");
+			analyzeScreen.setScene(scene);
+			analyzeScreen.show();
+			analyzeScreen.centerOnScreen();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Saves report in specified location as a PDF document.
+	 * @param event
+	 */
 	@FXML
 	void btnSave(MouseEvent event) {
 		String[] report = new String[2];
 		String conclusion = textConclusion.getText();
 		conclusion += "\n Report analysed by:" + LoginScreenController.user.getUsername() + ".";
-		//conclusion = conclusion.replace("\n", "").replace("\r", "");
 		report[0] = conclusion;
 		String filePath = path.getText();
 		report[1] = filePath;
@@ -87,6 +99,9 @@ public class SurveyReportController {
 		}
 	}
 
+	/**
+	 * Initialization of data shown on screen.
+	 */
 	@FXML
 	void initialize() {
 		// AnalyseSurveyController.averageScore[0];

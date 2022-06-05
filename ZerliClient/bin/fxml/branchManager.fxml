@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerScreenController">
+<BorderPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagerScreenController">
    <left>
       <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                <children>
-                  <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                  <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>
@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                  <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
                         <Image url="@../../images/images/Avatar.png" />
                      </image>
@@ -68,9 +68,9 @@
                   <Insets top="30.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch Manager" textAlignment="CENTER" wrappingWidth="153.13671875">
+                  <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch Manager" textAlignment="CENTER" wrappingWidth="226.47003173828125">
                      <font>
-                        <Font name="Cambria" size="20.0" />
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                      </font>
                   </Text>
                </children>
@@ -97,7 +97,7 @@
    <center>
       <AnchorPane prefHeight="800.0" prefWidth="771.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="viewReports" alignment="TOP_CENTER" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="View" textFill="#004d00">
+            <Button fx:id="editRole" alignment="TOP_CENTER" layoutX="116.0" layoutY="620.0" mnemonicParsing="false" onMouseClicked="#btnEditRole" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Edit" textFill="#004d00">
                <styleClass>
                   <String fx:value="add-btn" />
                   <String fx:value="shadow" />
@@ -106,7 +106,16 @@
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="addCustomer" alignment="TOP_CENTER" layoutX="471.0" layoutY="191.0" mnemonicParsing="false" onMouseClicked="#btnAdd" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Add " textFill="#004d00">
+            <Button fx:id="viewReports" alignment="TOP_CENTER" layoutX="116.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#btnViewReports" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="View" textFill="#004d00">
+               <styleClass>
+                  <String fx:value="add-btn" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="addCustomer" alignment="TOP_CENTER" layoutX="472.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#btnAdd" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Add " textFill="#004d00">
                <styleClass>
                   <String fx:value="add-btn" />
                   <String fx:value="shadow" />
@@ -115,7 +124,7 @@
                   <Font name="Cambria Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="EditInfo" alignment="TOP_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnEdit" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Edit" textFill="#004d00">
+            <Button fx:id="EditInfo" alignment="TOP_CENTER" layoutX="116.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#btnEdit" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Edit" textFill="#004d00">
                <styleClass>
                   <String fx:value="add-btn" />
                   <String fx:value="shadow" />
@@ -124,7 +133,7 @@
                   <Font name="Cambria Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="viewOrders" alignment="TOP_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnViewOrders" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Orders " textFill="#004d00">
+            <Button fx:id="viewOrders" alignment="TOP_CENTER" layoutX="485.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#btnViewOrders" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" stylesheets="@../../images/css/styleNew.css" text="Orders " textFill="#004d00">
                <styleClass>
                   <String fx:value="add-btn" />
                   <String fx:value="shadow" />
@@ -133,32 +142,32 @@
                   <Font name="Cambria Bold" size="22.0" />
                </font>
             </Button>
-            <ImageView fitHeight="77.0" fitWidth="68.0" layoutX="179.0" layoutY="256.0" onMouseClicked="#btnViewReports" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="viewReportsImg" fitHeight="77.0" fitWidth="68.0" layoutX="180.0" layoutY="170.0" onMouseClicked="#btnViewReports" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/217-2170381_other-approved-icon-png-images-receipt-icon.png" />
+                  <Image url="@../../images/images/viewReports.png" />
                </image>
             </ImageView>
-            <Text fill="#004d00" layoutX="503.0" layoutY="239.0" onMouseClicked="#btnAdd" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="New Customer" wrappingWidth="161.13671875">
+            <Text fill="#004d00" layoutX="504.0" layoutY="153.0" onMouseClicked="#btnAdd" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="New Customer" wrappingWidth="161.13671875">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Text>
-            <Text fill="#004d00" layoutX="182.0" layoutY="239.0" onMouseClicked="#btnViewReports" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Reports" wrappingWidth="81.13671875">
+            <Text fill="#004d00" layoutX="183.0" layoutY="153.0" onMouseClicked="#btnViewReports" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Reports" wrappingWidth="81.13671875">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Text>
-            <Text fill="#004d00" layoutX="156.0" layoutY="524.0" onMouseClicked="#btnEdit" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Account info" wrappingWidth="117.13671875">
+            <Text fill="#004d00" layoutX="157.0" layoutY="415.0" onMouseClicked="#btnEdit" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Account Info" wrappingWidth="117.13671875">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Text>
-            <Text fill="#004d00" layoutX="527.0" layoutY="524.0" onMouseClicked="#btnViewOrders" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="managment" wrappingWidth="115.13671875">
+            <Text fill="#004d00" layoutX="528.0" layoutY="415.0" onMouseClicked="#btnViewOrders" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="Managment" wrappingWidth="115.13671875">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#004d00" glyphName="USER" layoutX="547.0" layoutY="307.0" onMouseClicked="#btnAdd" size="60" wrappingWidth="49.0" />
+            <FontAwesomeIconView fx:id="addImg" fill="#004d00" glyphName="USER" layoutX="548.0" layoutY="229.0" onMouseClicked="#btnAdd" size="60" wrappingWidth="49.0" />
             <HBox prefHeight="100.0" prefWidth="767.0">
                <children>
                   <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Branch Manager Screen">
@@ -181,14 +190,14 @@
                   </HBox>
                </children>
             </HBox>
-            <ImageView fitHeight="87.0" fitWidth="83.0" layoutX="172.0" layoutY="531.0" onMouseClicked="#btnEdit" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="editImg" fitHeight="87.0" fitWidth="83.0" layoutX="170.0" layoutY="428.0" onMouseClicked="#btnEdit" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/icons8-account-100.png" />
+                  <Image url="@../../images/images/account.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="541.0" onMouseClicked="#btnViewOrders" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ordersManageImg" fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="438.0" onMouseClicked="#btnViewOrders" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/clipart3436115.png" />
+                  <Image url="@../../images/images/ordersManage.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="91.0" prefWidth="769.0">
@@ -196,6 +205,16 @@
                   <HBox prefHeight="122.0" prefWidth="115.0" />
                </children>
             </HBox>
+            <ImageView fx:id="roleImg" fitHeight="87.0" fitWidth="83.0" layoutX="170.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/images/account.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="161.0" layoutY="655.0" prefHeight="23.0" prefWidth="117.0" text="Worker Role" textFill="#004d00">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

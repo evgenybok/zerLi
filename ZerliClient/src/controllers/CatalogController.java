@@ -35,6 +35,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Shows the premade catalog, here the user can choose which items to add to the cart.
+ */
 public class CatalogController {
 
 	@FXML
@@ -101,6 +105,9 @@ public class CatalogController {
 
 	@FXML
 	private Label lblSalePrice;
+	
+    @FXML
+    private Label lblMyCart;
 
 	@FXML
 	public static Stage premadeCatalogStage;
@@ -117,10 +124,16 @@ public class CatalogController {
 	ArrayList<Item> items = new ArrayList<>();
 	static int premadeBouquetNumber = 0;
 
+	/**
+	 * closes current screen and opens the customer screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -129,6 +142,10 @@ public class CatalogController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * increments the amount of currently shown item to add to the cart.
+	 * @param event
+	 */
 	@FXML
 	void btnPlus(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
@@ -149,6 +166,10 @@ public class CatalogController {
 			AddToCartBtn.setDisable(true);
 	}
 
+	/**
+	 * decrements the amount of currently shown item to add to the cart.
+	 * @param event
+	 */
 	@FXML
 	void btnMin(MouseEvent event) {
 		int amount = Integer.valueOf(AmountLabel.getText());
@@ -167,6 +188,11 @@ public class CatalogController {
 			AddToCartBtn.setDisable(true);
 	}
 
+	/**
+	 * Opens the cart screen to show the user which items are inside his cart.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnMyCart(MouseEvent event) throws IOException {
 		premadeCatalogStage = (Stage) AddToCartBtn.getScene().getWindow();
@@ -174,6 +200,8 @@ public class CatalogController {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
+			root1.getStylesheets().add("css/transTextArea.css");
 			Stage cartDetailsScreen = new Stage();
 			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 			cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
@@ -187,6 +215,10 @@ public class CatalogController {
 
 	}
 
+	/**
+	 * Sets selected item's data according to the item data taken from the DB.
+	 * @param item
+	 */
 	private void setSelectedItem(Item item) {
 		flowerName.setText(item.getName());
 		flowerPrice.setText("\u20AA" + item.getPrice());
@@ -195,6 +227,12 @@ public class CatalogController {
 		serialID.setText(Integer.toString(item.getID()));
 	}
 
+	
+	/**
+	 * Button to add the selected product and amount to the cart.
+	 * @param event
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void btnAddToCart(MouseEvent event) throws IOException {
@@ -253,6 +291,10 @@ public class CatalogController {
 		}
 	}
 
+	/**
+	 * Search by color - filters the catalog to match the selected color input.
+	 * @param event
+	 */
 	@FXML
 	void clkColor(MouseEvent event) {
 		String color;
@@ -302,6 +344,10 @@ public class CatalogController {
 					JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Serach by price - filters the current catalog to match the selected price range.
+	 * @param event
+	 */
 	@FXML
 	void clkPriceRange(MouseEvent event) {
 		ArrayList<Item> tempSelectedItems = new ArrayList<Item>();
@@ -352,6 +398,9 @@ public class CatalogController {
 		}
 	}
 
+	/**
+	 * Initialization: shows all of the avaliable items from the DB that are premade in the table.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
@@ -360,6 +409,7 @@ public class CatalogController {
 		AddToCartBtn.setDisable(true);
 		if (CustomerScreenController.accountStatus.equals("Frozen")) {
 			CartImage.setDisable(true);
+			lblMyCart.setDisable(true);
 		}
 		int column = 0;
 		int row = 1;
@@ -448,7 +498,7 @@ public class CatalogController {
 				grid.setMaxHeight(Region.USE_PREF_SIZE);
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -18,7 +18,7 @@
          <children>
             <VBox prefHeight="558.0" prefWidth="610.0">
                <children>
-                  <ScrollPane fx:id="premadeScroll" onMouseClicked="#clickPremadeGrid" prefHeight="558.0" prefWidth="602.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                  <ScrollPane fx:id="premadeScroll" onMouseClicked="#clickPremadeGrid" prefHeight="558.0" prefWidth="602.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparent" stylesheets="@../../images/css/styleNew.css">
                      <content>
                         <GridPane fx:id="premadeGrid" prefHeight="0.0" prefWidth="28.0">
                            <rowConstraints>
@@ -31,7 +31,7 @@
             </VBox>
             <VBox prefHeight="558.0" prefWidth="613.0">
                <children>
-                  <ScrollPane fx:id="customScroll" onMouseClicked="#clickCustomGrid" prefHeight="558.0" prefWidth="602.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                  <ScrollPane fx:id="customScroll" onMouseClicked="#clickCustomGrid" prefHeight="558.0" prefWidth="602.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparent" stylesheets="@../../images/css/styleNew.css">
                      <content>
                         <GridPane fx:id="customGrid" prefHeight="0.0" prefWidth="28.0">
                            <rowConstraints>
@@ -61,7 +61,7 @@
       </Label>
       <HBox layoutX="8.0" layoutY="646.0" prefHeight="47.0" prefWidth="1198.0">
          <children>
-            <Button fx:id="addNewItem" mnemonicParsing="false" onMouseClicked="#btnAddNewItem" prefHeight="41.0" prefWidth="190.0" stylesheets="@../../images/css/style.css" text="Add New Item" textFill="WHITE">
+            <Button fx:id="addNewItem" mnemonicParsing="false" onMouseClicked="#btnAddNewItem" prefHeight="41.0" prefWidth="190.0" stylesheets="@../../images/css/styleNew.css" text="Add New Item" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>
@@ -70,7 +70,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/style.css" text="Back" textFill="WHITE">
+            <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>

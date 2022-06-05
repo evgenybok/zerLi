@@ -23,6 +23,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * View custom bouquet screen where user can view and organaize what the bouquet is made of.
+ */
 public class CustomItemViewController{
 
 	@FXML
@@ -73,6 +77,10 @@ public class CustomItemViewController{
 	public static Map<Integer, ArrayList<String>> customItemToAmount = CustomCatalogController.itemToAmount;
 	static double totalPrice;
 
+	/**
+	 * Closes custom bouquet screen without saving.
+	 * @param event
+	 */
 	@FXML
 	void btnClose(MouseEvent event) {
 		customItemToAmount = new HashMap<Integer, ArrayList<String>>(ItemInCartController.originalItemToAmounts);
@@ -86,6 +94,11 @@ public class CustomItemViewController{
 		stage.close();
 	}
 
+	/**
+	 * Saves custom bouquet, updates it and closes screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void clkSave(MouseEvent event) throws IOException {
 
@@ -109,6 +122,9 @@ public class CustomItemViewController{
 		JOptionPane.showMessageDialog(null, "Bouquet updated successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
 	}
 
+	/**
+	 * Initialization of items in custom bouquet.
+	 */
 	@FXML
 	void initialize() {
 		staticGrid=grid;

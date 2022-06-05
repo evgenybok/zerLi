@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the CEO role can get to this screen, can view various reports and create a new report.
+ */
 public class CEOScreenController {
 
 	@FXML
@@ -61,10 +65,16 @@ public class CEOScreenController {
 
 	}
 
+	/**
+	 * Shows the chosen area and date income report.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnIncome(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -73,11 +83,17 @@ public class CEOScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * CEO logs out and returns to login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -98,7 +114,7 @@ public class CEOScreenController {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			AccountStatus.setText(account.get(5)); // *** AccountStatus text field is null!!*/
-			AccountStatus.setText("CONFIRMED");
+			//AccountStatus.setText("CONFIRMED");
 			userName.setText(LoginScreenController.user.getUsername());
 
 		} catch (NullPointerException e) {

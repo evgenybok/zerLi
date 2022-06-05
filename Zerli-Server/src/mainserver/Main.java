@@ -4,6 +4,10 @@ import controllers.ServerController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ *main stage of the server.
+ */
 public class Main extends Application {
 	public static Stage mainStage;
 	@Override

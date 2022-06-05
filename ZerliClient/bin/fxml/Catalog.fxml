@@ -22,7 +22,7 @@
    <children>
       <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="435.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
                      <children>
@@ -38,7 +38,7 @@
                         <Insets />
                      </VBox.margin>
                   </Pane>
-                  <VBox alignment="CENTER" prefHeight="645.0" prefWidth="335.0" stylesheets="@../../images/css/style.css">
+                  <VBox alignment="CENTER" prefHeight="645.0" prefWidth="335.0" stylesheets="@../../images/css/styleNew.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -139,7 +139,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button fx:id="AddToCartBtn" mnemonicParsing="false" onMouseClicked="#btnAddToCart" prefHeight="50.0" prefWidth="270.0" stylesheets="@../../images/css/style.css" text="Add to cart" textFill="WHITE">
+                        <Button fx:id="AddToCartBtn" mnemonicParsing="false" onMouseClicked="#btnAddToCart" prefHeight="50.0" prefWidth="270.0" stylesheets="@../../images/css/styleNew.css" text="Add to cart" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="20.0" top="40.0" />
                            </VBox.margin>
@@ -148,6 +148,7 @@
                            </font>
                            <styleClass>
                               <String fx:value="add-btn" />
+                              <String fx:value="free-delivery-cart" />
                               <String fx:value="shadow" />
                            </styleClass>
                         </Button>
@@ -159,21 +160,25 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="90.0" prefWidth="435.0">
                      <children>
-                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="49.0" prefWidth="119.0" stylesheets="@../../images/css/style.css" text="Back" textFill="WHITE">
+                        <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="49.0" prefWidth="119.0" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="WHITE">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
                            <styleClass>
-                              <String fx:value="add-btn" />
+                              <String fx:value="free-delivery-cart" />
                               <String fx:value="shadow" />
                            </styleClass>
                         </Button>
                      </children></HBox>
                </children>
+               <styleClass>
+                  <String fx:value="right-bar" />
+                  <String fx:value="body" />
+               </styleClass>
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="screen-back" stylesheets="@../../images/css/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="screen-back" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
@@ -189,7 +194,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Label onMouseClicked="#btnMyCart" prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
+                        <Label fx:id="lblMyCart" onMouseClicked="#btnMyCart" prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="20.0" />
                            </font>
@@ -207,7 +212,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Pane prefHeight="100.0" prefWidth="150.0" />
-                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="370.0" styleClass="free-delivery-cart" stylesheets="@../../images/css/style.css">
+                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="370.0" styleClass="free-delivery-cart" stylesheets="@../../images/css/styleNew.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="220.0">
                                  <children>
@@ -240,7 +245,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="370.0" stylesheets="@../../images/css/style.css">
+                        <HBox alignment="CENTER" prefHeight="105.0" prefWidth="370.0" stylesheets="@../../images/css/styleNew.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="220.0">
                                  <children>
@@ -288,9 +293,9 @@
                      </VBox.margin>
                      <children>
                         <HBox prefHeight="61.0" prefWidth="26.0" />
-                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/style.css">
+                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/styleNew.css">
                            <children>
-                              <Button fx:id="btnPriceRange" mnemonicParsing="false" onMouseClicked="#clkPriceRange" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Price Range" textFill="WHITE">
+                              <Button fx:id="btnPriceRange" mnemonicParsing="false" onMouseClicked="#clkPriceRange" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/styleNew.css" text="Price Range" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -302,7 +307,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <TextField fx:id="txtFrom" prefHeight="40.0" prefWidth="86.0" promptText="From" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                              <TextField fx:id="txtFrom" prefHeight="40.0" prefWidth="86.0" promptText="From" styleClass="transparent" stylesheets="@../../images/css/styleNew.css">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -322,7 +327,7 @@
                                     </Text>
                                  </children>
                               </HBox>
-                              <TextField fx:id="txtTo" prefHeight="40.0" prefWidth="85.0" promptText="To" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                              <TextField fx:id="txtTo" prefHeight="40.0" prefWidth="85.0" promptText="To" styleClass="transparent" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -337,9 +342,9 @@
                            </HBox.margin>
                         </HBox>
                         <HBox prefHeight="61.0" prefWidth="51.0" />
-                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/style.css">
+                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="353.0" stylesheets="@../../images/css/styleNew.css">
                            <children>
-                              <Button fx:id="btnColor" mnemonicParsing="false" onMouseClicked="#clkColor" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/style.css" text="Color" textFill="WHITE">
+                              <Button fx:id="btnColor" mnemonicParsing="false" onMouseClicked="#clkColor" prefHeight="40.0" prefWidth="100.0" stylesheets="@../../images/css/styleNew.css" text="Color" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -351,7 +356,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <TextField fx:id="txtColor" prefHeight="40.0" prefWidth="195.0" promptText="Search by color" styleClass="transparent" stylesheets="@../../images/css/style.css">
+                              <TextField fx:id="txtColor" prefHeight="40.0" prefWidth="195.0" promptText="Search by color" styleClass="transparent" stylesheets="@../../images/css/styleNew.css">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -369,7 +374,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparentTwo" stylesheets="@../../images/css/style.css">
+                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparentTwo" stylesheets="@../../images/css/styleNew.css">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>

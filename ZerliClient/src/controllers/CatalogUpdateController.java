@@ -24,6 +24,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Marketing user can update the catalog, change price of item, move item to another catalog, put the item on sale and remove the item.
+ */
 public class CatalogUpdateController {
 
 	@FXML
@@ -54,12 +58,18 @@ public class CatalogUpdateController {
 	Integer[][] customID;
 	public static Item currentItem;
 
+	/**
+	 * Adds a new item to the selected catalog
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnAddNewItem(MouseEvent event) throws IOException {
 		currentItem = null;
 		((Node) event.getSource()).getScene().getWindow().hide();
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 		Parent root1 = (Parent) fxmlLoader.load();
+		root1.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(root1);
 		Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		itemEditStage.setTitle("Item Edit");
@@ -68,19 +78,30 @@ public class CatalogUpdateController {
 		itemEditStage.centerOnScreen();
 	}
 
+	/**
+	 * Sends the user back to the marketing department screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage marketingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		marketingStage.setTitle("Home Screen");
-		marketingStage.setScene(scene);
-		marketingStage.show();
-		marketingStage.centerOnScreen();
+		Stage catalogEditScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogEditScreen.setTitle("Home Screen");
+		catalogEditScreen.setScene(scene);
+		catalogEditScreen.show();
+		catalogEditScreen.centerOnScreen();
 	}
 
 
+	/**
+	 * Opens the selected item in the custom grid when it is clicked and opens its specifics to edit.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void clickCustomGrid(MouseEvent event) throws IOException {
 		Node clickedNode = event.getPickResult().getIntersectedNode();
@@ -100,6 +121,7 @@ public class CatalogUpdateController {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(root1);
 			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");
@@ -109,6 +131,11 @@ public class CatalogUpdateController {
 		}
 	}
 
+	/**
+	 * Opens the selected item in the premade grid when it is clicked and opens its specifics to edit.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void clickPremadeGrid(MouseEvent event) throws IOException {
 		Node clickedNode = event.getPickResult().getIntersectedNode();
 		if (clickedNode != premadeGrid) {
@@ -127,6 +154,7 @@ public class CatalogUpdateController {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(root1);
 			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");
@@ -137,6 +165,9 @@ public class CatalogUpdateController {
 		}
 	}
 
+	/**
+	 * Initialization of data on the screen.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
@@ -226,7 +257,7 @@ public class CatalogUpdateController {
 				customGrid.setMaxHeight(Region.USE_PREF_SIZE);
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

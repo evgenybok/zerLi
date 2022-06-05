@@ -56,9 +56,9 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="93.0" prefWidth="174.0" stylesheets="@../../images/css/style.css">
+                        <VBox alignment="CENTER" prefHeight="93.0" prefWidth="174.0" stylesheets="@../../images/css/styleNew.css">
                            <children>
-                              <TextField fx:id="subTxt" prefHeight="25.0" prefWidth="125.0" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/style.css">
+                              <TextField fx:id="subTxt" prefHeight="25.0" prefWidth="125.0" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css">
                                  <styleClass>
                                     <String fx:value="search-box" />
                                     <String fx:value="shadow" />
@@ -95,7 +95,7 @@
                         </VBox>
                         <HBox prefHeight="268.0" prefWidth="313.0">
                            <children>
-                              <TextField fx:id="desTxt" alignment="TOP_LEFT" prefHeight="249.0" prefWidth="308.0" promptText="Please Describe Your Complaint" stylesheets="@../../images/css/style.css">
+                              <TextField fx:id="desTxt" alignment="TOP_LEFT" prefHeight="249.0" prefWidth="308.0" promptText="Please Describe Your Complaint" stylesheets="@../../images/css/styleNew.css">
                                  <styleClass>
                                     <String fx:value="search-box" />
                                     <String fx:value="shadow" />
