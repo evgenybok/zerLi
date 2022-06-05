@@ -3,14 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
-import java.net.URL;
-import java.time.LocalDateTime;
->>>>>>> branch 'Do_Not_Touch' of https://github.com/evgenybok/zerLi.git
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
