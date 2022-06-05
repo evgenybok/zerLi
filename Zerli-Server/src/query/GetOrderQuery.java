@@ -333,5 +333,21 @@ public class GetOrderQuery {
 			return;
 		}
 	}
+	
+	public static String GetStoreIDByOrderID(String orderID)
+	{
+		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber=" + "'orderID';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeQuery();
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				return rs.getString("StoreID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
 

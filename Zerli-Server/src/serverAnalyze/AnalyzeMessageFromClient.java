@@ -56,6 +56,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<Item> Items;
 		ArrayList<String> data;
 		ArrayList<Account> creditDetails;
+		ArrayList<Complain> complaint;
 		ArrayList<SingleComplaint> singlecomplaint;
 		ArrayList<SingleDelivery> singleDelivery;
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
@@ -731,6 +732,39 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_STORE_ID_BY_ORDER_ID:
+			try {
+				receivedMessage.setMessageData(GetOrderQuery.GetStoreIDByOrderID((String) receivedMessage.getMessageData()));
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_STORE_ID_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case GET_ALL_COMPLAINTS:
+			try {
+				receivedMessage.setMessageData((ArrayList<Complain>)complaintQuery.GetAllComplaints());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_ALL_COMPLAINTS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case UPDATE_REMINDER_FOR_HANDLER:
+			try {
+				complaintQuery.UpdateReminder((int)receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		default:// ;

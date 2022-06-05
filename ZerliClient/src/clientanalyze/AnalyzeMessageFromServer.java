@@ -20,16 +20,19 @@ import logic.SingleWorker;
 import logic.User;
 
 /**
- * @author Evgeny
- * This class Analyses the messages sent from the server and handles them accordingly.
+ * @author Evgeny This class Analyses the messages sent from the server and
+ *         handles them accordingly.
  *
  */
 public class AnalyzeMessageFromServer {
 	private static Object res;
 
 	/**
-	 * Based on case type in msg, uses switch case to handle the case and sends a response back to the client if needed.
-	 * @param msg - Message class, contains the type,answer and data of the message received from the server.
+	 * Based on case type in msg, uses switch case to handle the case and sends a
+	 * response back to the client if needed.
+	 * 
+	 * @param msg - Message class, contains the type,answer and data of the message
+	 *            received from the server.
 	 * @throws Exception
 	 */
 	public static void Message(Object msg) throws Exception {
@@ -489,6 +492,33 @@ public class AnalyzeMessageFromServer {
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 
+			} else {
+				res = null;
+			}
+			return;
+
+		case GET_STORE_ID_BY_ORDER_ID:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+			
+		case GET_ALL_COMPLAINTS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+				
+			} else {
+				res = null;
+			}
+			return;
+			
+		case UPDATE_REMINDER_FOR_HANDLER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+				
 			} else {
 				res = null;
 			}
