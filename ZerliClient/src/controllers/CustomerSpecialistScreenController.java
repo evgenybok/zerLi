@@ -17,6 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ *Only user with the customer specialist role can get to this screen, user can analyse existing surveys.
+ */
 public class CustomerSpecialistScreenController {
 
 	@FXML
@@ -31,6 +35,11 @@ public class CustomerSpecialistScreenController {
 	@FXML
 	private Button analyseSurvey;
 
+	/**
+	 * Logs the user out of the system and opens the Login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -45,6 +54,11 @@ public class CustomerSpecialistScreenController {
 		loginStage.centerOnScreen();
 	}
 
+
+    /**
+     * New screen where user can analyse survey.
+     * @param event
+     */
     @FXML
     void btnAnalyseSurvey(MouseEvent event) {
     	try {

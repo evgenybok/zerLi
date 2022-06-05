@@ -27,6 +27,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
 
+/**
+ * @author Evgeny
+ * Only user with the Manager role can get to this screen,Can add a new user, edit user info,view various reports and orders.
+ */
 public class ManagerScreenController {
 
 	@FXML
@@ -65,6 +69,11 @@ public class ManagerScreenController {
 	@FXML
 	private ImageView viewReportsImg;
 
+    /**
+     * Registers a new user to the system.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnAdd(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -78,6 +87,11 @@ public class ManagerScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	   /**
+     * Updates existing user's info in the DB.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnEdit(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -91,6 +105,11 @@ public class ManagerScreenController {
 		customerStage.centerOnScreen();
 	}
 
+    /**
+     * Logs the user out of the system.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -105,6 +124,11 @@ public class ManagerScreenController {
 		loginStage.centerOnScreen();
 	}
 
+    /**
+     * Allows the user to view his store's orders.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnViewOrders(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -118,6 +142,11 @@ public class ManagerScreenController {
 		customerStage.centerOnScreen();
 	}
 
+    /**
+     * Allows the user to view his store's reports.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnViewReports(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -131,6 +160,10 @@ public class ManagerScreenController {
 		reportStage.centerOnScreen();
 	}
 
+
+    /**
+     * Initialization of data on the screen.
+     */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));

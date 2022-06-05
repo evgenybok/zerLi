@@ -8,7 +8,15 @@ import java.util.ArrayList;
 import logic.Survey;
 import logic.SurveyAnswer;
 
+/**
+ * @author Evgeny
+ * this class contains 'Survey' related queries based on the DB.
+ *
+ */
 public class SurveyQuery {
+	/**
+	 * @return number of the next survey number.
+	 */
 	public static String getNumberOfNextSurvey()
 	{
 		int lastSurveyNumber=0;
@@ -27,6 +35,11 @@ public class SurveyQuery {
 		String temp= String.valueOf(lastSurveyNumber); 
 		return temp;
 	}
+	/**
+	 * @param survey - logic Survey, contains survey details.
+	 * Inserts to the DB new given survey.
+	 * @return string true if insertion successful, string false otherwise.
+	 */
 	public static String InsertNewQuery(Survey survey)
 	{
 		String query= "INSERT INTO zerli.survey VALUES("+survey.getSurveynum()+",'" +survey.getSurveyCreatorId()+"','" +survey.getQuestions().get(0)+"','" 
@@ -42,7 +55,10 @@ public class SurveyQuery {
 	}
 	
 	
-	
+	/**
+	 * Method returns all the answers of all surveys.
+	 * @return Array list of logic Survey Answer
+	 */
 	public static ArrayList<SurveyAnswer> GetSurveyAnswers()
 	{
 		ArrayList<SurveyAnswer> answers = new ArrayList<>();

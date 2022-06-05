@@ -18,6 +18,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.SingleComplaint;
 
+/**
+ * @author Evgeny
+ * Single complaint for the table in the customer service handle complaints screen.
+ */
 public class SingleComplaintController {
 	public static  String user_id;
 	public static  String order_id;
@@ -36,6 +40,10 @@ public class SingleComplaintController {
     @FXML
     private Label userID;
 
+    /**
+     * customer service user decides not to refund the selected client.
+     * @param event
+     */
     @FXML
     void NotRefund(MouseEvent event) {
     	try {
@@ -46,18 +54,29 @@ public class SingleComplaintController {
 			return;
 		};
     }
+    /**
+     * customer service user decides to refund the selected client, moves to refund amount screen.
+     * @param event
+     */
     @FXML
     void RefundFunc(MouseEvent event) {
     	user_id = userID.getText();
     	order_id = orderID.getText();
     	MoveScreen();
     }
+    /**
+     * Sets the data to show on screen.
+     * @param singleComplaint
+     */
     public void setData(SingleComplaint singleComplaint)
     {
     	userID.setText(singleComplaint.getUserid());
     	orderID.setText(singleComplaint.getOrderid());
     	description.setText(singleComplaint.getDescription());
     }
+    /**
+     * opens new screen to enter the refund amount.
+     */
     public void MoveScreen()
     {
     	try {

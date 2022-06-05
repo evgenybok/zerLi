@@ -24,6 +24,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Marketing user can update the catalog, change price of item, move item to another catalog, put the item on sale and remove the item.
+ */
 public class CatalogUpdateController {
 
 	@FXML
@@ -54,6 +58,11 @@ public class CatalogUpdateController {
 	Integer[][] customID;
 	public static Item currentItem;
 
+	/**
+	 * Adds a new item to the selected catalog
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnAddNewItem(MouseEvent event) throws IOException {
 		currentItem = null;
@@ -69,6 +78,11 @@ public class CatalogUpdateController {
 		itemEditStage.centerOnScreen();
 	}
 
+	/**
+	 * Sends the user back to the marketing department screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -83,6 +97,11 @@ public class CatalogUpdateController {
 	}
 
 
+	/**
+	 * Opens the selected item in the custom grid when it is clicked and opens its specifics to edit.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void clickCustomGrid(MouseEvent event) throws IOException {
 		Node clickedNode = event.getPickResult().getIntersectedNode();
@@ -112,6 +131,11 @@ public class CatalogUpdateController {
 		}
 	}
 
+	/**
+	 * Opens the selected item in the premade grid when it is clicked and opens its specifics to edit.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void clickPremadeGrid(MouseEvent event) throws IOException {
 		Node clickedNode = event.getPickResult().getIntersectedNode();
 		if (clickedNode != premadeGrid) {
@@ -141,6 +165,9 @@ public class CatalogUpdateController {
 		}
 	}
 
+	/**
+	 * Initialization of data on the screen.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {

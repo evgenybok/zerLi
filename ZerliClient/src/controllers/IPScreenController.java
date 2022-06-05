@@ -30,6 +30,10 @@ import javafx.stage.StageStyle;
 import main.ClientController;
 import ocsf.server.ConnectionToClient;
 
+/**
+ * @author Evgeny
+ * IP configuration screen, checks if IP is already connected to server, if not, connects the IP and moves to Login screen.
+ */
 public class IPScreenController {
 
 	@FXML
@@ -65,6 +69,11 @@ public class IPScreenController {
 
 	ConnectionToClient client;
 
+    /**
+     * Connects IP to the server and shows the connection in the server screen.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnConnect(MouseEvent event) throws IOException {
 
@@ -93,12 +102,20 @@ public class IPScreenController {
 		LoginStage.centerOnScreen();
 	}
 
+    /**
+     * Initialization of data in the screen.
+     */
 	@FXML
 	void initialize() {
 		Image floImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IPflower.png")));
 		flowerImage.setImage(floImage);
 	}
 
+	/**
+	 * Opens IP configuration screen
+	 * @param primaryStage
+	 * @throws Exception
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IPscreen.fxml")));

@@ -26,6 +26,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleComplaint;
 
+/**
+ * @author Evgeny
+ * Customer service user can handle existing complaint by the user.
+ */
 public class HandelComplaintController {
 
 	@FXML
@@ -51,6 +55,11 @@ public class HandelComplaintController {
 	@FXML
 	private VBox ComplaintLayout;
 
+	/**
+	 * Sends the user back to the customer service main screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -65,6 +74,9 @@ public class HandelComplaintController {
 		csScreen.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
@@ -90,6 +102,10 @@ public class HandelComplaintController {
 		}
 	}
 
+	/**
+	 * Search complaint by user ID
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void Serach(MouseEvent event) {

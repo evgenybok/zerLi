@@ -26,6 +26,10 @@ import javafx.stage.Stage;
 import logic.SingleDelivery;
 import logic.SingleSelfDelivery;
 
+/**
+ * @author Evgeny
+ * Delivery user can view the orders he delivered here.
+ */
 public class DeliverySelfOrderController {
 
 	@FXML
@@ -48,6 +52,10 @@ public class DeliverySelfOrderController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * Shows the selected order in the table.
+	 * @param event
+	 */
 	@FXML
 	void SearchByOrderID(MouseEvent event) {
 		if (orderIDtext.getText().isEmpty()) {
@@ -83,6 +91,11 @@ public class DeliverySelfOrderController {
 
 	}
 
+	/**
+	 * Sends the user back to the Delivery main screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -97,11 +110,18 @@ public class DeliverySelfOrderController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		InsertToTable();
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
+	@SuppressWarnings("unchecked")
 	public void InsertToTable() {
 		ArrayList<SingleSelfDelivery> list = new ArrayList<>();
 		chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS, LoginScreenController.user.getID()));

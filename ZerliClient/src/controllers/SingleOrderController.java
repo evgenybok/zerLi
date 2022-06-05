@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import logic.SingleOrder;
 
+/**
+ * @author Evgeny
+ * Sets the data in a single order later shown on the scroll pane
+ */
 public class SingleOrderController {
 
 	@FXML
@@ -30,11 +34,10 @@ public class SingleOrderController {
 	@FXML
 	private Label refund;
 
-	@FXML
-	void initialize() {
-
-	}
-
+	/**
+	 * Sets a single order with the data from given singleOrder from the DB.
+	 * @param singleOrder
+	 */
 	public void setData(SingleOrder singleOrder) {
 
 		ordernum.setText(Integer.toString(singleOrder.getOrderNumber()));

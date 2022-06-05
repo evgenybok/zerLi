@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the customer service role can get to this screen, user can create a new complaint,handle existing complaint and create a survey.
+ */
 public class CustomerServiceScreenController {
 
 	@FXML
@@ -48,6 +52,11 @@ public class CustomerServiceScreenController {
 	@FXML
 	private Text userName;
 
+    /**
+     * moves to a new screen where the user can create a new complaint after recieving it from the customer.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnComp(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -62,6 +71,11 @@ public class CustomerServiceScreenController {
 		complaintScreen.centerOnScreen();
 	}
 
+    /**
+     * Opens a new screen where the user can handle existing complaint.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnHandel(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -76,6 +90,11 @@ public class CustomerServiceScreenController {
 		handleScreen.centerOnScreen();
 	}
 
+    /**
+     * Logs the user out of the system and opens the Login screen.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -90,6 +109,11 @@ public class CustomerServiceScreenController {
 		loginStage.centerOnScreen();
 	}
 
+    /**
+     * New screen where the user can create a new survey.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnSurvey(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();

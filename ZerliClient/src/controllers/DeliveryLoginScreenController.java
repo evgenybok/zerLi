@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Only user with the delivery role can get to this screen, user can verify delivery has been accepted, and view delivered orders.
+ */
 public class DeliveryLoginScreenController {
 
 	@FXML
@@ -41,6 +45,11 @@ public class DeliveryLoginScreenController {
 
 	public static Stage acceptStage;
 
+	/**
+	 * User verifies that the customer has accepted the order, changes status.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void AcceptOrder(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -56,6 +65,11 @@ public class DeliveryLoginScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * User can view delivered orders.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void ViewMyOrder(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -70,6 +84,11 @@ public class DeliveryLoginScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Logs the user out of the system and opens the Login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();

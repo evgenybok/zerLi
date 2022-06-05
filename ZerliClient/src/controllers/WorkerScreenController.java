@@ -21,6 +21,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Account;
 
+/**
+ * @author Evgeny
+ * Only user with the Worker role can get to this screen, can update the catalog.
+ */
 public class WorkerScreenController {
 
 	@FXML
@@ -46,6 +50,11 @@ public class WorkerScreenController {
 
 	public static String accountStatuss;
 
+	/**
+	 * User can log out of the system and return to the Login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -60,6 +69,11 @@ public class WorkerScreenController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * User can update the catalog, items data,catalog type.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
@@ -73,6 +87,9 @@ public class WorkerScreenController {
 
 	}
 
+	/**
+	 * Initialization of data on screen.
+	 */
 	@FXML
 	void initialize() {
 		try {
@@ -83,18 +100,8 @@ public class WorkerScreenController {
 		} catch (NullPointerException e) {
 		}
 		;
-		// Image catalogImg = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
-		// catalogImage.setImage(catalogImg);
 		this.accountStatus.setText(accountStatuss); // accountStatus - handled from DB
 		this.accountType.setText("Store Worker"); // accountType - may be handled from DB
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
-
-		/*
-		 * 
-		 * Image personImage = new
-		 * Image(Objects.requireNonNull(getClass().getResourceAsStream(
-		 * "/images/Avatar.png"))); PersonImage.setImage(personImage);
-		 */
 	}
 }

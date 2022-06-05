@@ -11,11 +11,20 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Opens the screen to confirm the end of the order and payment.
+ */
 public class OrderCompleteController {
 
 	@FXML
 	private Button btnProceed;
 
+
+	/**
+	 * Closes current screen and sends the user back to the customer screen.
+	 * @param event
+	 */
 	@FXML
 	void clkProceed(MouseEvent event) {
 

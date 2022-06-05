@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import logic.SurveyAnswer;
 
+/**
+ * @author Evgeny
+ * Sets data for a single survey later used when showing all surveys.
+ */
 public class SingleSurveyController {
 
 	@FXML
@@ -30,6 +34,10 @@ public class SingleSurveyController {
 	@FXML
 	private Label question6;
 
+	/**
+	 * Sets data for a single survey.
+	 * @param surveyAnswer
+	 */
 	public void setData(SurveyAnswer surveyAnswer) {
 		userID.setText(Integer.toString(surveyAnswer.getID()));
 		surveyNumber.setText(Integer.toString(surveyAnswer.getSurveyNumber()));

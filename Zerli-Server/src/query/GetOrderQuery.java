@@ -10,8 +10,18 @@ import logic.SingleManageOrder;
 import logic.SingleOrder;
 import logic.SingleUser;
 
+/**
+ * @author Evgeny
+ * this class contains 'Order retreival' related queries based on the DB.
+ *
+ */
 public class GetOrderQuery {
 
+	/**
+	 * @param userId - id number of user.
+	 * returns all the orders from the DB made by the given user id number.
+	 * @return ArrayList of logic Single Order.
+	 */
 	public static ArrayList<SingleOrder> GetOrders(String userId) {
 		String query = ("SELECT * FROM zerli.orders WHERE UserID = '" + userId + "';");
 		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
@@ -35,7 +45,11 @@ public class GetOrderQuery {
 		}
 		return orders;
 	}
-
+	/**
+	 * @param updatedData - order number, color, date.
+	 * Method updates color and date of an order in the DB based on given string(color,date)
+	 * @return true if successful, false otherwise.
+	 */
 	public static boolean Update(String updatedData) {
 		String[] str = updatedData.split("#", 3);
 		int ordNum = Integer.parseInt(str[0]);
@@ -71,6 +85,11 @@ public class GetOrderQuery {
 		return false;
 	}
 
+	/**
+	 * @param orderNumber - serial number of order.
+	 * retrieves the selected order based on given order number from the DB.
+	 * @return String with details of order, Error string if failed.
+	 */
 	public static String getSelectedOrder(int orderNumber) {
 		String query = ("SELECT * FROM zerli.iteminorder;");
 		StringBuilder res = new StringBuilder();
@@ -100,6 +119,11 @@ public class GetOrderQuery {
 		}
 	}
 
+	/**
+	 * @param order logic Order, contains order details.
+	 * Inserts into the DB new given order.
+	 * @throws SQLException
+	 */
 	public static void InsertNewOrder(Order order) throws SQLException {
 		int lastOrderNumber = 0;
 		String sql = "SELECT MAX(OrderNumber) AS OrderNumber FROM orders";
@@ -123,6 +147,11 @@ public class GetOrderQuery {
 		return;
 	}
 
+	/**
+	 * @param orderID - order number, user id.
+	 * returns all given orders made by given user id from the DB.
+	 * @return array list of logic Single Order.
+	 */
 	public static ArrayList<SingleOrder> GetOrderByIdAndUserId(String orderID) {
 		String[] user = orderID.split("@", 2);
 		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + user[0] + "' AND UserID ='" + user[1]
@@ -151,6 +180,10 @@ public class GetOrderQuery {
 		return orders;
 	}
 
+	/**
+	 * @param singleOrder - logic Single Order, contains order details.
+	 * updates in the DB the order status to canceled and the given refund.
+	 */
 	public static void CancelOrder(SingleOrder singleOrder) {
 		String query = ("UPDATE orders SET Status = 'Cancelled', Refund =" + singleOrder.getRefund()
 				+ " WHERE OrderNumber = '" + singleOrder.getOrderNumber() + "';");
@@ -163,7 +196,11 @@ public class GetOrderQuery {
 		}
 	}
 
-
+	/**
+	 * @param orderID - order number, user id.
+	 * returns all given orders made by given user id from the DB.
+	 * @return array list of logic Single Order.
+	 */
 	public static ArrayList<SingleManageOrder> GetOrderById(String orderID) {
 		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + orderID + "';");
 		ArrayList<SingleManageOrder> list = new ArrayList<>();
@@ -186,6 +223,10 @@ public class GetOrderQuery {
 		return list;
 	}
 
+	/**
+	 * @param details- refund to the user, user id number.
+	 * updates the total refund in the DB based on the given string details.
+	 */
 	public static void UpdateRefundUsed(String details) {
 		String[] str = details.split("@", 2);
 		double refundUsed = Double.parseDouble(str[0]);
@@ -212,6 +253,11 @@ public class GetOrderQuery {
 		}
 	}
 
+	/**
+	 * @param bmID - id nubmer of the branch manager.
+	 * returns all the orders of the store which the given manager manages.
+	 * @return ArrayList of logic Single Order of managers store orders.
+	 */
 	public static ArrayList<SingleOrder> getStoreOrders(String bmID) {
 		String query = ("SELECT * FROM zerli.stores;");
 		String tempStoreID =null;
@@ -252,6 +298,7 @@ public class GetOrderQuery {
 		return orders;
 	}
 	
+
 	public static ArrayList<SingleManageOrder> GetManagerOrders() {
 		ArrayList<SingleManageOrder> list= new  ArrayList<>();
 		String query = ("SELECT * FROM zerli.orders WHERE Status='Pending'");
@@ -273,6 +320,9 @@ public class GetOrderQuery {
 			return list;
 	}
 
+	/**
+	 * @param OrderId
+	 */
 	public static void UpdateOrderStatusByManager(String OrderId) {
 		String query = ("UPDATE zerli.orders SET Status='Approved' WHERE OrderNumber="+ OrderId + ";");
 		try {

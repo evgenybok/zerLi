@@ -36,8 +36,18 @@ import query.StoresQuery;
 import query.SurveyQuery;
 import query.complaintQuery;
 
+/**
+ * @author Evgeny
+ * This class Analyses the messages sent from the client and handles them accordingly.
+ *
+ */
 public class AnalyzeMessageFromClient {
 
+	/**
+	 * @param receivedMessage - Type: used in switch case, Answer:sent to the server later, data:object of data which is sent and received.
+	 * @param client - OCSF client information.
+	 * @return based on case from Type in receivedMessage, handles the case and sends a response to the server.
+	 */
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
 		User user;
 		String storeID;

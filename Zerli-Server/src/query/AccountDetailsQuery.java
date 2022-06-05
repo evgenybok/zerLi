@@ -47,6 +47,10 @@ public class AccountDetailsQuery {
 		}
 		return details;
 	}
+	/**
+	 * Updates given account's status to the given status.
+	 * @param accountDetails - account status and account user id
+	 */
 	public static void UpdateStatusByManager(String accountDetails) {
 		String[] AccountDetails=accountDetails.split("@");
 		String Status = AccountDetails[0];

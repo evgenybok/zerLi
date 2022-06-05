@@ -31,6 +31,10 @@ import logic.SurveyAnswer;
 
 public class AnalyseSurveyController {
 
+	/**
+	 * @author Evgeny
+	 * Customer specialist can view all surveys and analyse them here.
+	 */
 	@FXML
 	private Label lblZerLi;
 
@@ -91,6 +95,10 @@ public class AnalyseSurveyController {
 	public static int[] averageScore;
 	// [0]:report number, [1-6]:average scores of questions in said report.
 
+	/**
+	 * closes current screen and opens the customer specialist login screen.
+	 * @param event
+	 */
 	@FXML
 	void btnBack(MouseEvent event) {
 		try {
@@ -109,6 +117,10 @@ public class AnalyseSurveyController {
 		}
 	}
 
+	/**
+	 * Creates a new analysed survey and save it in the DB.
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void btnCreateReport(MouseEvent event) {
@@ -159,6 +171,10 @@ public class AnalyseSurveyController {
 		}
 	}
 
+	/**
+	 * Searches report by survey number and shows all matching surveys in the table.
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSearch(MouseEvent event) {
@@ -186,6 +202,9 @@ public class AnalyseSurveyController {
 		}
 	}
 
+	/**
+	 * Initializes the table to show all surveys.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {

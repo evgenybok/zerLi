@@ -17,6 +17,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * @author Evgeny
+ * User can write a greeting and attach it to his order
+ */
 public class AddGreetingController {
 	public static String Greeting;
 	@FXML
@@ -33,6 +37,11 @@ public class AddGreetingController {
 	@FXML
 	private TextArea txtGreeting;
 
+	/**
+	 * Saves the attached greeting to the user's order.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnDone(MouseEvent event) throws IOException {
 			Greeting = txtGreeting.getText();
@@ -53,6 +62,11 @@ public class AddGreetingController {
 		}
 	}
 
+	/**
+	 * closes current screen and opens the cart screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -75,8 +89,5 @@ public class AddGreetingController {
 	@FXML
 	void initialize() {
 		txtGreeting.setText(Greeting);
-		// Image greetingimage = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Greeting.jpg")));
-		// GreetingImage.setImage(greetingimage);
 	}
 }

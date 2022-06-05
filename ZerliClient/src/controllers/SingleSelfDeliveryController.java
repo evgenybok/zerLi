@@ -1,11 +1,13 @@
 package controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import logic.SingleSelfDelivery;
 
+/**
+ * @author Evgeny
+ * Sets data for a single delivery to be used later with all deliveries.
+ */
 public class SingleSelfDeliveryController {
 
 	@FXML
@@ -23,11 +25,10 @@ public class SingleSelfDeliveryController {
 	@FXML
 	private Label ordernum;
 
-	@FXML
-	void initialize() {
-
-	}
-
+	/**
+	 * Sets data for a single delivery
+	 * @param singleSelfDelivery
+	 */
 	public void setData(SingleSelfDelivery singleSelfDelivery) {
 		String s = String.valueOf(singleSelfDelivery.getOrderID());
 		ordernum.setText(s);

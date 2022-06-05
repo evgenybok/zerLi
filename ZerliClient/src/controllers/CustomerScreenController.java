@@ -27,6 +27,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.Account;
 
+/**
+ * @author Evgeny
+ * Only user with the customer role can get to this screen, customer can view the different catalogs, open the cart and view his orders.
+ */
 public class CustomerScreenController {
 
 	@FXML
@@ -91,6 +95,11 @@ public class CustomerScreenController {
 	public static String userID;
 	public static double accountZerliCredit;
 
+	/**
+	 * Opens the premade catalog to add items to purchase.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/Catalog.fxml"))));
@@ -104,6 +113,10 @@ public class CustomerScreenController {
 
 	}
 
+	/**
+	 * Opens the cart in which the user can view and organize the items before payment.
+	 * @param event
+	 */
 	@FXML
 	void btnCart(MouseEvent event) {
 		customerScreenStage = (Stage) btnCart.getScene().getWindow();
@@ -123,6 +136,11 @@ public class CustomerScreenController {
 		}
 	}
 
+	/**
+	 * Opens the custom catalog to add items to purchase.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnCustomCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader
@@ -136,6 +154,11 @@ public class CustomerScreenController {
 		customCatalogStage.centerOnScreen();
 	}
 
+	/**
+	 * Logs out the customer and opens the Login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		/* Empty the current cart in checkout */
@@ -155,6 +178,11 @@ public class CustomerScreenController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * Opens the orders screen in which the customer can view all of his orders.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnOrders(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ViewOrders.fxml")));
@@ -167,6 +195,9 @@ public class CustomerScreenController {
 		orderStage.centerOnScreen();
 	}
 
+	/**
+	 * initialization of various info on screen.
+	 */
 	@FXML
 	void initialize() {
 		try {

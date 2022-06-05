@@ -11,8 +11,19 @@ import logic.Order;
 import logic.SingleOrder;
 import logic.User;
 
+/**
+ * @author Evgeny
+ * this class contains 'General Queries' related queries based on the DB.
+ *
+ */
 public class Query {
 
+	/**
+	 * @param user- logic User, contains user details.
+	 * updates login status in DB of given user when logging in.
+	 * changes logged in status in DB.
+	 * @return logic User of user details.
+	 */
 	public static User Login(User user) {
 		String query = "SELECT * FROM zerli.users;";
 		try {
@@ -43,6 +54,9 @@ public class Query {
 		}
 	}
 
+	/**
+	 * Disconnects all user from the DB.
+	 */
 	public static void DisconnectAll() {
 		String query = ("SELECT * FROM zerli.users;");
 		try {
@@ -56,6 +70,11 @@ public class Query {
 		}
 	}
 
+	/**
+	 * @param user- logic User, contains user details.
+	 * Disconnects given single user.
+	 * @return true if update was successful, false otherwise.
+	 */
 	public static boolean Disconnect(User user) {
 		String query = ("UPDATE users SET LoggedIn=false WHERE id='" + user.getID() + "' AND Username='"
 				+ user.getUsername() + "';");
@@ -94,6 +113,10 @@ public class Query {
 		return users;
 	}
 
+	/**
+	 * @param data - order number, array list of item details
+	 * @return item name of given order.
+	 */
 	public static String getItemName(String data) {
 		String query = ("SELECT * FROM zerli.item;");
 		HashMap<String, ArrayList<String>> map = new HashMap<>();
@@ -137,6 +160,9 @@ public class Query {
 		}
 	}
 
+	/**
+	 * @return array list of logic item of premade items
+	 */
 	public static ArrayList<Item> GetPremadeItems() {
 		String query = "SELECT * FROM zerli.item WHERE ID LIKE '2%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -161,6 +187,9 @@ public class Query {
 
 	}
 
+	/**
+	 * @return arraylist of logic item of self assembly items.
+	 */
 	public static ArrayList<Item> GetSelfAssemblyItems() {
 		String query = "SELECT * FROM zerli.item WHERE ID LIKE '1%' ORDER BY onSale =0 AND ID;";
 		ArrayList<Item> items = new ArrayList<Item>();

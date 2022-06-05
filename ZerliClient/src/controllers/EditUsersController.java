@@ -29,6 +29,10 @@ import logic.SingleDelivery;
 import logic.SingleManageOrder;
 import logic.SingleUser;
 
+/**
+ * @author Evgeny
+ * Manager can edit user info in this screen.
+ */
 public class EditUsersController {
 
     @FXML
@@ -70,6 +74,11 @@ public class EditUsersController {
     @FXML
     private Text userName;
 
+    /**
+     * Sends the user back to the branch manager main screen.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnBack(MouseEvent event) throws IOException {
       	((Node) event.getSource()).getScene().getWindow().hide();
@@ -83,6 +92,10 @@ public class EditUsersController {
     		managerScreen.centerOnScreen();
     }
 
+    /**
+     * Allows the user to search for a user via user ID.
+     * @param event
+     */
     @FXML
     void btnSearch(MouseEvent event) {
     	ArrayList<SingleUser> order = new ArrayList<>();
@@ -114,10 +127,16 @@ public class EditUsersController {
 		}
     }
 
+    /**
+     * Initializes data
+     */
     @FXML
     void initialize() {
         InsertToTable();
     }
+    /**
+     * Initializes data shown on screen.
+     */
     public void InsertToTable()
     {
     	ArrayList<SingleUser> list= new ArrayList<>();

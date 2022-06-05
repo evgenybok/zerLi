@@ -16,6 +16,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import logic.Item;
 
+/**
+ * @author Evgeny
+ * Single item used in cart and in the custom bouquet.
+ */
 public class ItemInCartController extends CustomItemViewController {
 
 	@FXML
@@ -59,6 +63,11 @@ public class ItemInCartController extends CustomItemViewController {
 	static int originalBouquetCounter;
 	private int bouquetNumber = 1;
 
+	/**
+	 * Sets the custom item data and amount in the custom bouquet.
+	 * @param item
+	 * @param amount
+	 */
 	public void setData(Item item, String amount) {
 		this.item = item;
 		amountLabel.setText(amount);
@@ -75,6 +84,10 @@ public class ItemInCartController extends CustomItemViewController {
 		img.setImage(image);
 	}
 
+	/**
+	 * Sets the custom item data in the cart
+	 * @param customItemData
+	 */
 	public void setData(String[] customItemData) {
 		bouquetNumber = Integer.parseInt(customItemData[3]);
 		amountLabel.setText("1");
@@ -88,6 +101,10 @@ public class ItemInCartController extends CustomItemViewController {
 		img.setImage(image);
 	}
 
+	/**
+	 * decrements the amount of the selected item.
+	 * @param event
+	 */
 	@FXML
 	void btnMin(MouseEvent event) {
 		int amount = Integer.valueOf(amountLabel.getText());
@@ -196,6 +213,10 @@ public class ItemInCartController extends CustomItemViewController {
 		}
 	}
 
+	/**
+	 * Increments the amount of the selected item.
+	 * @param event
+	 */
 	@FXML
 	/* Plus button for amounts for the Custom catalog and the Cart */
 	void btnPlus(MouseEvent event) {
@@ -247,6 +268,11 @@ public class ItemInCartController extends CustomItemViewController {
 
 	}
 
+	/**
+	 * Removes the selected item from the cart / custom bouquet.
+	 * @param event
+	 * @throws InterruptedException
+	 */
 	@FXML
 	void clkDelete(MouseEvent event) throws InterruptedException {
 		/* Cart */
@@ -293,6 +319,9 @@ public class ItemInCartController extends CustomItemViewController {
 
 	}
 
+	/**
+	 * Data initializatin
+	 */
 	@FXML
 	void initialize() {
 		/*

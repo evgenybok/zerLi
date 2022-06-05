@@ -27,6 +27,10 @@ import javafx.stage.Stage;
 import logic.User;
 import ocsf.server.ConnectionToClient;
 
+/**
+ * @author Evgeny
+ * Login screen for the user to enter username and password and login to the system of Zerli.
+ */
 public class LoginScreenController {
 	ConnectionToClient client;
 	public static User user;
@@ -63,6 +67,10 @@ public class LoginScreenController {
 	@FXML
 	private ImageView imageRight;
 
+    /**
+     * Closes current screen and disconnects the IP from the server.
+     * @param event
+     */
 	@FXML
 	void ExitLogin(MouseEvent event) {
 		chat.accept(new Message(MessageType.EXIT, null));
@@ -72,6 +80,11 @@ public class LoginScreenController {
 		System.exit(1);
 	}
 
+    /**
+     * Checks if the user is registered in the DB and connects him.
+     * @param event
+     * @throws IOException
+     */
 	@FXML
 	void btnLogin(MouseEvent event) throws IOException {
 		if (Username.getText().equals("") || Password.getText().equals("")) {
@@ -99,6 +112,11 @@ public class LoginScreenController {
 		homeStage.centerOnScreen();
 	}
 
+	/**
+	 * Moves to various screen based on the user's role.
+	 * @param Role
+	 * @return
+	 */
 	public String caseRoleScreen(String Role) {
 		switch (Role) {
 		case "customer":
@@ -122,6 +140,9 @@ public class LoginScreenController {
 		}
 	}
 
+    /**
+     * Initialization of data.
+     */
 	@FXML
 	void initialize() {
 		Image imgLeft = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin.png")));

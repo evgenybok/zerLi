@@ -41,6 +41,10 @@ import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
+/**
+ * @author Evgeny
+ * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.
+ */
 public class PaymentScreenController {
 	String userID = LoginScreenController.user.getID();
 	String cardNum, date, CustomerCVV, Dorder;
@@ -131,6 +135,11 @@ public class PaymentScreenController {
 
 	private double refundUsed = 0;
 
+	/**
+	 * closes current screen and opens the Cart screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -144,6 +153,10 @@ public class PaymentScreenController {
 		deliveryDetailsStage.centerOnScreen();
 	}
 
+	/**
+	 * Marks the selection of delivery and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void DeliveryBtn(MouseEvent event) {
 		if (DeliveryBox.isSelected()) {
@@ -163,6 +176,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Marks the selection of pickup and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void PickBtn(MouseEvent event) {
 
@@ -185,6 +202,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Marks the selection of express delivery and disables all others.
+	 * @param event
+	 */
 	@FXML
 	void expressPickBtn(MouseEvent event) {
 		if (ExpPick.isSelected()) {
@@ -223,6 +244,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Gets the store name from the DB.
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void GetStoreName(MouseEvent event) {
@@ -241,6 +266,9 @@ public class PaymentScreenController {
 		StoreName.setItems(FXCollections.observableArrayList(storeName));
 	}
 
+	/**
+	 * Sets permanant fields of the user from the DB.
+	 */
 	@SuppressWarnings("unchecked")
 	public void showCreditDetail() {
 		ArrayList<Account> accountCreditDetails = new ArrayList<>();
@@ -263,6 +291,11 @@ public class PaymentScreenController {
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
 
+	/**
+	 * Finishes the payment and adds the order to the DB based on the parameters entered.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
 
@@ -362,6 +395,10 @@ public class PaymentScreenController {
 
 	}
 
+	/**
+	 * Checks if the supply time entered is valid.
+	 * @return true if valid, false otherwise.
+	 */
 	boolean checkSupplyTime() {
 		if (SupplyTime.getText().length() != 5)
 			return false;
@@ -377,7 +414,9 @@ public class PaymentScreenController {
 		else
 			return false;
 	}
-
+	/**
+	 * Checking for empty fields input
+	 */
 	void CheckPayDetailsNoEmpty() {
 
 		if (DeliveryFlag == true) {
@@ -393,7 +432,10 @@ public class PaymentScreenController {
 			return;
 		}
 	}
-
+	/**
+	 * Gets store ID from the DB.
+	 * @return store ID number
+	 */
 	private String getStoreId() {
 		String storeName = StoreName.getValue();
 		try {
@@ -410,6 +452,10 @@ public class PaymentScreenController {
 
 	}
 
+	/**
+	 * Chanages order amount based on the refund avaliable in the account.
+	 * @param deliveryFee
+	 */
 	void changeAmount(Double deliveryFee) {
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
 		double temp = totalPrice - CustomerScreenController.accountZerliCredit; // 30-60=-30
@@ -427,6 +473,10 @@ public class PaymentScreenController {
 		}
 	}
 
+	/**
+	 * Checking supply method.
+	 * @return String pickup / delivery.
+	 */
 	private String CheckWhichSupplyMethod() {
 		if (DeliveryFlag) {
 			return "Delivery";
@@ -434,7 +484,10 @@ public class PaymentScreenController {
 		return "PickUp";
 	}
 
-	// ????
+	/**
+	 * Calculating the supply date
+	 * @return new supply date.
+	 */
 	public Date calSupplyDate() {
 		LocalDate localDate = DateSupply.getValue();
 		LocalDate today = LocalDate.now();
@@ -452,6 +505,11 @@ public class PaymentScreenController {
 		return c.getTime();
 	}
 
+	/**
+	 * Converts string to the given format
+	 * @param mydate
+	 * @return date with the given format
+	 */
 	public String convertToDate(String mydate) {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:00");
@@ -459,6 +517,12 @@ public class PaymentScreenController {
 		return mydate;
 	}
 
+	/*
+	 * changes the date and time's format
+	 * @param date
+	 * @param time
+	 * @return new date and time format
+	 */
 	public String change(String date, String time) {
 		LocalDate localDate = DateSupply.getValue();
 		LocalDate today = LocalDate.now();
@@ -470,7 +534,12 @@ public class PaymentScreenController {
 	}
 
 	// Here we only show to the customer *************5454 we use this method only
-	// for secure
+	// for secure payment
+	/**
+	 * Hides the credit card number except for the final 4 digits.
+	 * @param number
+	 * @return new partially hidden credit card number
+	 */
 	public String ChangeCreditCard(String number) {
 		StringBuilder hideNumber = new StringBuilder(number);
 		for (int i = 0; i < number.length() - 4; i++) {
@@ -479,6 +548,10 @@ public class PaymentScreenController {
 		return hideNumber.toString();
 	}
 
+	/**
+	 * Checking delivery type.
+	 * @return String express / regular delivery.
+	 */
 	private String CheckExpressDelivery() {
 		if (DeliveryExpressFlag) {
 			return "Express";
@@ -486,6 +559,9 @@ public class PaymentScreenController {
 		return "Regular";
 	}
 
+	/**
+	 * data initialization
+	 */
 	@FXML
 	void initialize() {
 

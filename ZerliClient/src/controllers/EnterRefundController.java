@@ -16,6 +16,10 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * @author Evgeny
+ * Customer service user can refund a customer after they issued a complaint.
+ */
 public class EnterRefundController {
 
     @FXML
@@ -27,6 +31,11 @@ public class EnterRefundController {
     @FXML
     private TextField Refund;
 
+    /**
+     * Updates the refund amount on the selected customer screen and saves refund in DB.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void submitFunc(MouseEvent event) throws IOException {
     	String refund = Refund.getText();
@@ -52,17 +61,5 @@ public class EnterRefundController {
 		((Node)event.getSource()).getScene().getWindow().hide();
 		HandelComplaintController handelComplaintController = new HandelComplaintController();
 		handelComplaintController.initialize();
-    	/*Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HandelComplaint.fxml")));
-		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Handel Complaint Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();*/
     }
-    @FXML
-    void initialize() {
-        assert Refund != null : "fx:id=\"Refund\" was not injected: check your FXML file 'EnterRefund.fxml'.";
-    }
-
 }

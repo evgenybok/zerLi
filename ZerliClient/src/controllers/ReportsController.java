@@ -31,6 +31,10 @@ import javax.swing.*;
 
 import static controllers.IPScreenController.chat;
 
+/**
+ * @author Evgeny
+ * Branch manager can select month and year and report type or complaint year and quarter
+ */
 public class ReportsController  {
 	  @FXML
 	    private Button View;
@@ -74,6 +78,11 @@ public class ReportsController  {
     public static String Month;
     public static String Year;
 
+    /**
+     * Sends the user back to the branch manager main screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnBack(MouseEvent event) throws IOException {
     	((Node) event.getSource()).getScene().getWindow().hide();
@@ -86,6 +95,12 @@ public class ReportsController  {
 		deliveryDetailsStage.show();
 		deliveryDetailsStage.centerOnScreen();
     }
+    /**
+     * Opens the selected report with the selected data.
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @FXML
     void btnView(MouseEvent event) throws IOException, InterruptedException {
 
@@ -137,6 +152,10 @@ public class ReportsController  {
     }
 
 
+    /**
+     * Checkbox for the complaint, disables other checkboxes.
+     * @param event
+     */
     @FXML
     void btnComplaint(MouseEvent event) {
         FlagComplaint=1;
@@ -156,6 +175,10 @@ public class ReportsController  {
         }
     }
 
+    /**
+     *  Checkbox for the month of report, disables other checkboxes.
+     * @param event
+     */
     @FXML
     void btnMonthly(MouseEvent event) {
         FlagMonth=1;
@@ -172,6 +195,9 @@ public class ReportsController  {
             ComplaintQuart.setDisable(false);
         }
     }
+    /**
+     * Initializes data shown on screen
+     */
     @FXML
     void initialize() {
 

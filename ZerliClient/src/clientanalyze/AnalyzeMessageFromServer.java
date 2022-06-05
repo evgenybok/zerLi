@@ -18,9 +18,19 @@ import logic.SingleSelfDelivery;
 import logic.SingleUser;
 import logic.User;
 
+/**
+ * @author Evgeny
+ * This class Analyses the messages sent from the server and handles them accordingly.
+ *
+ */
 public class AnalyzeMessageFromServer {
 	private static Object res;
 
+	/**
+	 * Based on case type in msg, uses switch case to handle the case and sends a response back to the client if needed.
+	 * @param msg - Message class, contains the type,answer and data of the message received from the server.
+	 * @throws Exception
+	 */
 	public static void Message(Object msg) throws Exception {
 		Message receivedMessage = (Message) msg;
 
