@@ -75,11 +75,11 @@ public class CatalogUpdateController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage marketingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		marketingStage.setTitle("Home Screen");
-		marketingStage.setScene(scene);
-		marketingStage.show();
-		marketingStage.centerOnScreen();
+		Stage catalogEditScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		catalogEditScreen.setTitle("Home Screen");
+		catalogEditScreen.setScene(scene);
+		catalogEditScreen.show();
+		catalogEditScreen.centerOnScreen();
 	}
 
 
@@ -230,7 +230,7 @@ public class CatalogUpdateController {
 				customGrid.setMaxHeight(Region.USE_PREF_SIZE);
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

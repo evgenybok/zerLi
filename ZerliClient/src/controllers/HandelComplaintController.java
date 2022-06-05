@@ -3,11 +3,9 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -19,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,27 +29,22 @@ import logic.SingleComplaint;
 public class HandelComplaintController {
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
 	private Button Back;
+
+	@FXML
+	private VBox ComplaintLayout;
 
 	@FXML
 	private TextField IdSearch;
 
 	@FXML
-	private Text accountStatus;
-
-	@FXML
 	private Text accountType;
 
 	@FXML
-	private Text userName;
+	private ImageView avatarImg;
+
 	@FXML
-	private VBox ComplaintLayout;
+	private Text userName;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -68,6 +63,9 @@ public class HandelComplaintController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		this.accountType.setText("Customer Service"); // accountType
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 		List<SingleComplaint> complaint = new ArrayList<>();

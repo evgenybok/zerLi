@@ -14,18 +14,18 @@ public class Account implements Serializable {
 	private String CVV;
 	private double TotalRefund;
 	private String Status;
+	private int ordersAmount;
 
 	public Account(String User_ID, String CreditCardNumber, String ExpiryDate, String CVV, double TotalRefund,
-			String Status) {
+			String Status, int ordersAmount) {
 		this.User_ID = User_ID;
 		this.CreditCardNumber = CreditCardNumber;
 		this.ExpiryDate = ExpiryDate;
 		this.CVV = CVV;
 		this.TotalRefund = TotalRefund;
 		this.Status = Status;
+		this.ordersAmount = ordersAmount;
 	}
-
-
 
 	public String getUser_ID() {
 		return User_ID;
@@ -77,6 +77,14 @@ public class Account implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getOrdersAmount() {
+		return ordersAmount;
+	}
+
+	public void setOrdersAmount(int ordersAmount) {
+		this.ordersAmount = ordersAmount;
 	}
 
 }

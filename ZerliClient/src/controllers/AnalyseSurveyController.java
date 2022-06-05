@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -31,62 +32,62 @@ import logic.SurveyAnswer;
 
 public class AnalyseSurveyController {
 
-	@FXML
-	private Label lblZerLi;
+	  @FXML
+	    private Text AccountType;
 
-	@FXML
-	private Label lblStartMsg;
+	    @FXML
+	    private Button Back;
 
-	@FXML
-	private Text UserName;
+	    @FXML
+	    private TextField IdText;
 
-	@FXML
-	private ImageView PersonImage;
+	    @FXML
+	    private VBox OrdersLayout;
 
-	@FXML
-	private Text AccountType;
+	    @FXML
+	    private ImageView Search;
 
-	@FXML
-	private Button Back;
+	    @FXML
+	    private ImageView avatarImg;
 
-	@FXML
-	private TextField IdText;
+	    @FXML
+	    private Button createReport;
 
-	@FXML
-	private ImageView Search;
+	    @FXML
+	    private TextField createReportNumber;
 
-	@FXML
-	private Button createReport;
+	    @FXML
+	    private Label lblStartMsg;
 
-	@FXML
-	private TextField createReportNumber;
+	    @FXML
+	    private Label lblZerLi;
 
-	@FXML
-	private Label surveyID;
+	    @FXML
+	    private Label price;
 
-	@FXML
-	private Label price;
+	    @FXML
+	    private Label question1;
 
-	@FXML
-	private Label question1;
+	    @FXML
+	    private Label question2;
 
-	@FXML
-	private Label question2;
+	    @FXML
+	    private Label question3;
 
-	@FXML
-	private Label question3;
+	    @FXML
+	    private Label question4;
 
-	@FXML
-	private Label question4;
+	    @FXML
+	    private Label question5;
 
-	@FXML
-	private Label question5;
+	    @FXML
+	    private Label question6;
 
-	@FXML
-	private Label question6;
+	    @FXML
+	    private Label surveyID;
 
-	@FXML
-	private VBox OrdersLayout;
+	    @FXML
+	    private Text userName;
 
 	public static int[] averageScore;
 	// [0]:report number, [1-6]:average scores of questions in said report.
@@ -189,10 +190,13 @@ public class AnalyseSurveyController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		OrdersLayout.getChildren().clear();
 		List<SurveyAnswer> surveyAnswer = new ArrayList<>();
 		this.AccountType.setText("Customer Service Specialist"); // accountType - may be handled from DB
-		this.UserName.setText(LoginScreenController.user.getUsername()); // userName
+		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 		chat.accept(new Message(MessageType.GET_SURVEY_ANSWERS, null));
 		try {
 			surveyAnswer = (List<SurveyAnswer>) AnalyzeMessageFromServer.getData();

@@ -1,8 +1,10 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.util.Objects;
-import static controllers.IPScreenController.chat;
+
 import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
@@ -15,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -65,6 +69,9 @@ public class AddCustomerController {
 	@FXML
 	private Text userTitle;
 
+    @FXML
+    private ImageView avatarImg;
+
 	@FXML
 	void btnAdd(MouseEvent event) throws IOException {
 		String Userid = userID.getText();
@@ -95,7 +102,7 @@ public class AddCustomerController {
 			return;
 		} else {
 			User user = new User(username, password, false, Userid, firstname, lastname, role, phone, mail);
-			Account account = new Account(Userid, creditnum, expire, cvv, 0.00, Status);
+			Account account = new Account(Userid, creditnum, expire, cvv, 0.00, Status,0);
 			InsertNewUser(user);
 			InsertNewAccount(account);
 			JOptionPane.showMessageDialog(null, "This user Added Succsesfully", "Info",
@@ -150,6 +157,15 @@ public class AddCustomerController {
 	}
 
 	public void InsertNewAccount(Account account) {
+		try {
+			chat.accept(new Message(MessageType.INSERT_NEW_ACCOUNT, account));
+			if (AnalyzeMessageFromServer.getData().equals(null))
+				return;
+		} catch (Exception e) {
+			return;
+		}
+		;
+		//DELETE
 		//String Userid = userID.getText();
 		//String firstname = FirstName.getText();
 		//String lastname = LastName.getText();
@@ -164,14 +180,6 @@ public class AddCustomerController {
 		//String Status = "Active";
 		//User user = new User(username, password, false, Userid, firstname, lastname, role, phone, mail);
 		//Account account1 = new Account(Userid, creditnum, expire, cvv, 0.00, Status);
-		try {
-			chat.accept(new Message(MessageType.INSERT_NEW_ACCOUNT, account));
-			if (AnalyzeMessageFromServer.getData().equals(null))
-				return;
-		} catch (Exception e) {
-			return;
-		}
-		;
 		//InsertNewUser(user);
 		//InsertNewAccount(account1);
 	}
@@ -182,16 +190,18 @@ public class AddCustomerController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Branch Manager Screen");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
+		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		managerScreen.setTitle("Branch Manager Screen");
+		managerScreen.setScene(scene);
+		managerScreen.show();
+		managerScreen.centerOnScreen();
 	}
 
 	@FXML
 	void initialize() {
-
+		userTitle.setText(LoginScreenController.user.getUsername());
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 	}
 
 }

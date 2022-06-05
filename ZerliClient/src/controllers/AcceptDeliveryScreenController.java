@@ -18,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -51,6 +53,9 @@ public class AcceptDeliveryScreenController {
 	@FXML
 	private Text userName;
 
+    @FXML
+    private ImageView avatarImg;
+
 	@FXML
 	public void SearchByOrderID(MouseEvent event) {
 		if (orderIDtext.getText().isEmpty()) {
@@ -80,7 +85,7 @@ public class AcceptDeliveryScreenController {
 
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 			}
 		}
 	}
@@ -114,7 +119,7 @@ public class AcceptDeliveryScreenController {
 
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				
 			}
 		}
 
@@ -136,6 +141,8 @@ public class AcceptDeliveryScreenController {
 
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());
 		InsertToTable();
 	}
@@ -155,7 +162,7 @@ public class AcceptDeliveryScreenController {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 	}
 

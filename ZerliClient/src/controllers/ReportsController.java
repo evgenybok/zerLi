@@ -1,18 +1,20 @@
 package controllers;
 
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,15 +23,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.SingleOrder;
-
-import javax.swing.*;
-
-import static controllers.IPScreenController.chat;
 
 public class ReportsController  {
 	  @FXML
@@ -54,6 +52,10 @@ public class ReportsController  {
 
     @FXML
     private Text userName;
+    
+    @FXML
+    private ImageView avatarImg;
+    
     @FXML
     private ComboBox<String> ComplaintQuart;
 
@@ -174,7 +176,9 @@ public class ReportsController  {
     }
     @FXML
     void initialize() {
-
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+    	userName.setText(LoginScreenController.user.getUsername());
         MonthlyYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018",
                 "2019", "2020", "2021", "2022"));
         MonthlyMonth.setItems(FXCollections.observableArrayList("01", "02", "03", "04", "05", "06", "07", "08", "09",

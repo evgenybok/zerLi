@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import logic.Order;
 import logic.SingleManageOrder;
 import logic.SingleOrder;
-import logic.SingleUser;
 
 public class GetOrderQuery {
 
@@ -152,7 +151,7 @@ public class GetOrderQuery {
 	}
 
 	public static void CancelOrder(SingleOrder singleOrder) {
-		String query = ("UPDATE orders SET Status = 'Cancelled', Refund =" + singleOrder.getRefund()
+		String query = ("UPDATE orders SET Status = 'Cancel Request', Refund =" + singleOrder.getRefund()
 				+ " WHERE OrderNumber = '" + singleOrder.getOrderNumber() + "';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -163,12 +162,27 @@ public class GetOrderQuery {
 		}
 	}
 
-
-	public static ArrayList<SingleManageOrder> GetOrderById(String orderID) {
-		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + orderID + "';");
-		ArrayList<SingleManageOrder> list = new ArrayList<>();
+	public static ArrayList<SingleManageOrder> GetOrderById(String[] details) {
+		String orderID = details[0];
+		String bmID = details[1];
+		String query = ("SELECT * FROM zerli.stores;");
+		String tempStoreID = null;
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				if (bmID.equals(rs.getString("IDmanager"))) {
+					tempStoreID = rs.getString("IDStore");
+				}
+			}
+
+		} catch (SQLException e) {
+			return null;
+		}
+		String query1 = ("SELECT * FROM zerli.orders WHERE OrderNumber = '" + orderID + "';");
+		ArrayList<SingleManageOrder> list = new ArrayList<>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query1);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int orderId = rs.getInt("OrderNumber");
@@ -176,8 +190,11 @@ public class GetOrderQuery {
 				double price = rs.getInt("Price");
 				String orderDate = rs.getString("OrderDate");
 				String SupplyType = rs.getString("SupplyType");
-				String status=rs.getString("Status");
-				list.add(new SingleManageOrder(orderId,userId,price,orderDate,SupplyType,status));
+				String status = rs.getString("Status");
+				String StoreID = rs.getString("StoreID");
+				if (tempStoreID.equals(StoreID)) {
+					list.add(new SingleManageOrder(orderId, userId, price, orderDate, SupplyType, status));
+				}
 			}
 		} catch (SQLException e) {
 			list = new ArrayList<SingleManageOrder>();
@@ -212,9 +229,9 @@ public class GetOrderQuery {
 		}
 	}
 
-	public static ArrayList<SingleOrder> getStoreOrders(String bmID) {
+	public static ArrayList<SingleManageOrder> GetManagerOrders(String bmID) {
 		String query = ("SELECT * FROM zerli.stores;");
-		String tempStoreID =null;
+		String tempStoreID = null;
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
@@ -227,54 +244,30 @@ public class GetOrderQuery {
 		} catch (SQLException e) {
 			return null;
 		}
-		String query1 = ("SELECT * FROM zerli.orders;");
-		ArrayList<SingleOrder> orders = new ArrayList<SingleOrder>();
+		String query1 = ("SELECT * FROM zerli.orders WHERE Status='Pending' OR Status='Cancel Request'");
+		ArrayList<SingleManageOrder> orders = new ArrayList<SingleManageOrder>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query1);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				int OrderNumber = rs.getInt("OrderNumber");
-				double Price = rs.getDouble("Price");
-				String StoreID = rs.getString("StoreID");
-				String OrderDate = rs.getString("OrderDate");
-				String SupplyDate = rs.getString("SupplyDate");
-				String Status = rs.getString("Status");
+				int orderId = rs.getInt("OrderNumber");
+				String userId = rs.getString("UserID");
+				double price = rs.getInt("Price");
+				String orderDate = rs.getString("OrderDate");
 				String SupplyType = rs.getString("SupplyType");
-				double Refund = rs.getDouble("Refund");
-
+				String status = rs.getString("Status");
+				String StoreID = rs.getString("StoreID");
 				if (tempStoreID.equals(StoreID))
-					orders.add(new SingleOrder(OrderNumber, Price, StoreID, OrderDate, SupplyDate, SupplyType, Refund,
-							Status));
+					orders.add(new SingleManageOrder(orderId, userId, price, orderDate, SupplyType, status));
 			}
 		} catch (SQLException e) {
 			return null;
 		}
 		return orders;
 	}
-	
-	public static ArrayList<SingleManageOrder> GetManagerOrders() {
-		ArrayList<SingleManageOrder> list= new  ArrayList<>();
-		String query = ("SELECT * FROM zerli.orders WHERE Status='Pending'");
-		 try {
-				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs = st.executeQuery();
-				while (rs.next()) {
-					int orderId = rs.getInt("OrderNumber");
-					String userId = rs.getString("UserID");
-					double price = rs.getInt("Price");
-					String orderDate = rs.getString("OrderDate");
-					String SupplyType = rs.getString("SupplyType");
-					String status=rs.getString("Status");
-					list.add(new SingleManageOrder(orderId,userId,price,orderDate,SupplyType,status));	
-				}
-			} catch (SQLException e) {
-				return null;
-			}
-			return list;
-	}
 
 	public static void UpdateOrderStatusByManager(String OrderId) {
-		String query = ("UPDATE zerli.orders SET Status='Approved' WHERE OrderNumber="+ OrderId + ";");
+		String query = ("UPDATE zerli.orders SET Status='Approved' WHERE OrderNumber=" + OrderId + ";");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeUpdate();
@@ -283,5 +276,50 @@ public class GetOrderQuery {
 			return;
 		}
 	}
-}
 
+	public static void CancelOrderStatusByManager(String OrderId) {
+		String query = ("UPDATE zerli.orders SET Status='Cancelled' WHERE OrderNumber=" + OrderId + ";");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		double totalRefund = 0;
+		double neededRefund = 0;
+		String userID = null;
+		String query1 = ("SELECT * FROM zerli.orders WHERE OrderNumber=" + OrderId + ";");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query1);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				neededRefund = rs.getDouble("Refund");
+				userID = rs.getString("UserID");
+			}
+		} catch (SQLException e) {
+
+		}
+		String query2 = ("SELECT TotalRefund FROM zerli.account_details WHERE User_ID = '" + userID + "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query2);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				totalRefund = rs.getDouble("TotalRefund");
+			}
+		} catch (SQLException e) {
+
+		}
+		double updatedRefund = totalRefund + neededRefund;
+		String query3 = ("UPDATE account_details SET TotalRefund=" + updatedRefund + " WHERE User_ID = '" + userID
+				+ "';");
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query3);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			return;
+
+		}
+
+	}
+}

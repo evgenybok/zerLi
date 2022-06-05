@@ -14,13 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="794.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarketingDepartmentController">
+<AnchorPane prefHeight="799.0" prefWidth="1195.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarketingDepartmentController">
    <children>
-      <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1210.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="810.0" prefWidth="366.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="800.0" prefWidth="353.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
+                  <VBox prefHeight="807.0" prefWidth="360.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -48,7 +48,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                            <children>
-                              <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                              <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                                  <font>
                                     <Font name="Cambria" size="20.0" />
                                  </font>
@@ -79,15 +79,7 @@
                               </Text>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0">
-                           <children>
-                              <Text fx:id="accountStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account Status)" textAlignment="CENTER" wrappingWidth="228.4921875">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
                            <VBox.margin>
                               <Insets top="100.0" />
@@ -114,7 +106,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="767.0">
                      <children>
-                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text="Marketing Department">
+                        <Label fx:id="accTypeScreen" alignment="TOP_LEFT" prefHeight="47.0" prefWidth="472.0" text="Marketing Department Screen">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>

@@ -581,17 +581,6 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
-		case GET_STORE_ORDERS:
-			Orders = GetOrderQuery.getStoreOrders((String) receivedMessage.getMessageData());
-			try {
-				receivedMessage.setMessageData(Orders);
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			} catch (Exception e) {
-				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				receivedMessage.setMessageData(null);
-			}
-			return new Message(MessageType.GET_STORE_ORDERS, receivedMessage.getMessageAnswer(),
-					receivedMessage.getMessageData());
 
 		case GET_SURVEY_ANSWERS:
 			try {
@@ -648,7 +637,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_USERS_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		case GET_MANAGER_ORDERS:
-			singleManageOrder = GetOrderQuery.GetManagerOrders();
+			singleManageOrder = GetOrderQuery.GetManagerOrders((String)receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(singleManageOrder);
@@ -659,7 +648,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_MANAGER_ORDERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		case GET_ORDER_BY_ORDER_ID:
-			singleManageOrder = GetOrderQuery.GetOrderById((String) receivedMessage.getMessageData());
+			singleManageOrder = GetOrderQuery.GetOrderById((String[]) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(singleManageOrder);
@@ -700,6 +689,27 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			return new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
+		case CANCEL_ORDER_STATUS_BY_MANAGER:
+			try {
+				GetOrderQuery.CancelOrderStatusByManager((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.CANCEL_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_ORDERS_AMOUNT:
+			try {
+				AccountDetailsQuery.UpdateOrdersAmount((Account) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.CANCEL_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		default:// ;

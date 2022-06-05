@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -36,62 +37,64 @@ import logic.SingleOrder;
 public class OrdersController {
 
 	@FXML
-	private Label lblZerLi;
-
-	@FXML
-	private Label lblStartMsg;
-
-	@FXML
-	private Text UserName;
-
-	@FXML
-	private ImageView PersonImage;
+	private Text AccountStatus;
 
 	@FXML
 	private Text AccountType;
 
 	@FXML
-	private Text AccountStatus;
+	private Button Back;
 
 	@FXML
-	private Button Back;
+	private TextField IdText;
 
 	@FXML
 	private VBox OrdersLayout;
 
 	@FXML
-	private Label orderNum;
-
-	@FXML
-	private Label price;
-
-	@FXML
-	private Label shop;
-
-	@FXML
-	private Label orderDate;
-
-	@FXML
-	private Label deliveryDate;
-
-	@FXML
-	private Label supplyType;
-
-	@FXML
-	private Label status;
-
-	@FXML
-	private Label refund;
-	@FXML
-	private TextField IdText;
-	@FXML
 	private ImageView Search;
+
+	@FXML
+	private ImageView avatarImg;
 
 	@FXML
 	private Button cancelOrder;
 
 	@FXML
 	private TextField cancelOrderNumber;
+
+	@FXML
+	private Label deliveryDate1;
+
+	@FXML
+	private Label lblStartMsg;
+
+	@FXML
+	private Label lblZerLi;
+
+	@FXML
+	private Label orderDate1;
+
+	@FXML
+	private Label orderNum1;
+
+	@FXML
+	private Label price1;
+
+	@FXML
+	private Label refund1;
+
+	@FXML
+	private Label shop1;
+
+	@FXML
+	private Label status1;
+
+	@FXML
+	private Label supplyType1;
+
+	@FXML
+	private Text userName;
 
 	List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 	SingleOrder toCancel = new SingleOrder(0, 0, null, null, null, null, 0, null);
@@ -115,17 +118,21 @@ public class OrdersController {
 		for (int i = 0; i < Orders.size(); i++) {
 			if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Cancelled")) {
-				JOptionPane.showMessageDialog(null, "This order is already cancelled!!!", "Error",
+				JOptionPane.showMessageDialog(null, "This order is already cancelled!", "Error",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Delivered")) {
-				JOptionPane.showMessageDialog(null, "This order is already delivered!!!", "Error",
+				JOptionPane.showMessageDialog(null, "This order is already delivered!", "Error",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-
 			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
+					&& Orders.get(i).getStatus().equals("Compensation")) {
+				JOptionPane.showMessageDialog(null, "You have received a compensation for this order!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& (Orders.get(i).getStatus().equals("Approved") || Orders.get(i).getStatus().equals("Pending"))) {
 				toCancel = Orders.get(i);
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -180,7 +187,9 @@ public class OrdersController {
 				initialize();
 			}
 		}
-		if (flagExists == false) {
+		if (flagExists == false)
+
+		{
 			JOptionPane.showMessageDialog(null, "Wrong Order Number!!!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -216,7 +225,7 @@ public class OrdersController {
 				singleOrderController.setData(order.get(i));
 				OrdersLayout.getChildren().add(hBox);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -224,10 +233,12 @@ public class OrdersController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 		ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
 		AccountStatus.setText(account.get(0).getStatus());
-		UserName.setText(LoginScreenController.user.getUsername());
 		OrdersLayout.getChildren().clear();
 		chat.accept(new Message(MessageType.GET_ORDERS, LoginScreenController.user.getID()));
 		Orders = (ArrayList<SingleOrder>) AnalyzeMessageFromServer.getData();
@@ -242,7 +253,7 @@ public class OrdersController {
 				OrdersLayout.getChildren().add(hBox);
 
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

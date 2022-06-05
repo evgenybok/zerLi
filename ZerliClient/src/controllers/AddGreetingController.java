@@ -12,10 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class AddGreetingController {
 	public static String Greeting;
@@ -33,6 +34,9 @@ public class AddGreetingController {
 	@FXML
 	private TextArea txtGreeting;
 
+    @FXML
+    private ImageView greetingImg;
+    
 	@FXML
 	void btnDone(MouseEvent event) throws IOException {
 			Greeting = txtGreeting.getText();
@@ -74,6 +78,8 @@ public class AddGreetingController {
 
 	@FXML
 	void initialize() {
+		Image greetingImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/GreetingImage.png")));
+		greetingImg.setImage(greetingImage);
 		txtGreeting.setText(Greeting);
 		// Image greetingimage = new
 		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Greeting.jpg")));

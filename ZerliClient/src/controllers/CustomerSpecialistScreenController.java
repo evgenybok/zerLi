@@ -13,23 +13,32 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CustomerSpecialistScreenController {
 
-	@FXML
-	private Text userName;
+    @FXML
+    private Button Logout;
 
-	@FXML
-	private Text accountType;
+    @FXML
+    private Text accountType;
 
-	@FXML
-	private Button Logout;
+    @FXML
+    private ImageView anaImg;
 
-	@FXML
-	private Button analyseSurvey;
+    @FXML
+    private Button analyseSurvey;
+
+    @FXML
+    private ImageView avatarImg;
+
+    @FXML
+    private Text userName;
+
 
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
@@ -65,6 +74,10 @@ public class CustomerSpecialistScreenController {
 
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		Image anaImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/orders.png")));
+		anaImg.setImage(anaImage);
 		this.accountType.setText("Customer Service Specialist"); // accountType - may be handled from DB
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 	}

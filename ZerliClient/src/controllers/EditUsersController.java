@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -30,77 +31,72 @@ import logic.SingleManageOrder;
 import logic.SingleUser;
 
 public class EditUsersController {
+	@FXML
+	private Label Action;
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private URL location;
+	@FXML
+	private Label FirstName;
 
-    @FXML
-    private Label Action;
+	@FXML
+	private TextField IdText;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Label LastName;
 
-    @FXML
-    private Label FirstName;
+	@FXML
+	private ImageView Search;
 
-    @FXML
-    private TextField IdText;
+	@FXML
+	private Label Status;
 
-    @FXML
-    private Label LastName;
+	@FXML
+	private Label UserID;
 
-    @FXML
-    private ImageView Search;
+	@FXML
+	private VBox UsersLayout;
 
-    @FXML
-    private Label Status;
+	@FXML
+	private Text accountType;
 
-    @FXML
-    private Label UserID;
+	@FXML
+	private ImageView avatarImg;
 
-    @FXML
-    private VBox UsersLayout;
+	@FXML
+	private Text userName;
 
-    @FXML
-    private Text accountType;
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
+		Scene scene = new Scene(parent);
+		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		managerScreen.setTitle("Branch Manager Screen");
+		managerScreen.setScene(scene);
+		managerScreen.show();
+		managerScreen.centerOnScreen();
+	}
 
-    @FXML
-    private Text userName;
-
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-      	((Node) event.getSource()).getScene().getWindow().hide();
-    		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
-    		parent.getStylesheets().add("css/styleNew.css");
-    		Scene scene = new Scene(parent);
-    		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    		managerScreen.setTitle("Branch Manager Screen");
-    		managerScreen.setScene(scene);
-    		managerScreen.show();
-    		managerScreen.centerOnScreen();
-    }
-
-    @FXML
-    void btnSearch(MouseEvent event) {
-    	ArrayList<SingleUser> order = new ArrayList<>();
-    	String idSearch = IdText.getText();
-    	UsersLayout.getChildren().clear();
-    	if(idSearch.isEmpty())
-    	{
-    		initialize();
-    	}
-    	try {
-    		chat.accept(new Message(MessageType.GET_USER_BY_USER_ID, idSearch));
+	@FXML
+	void btnSearch(MouseEvent event) {
+		ArrayList<SingleUser> order = new ArrayList<>();
+		String idSearch = IdText.getText();
+		UsersLayout.getChildren().clear();
+		if (idSearch.isEmpty()) {
+			initialize();
+		}
+		try {
+			chat.accept(new Message(MessageType.GET_USER_BY_USER_ID, idSearch));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
-    	}catch(Exception e) {
-    		return;
-    	}
-    	order = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
-    	try {
+		} catch (Exception e) {
+			return;
+		}
+		order = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
+		try {
 			for (int i = 0; i < order.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleUser.fxml"));
@@ -112,17 +108,20 @@ public class EditUsersController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
-    @FXML
-    void initialize() {
-        InsertToTable();
-    }
-    public void InsertToTable()
-    {
-    	ArrayList<SingleUser> list= new ArrayList<>();
-    	chat.accept(new Message(MessageType.GET_USERS_BY_ID,null));
-    	list = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
+	@FXML
+	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
+		InsertToTable();
+	}
+
+	public void InsertToTable() {
+		ArrayList<SingleUser> list = new ArrayList<>();
+		chat.accept(new Message(MessageType.GET_USERS_BY_ID, null));
+		list = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
@@ -135,6 +134,6 @@ public class EditUsersController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
 }

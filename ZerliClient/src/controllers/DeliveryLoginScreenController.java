@@ -21,23 +21,24 @@ import javafx.stage.Stage;
 
 public class DeliveryLoginScreenController {
 
-	@FXML
-	private Text AccountType;
 
-	@FXML
-	private Button Logout;
+    @FXML
+    private Text AccountType;
 
-	@FXML
-	private ImageView accImg;
+    @FXML
+    private Button Logout;
 
-	@FXML
-	private ImageView avatarImg;
+    @FXML
+    private ImageView accImg;
 
-	@FXML
-	private Text userName;
+    @FXML
+    private ImageView avatarImg;
 
-	@FXML
-	private ImageView viewImg;
+    @FXML
+    private Text userName;
+
+    @FXML
+    private ImageView viewIMG;
 
 	public static Stage acceptStage;
 
@@ -90,7 +91,7 @@ public class DeliveryLoginScreenController {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
 		Image viewImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Delivery2.png")));
-		viewImg.setImage(viewImage);
+		viewIMG.setImage(viewImage);
 		Image accImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Delivery1.png")));
 		accImg.setImage(accImage);
 	

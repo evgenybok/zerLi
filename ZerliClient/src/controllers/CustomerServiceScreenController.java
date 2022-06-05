@@ -3,9 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import communication.Message;
 import communication.MessageType;
@@ -15,17 +13,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CustomerServiceScreenController {
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private Button AnsSurvey;
@@ -43,10 +37,19 @@ public class CustomerServiceScreenController {
 	private Text accountType;
 
 	@FXML
-	private Text accountStatus;
+	private ImageView avatarImg;
+
+	@FXML
+	private ImageView handImg;
+
+	@FXML
+	private ImageView satiImg;
 
 	@FXML
 	private Text userName;
+
+	@FXML
+	private ImageView writeImg;
 
 	@FXML
 	void btnComp(MouseEvent event) throws IOException {
@@ -107,6 +110,17 @@ public class CustomerServiceScreenController {
 
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		Image writeImage = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/writeComplaint.png")));
+		writeImg.setImage(writeImage);
+		Image satiCompImage = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/satiComplaint.png")));
+		satiImg.setImage(satiCompImage);
+		Image handleImage = new Image(
+				Objects.requireNonNull(getClass().getResourceAsStream("/images/handleComplaint.png")));
+		handImg.setImage(handleImage);
 		this.accountType.setText("Customer Service"); // accountType
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 	}

@@ -53,15 +53,33 @@ public class SingleManageOrdersController {
 
 	@FXML
 	void btnApprove(MouseEvent event) throws IOException {
-		try {
-			chat.accept(new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, OrderId.getText()));
-			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
+		if (Status.getText().equals("Pending")) {
+			try {
+				chat.accept(new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, OrderId.getText()));
+				if (AnalyzeMessageFromServer.getData().equals(null))
+					return;
+			} catch (Exception e) {
 				return;
-		} catch (Exception e) {
-			return;
+			}
+		} else if (Status.getText().equals("Cancel Request")) {
+			try {
+				chat.accept(new Message(MessageType.CANCEL_ORDER_STATUS_BY_MANAGER, OrderId.getText()));
+				if (AnalyzeMessageFromServer.getData().equals(null))
+					return;
+			} catch (Exception e) {
+				return;
+			}
+		} else
+			JOptionPane.showMessageDialog(null, "Cannot change the order's status!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+
+		if (Status.getText().equals("Pending")) {
+			JOptionPane.showMessageDialog(null, "Order has been approved", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else if (Status.getText().equals("Cancel Request")) {
+			JOptionPane.showMessageDialog(null, "Order has been cancelled", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
-		JOptionPane.showMessageDialog(null, "Order Status Has Changed Successfully", "Info",
-				JOptionPane.INFORMATION_MESSAGE);
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ManageOrders.fxml")));
 		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
@@ -84,5 +102,7 @@ public class SingleManageOrdersController {
 
 	@FXML
 	void initialize() {
+
 	}
+
 }

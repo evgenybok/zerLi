@@ -3,9 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -19,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,29 +26,28 @@ import logic.Complain;
 
 public class CreateComplaintController {
 	@FXML
+	private Button Back;
+
+	@FXML
 	private TextField DescriptionField;
 
 	@FXML
 	private TextField OrderIdField;
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
-	private Button Back;
-	@FXML
-	private TextField userNameField;
-	@FXML
 	private Button Submit;
 
 	@FXML
-	private Text accountStatus;
+	private Text accountType;
 
 	@FXML
-	private Text accountType;
+	private ImageView avatarImg;
+
+	@FXML
+	private Text userName;
+
+	@FXML
+	private TextField userNameField;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -125,7 +124,9 @@ public class CreateComplaintController {
 
 	@FXML
 	void initialize() {
-
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		this.accountType.setText("Customer Service"); // accountType -
 	}
 

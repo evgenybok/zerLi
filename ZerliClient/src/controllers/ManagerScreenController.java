@@ -143,12 +143,11 @@ public class ManagerScreenController {
 		viewReportsImg.setImage(viewRepImage);
 		Image editImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
 		editImg.setImage(editImage);
-
+		userName.setText(LoginScreenController.user.getUsername());
 		try {
 			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 			@SuppressWarnings("unchecked")
 			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
-			userName.setText(LoginScreenController.user.getUsername());
 		} catch (NullPointerException e) {
 		}
 		;

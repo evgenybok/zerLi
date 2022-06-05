@@ -1,12 +1,10 @@
 package controllers;
 
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-import clientanalyze.AnalyzeMessageFromServer;
-
-import static controllers.IPScreenController.chat;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -15,12 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.Account;
 
 public class MarketingDepartmentController {
 
@@ -45,7 +43,8 @@ public class MarketingDepartmentController {
 	@FXML
 	private Text userName;
 
-	public static String accountStatuss;
+	@FXML
+	private Label accTypeScreen;
 
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
@@ -76,19 +75,16 @@ public class MarketingDepartmentController {
 
 	@FXML
 	void initialize() {
-		try {
-			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
-			@SuppressWarnings("unchecked")
-			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
-			accountStatuss = account.get(0).getStatus();
-		} catch (NullPointerException e) {
-		}
-		;
-		Image catalogImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
-		catalogImage.setImage(catalogImg);
-		this.accountStatus.setText(accountStatuss); // accountStatus - handled from DB
-		this.accountType.setText("Marketing Department"); // accountType - may be handled from DB
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
+		if (LoginScreenController.user.getRole().equals("worker")) {
+			this.accountType.setText("Store Worker"); // accountType
+			accTypeScreen.setText("Store Worker Screen");
+		} else {
+			accTypeScreen.setText("Marketing Department Screen");
+			this.accountType.setText("Marketing Department"); // accountType
+		}
+		Image catalogImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/salee.png")));
+		catalogImage.setImage(catalogImg);
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImage.setImage(personImage);
 

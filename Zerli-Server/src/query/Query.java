@@ -23,11 +23,16 @@ public class Query {
 				String password = rs.getString("Password");
 				boolean Loggedin = rs.getBoolean("LoggedIn");
 				String ID = rs.getString("id");
+				String firstName = rs.getString("FirstName");
+				String lasName = rs.getString("LastName");
 				String role = rs.getString("Role");
+				String phoneNumber = rs.getString("PhoneNumber");
+				String email = rs.getString("Email");
 				if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
 					if (!Loggedin) {
 						query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
-						user = new User(username, password, true, ID, role, true);
+						user = new User(username, password, true, ID, firstName, lasName, role, phoneNumber, email,
+								true);
 						st.executeUpdate(query);
 						return user;
 					} else if (Loggedin) {

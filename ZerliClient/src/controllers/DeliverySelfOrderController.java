@@ -3,10 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -18,21 +16,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.SingleDelivery;
 import logic.SingleSelfDelivery;
 
 public class DeliverySelfOrderController {
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private Button Back;
@@ -44,7 +37,11 @@ public class DeliverySelfOrderController {
 	private Text accountType;
 
 	@FXML
+	private ImageView avatarImg;
+
+	@FXML
 	private TextField orderIDtext;
+
 	@FXML
 	private Text userName;
 
@@ -99,6 +96,9 @@ public class DeliverySelfOrderController {
 
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		InsertToTable();
 	}
 

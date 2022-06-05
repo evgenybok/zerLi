@@ -40,7 +40,7 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="status" alignment="CENTER" prefHeight="49.0" prefWidth="79.0" text="Approved" wrapText="true">
+      <Label fx:id="status" alignment="CENTER" prefHeight="49.0" prefWidth="79.0" text="Cancel Request" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>

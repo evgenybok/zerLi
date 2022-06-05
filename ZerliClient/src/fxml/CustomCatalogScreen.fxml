@@ -24,7 +24,7 @@
          <children>
             <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="200.0" prefWidth="435.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                      <children>
                         <HBox alignment="CENTER" prefHeight="72.0" prefWidth="435.0">
                            <children>
@@ -172,7 +172,7 @@
                                     <Font name="Cambria Bold" size="18.0" />
                                  </font>
                                  <styleClass>
-                                    <String fx:value="add-btn" />
+                                    <String fx:value="free-delivery-cart" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
@@ -185,13 +185,17 @@
                                     <Font name="Cambria Bold" size="24.0" />
                                  </font>
                                  <styleClass>
-                                    <String fx:value="add-btn" />
+                                    <String fx:value="free-delivery-cart" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
                            </children>
                         </HBox>
                      </children>
+                     <styleClass>
+                        <String fx:value="right-bar" />
+                        <String fx:value="body" />
+                     </styleClass>
                   </VBox>
                </left>
                <center>
@@ -211,7 +215,7 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <Label prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
+                              <Label fx:id="lblMyCart" onMouseClicked="#btnMyCart" prefHeight="47.0" prefWidth="73.0" text="My Cart" textFill="#004d00">
                                  <font>
                                     <Font name="Cambria Bold" size="20.0" />
                                  </font>

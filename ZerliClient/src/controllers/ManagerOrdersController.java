@@ -3,10 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -19,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -26,16 +25,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleManageOrder;
-import logic.SingleOrder;
-import logic.SingleUser;
 
 public class ManagerOrdersController {
-
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private Button Back;
@@ -77,6 +68,9 @@ public class ManagerOrdersController {
 	private Text userName;
 
 	@FXML
+	private ImageView avatarImg;
+
+	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
@@ -93,12 +87,16 @@ public class ManagerOrdersController {
 	void btnSearch(MouseEvent event) {
 		ArrayList<SingleManageOrder> order = new ArrayList<>();
 		String idSearch = IdText.getText();
+		String userID = LoginScreenController.user.getID();
+		String[] details = new String[2];
+		details[0] = idSearch;
+		details[1] = userID;
 		OrdersLayout.getChildren().clear();
 		if (idSearch.isEmpty()) {
 			initialize();
 		}
 		try {
-			chat.accept(new Message(MessageType.GET_ORDER_BY_ORDER_ID, idSearch));
+			chat.accept(new Message(MessageType.GET_ORDER_BY_ORDER_ID, details));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
 		} catch (Exception e) {
@@ -121,15 +119,16 @@ public class ManagerOrdersController {
 
 	@FXML
 	void initialize() {
-
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		InsertToTable();
 	}
 
 	public void InsertToTable() {
 		ArrayList<SingleManageOrder> list = new ArrayList<>();
-		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, null));
+		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, LoginScreenController.user.getID().toString()));
 		list = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
-		// System.out.println(list.get(0).toString());
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();

@@ -309,14 +309,6 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 
-		case GET_STORE_ORDERS:
-			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
-				res = receivedMessage.getMessageData();
-
-			} else {
-				res = null;
-			}
-			return;
 		case GET_SINGLE_DELIVERY_BY_STORE_ID:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
@@ -460,6 +452,22 @@ public class AnalyzeMessageFromServer {
 			}
 			return;
 		case UPDATE_ORDER_STATUS_BY_MANAGER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case CANCEL_ORDER_STATUS_BY_MANAGER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+		case UPDATE_ORDERS_AMOUNT:
 			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
 				res = receivedMessage.getMessageData();
 

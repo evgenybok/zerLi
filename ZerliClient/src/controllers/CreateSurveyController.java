@@ -3,10 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -20,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,12 +27,6 @@ import logic.Survey;
 
 public class CreateSurveyController {
 	public String survey_num;
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
 	@FXML
 	private Button Back;
 
@@ -55,19 +49,19 @@ public class CreateSurveyController {
 	private TextField Ques6;
 
 	@FXML
-	private Text accountStatus;
+	private Button Submit;
+
+	@FXML
+	private Text SurveyNumber;
 
 	@FXML
 	private Text accountType;
 
 	@FXML
+	private ImageView avatarImg;
+
+	@FXML
 	private Text userName;
-
-	@FXML
-	private Button Submit;
-
-	@FXML
-	private Text SurveyNumber;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -117,7 +111,8 @@ public class CreateSurveyController {
 
 	@FXML
 	void initialize() {
-
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 		this.accountType.setText("Customer Service"); // accountType
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
 		survey_num = getSurveyNumber();

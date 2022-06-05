@@ -46,7 +46,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                      <children>
-                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>
@@ -55,7 +55,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>
@@ -77,15 +77,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0">
-                     <children>
-                        <Text fx:id="accountStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="(Account Status)" textAlignment="CENTER" wrappingWidth="228.4921875">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="435.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
                      <VBox.margin>
                         <Insets top="100.0" />
@@ -159,7 +151,7 @@
                   </HBox>
                   <HBox prefHeight="101.0" prefWidth="846.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="218.0" text="Survey Number:">
+                        <Label prefHeight="27.0" prefWidth="181.0" text="Survey Number:">
                            <HBox.margin>
                               <Insets left="50.0" top="30.0" />
                            </HBox.margin>
@@ -167,9 +159,9 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Text fx:id="SurveyNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="145" wrappingWidth="92.5367386341095">
+                        <Text fx:id="SurveyNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="145" wrappingWidth="105.5367386341095">
                            <HBox.margin>
-                              <Insets top="35.0" />
+                              <Insets top="27.0" />
                            </HBox.margin>
                            <font>
                               <Font size="24.0" />

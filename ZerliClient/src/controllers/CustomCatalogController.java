@@ -116,6 +116,9 @@ public class CustomCatalogController {
 	@FXML
 	private Label lblSalePrice;
 
+    @FXML
+    private Label lblMyCart;
+
 	@FXML
 	private Button viewCustomizedBouquet;
 
@@ -306,6 +309,7 @@ public class CustomCatalogController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
 			root1.getStylesheets().add("css/styleNew.css");
+			root1.getStylesheets().add("css/transTextArea.css");
 			Stage cartDetailsScreen = new Stage();
 			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 			cartDetailsScreen.setTitle("Cart Details");
@@ -326,6 +330,7 @@ public class CustomCatalogController {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CustomItemViewScreen.fxml")));
 				Parent root1 = (Parent) fxmlLoader.load();
 				root1.getStylesheets().add("css/styleNew.css");
+				root1.getStylesheets().add("css/transTextArea.css");
 				Stage customizedItemDetailsScreen = new Stage();
 				customizedItemDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 				customizedItemDetailsScreen.setTitle("Customized Item Details");
@@ -444,6 +449,7 @@ public class CustomCatalogController {
 			itemsInCustomBouquet.setDisable(true);
 			addToCart.setDisable(true);
 			CartImage.setDisable(true);
+			lblMyCart.setDisable(true);
 		}
 		int column = 0;
 		int row = 1;

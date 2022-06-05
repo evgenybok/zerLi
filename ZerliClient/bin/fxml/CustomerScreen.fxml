@@ -204,14 +204,14 @@
                   <Button fx:id="Catalog" layoutX="116.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#btnCatalog" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="Catalog" />
                   <Button fx:id="CustomCatalog" layoutX="472.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#btnCustomCatalog" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="CustomCatalog" />
                   <Button fx:id="Orders" layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnOrders" opacity="0.0" prefHeight="151.0" prefWidth="199.0" text="My Orders" />
-                  <ImageView fx:id="CartImage" fitHeight="97.0" fitWidth="90.0" layoutX="539.0" layoutY="512.0" onMouseClicked="#btnCart" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="CartImage" fitHeight="97.0" fitWidth="90.0" layoutX="539.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/Cart.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="OrdersImage" fitHeight="97.0" fitWidth="90.0" layoutX="170.0" layoutY="512.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="ordersImg" fitHeight="97.0" fitWidth="90.0" layoutX="170.0" layoutY="512.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/icons8-list-64.png" />
+                        <Image url="@../../images/images/orders.png" />
                      </image>
                   </ImageView>
                </children>

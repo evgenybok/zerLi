@@ -36,21 +36,22 @@ public class ItemController {
 
 	public void setData(Item item) {
 
-		priceLabel.setText("\u20AA" + item.getPrice());
-		nameLabel.setText(item.getName());
-		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
-		img.setImage(image);
-		// img.setFitHeight(150);
-		// img.setFitWidth(150);
-		serial.setText(Integer.toString(item.getID()));
-		if (item.isOnSale()) {
-			// lblOnSale.setVisible(true);
-			Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
-			saleImg.setImage(saleImage);
-			saleImg.setVisible(true);
-			lblSalePrice.setText("\u20AA" + Double.toString(item.getSalePrice()));
-			lblSalePrice.setVisible(true);
-			lblSlash.setVisible(true);
+		try {
+			priceLabel.setText("\u20AA" + item.getPrice());
+			nameLabel.setText(item.getName());
+			Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
+			img.setImage(image);
+			serial.setText(Integer.toString(item.getID()));
+			if (item.isOnSale()) {
+				Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+				saleImg.setImage(saleImage);
+				saleImg.setVisible(true);
+				lblSalePrice.setText("\u20AA" + Double.toString(item.getSalePrice()));
+				lblSalePrice.setVisible(true);
+				lblSlash.setVisible(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -15,6 +18,12 @@ public class OrderCompleteController {
 
 	@FXML
 	private Button btnProceed;
+
+	@FXML
+	private Label confirmationTxt;
+
+	@FXML
+	private ImageView zerliImg;
 
 	@FXML
 	void clkProceed(MouseEvent event) {
@@ -36,5 +45,14 @@ public class OrderCompleteController {
 
 	@FXML
 	void initialize() {
+		Image zerliImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.jpg")));
+		zerliImg.setImage(zerliImage);
+		String completeMsg = ("Hey " + LoginScreenController.user.getFirstName() + " "
+				+ LoginScreenController.user.getLastName()
+				+ ",Your Order is Confirmed! We'll send you order confirmation email to "
+				+ LoginScreenController.user.getEmail() + "  and SMS to " + LoginScreenController.user.getPhoneNumber()
+				+ " as soon as the branch manager will approve your order.");
+		System.out.println(completeMsg);
+		confirmationTxt.setText(completeMsg);
 	}
 }

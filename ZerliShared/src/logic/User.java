@@ -5,9 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	private String Username;
 	private String Password;
 	private boolean LoggedIn;
@@ -32,7 +34,7 @@ public class User implements Serializable {
 		PhoneNumber = phoneNumber;
 		Email = email;
 	}
-	
+
 	public User(String username, String password) {
 		super();
 		Username = username;
@@ -46,7 +48,22 @@ public class User implements Serializable {
 		LoggedIn = loggedIn;
 		ID = iD;
 		Role = role;
-		setExists(exists);
+		Exists = exists;
+	}
+
+	public User(String username, String password, boolean loggedIn, String iD, String firstName, String lastName,
+			String role, String phoneNumber, String email, boolean exists) {
+		super();
+		Username = username;
+		Password = password;
+		LoggedIn = loggedIn;
+		ID = iD;
+		FirstName = firstName;
+		LastName = lastName;
+		Role = role;
+		PhoneNumber = phoneNumber;
+		Email = email;
+		Exists = exists;
 	}
 
 	public String getUsername() {

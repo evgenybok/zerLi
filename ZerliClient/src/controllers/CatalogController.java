@@ -101,6 +101,9 @@ public class CatalogController {
 
 	@FXML
 	private Label lblSalePrice;
+	
+    @FXML
+    private Label lblMyCart;
 
 	@FXML
 	public static Stage premadeCatalogStage;
@@ -176,6 +179,7 @@ public class CatalogController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
 			root1.getStylesheets().add("css/styleNew.css");
+			root1.getStylesheets().add("css/transTextArea.css");
 			Stage cartDetailsScreen = new Stage();
 			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 			cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
@@ -362,6 +366,7 @@ public class CatalogController {
 		AddToCartBtn.setDisable(true);
 		if (CustomerScreenController.accountStatus.equals("Frozen")) {
 			CartImage.setDisable(true);
+			lblMyCart.setDisable(true);
 		}
 		int column = 0;
 		int row = 1;

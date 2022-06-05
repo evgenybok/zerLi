@@ -69,26 +69,27 @@ public class CustomerScreenController {
 	private ImageView CartImage;
 
 	@FXML
-	private ImageView OrdersImage;
+	private ImageView ordersImg;
 
 	@FXML
 	private Button Catalog;
 
 	@FXML
 	private Button Orders;
-	
+
 	@FXML
 	private Button btnCart;
 
 	@FXML
 	private Label lblZerLiCredit;
-	
+
 	@FXML
 	private Label creditAmount;
-	
+
 	public static Stage customerScreenStage;
 	public static String accountStatus;
 	public static String userID;
+	public static Account fullAcc;
 	public static double accountZerliCredit;
 
 	@FXML
@@ -109,15 +110,16 @@ public class CustomerScreenController {
 		customerScreenStage = (Stage) btnCart.getScene().getWindow();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage cartDetailsScreen = new Stage();
-    		root1.getStylesheets().add("css/styleNew.css");
-            cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-            cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
-            cartDetailsScreen.setTitle("Cart Details");
-            cartDetailsScreen.setScene((new Scene(root1)));
-            cartDetailsScreen.show();
-            cartDetailsScreen.centerOnScreen();
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage cartDetailsScreen = new Stage();
+			root1.getStylesheets().add("css/styleNew.css");
+			root1.getStylesheets().add("css/transTextArea.css");
+			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+			cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+			cartDetailsScreen.setTitle("Cart Details");
+			cartDetailsScreen.setScene((new Scene(root1)));
+			cartDetailsScreen.show();
+			cartDetailsScreen.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -169,18 +171,23 @@ public class CustomerScreenController {
 
 	@FXML
 	void initialize() {
+
 		try {
 			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
 			@SuppressWarnings("unchecked")
 			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
+			fullAcc = account.get(0);
 			accountStatus = account.get(0).getStatus();
 			accountZerliCredit = account.get(0).getTotalRefund();
-			userID=account.get(0).getUser_ID();
+			userID = account.get(0).getUser_ID();
 		} catch (NullPointerException e) {
 		}
 		;
+		if (accountStatus.equals("Frozen")) {
+			btnCart.setDisable(true);
+		}
 		this.AccountStatus.setText(accountStatus); // accountStatus - handled from DB
-		this.AccountType.setText("Customer"); // accountType 
+		this.AccountType.setText("Customer"); // accountType
 		this.UserName.setText(LoginScreenController.user.getUsername()); // userName
 		creditAmount.setText(Double.toString(accountZerliCredit));
 
@@ -193,6 +200,8 @@ public class CustomerScreenController {
 		CustomCatalogImage.setImage(custumCatalogImage);
 		Image myCartImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Cart.png")));
 		CartImage.setImage(myCartImage);
+		Image myOrdersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/orders.png")));
+		ordersImg.setImage(myOrdersImage);
 
 	}
 }

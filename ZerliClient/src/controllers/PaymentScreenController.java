@@ -3,6 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -124,18 +125,23 @@ public class PaymentScreenController {
 	private Text delviryFee;
 
 	@FXML
+	private Label discount;
+
+	@FXML
 	private Label lblTotalAmount;
 
 	@FXML
 	private Label lblZerLiCredit;
 
 	private double refundUsed = 0;
+	private double finalPriceToPay = 0;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
+		parent.getStylesheets().add("css/transTextArea.css");
 		Scene scene = new Scene(parent);
 		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		deliveryDetailsStage.setTitle("Shopping Cart");
@@ -324,10 +330,11 @@ public class PaymentScreenController {
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
+			Order order = new Order(Order.orderCount, finalPriceToPay, greeting, storeid, orderDateString,
 					supplyDateTime, Status, supplytype, userID, refund, adress, reciverName, phone, Dorder);
-
 			try {
+				chat.accept(new Message(MessageType.UPDATE_ORDERS_AMOUNT, CustomerScreenController.fullAcc));
+
 				chat.accept(new Message(MessageType.INSERT_NEW_ORDER, order));
 				if (refundUsed > 0) {
 					StringBuilder sb = new StringBuilder();
@@ -343,6 +350,7 @@ public class PaymentScreenController {
 				CustomCatalogController.bouquetCounter = 0;
 
 				AddGreetingController.Greeting = null;
+				((Node) event.getSource()).getScene().getWindow().hide();
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderComplete.fxml")));
 				Parent root1 = (Parent) fxmlLoader.load();
 				root1.getStylesheets().add("css/styleNew.css");
@@ -372,7 +380,7 @@ public class PaymentScreenController {
 		String[] time = temp.split(":");
 		int hour = Integer.parseInt(time[0]);
 		int minutes = Integer.parseInt(time[1]);
-		if (((hour > 0 && hour <= 24) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
+		if (((hour >= 0 && hour <= 23) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
 			return true;
 		else
 			return false;
@@ -411,20 +419,35 @@ public class PaymentScreenController {
 	}
 
 	void changeAmount(Double deliveryFee) {
+		/*
+		 * if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) { totalPrice *=
+		 * 0.8; String.format("{0:0.00}", totalPrice); System.out.println(totalPrice); }
+		 */
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
-		double temp = totalPrice - CustomerScreenController.accountZerliCredit; // 30-60=-30
+		double temp = totalPrice - CustomerScreenController.accountZerliCredit;
 		double toReduce = 0;
 		if (temp < 0) {
-			toReduce = CustomerScreenController.accountZerliCredit + temp; // 60+-30=30
+			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+				totalPriceAfterDeliveryFee *= 0.8;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+			}
+			toReduce = CustomerScreenController.accountZerliCredit + temp;
 			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + toReduce + ")");
 			refundUsed = toReduce;
+			finalPriceToPay = totalPriceAfterDeliveryFee - toReduce;
 		} else {
+			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+				totalPriceAfterDeliveryFee *= 0.8;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+			}
 			amountToPay.setText("\u20AA"
 					+ Double.toString(totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit) + " ("
 					+ totalPriceAfterDeliveryFee + "-" + CustomerScreenController.accountZerliCredit + ")");
 			refundUsed = CustomerScreenController.accountZerliCredit;
+			finalPriceToPay = totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit;
 		}
+
 	}
 
 	private String CheckWhichSupplyMethod() {
@@ -488,7 +511,10 @@ public class PaymentScreenController {
 
 	@FXML
 	void initialize() {
-
+		if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
+			discount.setVisible(true);
+		} else
+			discount.setVisible(false);
 		Image checkoutImg = new Image(
 				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-card-payment-50.png")));
 		CheckoutImg.setImage(checkoutImg);

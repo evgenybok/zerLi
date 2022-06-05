@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="83.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemInCartController">  <children>
+<AnchorPane prefHeight="83.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemInCartController">  <children>
       <AnchorPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="667.0" stylesheets="@../../images/css/styleNew.css">
          <styleClass>
             <String fx:value="flowers-item" />

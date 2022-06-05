@@ -57,7 +57,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>

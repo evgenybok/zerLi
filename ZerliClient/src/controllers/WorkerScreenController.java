@@ -3,10 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.fxml.FXML;
@@ -15,11 +13,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.Account;
 
 public class WorkerScreenController {
 
@@ -27,13 +25,10 @@ public class WorkerScreenController {
 	private Button Logout;
 
 	@FXML
-	private Text accountStatus;
-
-	@FXML
 	private Text accountType;
 
 	@FXML
-	private ImageView avatarImage;
+	private ImageView avatarImg;
 
 	@FXML
 	private ImageView catalogImage;
@@ -43,8 +38,6 @@ public class WorkerScreenController {
 
 	@FXML
 	private Text userName;
-
-	public static String accountStatuss;
 
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
@@ -75,26 +68,12 @@ public class WorkerScreenController {
 
 	@FXML
 	void initialize() {
-		try {
-			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
-			@SuppressWarnings("unchecked")
-			ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
-			accountStatuss = account.get(0).getStatus();
-		} catch (NullPointerException e) {
-		}
-		;
-		// Image catalogImg = new
-		// Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
-		// catalogImage.setImage(catalogImg);
-		this.accountStatus.setText(accountStatuss); // accountStatus - handled from DB
 		this.accountType.setText("Store Worker"); // accountType - may be handled from DB
 		this.userName.setText(LoginScreenController.user.getUsername()); // userName
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		Image catalogImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
+		catalogImage.setImage(catalogImg);
 
-		/*
-		 * 
-		 * Image personImage = new
-		 * Image(Objects.requireNonNull(getClass().getResourceAsStream(
-		 * "/images/Avatar.png"))); PersonImage.setImage(personImage);
-		 */
 	}
 }
