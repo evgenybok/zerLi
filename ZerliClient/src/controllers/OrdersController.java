@@ -100,6 +100,7 @@ public class OrdersController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -125,8 +126,7 @@ public class OrdersController {
 			}
 
 			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
-					&& (Orders.get(i).getStatus().equals("Approved")
-							|| Orders.get(i).getStatus().equals("Pending"))) {
+					&& (Orders.get(i).getStatus().equals("Approved") || Orders.get(i).getStatus().equals("Pending"))) {
 				toCancel = Orders.get(i);
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = new Date();
@@ -161,7 +161,7 @@ public class OrdersController {
 
 					}
 					// supply time after 1hour - no refund
-					else if (x.before(calendar2.getTime())&& x.after(date)) {
+					else if (x.before(calendar2.getTime()) && x.after(date)) {
 						toCancel.setRefund((toCancel.getPrice()) * 0);
 
 					} else {
@@ -228,9 +228,7 @@ public class OrdersController {
 		ArrayList<Account> account = (ArrayList<Account>) AnalyzeMessageFromServer.getData();
 		AccountStatus.setText(account.get(0).getStatus());
 		UserName.setText(LoginScreenController.user.getUsername());
-		//accountZerliCredit = account.get(0).getZerliCredit();
 		OrdersLayout.getChildren().clear();
-		// List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 		chat.accept(new Message(MessageType.GET_ORDERS, LoginScreenController.user.getID()));
 		Orders = (ArrayList<SingleOrder>) AnalyzeMessageFromServer.getData();
 		try {

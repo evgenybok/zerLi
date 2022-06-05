@@ -121,6 +121,7 @@ public class CatalogController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -174,6 +175,7 @@ public class CatalogController {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Stage cartDetailsScreen = new Stage();
 			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 			cartDetailsScreen.initStyle(StageStyle.UNDECORATED);

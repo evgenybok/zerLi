@@ -57,7 +57,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="168.0" prefWidth="435.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>
@@ -74,7 +74,7 @@
                      <children>
                         <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery" textAlignment="CENTER" wrappingWidth="153.13671875">
                            <font>
-                              <Font name="Cambria" size="25.0" />
+                              <Font name="Cambria Bold" size="25.0" />
                            </font>
                         </Text>
                      </children>
@@ -83,13 +83,6 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <children>
-                        <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Active)" textAlignment="CENTER" wrappingWidth="151.13671875">
-                           <font>
-                              <Font name="Cambria" size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
                      <VBox.margin>
@@ -157,7 +150,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ImageView fx:id="accIMG" fitHeight="119.0" fitWidth="140.0" layoutX="299.0" layoutY="193.0" onMouseClicked="#AcceptOrder" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="accImg" fitHeight="119.0" fitWidth="140.0" layoutX="299.0" layoutY="193.0" onMouseClicked="#AcceptOrder" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/Delivery1.png" />
                      </image>

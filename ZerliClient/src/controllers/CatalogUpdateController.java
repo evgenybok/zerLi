@@ -60,6 +60,7 @@ public class CatalogUpdateController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 		Parent root1 = (Parent) fxmlLoader.load();
+		root1.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(root1);
 		Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		itemEditStage.setTitle("Item Edit");
@@ -72,6 +73,7 @@ public class CatalogUpdateController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage marketingStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		marketingStage.setTitle("Home Screen");
@@ -100,6 +102,7 @@ public class CatalogUpdateController {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(root1);
 			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");
@@ -127,6 +130,7 @@ public class CatalogUpdateController {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/ItemEdit.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(root1);
 			Stage itemEditStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			itemEditStage.setTitle("Item Edit");

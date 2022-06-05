@@ -65,6 +65,7 @@ public class CEOScreenController {
 	void btnIncome(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
@@ -78,6 +79,7 @@ public class CEOScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -98,7 +100,7 @@ public class CEOScreenController {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			AccountStatus.setText(account.get(5)); // *** AccountStatus text field is null!!*/
-			AccountStatus.setText("CONFIRMED");
+			//AccountStatus.setText("CONFIRMED");
 			userName.setText(LoginScreenController.user.getUsername());
 
 		} catch (NullPointerException e) {

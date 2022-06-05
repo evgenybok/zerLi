@@ -76,7 +76,7 @@ public class ItemEditController {
 	void btnClose(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 		Scene scene = new Scene(parent);
-		parent.getStylesheets().add("css/style.css");
+		parent.getStylesheets().add("css/styleNew.css");
 		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		catalogUpdateStage.setTitle("Catalog Update");
 		catalogUpdateStage.setScene(scene);
@@ -95,7 +95,7 @@ public class ItemEditController {
 		JOptionPane.showMessageDialog(null, "Item deleted successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 		Scene scene = new Scene(parent);
-		parent.getStylesheets().add("css/style.css");
+		parent.getStylesheets().add("css/styleNew.css");
 		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		catalogUpdateStage.setTitle("Catalog Update");
 		catalogUpdateStage.setScene(scene);
@@ -182,7 +182,7 @@ public class ItemEditController {
 			Parent parent = FXMLLoader
 					.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
 			Scene scene = new Scene(parent);
-			parent.getStylesheets().add("css/style.css");
+			parent.getStylesheets().add("css/styleNew.css");
 			Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			catalogUpdateStage.setTitle("Catalog Update");
 			catalogUpdateStage.setScene(scene);

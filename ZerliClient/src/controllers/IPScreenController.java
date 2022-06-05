@@ -32,78 +32,79 @@ import ocsf.server.ConnectionToClient;
 
 public class IPScreenController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
-    
-    @FXML
-    private ImageView flowerImage;
+	@FXML
+	private URL location;
 
-    @FXML
-    private BorderPane ServerStage;
+	@FXML
+	private ImageView flowerImage;
 
-    @FXML
-    private Label lblZerli;
+	@FXML
+	private BorderPane ServerStage;
 
-    @FXML
-    private Label lblIPConnect;
+	@FXML
+	private Label lblZerli;
 
-    @FXML
-    private Label lblEnterIP;
+	@FXML
+	private Label lblIPConnect;
 
-    @FXML
-    private TextField txtIP;
+	@FXML
+	private Label lblEnterIP;
 
-    @FXML
-    private Button Connect;
+	@FXML
+	private TextField txtIP;
+
+	@FXML
+	private Button Connect;
 
 	Stage primaryStage;
 
 	public static ClientController chat;
 
 	ConnectionToClient client;
-	
-    @FXML
-    void btnConnect(MouseEvent event) throws IOException {
+
+	@FXML
+	void btnConnect(MouseEvent event) throws IOException {
 
 		try {
 			chat = new ClientController(txtIP.getText(), 5555);
 		} catch (Exception e) {
 
-
 			exit(1);
 		}
 
 		chat.accept(new Message(MessageType.CONFIRM_IP, txtIP.getText()));
-		String result=(String) AnalyzeMessageFromServer.getData();
-		if(result.equals("Failed"))
-		{
+		String result = (String) AnalyzeMessageFromServer.getData();
+		if (result.equals("Failed")) {
 			JOptionPane.showMessageDialog(null, "IP already connected", "Error", JOptionPane.ERROR_MESSAGE);
 			Platform.exit();
 			System.exit(0);
 		}
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().clear();
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage LoginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LoginStage.setTitle("LoginScreen");
 		LoginStage.setScene(scene);
 		LoginStage.show();
 		LoginStage.centerOnScreen();
-    }
+	}
 
-    @FXML
-    void initialize() {
-    	Image floImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IPflower.png")));
-    	flowerImage.setImage(floImage);
-    }
+	@FXML
+	void initialize() {
+		Image floImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IPflower.png")));
+		flowerImage.setImage(floImage);
+	}
+
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IPscreen.fxml")));
 		primaryStage.initStyle(StageStyle.UNDECORATED);
-        root.getStylesheets().clear();
-        root.getStylesheets().add("css/styleNew.css");
+		root.getStylesheets().clear();
+		root.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Connect To Server");
 		primaryStage.setScene(scene);

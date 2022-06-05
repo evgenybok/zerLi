@@ -113,6 +113,7 @@ public class BMViewOrdersController {
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
 			Scene scene = new Scene(parent);
 			Stage ordersStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			parent.getStylesheets().add("css/styleNew.css");
 			ordersStage.setTitle("View Orders");
 			ordersStage.setScene(scene);
 			ordersStage.show();

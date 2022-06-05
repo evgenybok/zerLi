@@ -47,7 +47,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                      <children>
-                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>

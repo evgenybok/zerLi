@@ -50,6 +50,7 @@ public class DeliveryDetailsController {
     void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ChooseStore.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage chooseStoreStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		chooseStoreStage.setTitle("Choose Store");
@@ -61,6 +62,7 @@ public class DeliveryDetailsController {
     @FXML
     void btnDone(MouseEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/PaymentScreen.fxml")));
+    	parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage paymentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		paymentStage.setTitle("Payment");

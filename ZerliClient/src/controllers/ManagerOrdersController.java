@@ -31,79 +31,79 @@ import logic.SingleUser;
 
 public class ManagerOrdersController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private TextField IdText;
+	@FXML
+	private TextField IdText;
 
-    @FXML
-    private Label OrderId;
+	@FXML
+	private Label OrderId;
 
-    @FXML
-    private VBox OrdersLayout;
+	@FXML
+	private VBox OrdersLayout;
 
-    @FXML
-    private Label Price;
+	@FXML
+	private Label Price;
 
-    @FXML
-    private ImageView Search;
+	@FXML
+	private ImageView Search;
 
-    @FXML
-    private Label Status;
+	@FXML
+	private Label Status;
 
-    @FXML
-    private Label SupplyType;
+	@FXML
+	private Label SupplyType;
 
-    @FXML
-    private Label UserId;
+	@FXML
+	private Label UserId;
 
-    @FXML
-    private Text accountType;
+	@FXML
+	private Text accountType;
 
-    @FXML
-    private Label orderDate;
+	@FXML
+	private Label orderDate;
 
-    @FXML
-    private Label refund1;
+	@FXML
+	private Label refund1;
 
-    @FXML
-    private Text userName;
+	@FXML
+	private Text userName;
 
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-      	((Node) event.getSource()).getScene().getWindow().hide();
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Customer");
-		customerStage.setScene(scene);
-		customerStage.show();
-		customerStage.centerOnScreen();
-    }
+		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		managerScreen.setTitle("Branch Manager Screen");
+		managerScreen.setScene(scene);
+		managerScreen.show();
+		managerScreen.centerOnScreen();
+	}
 
-    @FXML
-    void btnSearch(MouseEvent event) {
-    	ArrayList<SingleManageOrder> order = new ArrayList<>();
-    	String idSearch = IdText.getText();
-    	OrdersLayout.getChildren().clear();
-    	if(idSearch.isEmpty())
-    	{
-    		initialize();
-    	}
-    	try {
-    		chat.accept(new Message(MessageType.GET_ORDER_BY_ORDER_ID, idSearch));
+	@FXML
+	void btnSearch(MouseEvent event) {
+		ArrayList<SingleManageOrder> order = new ArrayList<>();
+		String idSearch = IdText.getText();
+		OrdersLayout.getChildren().clear();
+		if (idSearch.isEmpty()) {
+			initialize();
+		}
+		try {
+			chat.accept(new Message(MessageType.GET_ORDER_BY_ORDER_ID, idSearch));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
-    	}catch(Exception e) {
-    		return;
-    	}
+		} catch (Exception e) {
+			return;
+		}
 		order = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
 		try {
 			for (int i = 0; i < order.size(); i++) {
@@ -117,20 +117,20 @@ public class ManagerOrdersController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
-    @FXML
-    void initialize() {
+	@FXML
+	void initialize() {
 
-        InsertToTable();
-    }
-    public void InsertToTable()
-    {
-    	ArrayList<SingleManageOrder> list= new ArrayList<>();
-    	chat.accept(new Message(MessageType.GET_MANAGER_ORDERS,null));
-    	list = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
-    	//System.out.println(list.get(0).toString());
-    	try {
+		InsertToTable();
+	}
+
+	public void InsertToTable() {
+		ArrayList<SingleManageOrder> list = new ArrayList<>();
+		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, null));
+		list = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
+		// System.out.println(list.get(0).toString());
+		try {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleOrderBranchMn.fxml"));
@@ -143,7 +143,6 @@ public class ManagerOrdersController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
-
+	}
 
 }

@@ -17,6 +17,7 @@ public class User implements Serializable {
 	private String Role;
 	private String PhoneNumber;
 	private String Email;
+	private boolean Exists;
 
 	public User(String username, String password, boolean loggedIn, String iD, String firstName, String lastName,
 			String role, String phoneNumber, String email) {
@@ -38,13 +39,14 @@ public class User implements Serializable {
 		Password = password;
 	}
 
-	public User(String username, String password, boolean loggedIn, String iD, String role) {
+	public User(String username, String password, boolean loggedIn, String iD, String role, boolean exists) {
 		super();
 		Username = username;
 		Password = password;
 		LoggedIn = loggedIn;
 		ID = iD;
 		Role = role;
+		setExists(exists);
 	}
 
 	public String getUsername() {
@@ -124,5 +126,13 @@ public class User implements Serializable {
 		return "User [Username=" + Username + ", Password=" + Password + ", LoggedIn=" + LoggedIn + ", ID=" + ID
 				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Role=" + Role + ", PhoneNumber="
 				+ PhoneNumber + ", Email=" + Email + "]";
+	}
+
+	public boolean isExists() {
+		return Exists;
+	}
+
+	public void setExists(boolean exists) {
+		Exists = exists;
 	}
 }

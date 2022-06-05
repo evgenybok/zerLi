@@ -48,7 +48,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                      <children>
-                        <Text fx:id="userTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                        <Text fx:id="userTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>
@@ -251,7 +251,7 @@
                   </VBox>
                   <VBox alignment="BOTTOM_RIGHT" prefHeight="91.0" prefWidth="278.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="146.0" text="Exipre Dare">
+                        <Label prefHeight="27.0" prefWidth="146.0" text="Expiry Date">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>

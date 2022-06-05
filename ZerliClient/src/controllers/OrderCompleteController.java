@@ -22,6 +22,7 @@ public class OrderCompleteController {
 		try {
 			Parent parent = FXMLLoader
 					.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			customerStage.setTitle("Customer");

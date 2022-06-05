@@ -44,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                <children>
-                  <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" wrappingWidth="103.13671875">
+                  <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>
@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                  <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
                         <Image url="@../../images/images/Avatar.png" />
                      </image>
@@ -68,9 +68,9 @@
                   <Insets top="30.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch Manager" textAlignment="CENTER" wrappingWidth="153.13671875">
+                  <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch Manager" textAlignment="CENTER" wrappingWidth="226.47003173828125">
                      <font>
-                        <Font name="Cambria" size="20.0" />
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                      </font>
                   </Text>
                </children>
@@ -133,9 +133,9 @@
                   <Font name="Cambria Bold" size="22.0" />
                </font>
             </Button>
-            <ImageView fitHeight="77.0" fitWidth="68.0" layoutX="179.0" layoutY="256.0" onMouseClicked="#btnViewReports" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="viewReportsImg" fitHeight="77.0" fitWidth="68.0" layoutX="179.0" layoutY="256.0" onMouseClicked="#btnViewReports" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/217-2170381_other-approved-icon-png-images-receipt-icon.png" />
+                  <Image url="@../../images/images/viewReports.png" />
                </image>
             </ImageView>
             <Text fill="#004d00" layoutX="503.0" layoutY="239.0" onMouseClicked="#btnAdd" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="New Customer" wrappingWidth="161.13671875">
@@ -158,7 +158,7 @@
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="#004d00" glyphName="USER" layoutX="547.0" layoutY="307.0" onMouseClicked="#btnAdd" size="60" wrappingWidth="49.0" />
+            <FontAwesomeIconView fx:id="addImg" fill="#004d00" glyphName="USER" layoutX="547.0" layoutY="307.0" onMouseClicked="#btnAdd" size="60" wrappingWidth="49.0" />
             <HBox prefHeight="100.0" prefWidth="767.0">
                <children>
                   <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Branch Manager Screen">
@@ -181,14 +181,14 @@
                   </HBox>
                </children>
             </HBox>
-            <ImageView fitHeight="87.0" fitWidth="83.0" layoutX="172.0" layoutY="531.0" onMouseClicked="#btnEdit" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="editImg" fitHeight="87.0" fitWidth="83.0" layoutX="172.0" layoutY="531.0" onMouseClicked="#btnEdit" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/icons8-account-100.png" />
+                  <Image url="@../../images/images/account.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="541.0" onMouseClicked="#btnViewOrders" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ordersManageImg" fitHeight="64.0" fitWidth="63.0" layoutX="553.0" layoutY="541.0" onMouseClicked="#btnViewOrders" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/images/clipart3436115.png" />
+                  <Image url="@../../images/images/ordersManage.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER_LEFT" layoutY="91.0" prefHeight="91.0" prefWidth="769.0">

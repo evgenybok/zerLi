@@ -36,6 +36,7 @@ public class CustomerSpecialistScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -48,12 +49,13 @@ public class CustomerSpecialistScreenController {
     void btnAnalyseSurvey(MouseEvent event) {
     	try {
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/SPAnalyseSurveyScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
-			Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			loginStage.setTitle("Analyse Survey");
-			loginStage.setScene(scene);
-			loginStage.show();
-			loginStage.centerOnScreen();
+			Stage surveyScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			surveyScreen.setTitle("Analyse Survey");
+			surveyScreen.setScene(scene);
+			surveyScreen.show();
+			surveyScreen.centerOnScreen();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

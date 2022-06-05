@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import communication.Message;
@@ -63,14 +62,25 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			user = Query.Login((User) receivedMessage.getMessageData());
-			if (user.isLoggedIn()) {
-				receivedMessage.setMessageData(user);
-				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
-			} else {
-				receivedMessage.setMessageData(null);
+			
+			try {
+				user = Query.Login((User) receivedMessage.getMessageData());
+				if (user.isLoggedIn()) {
+					receivedMessage.setMessageData(user);
+					receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				} else if (user.isExists() && !user.isLoggedIn()) {
+					receivedMessage.setMessageData("Logged In");
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				}
+				else {
+					receivedMessage.setMessageData("Wrong");
+					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				}
+			} catch (Exception e1) {
+				receivedMessage.setMessageData("Error");
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 			}
+
 			return new Message(MessageType.LOGIN, receivedMessage.getMessageAnswer(), receivedMessage.getMessageData());
 
 		case LOGOUT:
@@ -547,8 +557,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_REFUND_BY_ORDERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
-			
+
 		case VIEW_SELF_DELIVERY_DETAILS:
 			singleSelfDelivery = DeliveryQuery.getSingleSelfOrder((String) receivedMessage.getMessageData());
 			try {
@@ -681,7 +690,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case UPDATE_ORDER_STATUS_BY_MANAGER:
 			try {
 				GetOrderQuery.UpdateOrderStatusByManager((String) receivedMessage.getMessageData());
@@ -692,7 +701,6 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
 
 		default:// ;
 

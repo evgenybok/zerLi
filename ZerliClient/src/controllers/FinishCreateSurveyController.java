@@ -14,19 +14,19 @@ import javafx.stage.Stage;
 
 public class FinishCreateSurveyController {
 
-    @FXML
-    private Button backBtn;
+	@FXML
+	private Button backBtn;
 
-    @FXML
-    void MoveToMenuScreen(MouseEvent event) throws IOException
-    {
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+	@FXML
+	void MoveToMenuScreen(MouseEvent event) throws IOException {
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		loginStage.setTitle("Customer Service Screen");
-		loginStage.setScene(scene);
-		loginStage.show();
-		loginStage.centerOnScreen();
-    }
+		Stage csScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		csScreen.setTitle("Customer Service Screen");
+		csScreen.setScene(scene);
+		csScreen.show();
+		csScreen.centerOnScreen();
+	}
 
 }

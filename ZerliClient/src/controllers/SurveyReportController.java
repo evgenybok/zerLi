@@ -51,20 +51,21 @@ public class SurveyReportController {
 	@FXML
 	private Button save;
 
-    @FXML
-    private TextField path;
+	@FXML
+	private TextField path;
 
 	@FXML
 	void btnBack(MouseEvent event) {
 		try {
 			Parent parent = FXMLLoader
 					.load(Objects.requireNonNull(getClass().getResource("/fxml/SPAnalyseSurveyScreen.fxml")));
+			parent.getStylesheets().add("/css/styleNew.css");
 			Scene scene = new Scene(parent);
-			Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			loginStage.setTitle("Analyse Survey");
-			loginStage.setScene(scene);
-			loginStage.show();
-			loginStage.centerOnScreen();
+			Stage analyzeScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			analyzeScreen.setTitle("Analyse Survey");
+			analyzeScreen.setScene(scene);
+			analyzeScreen.show();
+			analyzeScreen.centerOnScreen();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +77,7 @@ public class SurveyReportController {
 		String[] report = new String[2];
 		String conclusion = textConclusion.getText();
 		conclusion += "\n Report analysed by:" + LoginScreenController.user.getUsername() + ".";
-		//conclusion = conclusion.replace("\n", "").replace("\r", "");
+		// conclusion = conclusion.replace("\n", "").replace("\r", "");
 		report[0] = conclusion;
 		String filePath = path.getText();
 		report[1] = filePath;

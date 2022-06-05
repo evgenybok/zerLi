@@ -52,6 +52,7 @@ public class MarketingDepartmentController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -63,8 +64,9 @@ public class MarketingDepartmentController {
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		parent.getStylesheets().add("css/style.css");
+		parent.getStylesheets().add("css/styleNew.css");
 		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		catalogUpdateStage.setTitle("Catalog Update");
 		catalogUpdateStage.setScene(scene);

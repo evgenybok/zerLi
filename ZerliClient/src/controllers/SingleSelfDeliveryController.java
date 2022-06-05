@@ -8,29 +8,25 @@ import logic.SingleSelfDelivery;
 
 public class SingleSelfDeliveryController {
 
-    @FXML
-    private Label HandleID;
+	@FXML
+	private Label HandleID;
 
-    @FXML
-    private Label Status;
+	@FXML
+	private Label Status;
 
-    @FXML
-    private Label SupplyDate;
+	@FXML
+	private Label SupplyDate;
 
-    @FXML
-    private Label customerDate;
+	@FXML
+	private Label customerDate;
 
-    @FXML
-    private Label ordernum;
+	@FXML
+	private Label ordernum;
 
-    @FXML
-    void initialize() {
-        assert HandleID != null : "fx:id=\"HandleID\" was not injected: check your FXML file 'singleSelfDelivery.fxml'.";
-        assert Status != null : "fx:id=\"Status\" was not injected: check your FXML file 'singleSelfDelivery.fxml'.";
-        assert SupplyDate != null : "fx:id=\"SupplyDate\" was not injected: check your FXML file 'singleSelfDelivery.fxml'.";
-        assert customerDate != null : "fx:id=\"customerDate\" was not injected: check your FXML file 'singleSelfDelivery.fxml'.";
-        assert ordernum != null : "fx:id=\"ordernum\" was not injected: check your FXML file 'singleSelfDelivery.fxml'.";
-    }
+	@FXML
+	void initialize() {
+
+	}
 
 	public void setData(SingleSelfDelivery singleSelfDelivery) {
 		String s = String.valueOf(singleSelfDelivery.getOrderID());
@@ -40,5 +36,5 @@ public class SingleSelfDeliveryController {
 		SupplyDate.setText(singleSelfDelivery.getDeliverySupplyDate());
 		Status.setText("Deliverd");
 	}
-    
+
 }

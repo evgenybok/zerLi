@@ -494,7 +494,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="319.0">
                            <children>
-                              <Button fx:id="Pay" mnemonicParsing="false" onMouseClicked="#btnPay" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: daffb3;" styleClass="shadow" stylesheets="@../../images/css/style.css" text="Pay">
+                              <Button fx:id="Pay" mnemonicParsing="false" onMouseClicked="#btnPay" prefHeight="48.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: daffb3;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Pay">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="21.0" />
                                  </font></Button>

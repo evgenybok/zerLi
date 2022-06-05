@@ -48,8 +48,15 @@ public class AnalyzeMessageFromServer {
 				res = receivedMessage.getMessageData();
 				break;
 			} else if (receivedMessage.getMessageAnswer() == MessageAnswer.NOT_SUCCEED) {
-				res = null;
-				JOptionPane.showMessageDialog(null, "Wrong username or password", "Error", JOptionPane.ERROR_MESSAGE);
+				if (receivedMessage.getMessageData().equals("Wrong")) {
+					JOptionPane.showMessageDialog(null, "Wrong username or password!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					res = null;
+				} else if (receivedMessage.getMessageData().equals("Logged In")) {
+					JOptionPane.showMessageDialog(null, "Already Logged in!", "Error", JOptionPane.ERROR_MESSAGE);
+					res = null;
+				} else
+					res = null;
 				break;
 			}
 			break;

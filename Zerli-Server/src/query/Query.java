@@ -24,15 +24,22 @@ public class Query {
 				boolean Loggedin = rs.getBoolean("LoggedIn");
 				String ID = rs.getString("id");
 				String role = rs.getString("Role");
-				if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && !Loggedin) {
-					query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
-					user = new User(username, password, true, ID, role);
-					st.executeUpdate(query);
+				if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+					if (!Loggedin) {
+						query = ("UPDATE users SET LoggedIn=true WHERE id='" + ID + "';");
+						user = new User(username, password, true, ID, role, true);
+						st.executeUpdate(query);
+						return user;
+					} else if (Loggedin) {
+						user = new User(username, password, false, ID, role, true);
+						return user;
+					}
 				}
+
 			}
-			return user;
+			return user = new User(null, null, false, null, null, false);
 		} catch (SQLException e) {
-			return user;
+			return null;
 		}
 	}
 
@@ -50,17 +57,12 @@ public class Query {
 	}
 
 	public static boolean Disconnect(User user) {
-		String query = ("SELECT * FROM zerli.users WHERE id="+user.getID()+";");
+		String query = ("UPDATE users SET LoggedIn=false WHERE id='" + user.getID() + "' AND Username='"
+				+ user.getUsername() + "';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				String query1 = ("UPDATE users SET LoggedIn="+false+";");
-				st.executeUpdate(query1);
-				return true;
-			}
-
-			return false;
+			st.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			return false;
 		}

@@ -63,6 +63,7 @@ public class SingleComplaintController {
     	try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/EnterRefund.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("/css/styleNew.css");
 			Stage EnterRefundStage = new Stage();
 			EnterRefundStage.initModality(Modality.APPLICATION_MODAL);
 			EnterRefundStage.setTitle("Add Refund");

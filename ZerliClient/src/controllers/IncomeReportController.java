@@ -27,91 +27,86 @@ import static controllers.ReportsController.*;
 
 public class IncomeReportController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private LineChart<String , Number> lineChart;
-    @FXML
-    private TextField BestWeek;
+	@FXML
+	private LineChart<String, Number> lineChart;
+	@FXML
+	private TextField BestWeek;
 
-    @FXML
-    private TextField WorstWeek;
+	@FXML
+	private TextField WorstWeek;
 
-    @FXML
-    private TextField TotalSales;
-    @FXML
-    private Label branchLabel;
+	@FXML
+	private TextField TotalSales;
+	@FXML
+	private Label branchLabel;
 
-
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
+
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Branch Manager Screen");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-    }
+	}
 
-    @FXML
-    void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'chart.fxml'.";
-        assert lineChart != null : "fx:id=\"lineChart\" was not injected: check your FXML file 'chart.fxml'.";
-        double maxWeek=0;
-        double minWeek= Double.MAX_VALUE;
-        int sum=0;
+	@FXML
+	void initialize() {
+		double maxWeek = 0;
+		double minWeek = Double.MAX_VALUE;
+		int sum = 0;
 
-        ArrayList<String>arr=new ArrayList<>();
-        ArrayList<String>StoreName=new ArrayList<>();
-        ArrayList<String>Graph_Stats=new ArrayList<>();
-        XYChart.Series<String,Number> series=new XYChart.Series();
-        series.setName("Income");
+		ArrayList<String> arr = new ArrayList<>();
+		ArrayList<String> StoreName = new ArrayList<>();
+		ArrayList<String> Graph_Stats = new ArrayList<>();
+		XYChart.Series<String, Number> series = new XYChart.Series();
+		series.setName("Income");
 
-        arr.add(StoreID);
-        arr.add(Month);
-        arr.add(Year);
+		arr.add(StoreID);
+		arr.add(Month);
+		arr.add(Year);
 
-        chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID,StoreID));
-        StoreName= (ArrayList<String>) AnalyzeMessageFromServer.getData();
-        branchLabel.setText(StoreName.get(0)+" Report");
-        lineChart.setTitle("Chart Of "+Month+"/"+Year);
+		chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID, StoreID));
+		StoreName = (ArrayList<String>) AnalyzeMessageFromServer.getData();
+		branchLabel.setText(StoreName.get(0) + " Report");
+		lineChart.setTitle("Chart Of " + Month + "/" + Year);
 
+		chat.accept(new Message(MessageType.GRAPH_STATISTICS, arr));
+		Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 
+		for (int i = 1; i < Graph_Stats.size(); i++) {
+			if (Double.valueOf(Graph_Stats.get(i)) > maxWeek) {
+				maxWeek = Double.valueOf(Graph_Stats.get(i));
+			}
+			if (Double.valueOf(Graph_Stats.get(i)) < minWeek) {
+				minWeek = Double.valueOf(Graph_Stats.get(i));
+			}
+			sum += Double.valueOf(Graph_Stats.get(i));
+		}
 
-        chat.accept(new Message(MessageType.GRAPH_STATISTICS,arr));
-        Graph_Stats= (ArrayList<String>) AnalyzeMessageFromServer.getData();
+		BestWeek.setText(String.valueOf(maxWeek) + "ILS");
+		WorstWeek.setText(String.valueOf(minWeek) + "ILS");
+		TotalSales.setText(String.valueOf(sum) + "ILS");
 
-        for(int i=1;i<Graph_Stats.size();i++){
-            if(Double.valueOf(Graph_Stats.get(i))>maxWeek){
-                maxWeek=Double.valueOf(Graph_Stats.get(i));
-            }
-            if(Double.valueOf(Graph_Stats.get(i))<minWeek){
-                minWeek=Double.valueOf(Graph_Stats.get(i));
-            }
-            sum+=Double.valueOf(Graph_Stats.get(i));
-        }
+		series.getData().add(new XYChart.Data("Week1", Double.parseDouble(Graph_Stats.get(1))));
+		series.getData().add(new XYChart.Data("Week2", Double.parseDouble(Graph_Stats.get(2))));
+		series.getData().add(new XYChart.Data("Week3", Double.parseDouble(Graph_Stats.get(3))));
+		series.getData().add(new XYChart.Data("Week4", Double.parseDouble(Graph_Stats.get(4))));
+		lineChart.getData().add(series);
 
-        BestWeek.setText(String.valueOf(maxWeek)+"ILS");
-        WorstWeek.setText(String.valueOf(minWeek)+"ILS");
-        TotalSales.setText(String.valueOf(sum)+"ILS");
-
-
-        series.getData().add(new XYChart.Data("Week1",Double.parseDouble(Graph_Stats.get(1))));
-        series.getData().add(new XYChart.Data("Week2",Double.parseDouble(Graph_Stats.get(2))));
-        series.getData().add(new XYChart.Data("Week3",Double.parseDouble(Graph_Stats.get(3))));
-        series.getData().add(new XYChart.Data("Week4",Double.parseDouble(Graph_Stats.get(4))));
-        lineChart.getData().add(series);
-
-    }
-
+	}
 
 }

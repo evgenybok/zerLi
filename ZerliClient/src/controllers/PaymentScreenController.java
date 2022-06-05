@@ -135,6 +135,7 @@ public class PaymentScreenController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		deliveryDetailsStage.setTitle("Shopping Cart");
@@ -194,22 +195,22 @@ public class PaymentScreenController {
 			delviryFee.setText("12.00");
 			changeAmount(12.00);
 			Date currDate = new Date(System.currentTimeMillis());
-            Calendar supplyDateCalendar = Calendar.getInstance();
-            supplyDateCalendar.setTime(currDate);
-            supplyDateCalendar.add(Calendar.HOUR, 3);
-            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            String temp = formatter1.format(supplyDateCalendar.getTime());
-            String[] split = temp.split(" ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate localDate = LocalDate.parse(split[0], formatter);
-            SupplyTime.setText(split[1]);
-            DateSupply.setValue(localDate);
+			Calendar supplyDateCalendar = Calendar.getInstance();
+			supplyDateCalendar.setTime(currDate);
+			supplyDateCalendar.add(Calendar.HOUR, 3);
+			SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String temp = formatter1.format(supplyDateCalendar.getTime());
+			String[] split = temp.split(" ");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.parse(split[0], formatter);
+			SupplyTime.setText(split[1]);
+			DateSupply.setValue(localDate);
 
-            SupplyTime.setDisable(true);
-            SupplyTime.setOpacity(1.0);
+			SupplyTime.setDisable(true);
+			SupplyTime.setOpacity(1.0);
 
-            DateSupply.setDisable(true);
-            DateSupply.setOpacity(1.0);
+			DateSupply.setDisable(true);
+			DateSupply.setOpacity(1.0);
 		} else {
 			DeliveryFlag = false;
 			DeliveryExpressFlag = false;
@@ -261,7 +262,6 @@ public class PaymentScreenController {
 		date = accountCreditDetails.get(0).getExpiryDate();
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
-
 
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
@@ -319,12 +319,11 @@ public class PaymentScreenController {
 			double refund = 0;
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
-			if(phone.length()!=10)
-            {
-                JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+			if (phone.length() != 10) {
+				JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			Order order = new Order(Order.orderCount, totalPriceAfterDeliveryFee, greeting, storeid, orderDateString,
 					supplyDateTime, Status, supplytype, userID, refund, adress, reciverName, phone, Dorder);
 
@@ -345,14 +344,15 @@ public class PaymentScreenController {
 
 				AddGreetingController.Greeting = null;
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/OrderComplete.fxml")));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage cartDetailsScreen = new Stage();
-                cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
-                cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
-                cartDetailsScreen.setTitle("Shopping Cart");
-                cartDetailsScreen.setScene((new Scene(root1)));
-                cartDetailsScreen.show();
-                cartDetailsScreen.centerOnScreen();
+				Parent root1 = (Parent) fxmlLoader.load();
+				root1.getStylesheets().add("css/styleNew.css");
+				Stage cartDetailsScreen = new Stage();
+				cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
+				cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
+				cartDetailsScreen.setTitle("Shopping Cart");
+				cartDetailsScreen.setScene((new Scene(root1)));
+				cartDetailsScreen.show();
+				cartDetailsScreen.centerOnScreen();
 			} catch (Exception e) {
 				return;
 			}
@@ -392,7 +392,6 @@ public class PaymentScreenController {
 			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		///////////////////// need to check the comobox and date in same way*/
 	}
 
 	private String getStoreId() {
@@ -486,7 +485,7 @@ public class PaymentScreenController {
 		}
 		return "Regular";
 	}
-	
+
 	@FXML
 	void initialize() {
 

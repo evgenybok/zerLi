@@ -127,7 +127,7 @@ public class ItemInCartController extends CustomItemViewController {
 					}
 			}
 			// Premade catalog - deleting item from cart when amount is 0
-			if (!(item==null) && item.getType().equals("Premade") && amount == 0) {
+			if (!(item == null) && item.getType().equals("Premade") && amount == 0) {
 				indexToDelete = CartController.selectedProductsPremade.indexOf(item);
 				double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 				totalPriceTemp -= (Double.parseDouble(priceLabel.getText().substring(1)));
@@ -270,7 +270,8 @@ public class ItemInCartController extends CustomItemViewController {
 		else if (item.getType().equals("Premade")) {
 			indexToDelete = CartController.selectedProductsPremade.indexOf(item);
 			double totalPriceTemp = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
-			totalPriceTemp -= (Double.parseDouble(priceLabel.getText().substring(1)) * (Double.parseDouble(amountLabel.getText())));
+			totalPriceTemp -= (Double.parseDouble(priceLabel.getText().substring(1))
+					* (Double.parseDouble(amountLabel.getText())));
 			CartController.totalItemsPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
 			CartController.selectedProductsPremade.remove(item);
 			CartController.itemToAmountPremade.remove(item.getID());
@@ -281,7 +282,8 @@ public class ItemInCartController extends CustomItemViewController {
 			customItemToAmount.remove(item.getID());
 			double totalPriceTemp = Double
 					.parseDouble(CustomItemViewController.staticTotalItemPrice.getText().substring(1));
-			totalPriceTemp -= (Double.parseDouble(priceLabel.getText().substring(1)) * (Double.parseDouble(amountLabel.getText())));
+			totalPriceTemp -= (Double.parseDouble(priceLabel.getText().substring(1))
+					* (Double.parseDouble(amountLabel.getText())));
 			CustomItemViewController.staticTotalItemPrice.setText("\u20AA" + Double.toString(totalPriceTemp));
 			CustomItemViewController.staticGrid.getChildren().remove(customSelectedProducts.indexOf(item));
 			customSelectedProducts.remove(item);

@@ -105,6 +105,7 @@ public class CartController {
     	((Node) event.getSource()).getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/PaymentScreenNew2.fxml")));
         Parent root1 = (Parent) fxmlLoader.load();
+		root1.getStylesheets().add("css/styleNew.css");
         Stage paymentScreen = new Stage();
         paymentScreen.initModality(Modality.APPLICATION_MODAL);
         paymentScreen.initStyle(StageStyle.UNDECORATED);
@@ -118,6 +119,7 @@ public class CartController {
 	void btnGreeting(MouseEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/AddGreeting.fxml")));
         Parent root1 = (Parent) fxmlLoader.load();
+		root1.getStylesheets().add("css/styleNew.css");
         Stage cartDetailsScreen = new Stage();
         cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
         cartDetailsScreen.initStyle(StageStyle.UNDECORATED);

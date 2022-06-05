@@ -10,50 +10,48 @@ import java.util.Objects;
 
 public class ItemController {
 
+	@FXML
+	private ImageView img;
 
-    @FXML
-    private ImageView img;
+	@FXML
+	private Label nameLabel;
 
-    @FXML
-    private Label nameLabel;
+	@FXML
+	private Label priceLabel;
 
-    @FXML
-    private  Label priceLabel;
+	@FXML
+	private Label serial;
 
-    @FXML
-    private Label serial;
+	@FXML
+	private Label lblOnSale;
 
-    @FXML
-    private Label lblOnSale;
+	@FXML
+	private Label lblSalePrice;
 
-    @FXML
-    private Label lblSalePrice;
+	@FXML
+	private Label lblSlash;
 
-    @FXML
-    private Label lblSlash;
+	@FXML
+	private ImageView saleImg;
 
-    @FXML
-    private ImageView saleImg;
+	public void setData(Item item) {
 
-    public void setData(Item item) {
-
-        priceLabel.setText("\u20AA"+item.getPrice());
-        nameLabel.setText(item.getName());
-        Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
-        img.setImage(image);
-       // img.setFitHeight(150);
-       // img.setFitWidth(150);
-        serial.setText(Integer.toString(item.getID()));
-        if(item.isOnSale()) {
-        	//lblOnSale.setVisible(true);
-            Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
-            saleImg.setImage(saleImage);
-        	saleImg.setVisible(true);
-        	lblSalePrice.setText("\u20AA"+Double.toString(item.getSalePrice()));
-        	lblSalePrice.setVisible(true);
-        	lblSlash.setVisible(true);
-        }
-    }
-
+		priceLabel.setText("\u20AA" + item.getPrice());
+		nameLabel.setText(item.getName());
+		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream(item.getImgSrc()))));
+		img.setImage(image);
+		// img.setFitHeight(150);
+		// img.setFitWidth(150);
+		serial.setText(Integer.toString(item.getID()));
+		if (item.isOnSale()) {
+			// lblOnSale.setVisible(true);
+			Image saleImage = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/sale1.png"))));
+			saleImg.setImage(saleImage);
+			saleImg.setVisible(true);
+			lblSalePrice.setText("\u20AA" + Double.toString(item.getSalePrice()));
+			lblSalePrice.setVisible(true);
+			lblSlash.setVisible(true);
+		}
+	}
 
 }

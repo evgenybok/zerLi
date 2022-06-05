@@ -122,8 +122,8 @@ public class CustomCatalogController {
 	static Button staticViewCustomizedBouquet;
 
 	static Button staticAddToCart;
-	
-	public static Stage customCatalogStage;	//*********************
+
+	public static Stage customCatalogStage; // *********************
 
 	public static ArrayList<Item> selectedProducts = new ArrayList<Item>();
 	private ArrayList<Item> catalogProducts = new ArrayList<Item>();
@@ -301,10 +301,11 @@ public class CustomCatalogController {
 	@FXML
 	void btnMyCart(MouseEvent event) {
 		try {
-			customCatalogStage = (Stage) addToCart.getScene().getWindow(); //*********************
-			
+			customCatalogStage = (Stage) addToCart.getScene().getWindow(); // *********************
+
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
 			Parent root1 = (Parent) fxmlLoader.load();
+			root1.getStylesheets().add("css/styleNew.css");
 			Stage cartDetailsScreen = new Stage();
 			cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 			cartDetailsScreen.setTitle("Cart Details");
@@ -324,6 +325,7 @@ public class CustomCatalogController {
 			else {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CustomItemViewScreen.fxml")));
 				Parent root1 = (Parent) fxmlLoader.load();
+				root1.getStylesheets().add("css/styleNew.css");
 				Stage customizedItemDetailsScreen = new Stage();
 				customizedItemDetailsScreen.initModality(Modality.APPLICATION_MODAL);
 				customizedItemDetailsScreen.setTitle("Customized Item Details");
@@ -351,11 +353,11 @@ public class CustomCatalogController {
 			else
 				to = Double.parseDouble(txtTo.getText());
 			chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
-            items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
-            for (Item item : items) {
-                if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Self Assembly"))
-                    tempSelectedItems.add(item);
-            }
+			items = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
+			for (Item item : items) {
+				if (item.getPrice() >= from && item.getPrice() <= to && item.getType().equals("Self Assembly"))
+					tempSelectedItems.add(item);
+			}
 			catalogProducts = new ArrayList<Item>(tempSelectedItems);
 			initialize();
 			return;
@@ -478,8 +480,8 @@ public class CustomCatalogController {
 				}
 
 				anchorPane.setId(Integer.toString(catalogProducts.get(i).getID()));
-				flowerImage.setImage(new Image(Objects
-						.requireNonNull(getClass().getResourceAsStream(catalogProducts.get(i).getImgSrc().toString()))));
+				flowerImage.setImage(new Image(Objects.requireNonNull(
+						getClass().getResourceAsStream(catalogProducts.get(i).getImgSrc().toString()))));
 				flowerName.setText(catalogProducts.get(i).getName());
 				flowerPrice.setText("\u20AA" + catalogProducts.get(i).getPrice());
 				serialID.setText(Integer.toString(catalogProducts.get(i).getID()));

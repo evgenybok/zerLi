@@ -28,88 +28,84 @@ import logic.SingleSelfDelivery;
 
 public class DeliverySelfOrderController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private VBox DeliveryLayout;
+	@FXML
+	private VBox DeliveryLayout;
 
-    @FXML
-    private Text accountType;
+	@FXML
+	private Text accountType;
 
-    @FXML
-    private TextField orderIDtext;
-    @FXML
-    private Text userName;
+	@FXML
+	private TextField orderIDtext;
+	@FXML
+	private Text userName;
 
-    @FXML
-    void SearchByOrderID(MouseEvent event) {
-    	if(orderIDtext.getText().isEmpty())
-    	{
-    		DeliveryLayout.getChildren().clear();
-    		initialize();
-    	}
-    	else
-    	{
-    		DeliveryLayout.getChildren().clear();
-    		try {
-    			chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID,orderIDtext.getText()));
-    			if (AnalyzeMessageFromServer.getData().equals(null)) 
-    				return;
+	@FXML
+	void SearchByOrderID(MouseEvent event) {
+		if (orderIDtext.getText().isEmpty()) {
+			DeliveryLayout.getChildren().clear();
+			initialize();
+		} else {
+			DeliveryLayout.getChildren().clear();
+			try {
+				chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID, orderIDtext.getText()));
+				if (AnalyzeMessageFromServer.getData().equals(null))
+					return;
 
-    		} catch (Exception e) {
-    			return;
-    		};
-    		
-    		ArrayList<SingleSelfDelivery> list = (ArrayList<SingleSelfDelivery>)AnalyzeMessageFromServer.getData();
-    		try {
-    			for (int i = 0; i < list.size(); i++) {
-    				FXMLLoader fxmlLoader = new FXMLLoader();
-    				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
-    				HBox hBox = fxmlLoader.load();
-    				SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
-    				singleSelfDeliveryController.setData(list.get(i));
-    				DeliveryLayout.getChildren().add(hBox);
+			} catch (Exception e) {
+				return;
+			}
+			;
 
-    			}
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-    	}
+			ArrayList<SingleSelfDelivery> list = (ArrayList<SingleSelfDelivery>) AnalyzeMessageFromServer.getData();
+			try {
+				for (int i = 0; i < list.size(); i++) {
+					FXMLLoader fxmlLoader = new FXMLLoader();
+					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+					HBox hBox = fxmlLoader.load();
+					SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
+					singleSelfDeliveryController.setData(list.get(i));
+					DeliveryLayout.getChildren().add(hBox);
 
-    }
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliveryLoginScreen.fxml")));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader
+				.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliveryLoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Delivery Screen");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-    }
+	}
 
-    @FXML
-    void initialize() {
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'DeliverySelfOrder.fxml'.";
-        assert DeliveryLayout != null : "fx:id=\"DeliveryLayout\" was not injected: check your FXML file 'DeliverySelfOrder.fxml'.";
-        assert accountType != null : "fx:id=\"accountType\" was not injected: check your FXML file 'DeliverySelfOrder.fxml'.";
-        assert orderIDtext != null : "fx:id=\"orderIDtext\" was not injected: check your FXML file 'DeliverySelfOrder.fxml'.";
-        assert userName != null : "fx:id=\"userName\" was not injected: check your FXML file 'DeliverySelfOrder.fxml'.";
-        InsertToTable();
-    }
-    public void InsertToTable()
-    {
-    	ArrayList<SingleSelfDelivery> list= new ArrayList<>();
-    	chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS,LoginScreenController.user.getID()));
-    	list = (ArrayList<SingleSelfDelivery>) AnalyzeMessageFromServer.getData();
+	@FXML
+	void initialize() {
+		InsertToTable();
+	}
+
+	public void InsertToTable() {
+		ArrayList<SingleSelfDelivery> list = new ArrayList<>();
+		chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS, LoginScreenController.user.getID()));
+		list = (ArrayList<SingleSelfDelivery>) AnalyzeMessageFromServer.getData();
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
@@ -122,5 +118,5 @@ public class DeliverySelfOrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    }
+	}
 }

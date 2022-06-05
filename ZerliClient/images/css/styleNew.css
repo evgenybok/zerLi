@@ -35,3 +35,47 @@ background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63de
 .check-box .box {
   -fx-background-radius: 30;
 }
+.search-box{
+	-fx-background-color:#FFFFFF;
+	-fx-background-radius: 10;
+}
+
+.transparent{
+	-fx-background-color: rgba(0,0,0,0);
+	-fx-background-color: #e6ffcc;
+}
+
+.search-button{
+	-fx-background-color: #004d00;
+	-fx-background-radius: 50;
+}
+
+
+.chosen-zerli-cart{
+	-fx-background-color: #ffdab3;
+	-fx-background-radius: 30;
+}
+
+.comboBox{
+	-fx-background-color: rgba(255,255,255,0.3);
+	-fx-background-radius: 30;
+}
+
+.free-delivery-cart{
+	-fx-background-color: #004d00;
+	-fx-background-radius: 30;
+}
+
+.shopping-online-cart{
+	-fx-background-color: #daffb3;
+	-fx-background-radius: 30;
+}
+
+.flowers-item{
+	-fx-background-color: #e6ffcc;
+	-fx-background-radius: 30;
+}
+
+.transparentTwo{
+	-fx-background-color: rgba(0,0,0,0);
+}

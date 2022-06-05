@@ -102,6 +102,7 @@ public class AddCustomerController {
 					JOptionPane.INFORMATION_MESSAGE);
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			customerStage.setTitle("Customer");
@@ -179,6 +180,7 @@ public class AddCustomerController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Branch Manager Screen");

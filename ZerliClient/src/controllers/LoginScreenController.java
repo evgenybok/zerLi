@@ -30,86 +30,78 @@ import ocsf.server.ConnectionToClient;
 public class LoginScreenController {
 	ConnectionToClient client;
 	public static User user;
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Login;
+	@FXML
+	private Button Login;
 
-    @FXML
-    private ImageView LoginImage;
+	@FXML
+	private ImageView LoginImage;
 
-    @FXML
-    private AnchorPane LoginStage;
+	@FXML
+	private AnchorPane LoginStage;
 
-    @FXML
-    private PasswordField Password;
+	@FXML
+	private PasswordField Password;
 
-    @FXML
-    private TextField Username;
+	@FXML
+	private TextField Username;
 
-    @FXML
-    private Button exitBtn;
+	@FXML
+	private Button exitBtn;
 
-    @FXML
-    private Text lblZerli;
+	@FXML
+	private Text lblZerli;
 
-    @FXML
-    private ImageView imageLeft;
+	@FXML
+	private ImageView imageLeft;
 
-    @FXML
-    private ImageView imageRight;
+	@FXML
+	private ImageView imageRight;
 
-    @FXML
-    void ExitLogin(MouseEvent event) {
+	@FXML
+	void ExitLogin(MouseEvent event) {
 		chat.accept(new Message(MessageType.EXIT, null));
 		Stage stage;
 		stage = (Stage) LoginStage.getScene().getWindow();
 		stage.close();
 		System.exit(1);
-    }
-    
-    
+	}
 
-    @FXML
-    void btnLogin(MouseEvent event) throws IOException {
+	@FXML
+	void btnLogin(MouseEvent event) throws IOException {
 		if (Username.getText().equals("") || Password.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		try {
-			chat.accept(new Message(MessageType.LOGIN, new User(Username.getText(),Password.getText())));
+			chat.accept(new Message(MessageType.LOGIN, new User(Username.getText(), Password.getText())));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
-			
+			user = (User) AnalyzeMessageFromServer.getData();
 		} catch (Exception e) {
 			return;
 		}
 		;
-		user=(User)AnalyzeMessageFromServer.getData();
-		String roleScreen=caseRoleScreen(user.getRole());
+		String roleScreen = caseRoleScreen(user.getRole());
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(roleScreen)));
-		if(roleScreen.equals("/fxml/CustomerScreen.fxml")){
-			parent.getStylesheets().clear();
-			parent.getStylesheets().add("css/styleNew.css");
-		}
+		parent.getStylesheets().clear();
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage homeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		homeStage.setTitle("Home Screen");
 		homeStage.setScene(scene);
 		homeStage.show();
 		homeStage.centerOnScreen();
-    }
-    
-	public String caseRoleScreen(String Role)
-	{
-		switch(Role)
-		{
-		case "customer":
+	}
 
+	public String caseRoleScreen(String Role) {
+		switch (Role) {
+		case "customer":
 			return "/fxml/CustomerScreen.fxml";
 		case "worker":
 			return "/fxml/WorkerScreen.fxml";
@@ -119,7 +111,7 @@ public class LoginScreenController {
 			return "/fxml/DeliveryLoginScreen.fxml";
 		case "branch manager":
 			return "/fxml/branchManager.fxml";
-		case "customer specialist":	
+		case "customer specialist":
 			return "/fxml/CustomerSpecialistScreen.fxml";
 		case "customer service":
 			return "/fxml/CustomerService.fxml";
@@ -130,12 +122,12 @@ public class LoginScreenController {
 		}
 	}
 
-    @FXML
-    void initialize() {
+	@FXML
+	void initialize() {
 		Image imgLeft = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin.png")));
 		imageLeft.setImage(imgLeft);
 		Image imgRight = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bouquetLogin2.png")));
 		imageRight.setImage(imgRight);
-    }
+	}
 
 }

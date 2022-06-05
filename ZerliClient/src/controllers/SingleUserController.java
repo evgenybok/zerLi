@@ -28,62 +28,60 @@ import logic.SingleUser;
 
 public class SingleUserController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Label FirstName;
+	@FXML
+	private Label FirstName;
 
-    @FXML
-    private Label LastName;
+	@FXML
+	private Label LastName;
 
-    @FXML
-    private Label Status;
+	@FXML
+	private Label Status;
 
-    @FXML
-    private Label UserID;
-    @FXML
-    private ComboBox<String> StatusCombo;
-    @FXML
-    void btnSubmit(MouseEvent event) throws IOException {
-    	String Status = StatusCombo.getValue();
-    	String updateDetails = Status + "@"+ UserID.getText();
-    	try {
+	@FXML
+	private Label UserID;
+	@FXML
+	private ComboBox<String> StatusCombo;
+
+	@FXML
+	void btnSubmit(MouseEvent event) throws IOException {
+		String Status = StatusCombo.getValue();
+		String updateDetails = Status + "@" + UserID.getText();
+		try {
 			chat.accept(new Message(MessageType.UPDATE_STATUS_BY_MANAGER, updateDetails));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return;
 		} catch (Exception e) {
 			return;
 		}
-    	JOptionPane.showMessageDialog(null, "User Status Has Changed Successfully", "Info",JOptionPane.INFORMATION_MESSAGE);
-    	Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EditUsers.fxml")));
+		JOptionPane.showMessageDialog(null, "User Status Has Changed Successfully", "Info",
+				JOptionPane.INFORMATION_MESSAGE);
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EditUsers.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-		
-    }
-    public void setData(SingleUser singleUser) {
-    	UserID.setText(singleUser.getUserId());
-    	FirstName.setText(singleUser.getFirstName());
-    	LastName.setText(singleUser.getLastName());
-    	Status.setText(singleUser.getStatus());
-    }
 
-    @FXML
-    void initialize() {
-        
-        assert FirstName != null : "fx:id=\"FirstName\" was not injected: check your FXML file 'SingleUser.fxml'.";
-        assert LastName != null : "fx:id=\"LastName\" was not injected: check your FXML file 'SingleUser.fxml'.";
-        assert Status != null : "fx:id=\"Status\" was not injected: check your FXML file 'SingleUser.fxml'.";
-        assert UserID != null : "fx:id=\"UserID\" was not injected: check your FXML file 'SingleUser.fxml'.";
-        StatusCombo.setItems(FXCollections.observableArrayList("Active", "Frozen"));
-    }
-    
+	}
+
+	public void setData(SingleUser singleUser) {
+		UserID.setText(singleUser.getUserId());
+		FirstName.setText(singleUser.getFirstName());
+		LastName.setText(singleUser.getLastName());
+		Status.setText(singleUser.getStatus());
+	}
+
+	@FXML
+	void initialize() {
+		StatusCombo.setItems(FXCollections.observableArrayList("Active", "Frozen"));
+	}
 
 }

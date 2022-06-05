@@ -95,7 +95,7 @@ public class CustomerScreenController {
 	void btnCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/Catalog.fxml"))));
 		Scene scene = new Scene(parent);
-		parent.getStylesheets().add("css/style.css");
+		parent.getStylesheets().add("css/styleNew.css");
 		Stage premadeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		premadeStage.setTitle("Premade Catalog");
 		premadeStage.setScene(scene);
@@ -111,6 +111,7 @@ public class CustomerScreenController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(("/fxml/CartScreen.fxml")));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage cartDetailsScreen = new Stage();
+    		root1.getStylesheets().add("css/styleNew.css");
             cartDetailsScreen.initModality(Modality.APPLICATION_MODAL);
             cartDetailsScreen.initStyle(StageStyle.UNDECORATED);
             cartDetailsScreen.setTitle("Cart Details");
@@ -128,6 +129,7 @@ public class CustomerScreenController {
 				.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomCatalogScreen.fxml")));
 		Scene scene = new Scene(parent);
 		Stage customCatalogStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		parent.getStylesheets().add("css/styleNew.css");
 		customCatalogStage.setTitle("Custom Catalog");
 		customCatalogStage.setScene(scene);
 		customCatalogStage.show();
@@ -144,6 +146,7 @@ public class CustomerScreenController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -157,6 +160,7 @@ public class CustomerScreenController {
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ViewOrders.fxml")));
 		Scene scene = new Scene(parent);
 		Stage orderStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		parent.getStylesheets().add("css/styleNew.css");
 		orderStage.setTitle("Order Screen");
 		orderStage.setScene(scene);
 		orderStage.show();
@@ -176,7 +180,7 @@ public class CustomerScreenController {
 		}
 		;
 		this.AccountStatus.setText(accountStatus); // accountStatus - handled from DB
-		this.AccountType.setText("Customer"); // accountType - may be handled from DB
+		this.AccountType.setText("Customer"); // accountType 
 		this.UserName.setText(LoginScreenController.user.getUsername()); // userName
 		creditAmount.setText(Double.toString(accountZerliCredit));
 

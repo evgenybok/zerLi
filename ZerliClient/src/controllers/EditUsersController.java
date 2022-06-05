@@ -74,12 +74,13 @@ public class EditUsersController {
     void btnBack(MouseEvent event) throws IOException {
       	((Node) event.getSource()).getScene().getWindow().hide();
     		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+    		parent.getStylesheets().add("css/styleNew.css");
     		Scene scene = new Scene(parent);
-    		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    		customerStage.setTitle("Customer");
-    		customerStage.setScene(scene);
-    		customerStage.show();
-    		customerStage.centerOnScreen();
+    		Stage managerScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    		managerScreen.setTitle("Branch Manager Screen");
+    		managerScreen.setScene(scene);
+    		managerScreen.show();
+    		managerScreen.centerOnScreen();
     }
 
     @FXML

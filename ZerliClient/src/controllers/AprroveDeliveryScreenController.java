@@ -80,6 +80,7 @@ public class AprroveDeliveryScreenController {
 		JOptionPane.showMessageDialog(null, "The Delivery was Approved", "Info",JOptionPane.INFORMATION_MESSAGE);
 		DeliveryLoginScreenController.acceptStage.hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/DeliveryLoginScreen.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Delivery Screen");

@@ -39,6 +39,7 @@ public class AddGreetingController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		try {
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			deliveryDetailsStage.initModality(Modality.APPLICATION_MODAL);
@@ -57,6 +58,7 @@ public class AddGreetingController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		try {
 			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CartScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			deliveryDetailsStage.initModality(Modality.APPLICATION_MODAL);

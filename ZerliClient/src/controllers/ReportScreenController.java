@@ -16,64 +16,65 @@ import javafx.stage.Stage;
 
 public class ReportScreenController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button Back;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private Button ComplaintsReport;
+	@FXML
+	private Button ComplaintsReport;
 
-    @FXML
-    private Button IncomReport;
+	@FXML
+	private Button IncomReport;
 
-    @FXML
-    private Button OrderReport;
+	@FXML
+	private Button OrderReport;
 
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		customerStage.setTitle("Customer");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
-    }
+	}
 
-    @FXML
-    void btnComplaint(MouseEvent event) {
+	@FXML
+	void btnComplaint(MouseEvent event) {
 
-    }
+	}
 
-    @FXML
-    void btnIncome(MouseEvent event) throws IOException {
+	@FXML
+	void btnIncome(MouseEvent event) throws IOException {
 
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
-        Scene scene = new Scene(parent);
-        Stage IncomeReports = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        IncomeReports.setTitle("IncomeReports");
-        IncomeReports.setScene(scene);
-        IncomeReports.show();
-        IncomeReports.centerOnScreen();
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
+		Scene scene = new Scene(parent);
+		Stage IncomeReports = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		IncomeReports.setTitle("IncomeReports");
+		IncomeReports.setScene(scene);
+		IncomeReports.show();
+		IncomeReports.centerOnScreen();
 
+	}
 
-    }
+	@FXML
+	void btnOrders(MouseEvent event) {
 
-    @FXML
-    void btnOrders(MouseEvent event) {
+	}
 
-    }
+	@FXML
+	void initialize() {
 
-    @FXML
-    void initialize() {
-
-    }
+	}
 
 }

@@ -96,6 +96,7 @@ public class AnalyseSurveyController {
 		try {
 			Parent parent = FXMLLoader
 					.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerSpecialistScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			loginStage.setTitle("Customer Specialist Screen");
@@ -145,6 +146,7 @@ public class AnalyseSurveyController {
 		try {
 			Parent parent = FXMLLoader
 					.load(Objects.requireNonNull(getClass().getResource("/fxml/SurveyReportScreen.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
 			Scene scene = new Scene(parent);
 			Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			loginStage.setTitle("Survey Report Screen");

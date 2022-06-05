@@ -16,7 +16,7 @@
    <children>
       <HBox layoutY="456.0" prefHeight="57.0" prefWidth="652.0" spacing="10.0">
          <children>
-            <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/style.css" text="Close" textFill="WHITE">
+            <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/styleNew.css" text="Close" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets left="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="delete" mnemonicParsing="false" onMouseClicked="#btnDelete" prefHeight="47.0" prefWidth="105.0" stylesheets="@../../images/css/style.css" text="Delete" textFill="WHITE">
+            <Button fx:id="delete" mnemonicParsing="false" onMouseClicked="#btnDelete" prefHeight="47.0" prefWidth="105.0" stylesheets="@../../images/css/styleNew.css" text="Delete" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Insets left="330.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="save" mnemonicParsing="false" onMouseClicked="#btnSave" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/style.css" text="Save" textFill="WHITE">
+            <Button fx:id="save" mnemonicParsing="false" onMouseClicked="#btnSave" prefHeight="47.0" prefWidth="95.0" stylesheets="@../../images/css/styleNew.css" text="Save" textFill="WHITE">
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font>
