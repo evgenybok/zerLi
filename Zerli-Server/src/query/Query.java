@@ -6,22 +6,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import communication.MessageAnswer;
 import logic.Item;
 import logic.Order;
 import logic.SingleOrder;
+import logic.SingleWorker;
 import logic.User;
 
 /**
- * @author Evgeny
- * this class contains 'General Queries' related queries based on the DB.
+ * @author Evgeny this class contains 'General Queries' related queries based on
+ *         the DB.
  *
  */
 public class Query {
 
 	/**
-	 * @param user- logic User, contains user details.
-	 * updates login status in DB of given user when logging in.
-	 * changes logged in status in DB.
+	 * @param user- logic User, contains user details. updates login status in DB of
+	 *              given user when logging in. changes logged in status in DB.
 	 * @return logic User of user details.
 	 */
 	public static User Login(User user) {
@@ -71,8 +72,8 @@ public class Query {
 	}
 
 	/**
-	 * @param user- logic User, contains user details.
-	 * Disconnects given single user.
+	 * @param user- logic User, contains user details. Disconnects given single
+	 *              user.
 	 * @return true if update was successful, false otherwise.
 	 */
 	public static boolean Disconnect(User user) {
@@ -212,6 +213,25 @@ public class Query {
 		}
 		return items;
 
+	}
+
+	public static ArrayList<SingleWorker> GetWorkers() {
+		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'customer service';";
+		ArrayList<SingleWorker> workers = new ArrayList<SingleWorker>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while(rs.next())
+			{
+				String id=rs.getString("id");
+				String firstname=rs.getString("FirstName");
+				String lastname=rs.getString("LastName");
+				String role=rs.getString("Role");
+				workers.add(new SingleWorker(id,firstname,lastname,role));
+			}
+		} catch (SQLException e) {
+		}
+		return workers;
 	}
 
 }

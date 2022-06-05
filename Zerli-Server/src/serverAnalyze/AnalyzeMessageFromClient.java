@@ -711,6 +711,27 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+		case GET_WORKERS:
+			try {
+				receivedMessage.setMessageData(Query.GetWorkers());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_WORKERS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case UPDATE_ROLE_BY_MANAGER:
+			try {
+				AccountDetailsQuery.UpdateRoleByManager((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 
 		default:// ;
 

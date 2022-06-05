@@ -16,6 +16,7 @@ import logic.SingleOrder;
 import logic.SurveyAnswer;
 import logic.SingleSelfDelivery;
 import logic.SingleUser;
+import logic.SingleWorker;
 import logic.User;
 
 /**
@@ -477,6 +478,21 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case GET_WORKERS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
+		case UPDATE_ROLE_BY_MANAGER:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}
@@ -518,6 +534,8 @@ public class AnalyzeMessageFromServer {
 					return (ArrayList<SingleUser>) res;
 				if (((ArrayList<?>) res).get(0) instanceof SingleManageOrder)
 					return (ArrayList<SingleManageOrder>) res;
+				if (((ArrayList<?>) res).get(0) instanceof SingleWorker)
+					return (ArrayList<SingleWorker>) res;
 
 			} catch (IndexOutOfBoundsException e) {
 				return null;
