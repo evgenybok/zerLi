@@ -221,7 +221,7 @@ public class Query {
 	}
 
 	public static ArrayList<SingleWorker> GetWorkers() {
-		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'customer service';";
+		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'Marketing' OR Role = 'customer service';";
 		ArrayList<SingleWorker> workers = new ArrayList<SingleWorker>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);

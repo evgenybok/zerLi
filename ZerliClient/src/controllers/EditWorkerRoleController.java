@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -59,7 +60,8 @@ public class EditWorkerRoleController {
 	@FXML
 	private VBox UsersLayout;
 	
-	
+    @FXML
+    private ImageView avatarImg;
 
 	@FXML
 	void btnBack(MouseEvent event) {
@@ -117,6 +119,8 @@ public class EditWorkerRoleController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());
 		ArrayList<SingleWorker> workers = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_WORKERS, null));

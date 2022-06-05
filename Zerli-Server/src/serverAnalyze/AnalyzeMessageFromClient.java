@@ -607,6 +607,7 @@ public class AnalyzeMessageFromClient {
 		case SAVE_ANALYSIS:
 			String[] report = (String[]) receivedMessage.getMessageData();
 			try {
+
 				PDDocument conclusion = new PDDocument();
 				PDPage page = new PDPage();
 				conclusion.addPage(page);

@@ -613,6 +613,8 @@ public class PaymentScreenController {
 				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-deliver-food-50 (1).png")));
 		DeliveryImg.setImage(deliveryImg);
 		Area.setItems(FXCollections.observableArrayList("North", "East", "Center", "South"));
+		Area.getSelectionModel().selectFirst();
+		StoreName.getSelectionModel().selectFirst();
 		changeAmount(0.00);
 		delviryFee.setText("0.00");
 		showCreditDetail();

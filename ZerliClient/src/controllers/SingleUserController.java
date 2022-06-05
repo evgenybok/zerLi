@@ -98,6 +98,7 @@ public class SingleUserController {
 	@FXML
 	void initialize() {
 		StatusCombo.setItems(FXCollections.observableArrayList("Active", "Frozen"));
+		StatusCombo.getSelectionModel().selectFirst();
 	}
 
 }
