@@ -385,7 +385,7 @@ public class GetOrderQuery {
 	 */
 	public static String GetStoreIDByOrderID(String orderID)
 	{
-		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber=" + "'orderID';");
+		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber='" + orderID+"';");
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			st.executeQuery();

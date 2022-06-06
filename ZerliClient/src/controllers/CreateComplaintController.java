@@ -102,7 +102,7 @@ public class CreateComplaintController {
 				String description = DescriptionField.getText();
 				String handelerIdString = LoginScreenController.user.getID();
 				double refund = 0.00;
-				String complainStatus = "Pending";
+				String complainStatus = "WaitForHandle";
 				LocalDateTime date=LocalDateTime.now();
 				chat.accept(new Message(MessageType.GET_STORE_ID_BY_ORDER_ID, orderid + "@" + user_id));
 				String storeID=(String) AnalyzeMessageFromServer.getData();
