@@ -103,7 +103,6 @@ public class ItemEditController {
 		try {
 			chat.accept(new Message(MessageType.DELETE_ITEM, currentItem));
 		} catch (Exception e) {
-			System.out.println("DELETE ITEM COMM FAILED");
 			return;
 		}
 		JOptionPane.showMessageDialog(null, "Item deleted successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -184,14 +183,12 @@ public class ItemEditController {
 				try {
 					chat.accept(new Message(MessageType.UPDATE_CATALOG, updatedItem));
 				} catch (Exception e) {
-					System.out.println("UPDATE CATALOG COMM FAILED");
 					return;
 				}
 			} else {
 				try {
 					chat.accept(new Message(MessageType.ADD_NEW_ITEM, updatedItem));
 				} catch (Exception e) {
-					System.out.println("ADD NEW ITEM COMM FAILED");
 					return;
 				}
 			}

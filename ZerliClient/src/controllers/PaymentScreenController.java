@@ -299,6 +299,12 @@ public class PaymentScreenController {
 		date = accountCreditDetails.get(0).getExpiryDate();
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
+	
+	private boolean CheckTime() {
+		Date currDate = new Date(System.currentTimeMillis());
+		Calendar supplyDateCalendar = Calendar.getInstance();
+		supplyDateCalendar.setTime(currDate);
+	}
 
 	/**
 	 * Finishes the payment and adds the order to the DB based on the parameters entered.
@@ -534,7 +540,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Converts string to the given format
-	 * @param mydate
+	 * @param mydate received date to convert
 	 * @return date with the given format
 	 */
 	public String convertToDate(String mydate) {
@@ -564,7 +570,7 @@ public class PaymentScreenController {
 	// for secure payment
 	/**
 	 * Hides the credit card number except for the final 4 digits.
-	 * @param number
+	 * @param number credit card number
 	 * @return new partially hidden credit card number
 	 */
 	public String ChangeCreditCard(String number) {

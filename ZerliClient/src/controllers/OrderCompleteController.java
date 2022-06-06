@@ -61,7 +61,6 @@ public class OrderCompleteController {
 				+ ",Your Order is Confirmed! We'll send you order confirmation email to "
 				+ LoginScreenController.user.getEmail() + "  and SMS to " + PaymentScreenController.phoneNumber
 				+ " as soon as the branch manager will approve your order.");
-		System.out.println(completeMsg);
 		confirmationTxt.setText(completeMsg);
 	}
 }

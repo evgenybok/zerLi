@@ -157,7 +157,7 @@ public class CreateSurveyController {
 
 	/**
 	 * Inserts the filled survey to the DB
-	 * @param survey
+	 * @param survey given survey to insert
 	 * @return true if successful, false otherwise.
 	 */
 	public boolean insertSurveyToDB(Survey survey) {

@@ -129,7 +129,7 @@ public class AddCustomerController {
 	}
 		/**
 		 * Checks if current string contains anything that is not a number.
-		 * @param str String
+		 * @param str Given string
 		 * @return true if only numbers, false otherwise.
 		 */
 		private boolean ContainsChar(String str) {
@@ -143,8 +143,8 @@ public class AddCustomerController {
 	
 		/**
 	     * Method that checks if there is another account with the entered username in the DB.
-	     * @param username
-	     * @return
+	     * @param username username
+	     * @return true if exists, false otherwise.
 	     */
 	public boolean CheckIfUserNameExist(String username) {
 		try {
@@ -165,7 +165,7 @@ public class AddCustomerController {
 
 	/**
      * Inserts the newly created account to table Users in the DB.
-     * @param user
+     * @param user new user to be inserted to the DB
      */
 	public void InsertNewUser(User user) {
 

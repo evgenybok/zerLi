@@ -108,7 +108,6 @@ public class SurveyReportController {
 		for(int i=filePath.length()-4;i<filePath.length();i++) {
 			temp+=filePath.charAt(i);
 		}
-		System.out.println(temp);
 		if(!temp.equals(".pdf")){
 			JOptionPane.showMessageDialog(null, "The file format has to be '.pdf'", "Info",
 					JOptionPane.INFORMATION_MESSAGE);

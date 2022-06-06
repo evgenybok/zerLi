@@ -65,8 +65,8 @@ public class ItemInCartController extends CustomItemViewController {
 
 	/**
 	 * Sets the custom item data and amount in the custom bouquet.
-	 * @param item
-	 * @param amount
+	 * @param item chosen item
+	 * @param amount amount of selected item
 	 */
 	public void setData(Item item, String amount) {
 		this.item = item;
@@ -86,16 +86,13 @@ public class ItemInCartController extends CustomItemViewController {
 
 	/**
 	 * Sets the custom item data in the cart
-	 * @param customItemData
+	 * @param customItemData data for the custom item shown below
 	 */
 	public void setData(String[] customItemData) {
 		bouquetNumber = Integer.parseInt(customItemData[3]);
 		amountLabel.setText("1");
 		priceLabel.setText("\u20AA" + customItemData[2].toString());
 		totalPriceLabel.setText("\u20AA" + customItemData[2]);
-		/*
-		 * if (item.isOnSale()) { //price label font color }
-		 */
 		nameLabel.setText(customItemData[0] + ": " + customItemData[1]);
 		Image image = new Image((Objects.requireNonNull(getClass().getResourceAsStream("/images/SA2.png"))));
 		img.setImage(image);

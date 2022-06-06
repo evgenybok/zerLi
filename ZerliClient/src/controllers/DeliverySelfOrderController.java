@@ -77,7 +77,7 @@ public class DeliverySelfOrderController {
 					if(list.get(i).getOrderID()==(Integer.parseInt(orderIDtext.getText())))
 					{
 						FXMLLoader fxmlLoader = new FXMLLoader();
-						fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+						fxmlLoader.setLocation(getClass().getResource("/fxml/singleSelfDelivery.fxml"));
 						HBox hBox = fxmlLoader.load();
 						SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
 						singleSelfDeliveryController.setData(list.get(i));

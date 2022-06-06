@@ -141,6 +141,8 @@ public class EditWorkerRoleController {
 		chat.accept(new Message(MessageType.GET_WORKERS, null));
 		workers = (ArrayList<SingleWorker>) AnalyzeMessageFromServer.getData();
 		try {
+			if(workers!=null)
+			{
 			for (int i = 0; i < workers.size(); i++) {
 					FXMLLoader fxmlLoader = new FXMLLoader();
 					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleWorkerScreen.fxml"));
@@ -148,6 +150,7 @@ public class EditWorkerRoleController {
 					SingleWorkerController singleWorkerController = fxmlLoader.getController();
 					singleWorkerController.setData(workers.get(i));
 					UsersLayout.getChildren().add(hBox);
+			}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

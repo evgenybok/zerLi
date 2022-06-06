@@ -113,7 +113,7 @@ public class IPScreenController {
 
 	/**
 	 * Opens IP configuration screen
-	 * @param primaryStage
+	 * @param primaryStage main stage
 	 * @throws Exception
 	 */
 	public void start(Stage primaryStage) throws Exception {

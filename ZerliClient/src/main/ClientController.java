@@ -15,8 +15,8 @@ public class ClientController implements ChatIF {
 
 	/**
 	 * Connects current client to the server
-	 * @param host
-	 * @param port
+	 * @param host host string
+	 * @param port port number
 	 */
 	public ClientController(String host, int port) {
 		try {
@@ -30,7 +30,7 @@ public class ClientController implements ChatIF {
 
 	/**
 	 * Communication between the client and the server used to send/fetch data.
-	 * @param str
+	 * @param str message data
 	 */
 	public void accept(Message str) {
 		client.handleMessageFromClientUI(str);

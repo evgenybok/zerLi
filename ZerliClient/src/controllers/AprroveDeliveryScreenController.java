@@ -107,9 +107,9 @@ public class AprroveDeliveryScreenController {
 
 	/**
 	 * Calculates deserved refund
-	 * @param supply
-	 * @param curr
-	 * @param orderid
+	 * @param supply supply time
+	 * @param curr current time
+	 * @param orderid order ID number
 	 */
 	public void difBetweenDate(String supply, String curr, int orderid) {
 		Date time1;
