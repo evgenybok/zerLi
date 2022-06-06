@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingleDeliveryController">
+   <children>
+      <Label fx:id="orderid" prefHeight="27.0" prefWidth="84.0" text="order id">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="storeName" prefHeight="24.0" prefWidth="110.0" text="Store Name">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="supplydate" prefHeight="27.0" prefWidth="214.0" text="         Supply Date">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="address" prefHeight="27.0" prefWidth="104.0" text="Address">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="reciverName" prefHeight="27.0" prefWidth="110.0" text=" Name">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="reciverPhone" prefHeight="27.0" prefWidth="125.0" text=" phone">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="dOrder" prefHeight="27.0" prefWidth="154.0" text="Delivery Type">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="181.0">
+         <children>
+            <Button fx:id="Confirm" mnemonicParsing="false" onMouseClicked="#ConfirmBtn" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" text="confirm" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

@@ -119,7 +119,7 @@ public class ManagerOrdersController {
 		try {
 			if(!(order==null)) {
 			for (int i = 0; i < order.size(); i++) {
-				if(order.get(i).getStatus().equals("Pending"))
+				if(order.get(i).getStatus().equals("Pending")||order.get(i).getStatus().equals("Cancel Request"))
 				{
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleOrderBranchMn.fxml"));
