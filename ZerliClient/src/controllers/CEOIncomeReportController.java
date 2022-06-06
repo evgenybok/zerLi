@@ -28,11 +28,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -48,7 +49,8 @@ public class CEOIncomeReportController {
 	private Button Back;
 
 	@FXML
-	private LineChart<String, Number> lineChart;
+	private BarChart<String, Number> BarChart;
+
 	@FXML
 	private TextField BestWeek;
 
@@ -62,8 +64,15 @@ public class CEOIncomeReportController {
 
 	@FXML
 	private TextField TotalSales;
+
+	@FXML
+	private ImageView avatarImg;
+
 	@FXML
 	private Label branchLabel;
+
+	@FXML
+	private ImageView reportImg;
 
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
@@ -99,7 +108,7 @@ public class CEOIncomeReportController {
 			chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID, StoreID));
 			StoreName = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			branchLabel.setText(StoreName.get(0) + " Report");
-			lineChart.setTitle("Chart Of " + Month + "/" + Year);
+			BarChart.setTitle("Chart Of " + Month + "/" + Year);
 
 			chat.accept(new Message(MessageType.GRAPH_STATISTICS, arr));
 			Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
@@ -128,7 +137,7 @@ public class CEOIncomeReportController {
 			series.getData().add(new XYChart.Data("Week2", Double.parseDouble(Graph_Stats.get(2))));
 			series.getData().add(new XYChart.Data("Week3", Double.parseDouble(Graph_Stats.get(3))));
 			series.getData().add(new XYChart.Data("Week4", Double.parseDouble(Graph_Stats.get(4))));
-			lineChart.getData().add(series);
+			BarChart.getData().add(series);
 
 		}
 
@@ -147,7 +156,7 @@ public class CEOIncomeReportController {
 			chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID, StoreID));
 			StoreName = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			branchLabel.setText(StoreName.get(0) + " Report");
-			lineChart.setTitle("Chart Of " + Quarter + "/" + Year);
+			BarChart.setTitle("Chart Of " + Quarter + "/" + Year);
 
 			chat.accept(new Message(MessageType.INCOME_QUARTER_GRAPH, arr));
 			Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
@@ -180,7 +189,7 @@ public class CEOIncomeReportController {
 			series.getData().add(new XYChart.Data("Month1", Double.parseDouble(Graph_Stats.get(0))));
 			series.getData().add(new XYChart.Data("Month2", Double.parseDouble(Graph_Stats.get(1))));
 			series.getData().add(new XYChart.Data("Month3", Double.parseDouble(Graph_Stats.get(2))));
-			lineChart.getData().add(series);
+			BarChart.getData().add(series);
 		}
 
 		else if (FlagStore1 == 0 && FlagStore2 == 1) {
@@ -198,7 +207,7 @@ public class CEOIncomeReportController {
 			chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID, StoreID2));
 			StoreName = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			branchLabel.setText(StoreName.get(0) + " Report");
-			lineChart.setTitle("Chart Of " + Quarter2 + "/" + Year2);
+			BarChart.setTitle("Chart Of " + Quarter2 + "/" + Year2);
 
 			chat.accept(new Message(MessageType.INCOME_QUARTER_GRAPH, arr));
 			Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
@@ -231,7 +240,7 @@ public class CEOIncomeReportController {
 			series.getData().add(new XYChart.Data("Month1", Double.parseDouble(Graph_Stats.get(0))));
 			series.getData().add(new XYChart.Data("Month2", Double.parseDouble(Graph_Stats.get(1))));
 			series.getData().add(new XYChart.Data("Month3", Double.parseDouble(Graph_Stats.get(2))));
-			lineChart.getData().add(series);
+			BarChart.getData().add(series);
 
 		}
 
@@ -250,7 +259,7 @@ public class CEOIncomeReportController {
 			chat.accept(new Message(MessageType.GET_STORE_NAME_BY_ID, StoreID));
 			StoreName = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 			branchLabel.setText(StoreName.get(0) + " Report");
-			lineChart.setTitle("Chart Of " + Quarter + "/" + Year);
+			BarChart.setTitle("Chart Of " + Quarter + "/" + Year);
 
 			chat.accept(new Message(MessageType.INCOME_QUARTER_GRAPH, arr));
 			Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
@@ -284,7 +293,7 @@ public class CEOIncomeReportController {
 			series.getData().add(new XYChart.Data("Month1", Double.parseDouble(Graph_Stats.get(0))));
 			series.getData().add(new XYChart.Data("Month2", Double.parseDouble(Graph_Stats.get(1))));
 			series.getData().add(new XYChart.Data("Month3", Double.parseDouble(Graph_Stats.get(2))));
-			lineChart.getData().add(series);
+			BarChart.getData().add(series);
 
 		}
 
@@ -316,9 +325,9 @@ public class CEOIncomeReportController {
 
 			branchLabel.setText(StoreName.get(0) + " " + StoreName2.get(0) + " Comparison Reports");
 			if (Quarter.equals(Quarter2))
-				lineChart.setTitle("Chart Of Quarter " + Quarter + " for Year" + Year);
+				BarChart.setTitle("Chart Of Quarter " + Quarter + " for Year" + Year);
 			else
-				lineChart.setTitle("Chart Of Quarter  " + Quarter + " And Quarter " + Quarter2 + " for Year " + Year);
+				BarChart.setTitle("Chart Of Quarter  " + Quarter + " And Quarter " + Quarter2 + " for Year " + Year);
 
 			chat.accept(new Message(MessageType.INCOME_QUARTER_GRAPH, arr));
 			Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
@@ -368,9 +377,9 @@ public class CEOIncomeReportController {
 				BestWeek.setText(String.valueOf(maxWeek2) + " ILS");
 
 			if (minWeek > minWeek2)
-				WorstWeek.setText(String.valueOf(minWeek) + " ILS");
-			else
 				WorstWeek.setText(String.valueOf(minWeek2) + " ILS");
+			else
+				WorstWeek.setText(String.valueOf(minWeek) + " ILS");
 
 			TotalSales.setText(String.valueOf(sum) + " ILS");
 
@@ -388,8 +397,8 @@ public class CEOIncomeReportController {
 			series2.getData().add(new XYChart.Data("Month2", Double.parseDouble(Graph_Stats2.get(1))));
 			series2.getData().add(new XYChart.Data("Month3", Double.parseDouble(Graph_Stats2.get(2))));
 
-			lineChart.getData().add(series);
-			lineChart.getData().add(series2);
+			BarChart.getData().add(series);
+			BarChart.getData().add(series2);
 
 		}
 

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
@@ -22,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import static controllers.CEOIncomeController.Quarter;
+import static controllers.CEOIncomeController.Year;
 import static controllers.IPScreenController.chat;
 import static controllers.ReportsController.*;
 import static controllers.ReportsController.Year;
@@ -68,14 +72,6 @@ public class OrderReportController {
 
     @FXML
     void initialize() {
-        assert branchLabel != null : "fx:id=\"branchLabel\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert lineChart != null : "fx:id=\"lineChart\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert BestWeek != null : "fx:id=\"BestWeek\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert WorstWeek != null : "fx:id=\"WorstWeek\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert TotalOrders != null : "fx:id=\"TotalOrders\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'OrderReport.fxml'.";
-        assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'chart.fxml'.";
-        assert lineChart != null : "fx:id=\"lineChart\" was not injected: check your FXML file 'chart.fxml'.";
         int maxWeek=0;
         int minWeek= Integer.MAX_VALUE;
         int sum=0;
@@ -94,11 +90,19 @@ public class OrderReportController {
         StoreName= (ArrayList<String>) AnalyzeMessageFromServer.getData();
         branchLabel.setText(StoreName.get(0)+" Report");
         lineChart.setTitle("Chart Of "+Month+"/"+Year);
+        
+        System.out.println(StoreName);
 
 
 
         chat.accept(new Message(MessageType.ORDER_GRAPH_STATISTICS,arr));
         Graph_Stats= (ArrayList<String>) AnalyzeMessageFromServer.getData();
+        
+        if (Graph_Stats == null) {
+			JOptionPane.showMessageDialog(null, "No such a report For Quarter " + Quarter + " of Year " + Year,
+					"Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
         for(int i=1;i<Graph_Stats.size();i++){
             if(Integer.valueOf(Graph_Stats.get(i))>maxWeek){

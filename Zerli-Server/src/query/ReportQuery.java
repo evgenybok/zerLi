@@ -108,7 +108,7 @@ public class ReportQuery {
 	public static void CreateComplaintQuarterReports(String StoreID, String Quarter, String Year) throws SQLException {
         String query, query1, query2;
         query = "INSERT INTO zerli.complaintreport (StoreID,QuarterNumber,Year,Month1,Month2,Month3) VALUES('" + StoreID + "','" + Quarter + "','" + Year + "','" + 0 + "','" + 0 + "','" + 0 + "');";
-        System.out.println(query);
+   
 
         try {
             PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
@@ -379,6 +379,8 @@ public class ReportQuery {
 
 		String query = "SELECT * FROM zerli.orderreport WHERE StoreID= '" + StoreID + "' AND Month='" + Month
 				+ "' AND Year='" + Year + "';";
+		
+		System.out.println(StoreID+Month+Year);
 		ArrayList<String> GraphStats = new ArrayList<>();
 
 		try {
