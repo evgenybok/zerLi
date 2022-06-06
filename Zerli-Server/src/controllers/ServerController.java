@@ -36,6 +36,10 @@ import query.ConnectToDB;
 import query.ConnectToExternalDB;
 import query.Query;
 
+/**
+ * @author Evgeny
+ * Server screen, connects to the SQL DB and allows import of external DB, opens server socket.
+ */
 @SuppressWarnings({ "unused", "serial" })
 public class ServerController extends JFrame {
 	private EchoServer echoServer;
@@ -119,6 +123,10 @@ public class ServerController extends JFrame {
 
 	public static ObservableList<ClientDoc> clients = FXCollections.observableArrayList();
 
+	/**
+	 * Initialize screen to show data
+	 * @throws UnknownHostException
+	 */
 	@FXML
 	void initialize() throws UnknownHostException {
 
@@ -132,20 +140,37 @@ public class ServerController extends JFrame {
 
 	}
 
+	/**
+	 * Console setter
+	 * @param console
+	 */
 	public void setConsole(TextArea console) {
 		this.console = console;
 	}
 
+	/**
+	 * Console Getter
+	 * @return
+	 */
 	public TextArea getConsole() {
 		return console;
 	}
 
+	/**
+	 * IP getter
+	 * @throws UnknownHostException
+	 */
 	public void getIP() throws UnknownHostException {
 		InetAddress ia = InetAddress.getLocalHost();
 		String str = ia.getHostAddress();
 		IP.setText(str);
 	}
 
+	/**
+	 * Opens socket and the server
+	 * @param event
+	 * @throws UnknownHostException
+	 */
 	@FXML
 	void ClickOnConnect(MouseEvent event) throws UnknownHostException {
 		ServerConnection.startServer(Port.getText().toString(), this);
@@ -174,6 +199,11 @@ public class ServerController extends JFrame {
 		}
 	}
 
+	/**
+	 * Starts the server screen
+	 * @param primaryStage
+	 * @throws Exception
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/controllers/server.fxml")));
 		Scene scene = new Scene(root);
@@ -185,11 +215,19 @@ public class ServerController extends JFrame {
 		primaryStage.show();
 	}
 
+	/**
+	 * Prints text in server console in chosen format
+	 * @param msg
+	 */
 	public void addText(String msg) {
 		String timeStamp = new SimpleDateFormat("[dd.MM.yyyy]  [HH:mm:ss]  ").format(Calendar.getInstance().getTime());
 		Platform.runLater(() -> console.appendText(timeStamp + msg + "\n"));
 	}
 
+	/**
+	 * Disconnects the server and closes socket
+	 * @param event
+	 */
 	@FXML
 	void ClickOnDisconnect(MouseEvent event) {
 		ServerConnection.stopServer(this);
@@ -201,7 +239,10 @@ public class ServerController extends JFrame {
 
 	}
 
-	// get info from external database
+	/**
+	 * Get info from external database
+	 * @param event
+	 */
 	@FXML
 	void btnImportData(MouseEvent event) {
 		try {
@@ -217,6 +258,10 @@ public class ServerController extends JFrame {
 		;
 	}
 
+	/**
+	 * Closes server screen
+	 * @param event
+	 */
 	@FXML
 	void CloseApp(MouseEvent event) {
 		stage = (Stage) MainStage.getScene().getWindow();
