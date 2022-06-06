@@ -332,7 +332,29 @@ public class PaymentScreenController {
 				return;
 			}
 			String tu = SupplyTime.getText(); // change
-			String supplyDateTime = change(su, tu);
+			for(int i=0;i<tu.length();i++)
+			{
+				char ch=tu.charAt(i);
+				System.out.println(ch);
+				
+				if(i==2 && tu.charAt(i)!=':')
+				{
+					JOptionPane.showMessageDialog(null, "Time format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else if(!(tu.charAt(i)>='0' && tu.charAt(i)<='9') &&i!=2)
+				{
+					JOptionPane.showMessageDialog(null, "Time format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+			String supplyDateTime;
+			if(change(su, tu)==null)
+			{
+				JOptionPane.showMessageDialog(null, "Delivery takes at least 3 hours.", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			supplyDateTime=change(su, tu);
 			if (DeliveryFlag) {
 				Date currDate = new Date(System.currentTimeMillis());
 				Calendar currentCalendar = Calendar.getInstance();

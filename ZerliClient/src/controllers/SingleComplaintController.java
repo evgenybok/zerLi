@@ -3,6 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.SingleComplaint;
@@ -44,10 +47,29 @@ public class SingleComplaintController {
      * customer service user decides not to refund the selected client.
      * @param event
      */
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void NotRefund(MouseEvent event) {
     	try {
 			chat.accept(new Message(MessageType.UPDATE_STATUS_COMPLAINT,orderID.getText()));
+			List<SingleComplaint> complaint = new ArrayList<>();
+			chat.accept(new Message(MessageType.GET_COMPLAINTS, LoginScreenController.user.getID()));
+			complaint=(List<SingleComplaint>) AnalyzeMessageFromServer.getData();
+			HandelComplaintController.staticComplaintLayout.getChildren().clear();
+			if (!(complaint == null)) {
+				try {
+					for (int i = 0; i < complaint.size(); i++) {
+						FXMLLoader fxmlLoader = new FXMLLoader();
+						fxmlLoader.setLocation(getClass().getResource("/fxml/SingleComplaintScreen.fxml"));
+						HBox hBox = fxmlLoader.load();
+						SingleComplaintController singleComplaintController = fxmlLoader.getController();
+						singleComplaintController.setData(complaint.get(i));
+						HandelComplaintController.staticComplaintLayout.getChildren().add(hBox);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			if (AnalyzeMessageFromServer.getData().equals(null)) 
 				return;
 		} catch (Exception e) {

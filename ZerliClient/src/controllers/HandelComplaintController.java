@@ -53,7 +53,9 @@ public class HandelComplaintController {
 
 	@FXML
 	private Text userName;
+	
 
+	public static VBox staticComplaintLayout;
 	/**
 	 * Sends the user back to the customer service main screen
 	 * 
@@ -80,6 +82,7 @@ public class HandelComplaintController {
 	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void initialize() {
+		staticComplaintLayout=ComplaintLayout;
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());
