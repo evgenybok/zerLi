@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -51,6 +53,9 @@ public class CEOComplaintController {
 
 	@FXML
 	private Button View;
+
+	@FXML
+	private ImageView avatarImg;
 
 	int FlagComplaint = 0;
 
@@ -106,6 +111,9 @@ public class CEOComplaintController {
 
 	@FXML
 	void initialize() {
+		userName.setText(LoginScreenController.user.getUsername()); // userName
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 		ComplaintYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016",
 				"2017", "2018", "2019", "2020", "2021", "2022"));
 		ComplaintQuart.setItems(FXCollections.observableArrayList("01", "02", "03", "04"));

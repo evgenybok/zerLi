@@ -1,10 +1,17 @@
 package controllers;
 
+import static controllers.CEOOrderController.Month;
+import static controllers.CEOOrderController.StoreID;
+import static controllers.CEOOrderController.Year;
+import static controllers.IPScreenController.chat;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -21,11 +28,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-
-import static controllers.CEOOrderController.*;
-import static controllers.IPScreenController.chat;
 
 
 public class CEOOrderReportController {
