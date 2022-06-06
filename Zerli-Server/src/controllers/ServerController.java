@@ -211,10 +211,12 @@ public class ServerController extends JFrame {
 			ConnectToExternalDB.connectionToExternalDB(connExternalDB);
 			ConnectToExternalDB.getDataFromExternalDB();
 			ConnectToExternalDB.insertToZerliDB();
+			console.appendText("Successfully imported the external database");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "No data in the externalDB!", "Error", JOptionPane.ERROR_MESSAGE);
+			console.appendText("No data in the externalDB!");
 		}
 		;
+
 	}
 
 	@FXML

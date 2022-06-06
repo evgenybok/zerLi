@@ -81,13 +81,62 @@ public class SurveyQuery {
 		}
 		return answers;
 	}
-	public static ArrayList<String> GetSurveyQues(String messageData) {
-		// TODO Auto-generated method stub
-		return null;
+	public static ArrayList<String> GetSurveyQues(String surveyNum) {
+		ArrayList<String> ques = new ArrayList<>();
+		String query = "SELECT * FROM zerli.survey WHERE SurveyNumber=" + surveyNum + ";";
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String q1 = rs.getString("Q1");
+				String q2 = rs.getString("Q2");
+				String q3 = rs.getString("Q3");
+				String q4 = rs.getString("Q4");
+				String q5 = rs.getString("Q5");
+				String q6 = rs.getString("Q6");
+				ques.add(q1);
+				ques.add(q2);
+				ques.add(q3);
+				ques.add(q4);
+				ques.add(q5);
+				ques.add(q6);
+			}
+		} catch (SQLException e) {
+
+		}
+		return ques;
 	}
-	public static void UpdateSurveyAns(String messageData) {
-		// TODO Auto-generated method stub
-		
+	public static void UpdateSurveyAns(String ans)
+	{
+		String[] answers = ans.split("@");
+		int count = 0;
+		try {
+			String sql = "SELECT MAX(ID) AS ID FROM survey_answers";
+			PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt("ID"); // access the max value
+			}
+		} catch (SQLException e) {
+			return ;
+		}
+		count++;
+		String countUpt = String.valueOf(count);
+		int surveyNum = Integer.parseInt(answers[0]);
+		int q1 =Integer.parseInt(answers[1]); 
+		int q2 =Integer.parseInt(answers[2]); 
+		int q3 =Integer.parseInt(answers[3]); 
+		int q4 =Integer.parseInt(answers[4]); 
+		int q5 =Integer.parseInt(answers[5]); 
+		int q6 =Integer.parseInt(answers[6]); 
+		String query ="INSERT INTO zerli.survey_answers VALUES("+countUpt+","+surveyNum+","+q1+","+q2+","+q3+","+q4+","+q5+","+q6+")";
+		try {
+			PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+			st1.executeUpdate();
+		} catch (SQLException e) {
+			return;
+		}
+		return;
 	}
 	
 	
