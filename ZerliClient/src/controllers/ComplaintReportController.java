@@ -89,14 +89,18 @@ public class ComplaintReportController {
 		chat.accept(new Message(MessageType.COMPLAINT_GRAPH_STATISTICS, arrComplaint));
 		complaint_Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 
-		for (int i = 1; i < complaint_Graph_Stats.size(); i++) {
-			if (Integer.valueOf(complaint_Graph_Stats.get(i)) > maxComplaint) {
-				maxComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+		try {
+			for (int i = 1; i < complaint_Graph_Stats.size(); i++) {
+				if (Integer.valueOf(complaint_Graph_Stats.get(i)) > maxComplaint) {
+					maxComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+				}
+				if (Integer.valueOf(complaint_Graph_Stats.get(i)) < minComplaint) {
+					minComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+				}
+				total += Integer.valueOf(complaint_Graph_Stats.get(i));
 			}
-			if (Integer.valueOf(complaint_Graph_Stats.get(i)) < minComplaint) {
-				minComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
-			}
-			total += Integer.valueOf(complaint_Graph_Stats.get(i));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		MaxComplaints.setText(String.valueOf(maxComplaint));

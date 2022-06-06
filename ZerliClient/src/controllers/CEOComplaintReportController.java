@@ -53,12 +53,6 @@ public class CEOComplaintReportController {
 	private Button Back;
 
 	@FXML
-	private ImageView avatarImg;
-
-	@FXML
-	private Text userName;
-
-	@FXML
 	private BarChart<String, Number> BarChart;
 
 	@FXML
@@ -76,10 +70,7 @@ public class CEOComplaintReportController {
 	}
 
 	@FXML
-	void initialize() throws IOException {
-		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
-		avatarImg.setImage(personImage);
-		userName.setText(LoginScreenController.user.getUsername());
+	void initialize() {
 		ArrayList<String> arrComplaint = new ArrayList<>();
 		ArrayList<String> StoreName1 = new ArrayList<>();
 		ArrayList<String> complaint_Graph_Stats = new ArrayList<>();
@@ -107,14 +98,18 @@ public class CEOComplaintReportController {
 			return;
 		}
 
-		for (int i = 1; i < complaint_Graph_Stats.size(); i++) {
-			if (Integer.valueOf(complaint_Graph_Stats.get(i)) > maxComplaint) {
-				maxComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+		try {
+			for (int i = 1; i < complaint_Graph_Stats.size(); i++) {
+				if (Integer.valueOf(complaint_Graph_Stats.get(i)) > maxComplaint) {
+					maxComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+				}
+				if (Integer.valueOf(complaint_Graph_Stats.get(i)) < minComplaint) {
+					minComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
+				}
+				total += Integer.valueOf(complaint_Graph_Stats.get(i));
 			}
-			if (Integer.valueOf(complaint_Graph_Stats.get(i)) < minComplaint) {
-				minComplaint = Integer.valueOf(complaint_Graph_Stats.get(i));
-			}
-			total += Integer.valueOf(complaint_Graph_Stats.get(i));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		MaxComplaints.setText(String.valueOf(maxComplaint));
