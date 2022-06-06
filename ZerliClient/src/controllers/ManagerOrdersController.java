@@ -96,6 +96,7 @@ public class ManagerOrdersController {
 	 * Searches for a specific order based on user input and shows it in the table
 	 * @param event
 	 */
+	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSearch(MouseEvent event) {
 		ArrayList<SingleManageOrder> order = new ArrayList<>();
@@ -149,6 +150,7 @@ public class ManagerOrdersController {
 	/**
 	 * Inserts the needed data from the DB to the table.
 	 */
+	@SuppressWarnings("unchecked")
 	public void InsertToTable() {
 		ArrayList<SingleManageOrder> list = new ArrayList<>();
 		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, LoginScreenController.user.getID().toString()));

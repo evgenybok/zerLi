@@ -22,6 +22,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Allows the user to choose the data for the order report
+ */
 public class CEOOrderController {
 
 	@FXML
@@ -61,6 +65,11 @@ public class CEOOrderController {
 	public static String Month;
 	public static String Year;
 
+	/**
+	 * Sends the user back to the CEO main screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 
@@ -75,6 +84,10 @@ public class CEOOrderController {
 
 	}
 
+	/**
+	 * Checkbox for the orders button
+	 * @param event
+	 */
 	@FXML
 	void btnOrders(MouseEvent event) {
 		if(Orders.isSelected())
@@ -91,6 +104,11 @@ public class CEOOrderController {
 		}
 	}
 
+	/**
+	 * View report with the selected data
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnView(MouseEvent event) throws IOException {
 
@@ -119,6 +137,9 @@ public class CEOOrderController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		userName.setText(LoginScreenController.user.getUsername()); // userName

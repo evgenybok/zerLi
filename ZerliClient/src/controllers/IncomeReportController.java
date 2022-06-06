@@ -75,6 +75,7 @@ public class IncomeReportController {
 	/**
 	 * Initializes data shown on screen
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
 	void initialize() {
 		double maxWeek = 0;

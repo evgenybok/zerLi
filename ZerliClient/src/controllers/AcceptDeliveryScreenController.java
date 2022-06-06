@@ -167,6 +167,9 @@ public class AcceptDeliveryScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));

@@ -121,6 +121,9 @@ public class EditUsersController {
 		}
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));

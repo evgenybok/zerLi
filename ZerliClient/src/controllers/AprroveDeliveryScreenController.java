@@ -101,10 +101,6 @@ public class AprroveDeliveryScreenController {
 		customerStage.centerOnScreen();
 	}
 
-	@FXML
-	void initialize() {
-	}
-
 	/**
 	 * Calculates deserved refund
 	 * @param supply supply time

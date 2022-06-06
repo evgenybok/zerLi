@@ -30,6 +30,11 @@ import static controllers.IPScreenController.chat;
 import static controllers.ReportsController.*;
 import static controllers.ReportsController.Year;
 
+/**
+ * @author Evgeny
+ * Report of the orders for the branch manager
+ * shows the order data for the selected period
+ */
 public class OrderReportController {
 
     @FXML
@@ -56,6 +61,11 @@ public class OrderReportController {
     @FXML
     private Button Back;
 
+    /**
+     * Sends the user back to the branch manager main screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnBack(MouseEvent event) throws IOException {
 
@@ -70,6 +80,9 @@ public class OrderReportController {
 
     }
 
+    /**
+     * Initializes data shown on graph
+     */
     @FXML
     void initialize() {
         int maxWeek=0;

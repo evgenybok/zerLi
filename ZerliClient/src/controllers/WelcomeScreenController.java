@@ -12,11 +12,19 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Greeting screen when opening the user opens the program
+ */
 public class WelcomeScreenController {
 
 	@FXML
 	private Button getStarted;
 
+	/**
+	 * Opens the login screen
+	 * @param event
+	 */
 	@FXML
 	void btnGetStarted(MouseEvent event) {
 

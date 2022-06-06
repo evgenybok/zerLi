@@ -19,6 +19,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * CEO main screen, only accessed by the user with the CEO role
+ * can view various reports and compare them
+ */
 public class CEOScreenController {
 
 	@FXML
@@ -51,6 +56,11 @@ public class CEOScreenController {
 	@FXML
 	private Button CreateRep;
 
+	/**
+	 * Opens the complaint report screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnComplaint(MouseEvent event) throws IOException {
 
@@ -70,6 +80,11 @@ public class CEOScreenController {
 
 	}
 
+	/**
+	 * Opens the income report screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnIncome(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -82,6 +97,11 @@ public class CEOScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Logs the user out of the system and opens the login screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -96,6 +116,11 @@ public class CEOScreenController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * Opens the order report screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnOrders(MouseEvent event) throws IOException {
 
@@ -110,6 +135,9 @@ public class CEOScreenController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		try {

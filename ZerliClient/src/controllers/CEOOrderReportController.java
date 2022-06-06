@@ -30,6 +30,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
+/**
+ * @author Evgeny
+ * Detailed report matching the data selected to view
+ * shows order amount
+ */
 public class CEOOrderReportController {
 
     @FXML
@@ -56,6 +61,11 @@ public class CEOOrderReportController {
     @FXML
     private Button Back;
 
+    /**
+     * Sends the user back to the ceo main screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnBack(MouseEvent event) throws IOException {
 
@@ -70,6 +80,9 @@ public class CEOOrderReportController {
 
     }
 
+    /**
+     * Initializes data shown on graph
+     */
     @FXML
     void initialize() {
         int maxWeek=0;

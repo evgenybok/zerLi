@@ -37,6 +37,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Detailed branch report matching the data selected to view
+ * shows income amount
+ */
 public class CEOIncomeReportController {
 
 	@FXML
@@ -74,6 +79,12 @@ public class CEOIncomeReportController {
 	@FXML
 	private ImageView reportImg;
 
+	
+	/**
+	 * Sends the user back to the ceo income screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -86,6 +97,9 @@ public class CEOIncomeReportController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data shown on graph
+	 */
 	@FXML
 	void initialize() {
 		double maxWeek = 0;

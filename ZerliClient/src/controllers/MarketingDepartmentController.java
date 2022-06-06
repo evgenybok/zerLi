@@ -72,7 +72,6 @@ public class MarketingDepartmentController {
 
 	/**
 	 * Allows the marketing worker to update the catalog and put items on sale/
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */

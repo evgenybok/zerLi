@@ -90,6 +90,9 @@ public class AddGreetingController {
 
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		Image greetingImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/GreetingImage.png")));

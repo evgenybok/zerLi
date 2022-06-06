@@ -26,6 +26,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Detailed report matching the data selected to view
+ * shows order amount to the manager
+ */
 public class ComplaintReportController {
 
 	@FXML
@@ -51,6 +56,11 @@ public class ComplaintReportController {
 	@FXML
 	private TextField BranchText;
 
+	/**
+	 * Sends the user back to the branch manager main screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -64,6 +74,9 @@ public class ComplaintReportController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		ArrayList<String> arrComplaint = new ArrayList<>();

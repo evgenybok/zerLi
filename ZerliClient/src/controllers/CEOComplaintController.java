@@ -22,6 +22,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Allows the user to choose the data for the complaint report
+ */
 public class CEOComplaintController {
 
 	@FXML
@@ -63,6 +67,11 @@ public class CEOComplaintController {
 	public static String Quarter;
 	public static String Year;
 
+	/**
+	 * Sends the user back to the ceo main screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 
@@ -77,6 +86,10 @@ public class CEOComplaintController {
 
 	}
 
+	/**
+	 * Checkbox for the complaint report
+	 * @param event
+	 */
 	@FXML
 	void btnComplaint(MouseEvent event) {
 		if(Complaints.isSelected())
@@ -93,6 +106,11 @@ public class CEOComplaintController {
 		}
 	}
 
+	/**
+	 * Views the report with the selected data
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnView(MouseEvent event) throws IOException {
 
@@ -125,6 +143,9 @@ public class CEOComplaintController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		userName.setText(LoginScreenController.user.getUsername()); // userName
