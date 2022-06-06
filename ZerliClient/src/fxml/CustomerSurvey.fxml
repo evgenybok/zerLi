@@ -3,7 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -33,7 +33,7 @@
                      </VBox.margin>
                   </HBox>
                   <Line endX="260.5" startX="-100.0" strokeWidth="5.0" />
-                  <VBox prefHeight="429.0" prefWidth="405.0" styleClass="circleprofil" stylesheets="@../../images/css/styleNew.css">
+                  <VBox prefHeight="429.0" prefWidth="405.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
                            <children>
@@ -73,22 +73,14 @@
                               <Insets bottom="5.0" top="30.0" />
                            </VBox.margin>
                            <children>
-                              <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" textAlignment="CENTER" wrappingWidth="121.13671875">
+                              <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Worker" textAlignment="CENTER" wrappingWidth="229.13671875">
                                  <font>
                                     <Font name="Cambria" size="25.0" />
                                  </font>
                               </Text>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="405.0">
-                           <children>
-                              <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="142.13671875">
-                                 <font>
-                                    <Font name="Cambria" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="405.0" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
@@ -115,7 +107,7 @@
                <children>
                   <HBox prefHeight="72.0" prefWidth="887.0">
                      <children>
-                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Customer Screen">
+                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text="Store Worker Screen">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -139,7 +131,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="888.0">
                <children>
-                  <Label text=" Survey Question ">
+                  <Label prefHeight="46.0" prefWidth="320.0" text=" Survey Question ">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="40.0" />
                      </font>
@@ -167,148 +159,129 @@
                         </Label>
                      </children>
                   </VBox>
-               </children></HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="834.0">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="234.0" text="Number Of Survey:">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="EnumNum" prefHeight="31.0" prefWidth="31.0" text="10">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question1" text="Question 1:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo1" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question2" text="Question 2:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo2" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question3" text="Question 3:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo3" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question4" text="Question 4:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo4" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question5" text="Question 5:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo5" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="378.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
                      <children>
-                        <Label text="Question 1:" />
+                        <Label fx:id="Question6" text="Question 6:">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="713.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="2" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="3" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="4" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="5" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="6" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="7" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="8" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="9" />
-                        <CheckBox mnemonicParsing="false" prefHeight="24.0" prefWidth="61.0" style="-fx-font-size: 1.4em;" text="10" />
+                        <ComboBox fx:id="Combo6" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="175.0" prefWidth="834.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Submit">
+                  <Button fx:id="submit" mnemonicParsing="false" onMouseClicked="#btnSubmit" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Submit">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="27.0" />
                      </font>

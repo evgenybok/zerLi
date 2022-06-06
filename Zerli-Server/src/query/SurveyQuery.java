@@ -81,6 +81,14 @@ public class SurveyQuery {
 		}
 		return answers;
 	}
+	public static ArrayList<String> GetSurveyQues(String messageData) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void UpdateSurveyAns(String messageData) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

@@ -21,8 +21,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * @author Evgeny
- * Only user with the Marketing role can get to this screen, can view various reports and create a new report.
+ * @author Evgeny Only user with the Marketing role can get to this screen, can
+ *         view various reports and create a new report.
  */
 public class MarketingDepartmentController {
 
@@ -52,6 +52,7 @@ public class MarketingDepartmentController {
 
 	/**
 	 * Logs the user out of the system and opens the login screen
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -71,13 +72,13 @@ public class MarketingDepartmentController {
 
 	/**
 	 * Allows the marketing worker to update the catalog and put items on sale/
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void btnUpdateCatalog(MouseEvent event) throws IOException {
 		Parent parent = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/CatalogUpdate.fxml"))));
-		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		parent.getStylesheets().add("css/styleNew.css");
 		Stage catalogUpdateStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
