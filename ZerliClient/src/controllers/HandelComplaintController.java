@@ -2,6 +2,7 @@ package controllers;
 
 import static controllers.IPScreenController.chat;
 
+import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -98,19 +99,24 @@ public class HandelComplaintController {
 		;
 		Calendar currentCalendar = Calendar.getInstance();
 		currentCalendar.add(Calendar.HOUR_OF_DAY, 24);
-		for (Complain comp : allComplaint) {
-			Calendar complaintTime = Calendar.getInstance();
-			complaintTime.set(comp.getDateCreated().getYear(), comp.getDateCreated().getMonthValue(),
-					comp.getDateCreated().getDayOfMonth(), comp.getDateCreated().getHour() + 24,
-					comp.getDateCreated().getMinute(), comp.getDateCreated().getSecond());
-			if (complaintTime.after(currentCalendar) && comp.getComplainStatus().equals("WaitForHandle")
-					&& !comp.isReminderToHandle()) // 24 hours
-			{
-				chat.accept(new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, comp.getOrderID()));
-				JOptionPane.showMessageDialog(null,
-						"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!", "Information",
-						JOptionPane.INFORMATION_MESSAGE);
+		try {
+			for (Complain comp : allComplaint) {
+				Calendar complaintTime = Calendar.getInstance();
+				complaintTime.set(comp.getDateCreated().getYear(), comp.getDateCreated().getMonthValue(),
+						comp.getDateCreated().getDayOfMonth(), comp.getDateCreated().getHour() + 24,
+						comp.getDateCreated().getMinute(), comp.getDateCreated().getSecond());
+				if (complaintTime.after(currentCalendar) && comp.getComplainStatus().equals("WaitForHandle")
+						&& !comp.isReminderToHandle()) // 24 hours
+				{
+					chat.accept(new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, comp.getOrderID()));
+					JOptionPane.showMessageDialog(null,
+							"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!", "Information",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		if (!(complaint == null)) {
 			try {

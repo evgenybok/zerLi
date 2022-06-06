@@ -114,12 +114,17 @@ public class CEOOrderReportController {
         WorstWeek.setText(String.valueOf(minWeek));
         TotalOrders.setText(String.valueOf(sum));
 
-
-        series.getData().add(new XYChart.Data("Week1",Integer.parseInt(Graph_Stats.get(1))));
-        series.getData().add(new XYChart.Data("Week2",Integer.parseInt(Graph_Stats.get(2))));
-        series.getData().add(new XYChart.Data("Week3",Integer.parseInt(Graph_Stats.get(3))));
-        series.getData().add(new XYChart.Data("Week4",Integer.parseInt(Graph_Stats.get(4))));
-        lineChart.getData().add(series);
+        
+        try {
+			series.getData().add(new XYChart.Data("Week1",Integer.parseInt(Graph_Stats.get(1))));
+			series.getData().add(new XYChart.Data("Week2",Integer.parseInt(Graph_Stats.get(2))));
+			series.getData().add(new XYChart.Data("Week3",Integer.parseInt(Graph_Stats.get(3))));
+			series.getData().add(new XYChart.Data("Week4",Integer.parseInt(Graph_Stats.get(4))));
+			lineChart.getData().add(series);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 }

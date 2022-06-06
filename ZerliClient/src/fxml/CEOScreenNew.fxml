@@ -57,7 +57,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="168.0" prefWidth="435.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>
@@ -83,13 +83,6 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <children>
-                        <Text fx:id="AccountStatus" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(AccountStatus)" textAlignment="CENTER" wrappingWidth="151.13671875">
-                           <font>
-                              <Font name="Cambria" size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="435.0">
                      <VBox.margin>
