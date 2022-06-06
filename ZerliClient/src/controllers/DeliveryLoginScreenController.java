@@ -104,6 +104,9 @@ public class DeliveryLoginScreenController {
 		loginStage.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		

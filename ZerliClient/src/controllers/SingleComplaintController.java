@@ -45,7 +45,6 @@ public class SingleComplaintController {
 
 	/**
 	 * customer service user decides not to refund the selected client.
-	 * 
 	 * @param event
 	 */
 	@SuppressWarnings("unchecked")
@@ -82,7 +81,6 @@ public class SingleComplaintController {
 	/**
 	 * customer service user decides to refund the selected client, moves to refund
 	 * amount screen.
-	 * 
 	 * @param event
 	 */
 	@FXML
@@ -112,7 +110,6 @@ public class SingleComplaintController {
 
 	/**
 	 * Sets the data to show on screen.
-	 * 
 	 * @param singleComplaint
 	 */
 	public void setData(SingleComplaint singleComplaint) {

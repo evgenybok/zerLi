@@ -63,7 +63,6 @@ public class SurveyReportController {
 
 	/**
 	 * Sends the user back to the survey analyse selection screen
-	 * 
 	 * @param event
 	 */
 	@FXML
@@ -86,7 +85,6 @@ public class SurveyReportController {
 
 	/**
 	 * Saves report in specified location as a PDF document.
-	 * 
 	 * @param event
 	 */
 	@FXML

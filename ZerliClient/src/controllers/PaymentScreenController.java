@@ -41,8 +41,6 @@ import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
-
-
 /**
  * @author Evgeny
  * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.

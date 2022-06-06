@@ -82,7 +82,6 @@ public class ReportsController {
 
 	/**
 	 * Sends the user back to the branch manager main screen
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -101,7 +100,6 @@ public class ReportsController {
 
 	/**
 	 * Opens the selected report with the selected data.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -114,7 +112,6 @@ public class ReportsController {
 				String monthlyReport = "Income";
 				String monthlyMonth = MonthlyMonth.getValue();
 				String monthlyYear = MonthlyYear.getValue();
-
 				ArrayList<String> arr = new ArrayList<>();
 				String ID = LoginScreenController.user.getID();// Here we have the manager ID.
 
@@ -235,7 +232,6 @@ public class ReportsController {
 
 	/**
 	 * Checkbox for the complaint, disables other checkboxes.
-	 * 
 	 * @param event
 	 */
 	@FXML
@@ -258,7 +254,6 @@ public class ReportsController {
 
 	/**
 	 * Checkbox for the month of report, disables other checkboxes.
-	 * 
 	 * @param event
 	 */
 	@FXML

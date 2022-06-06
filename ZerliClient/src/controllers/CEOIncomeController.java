@@ -21,6 +21,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Allows the user to choose the data for the income report
+ */
 public class CEOIncomeController {
 
 	@FXML
@@ -100,6 +104,11 @@ public class CEOIncomeController {
 	public static String Year2;
 	public static String Quarter2;
 
+	/**
+	 * Sends the user back to the CEO main screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 
@@ -114,6 +123,10 @@ public class CEOIncomeController {
 
 	}
 
+	/**
+	 * Checkbox for the monthly report
+	 * @param event
+	 */
 	@FXML
 	void btnMonthly(MouseEvent event) {
 
@@ -154,6 +167,10 @@ public class CEOIncomeController {
 
 	}
 
+	/**
+	 * Checkbox for the first quarterly report
+	 * @param event
+	 */
 	@FXML
 	void btnQuarterly_1(MouseEvent event) {
 		FlagMonth = 0;
@@ -178,6 +195,10 @@ public class CEOIncomeController {
 
 	}
 
+	/**
+	 * Checkbox for the second quarterly report
+	 * @param event
+	 */
 	@FXML
 	void btnQuarterly_2(MouseEvent event) {
 		FlagMonth = 0;
@@ -203,6 +224,11 @@ public class CEOIncomeController {
 
 	}
 
+	/**
+	 * Opens the report with the selected data to view
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnView(MouseEvent event) throws IOException {
 
@@ -258,6 +284,9 @@ public class CEOIncomeController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		userName.setText(LoginScreenController.user.getUsername()); // userName

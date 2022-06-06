@@ -119,7 +119,6 @@ public class ManagerScreenController {
 
 	/**
 	 * Updates existing user's info in the DB.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -138,7 +137,6 @@ public class ManagerScreenController {
 
 	/**
 	 * Logs the user out of the system.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -158,7 +156,6 @@ public class ManagerScreenController {
 
 	/**
 	 * Allows the user to view his store's orders.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -177,7 +174,6 @@ public class ManagerScreenController {
 
 	/**
 	 * Allows the user to view his store's reports.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */

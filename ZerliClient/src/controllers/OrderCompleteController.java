@@ -23,17 +23,16 @@ public class OrderCompleteController {
 	@FXML
 	private Button btnProceed;
 
-
-	/**
-	 * Closes current screen and sends the user back to the customer screen.
-	 * @param event
-	 */
 	@FXML
 	private Label confirmationTxt;
 
 	@FXML
 	private ImageView zerliImg;
 
+	/**
+	 * Opens the customer screen 
+	 * @param event
+	 */
 	@FXML
 	void clkProceed(MouseEvent event) {
 
@@ -52,6 +51,9 @@ public class OrderCompleteController {
 		}
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		Image zerliImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.jpg")));

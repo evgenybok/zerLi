@@ -61,7 +61,6 @@ public class CatalogUpdateController {
 
 	/**
 	 * Adds a new item to the selected catalog
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -82,7 +81,6 @@ public class CatalogUpdateController {
 
 	/**
 	 * Sends the user back to the marketing department screen
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -117,7 +115,6 @@ public class CatalogUpdateController {
 	/**
 	 * Opens the selected item in the custom grid when it is clicked and opens its
 	 * specifics to edit.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -153,7 +150,6 @@ public class CatalogUpdateController {
 	/**
 	 * Opens the selected item in the premade grid when it is clicked and opens its
 	 * specifics to edit.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */

@@ -29,6 +29,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Evgeny
+ * Detailed quarterly report matching the data selected to view
+ * shows complaint amount
+ */
 public class CEOComplaintReportController {
 
 	@FXML
@@ -55,6 +60,11 @@ public class CEOComplaintReportController {
 	@FXML
 	private BarChart<String, Number> BarChart;
 
+	/** 
+	 * Sends the user back to the CEO complaint screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -69,6 +79,10 @@ public class CEOComplaintReportController {
 
 	}
 
+	/**
+	 * Initializes data shown on graph
+	 * @throws IOException
+	 */
 	@FXML
 	void initialize() {
 		ArrayList<String> arrComplaint = new ArrayList<>();

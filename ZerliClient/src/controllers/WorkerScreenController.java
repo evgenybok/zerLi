@@ -51,7 +51,6 @@ public class WorkerScreenController {
 
 	/**
 	 * User can log out of the system and return to the Login screen.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -71,7 +70,6 @@ public class WorkerScreenController {
 
 	/**
 	 * User can update the catalog, items data,catalog type.
-	 * 
 	 * @param event
 	 * @throws IOException
 	 */

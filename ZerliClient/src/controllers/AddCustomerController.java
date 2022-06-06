@@ -212,6 +212,9 @@ public class AddCustomerController {
 		managerScreen.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data
+	 */
 	@FXML
 	void initialize() {
 		userTitle.setText(LoginScreenController.user.getUsername());
