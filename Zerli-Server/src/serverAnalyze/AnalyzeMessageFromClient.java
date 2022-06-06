@@ -62,6 +62,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<SingleSelfDelivery> singleSelfDelivery;
 		ArrayList<SingleUser> singleUser;
 		ArrayList<SingleManageOrder> singleManageOrder;
+		ArrayList<String> question;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -776,6 +777,27 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.CANCEL_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+			
+		case GET_SURVEY_QUS_BY_SURVEYNUM:
+			question = SurveyQuery.GetSurveyQues((String) receivedMessage.getMessageData());
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(question);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SURVEY_QUS_BY_SURVEYNUM, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+		case UPDATE_SURVEY_ANS:
+			try {
+				SurveyQuery.UpdateSurveyAns((String) receivedMessage.getMessageData());
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			;
 
 		default:// ;
 

@@ -42,6 +42,8 @@ import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
+
+
 /**
  * @author Evgeny
  * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.
@@ -52,7 +54,8 @@ public class PaymentScreenController {
 	double totalPrice = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 	double totalPriceAfterDeliveryFee;
 	boolean DeliveryFlag = false, DeliveryExpressFlag = false;
-
+	public static String phoneNumber;
+	
 	@FXML
 	private TextField Adress;
 
@@ -376,6 +379,7 @@ public class PaymentScreenController {
 					sb.append(CustomerScreenController.userID);
 					chat.accept(new Message(MessageType.UPDATE_USED_REFUND, sb.toString()));
 				}
+				phoneNumber=phone;
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
@@ -465,17 +469,13 @@ public class PaymentScreenController {
 	 * @param deliveryFee
 	 */
 	void changeAmount(Double deliveryFee) {
-		/*
-		 * if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) { totalPrice *=
-		 * 0.8; String.format("{0:0.00}", totalPrice); System.out.println(totalPrice); }
-		 */
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
 		double temp = totalPrice - CustomerScreenController.accountZerliCredit;
 		double toReduce = 0;
 		if (temp < 0) {
 			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
 				totalPriceAfterDeliveryFee *= 0.8;
-				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee);
 			}
 			toReduce = CustomerScreenController.accountZerliCredit + temp;
 			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
@@ -485,7 +485,7 @@ public class PaymentScreenController {
 		} else {
 			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
 				totalPriceAfterDeliveryFee *= 0.8;
-				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee);
 			}
 			amountToPay.setText("\u20AA"
 					+ Double.toString(totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit) + " ("
@@ -503,6 +503,10 @@ public class PaymentScreenController {
 	private String CheckWhichSupplyMethod() {
 		if (DeliveryFlag) {
 			return "Delivery";
+		}
+		else if(DeliveryExpressFlag)
+		{
+			return "Express";
 		}
 		return "PickUp";
 	}
@@ -613,6 +617,8 @@ public class PaymentScreenController {
 				Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-deliver-food-50 (1).png")));
 		DeliveryImg.setImage(deliveryImg);
 		Area.setItems(FXCollections.observableArrayList("North", "East", "Center", "South"));
+		Area.getSelectionModel().selectFirst();
+		StoreName.getSelectionModel().selectFirst();
 		changeAmount(0.00);
 		delviryFee.setText("0.00");
 		showCreditDetail();

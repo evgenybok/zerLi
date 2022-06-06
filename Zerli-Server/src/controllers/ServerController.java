@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -32,14 +33,21 @@ import javafx.stage.StageStyle;
 import mainserver.EchoServer;
 import mainserver.ServerConnection;
 import query.ConnectToDB;
+import query.ConnectToExternalDB;
 import query.Query;
 
+/**
+ * @author Evgeny
+ * Server screen, connects to the SQL DB and allows import of external DB, opens server socket.
+ */
 @SuppressWarnings({ "unused", "serial" })
 public class ServerController extends JFrame {
 	private EchoServer echoServer;
 	private Connection conn = null;
+	private Connection connExternalDB = null;
 	public Stage stage;
 	final public static int DEFAULT_PORT = 5555;
+	private String externalDBpath = "jdbc:mysql://localhost/externaldb?serverTimezone=IST";
 
 	@FXML
 	private Button CloseApp;
@@ -87,6 +95,9 @@ public class ServerController extends JFrame {
 	@FXML
 	private ImageView ServerImage;
 
+	@FXML
+	private Button importData;
+
 	public Button getDisconnect() {
 		return Disconnect;
 	}
@@ -112,6 +123,10 @@ public class ServerController extends JFrame {
 
 	public static ObservableList<ClientDoc> clients = FXCollections.observableArrayList();
 
+	/**
+	 * Initialize screen to show data
+	 * @throws UnknownHostException
+	 */
 	@FXML
 	void initialize() throws UnknownHostException {
 
@@ -125,20 +140,37 @@ public class ServerController extends JFrame {
 
 	}
 
+	/**
+	 * Console setter
+	 * @param console
+	 */
 	public void setConsole(TextArea console) {
 		this.console = console;
 	}
 
+	/**
+	 * Console Getter
+	 * @return
+	 */
 	public TextArea getConsole() {
 		return console;
 	}
 
+	/**
+	 * IP getter
+	 * @throws UnknownHostException
+	 */
 	public void getIP() throws UnknownHostException {
 		InetAddress ia = InetAddress.getLocalHost();
 		String str = ia.getHostAddress();
 		IP.setText(str);
 	}
 
+	/**
+	 * Opens socket and the server
+	 * @param event
+	 * @throws UnknownHostException
+	 */
 	@FXML
 	void ClickOnConnect(MouseEvent event) throws UnknownHostException {
 		ServerConnection.startServer(Port.getText().toString(), this);
@@ -150,9 +182,14 @@ public class ServerController extends JFrame {
 			password = DBPassword.getText().toString();
 			dbName = DBName.getText().toString();
 			try {
-				Connection connection = ConnectToDB.connect(username, password, dbName);
+				conn = ConnectToDB.connect(username, password, dbName);
 				Disconnect.setDisable(false);
 				Connect.setDisable(true);
+				DBUser.setDisable(true);
+				DBPassword.setDisable(true);
+				DBName.setDisable(true);
+				Port.setDisable(true);
+				importData.setDisable(false);
 				Query.DisconnectAll(); // Disconnects all currently logged in users.
 			} catch (Exception e) {
 				Disconnect.setDisable(true);
@@ -162,6 +199,11 @@ public class ServerController extends JFrame {
 		}
 	}
 
+	/**
+	 * Starts the server screen
+	 * @param primaryStage
+	 * @throws Exception
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/controllers/server.fxml")));
 		Scene scene = new Scene(root);
@@ -173,11 +215,19 @@ public class ServerController extends JFrame {
 		primaryStage.show();
 	}
 
+	/**
+	 * Prints text in server console in chosen format
+	 * @param msg
+	 */
 	public void addText(String msg) {
 		String timeStamp = new SimpleDateFormat("[dd.MM.yyyy]  [HH:mm:ss]  ").format(Calendar.getInstance().getTime());
 		Platform.runLater(() -> console.appendText(timeStamp + msg + "\n"));
 	}
 
+	/**
+	 * Disconnects the server and closes socket
+	 * @param event
+	 */
 	@FXML
 	void ClickOnDisconnect(MouseEvent event) {
 		ServerConnection.stopServer(this);
@@ -189,6 +239,31 @@ public class ServerController extends JFrame {
 
 	}
 
+	/**
+	 * Get info from external database
+	 * @param event
+	 */
+	@FXML
+	void btnImportData(MouseEvent event) {
+		try {
+			connExternalDB = ConnectToDB.connect(DBUser.getText().toString(), DBPassword.getText().toString(),
+					externalDBpath);
+			ConnectToExternalDB.connectionToDB(conn);
+			ConnectToExternalDB.connectionToExternalDB(connExternalDB);
+			ConnectToExternalDB.getDataFromExternalDB();
+			ConnectToExternalDB.insertToZerliDB();
+			console.appendText("Successfully imported the external database");
+		} catch (Exception e) {
+			console.appendText("No data in the externalDB!");
+		}
+		;
+
+	}
+
+	/**
+	 * Closes server screen
+	 * @param event
+	 */
 	@FXML
 	void CloseApp(MouseEvent event) {
 		stage = (Stage) MainStage.getScene().getWindow();

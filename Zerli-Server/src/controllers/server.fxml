@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="585.0" prefWidth="894.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ServerController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" opacity="0.95" prefHeight="585.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServerController">
    <children>
       <ImageView fx:id="ServerImage" cache="true" fitHeight="625.0" fitWidth="943.0" opacity="0.86" pickOnBounds="true">
          <image>
@@ -122,23 +122,41 @@
                         </PasswordField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="227.0" prefWidth="356.0">
-                     <VBox.margin>
-                        <Insets top="70.0" />
-                     </VBox.margin>
+                  <VBox prefHeight="234.0" prefWidth="345.0">
                      <children>
-                        <Button fx:id="Connect" mnemonicParsing="false" onMouseClicked="#ClickOnConnect" prefHeight="50.0" prefWidth="184.0" text="Connect">
-                           <HBox.margin>
-                              <Insets left="20.0" top="50.0" />
-                           </HBox.margin>
+                        <Button fx:id="importData" disable="true" mnemonicParsing="false" onMouseClicked="#btnImportData" prefHeight="25.0" prefWidth="255.0" text="Import Data (External DB)">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="50.0" top="50.0" />
+                           </VBox.margin>
                         </Button>
-                        <Button fx:id="Disconnect" disable="true" mnemonicParsing="false" onMouseClicked="#ClickOnDisconnect" prefHeight="50.0" prefWidth="184.0" text="Disconnect">
-                           <HBox.margin>
-                              <Insets left="40.0" right="20.0" top="50.0" />
-                           </HBox.margin>
-                        </Button>
+                        <HBox prefHeight="163.0" prefWidth="345.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Button fx:id="Connect" mnemonicParsing="false" onMouseClicked="#ClickOnConnect" prefHeight="50.0" prefWidth="184.0" text="Connect">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="Disconnect" disable="true" mnemonicParsing="false" onMouseClicked="#ClickOnDisconnect" prefHeight="50.0" prefWidth="184.0" text="Disconnect">
+                                 <HBox.margin>
+                                    <Insets left="40.0" right="20.0" top="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
                <HBox.margin>
                   <Insets />

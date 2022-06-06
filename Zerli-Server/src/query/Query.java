@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import communication.MessageAnswer;
 import logic.Item;
-import logic.Order;
-import logic.SingleOrder;
 import logic.SingleWorker;
 import logic.User;
 
@@ -144,7 +141,6 @@ public class Query {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				int OrderID = rs.getInt("ID");
-				// String imgSrc = rs.getString("imgSrc");
 				String Name = rs.getString("Name");
 				double price = rs.getDouble("Price");
 				String Color = rs.getString("Color");
@@ -190,7 +186,6 @@ public class Query {
 
 		}
 		return items;
-
 	}
 
 	/**
@@ -220,6 +215,10 @@ public class Query {
 
 	}
 
+	/**
+	 * Retrieves all workers from the DB
+	 * @return Arraylist of logic SingleWorker containing only workers.
+	 */
 	public static ArrayList<SingleWorker> GetWorkers() {
 		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'customer service';";
 		ArrayList<SingleWorker> workers = new ArrayList<SingleWorker>();

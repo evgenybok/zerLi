@@ -214,6 +214,11 @@ public class ReportsController  {
 
                     "2019", "2020", "2021", "2022"));
         ComplaintQuart.setItems(FXCollections.observableArrayList("01", "02", "03", "04"));
+        MonthlyYear.getSelectionModel().selectFirst();
+        MonthlyMonth.getSelectionModel().selectFirst();
+        MonthlyReport.getSelectionModel().selectFirst();
+        ComplaintYear.getSelectionModel().selectFirst();
+        ComplaintQuart.getSelectionModel().selectFirst();
         userName.setText(LoginScreenController.user.getUsername());//set The username to the specific branchManager.
 
     }

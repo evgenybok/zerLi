@@ -539,6 +539,21 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case  GET_SURVEY_QUS_BY_SURVEYNUM:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+			} else {
+				res = null;
+			}
+			return;
+		case  UPDATE_SURVEY_ANS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 		default:
 			break;
 		}

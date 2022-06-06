@@ -22,7 +22,7 @@ public class DeliveryQuery {
 	public static ArrayList<SingleDelivery> getOrderForDelivey()
 	{
 		ArrayList<SingleDelivery> list= new  ArrayList<>();
-		 String query = ("SELECT * FROM zerli.orders WHERE Status = 'Approved' AND SupplyType ='Delivery';");
+		 String query = ("SELECT * FROM zerli.orders WHERE Status = 'Approved' AND (SupplyType ='Delivery' OR SupplyType = 'Express');");
 		 try {
 				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 				ResultSet rs = st.executeQuery();
@@ -77,6 +77,7 @@ public class DeliveryQuery {
 	{
 		ArrayList<SingleDelivery> list= new  ArrayList<>();
 		 String query = ("SELECT * FROM zerli.orders WHERE Status = 'Approved' AND OrderNumber = '" + Orderid + "' AND SupplyType ='Delivery';");
+		 //String query = ("SELECT * FROM zerli.orders WHERE Status = 'Approved' AND OrderNumber = '" + Orderid + ";");
 		 try {
 				PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 				ResultSet rs = st.executeQuery();

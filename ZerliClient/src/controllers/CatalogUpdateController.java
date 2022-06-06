@@ -25,8 +25,9 @@ import javafx.stage.Stage;
 import logic.Item;
 
 /**
- * @author Evgeny
- * Marketing user can update the catalog, change price of item, move item to another catalog, put the item on sale and remove the item.
+ * @author Evgeny Marketing user can update the catalog, change price of item,
+ *         move item to another catalog, put the item on sale and remove the
+ *         item.
  */
 public class CatalogUpdateController {
 
@@ -60,6 +61,7 @@ public class CatalogUpdateController {
 
 	/**
 	 * Adds a new item to the selected catalog
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -80,25 +82,42 @@ public class CatalogUpdateController {
 
 	/**
 	 * Sends the user back to the marketing department screen
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
+		if (LoginScreenController.user.getRole().equals("Marketing")) {
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Parent parent = FXMLLoader
+					.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
+			parent.getStylesheets().add("css/styleNew.css");
+			Scene scene = new Scene(parent);
+			Stage catalogEditScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			catalogEditScreen.setTitle("Home Screen");
+			catalogEditScreen.setScene(scene);
+			catalogEditScreen.show();
+			catalogEditScreen.centerOnScreen();
+		}
+		else if (LoginScreenController.user.getRole().equals("worker")){
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MarketingDepartment.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/WorkerScreen.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage catalogEditScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		catalogEditScreen.setTitle("Home Screen");
-		catalogEditScreen.setScene(scene);
-		catalogEditScreen.show();
-		catalogEditScreen.centerOnScreen();
+		Stage workerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		workerStage.setTitle("Worker Screen");
+		workerStage.setScene(scene);
+		workerStage.show();
+		workerStage.centerOnScreen();
+		}
+		
 	}
 
-
 	/**
-	 * Opens the selected item in the custom grid when it is clicked and opens its specifics to edit.
+	 * Opens the selected item in the custom grid when it is clicked and opens its
+	 * specifics to edit.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -132,7 +151,9 @@ public class CatalogUpdateController {
 	}
 
 	/**
-	 * Opens the selected item in the premade grid when it is clicked and opens its specifics to edit.
+	 * Opens the selected item in the premade grid when it is clicked and opens its
+	 * specifics to edit.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -171,7 +192,7 @@ public class CatalogUpdateController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
-		if(LoginScreenController.user.getRole().equals("Marketing")) {
+		if (LoginScreenController.user.getRole().equals("Marketing")) {
 			addNewItem.setVisible(false);
 		}
 		// premade grid
@@ -181,7 +202,7 @@ public class CatalogUpdateController {
 
 		chat.accept(new Message(MessageType.GET_PREMADE_ITEMS, null));
 		premadeItems = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
-		premadeID = new Integer[premadeItems.size()+1 / 2][2];
+		premadeID = new Integer[premadeItems.size() + 1 / 2][2];
 
 		try {
 
@@ -225,7 +246,7 @@ public class CatalogUpdateController {
 
 		chat.accept(new Message(MessageType.GET_SELFASSEMBLY_ITEMS, null));
 		customItems = (ArrayList<Item>) AnalyzeMessageFromServer.getData();
-		customID = new Integer[customItems.size()+1 / 2][2];
+		customID = new Integer[customItems.size() + 1 / 2][2];
 
 		try {
 

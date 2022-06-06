@@ -142,6 +142,11 @@ public class complaintQuery {
 		}
 		return singlecomplaint;
 	}
+	/**
+	 * Return list of logic SingleComplaint made by given user id number
+	 * @param userid
+	 * @return list of SingleComplaints made by userid number
+	 */
 	public static ArrayList<SingleComplaint> GetComplaintByUserId(String userid)
 	{
 		String query = ("SELECT * FROM zerli.complaint WHERE complainUserID = '" + userid +"';");

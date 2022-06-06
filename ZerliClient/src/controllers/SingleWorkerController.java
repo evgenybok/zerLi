@@ -22,8 +22,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.SingleWorker;
-import logic.User;
 
+/**
+ * @author Evgeny
+ * Branch manager can update the roles of workers on this screen.
+ */
 public class SingleWorkerController {
 
     @FXML
@@ -45,12 +48,16 @@ public class SingleWorkerController {
     private Label role;
 
 
+    /**
+     * Updates in DB the role of the chosen worker to a new selected role
+     * @param event
+     */
     @FXML
     void btnUpdateRole(MouseEvent event) {
 
     	String role = roleCombo.getValue();
 		String updateDetails = role + "@" + UserID.getText();
-		if(!(role=="Worker") &&!(role=="Delivery") && !(role=="Customer Specialist") && !(role=="Customer Service"))
+		if(!(role.equals("worker")) &&!(role.equals("Delivery") && !(role.equals("customer specialist")) && !(role.equals("customer service")) && !(role.equals("Marketing"))))
 		{
 			JOptionPane.showMessageDialog(null, "Wrong user role selected!", "Error",
 					JOptionPane.ERROR_MESSAGE);
@@ -80,6 +87,10 @@ public class SingleWorkerController {
 		}
     }
 
+	/**
+	 * Sets data on single worker on screen
+	 * @param singleWorker
+	 */
 	public void setData(SingleWorker singleWorker) {
 		UserID.setText(singleWorker.getID());
 		FirstName.setText(singleWorker.getFirstName());
@@ -92,6 +103,7 @@ public class SingleWorkerController {
 	 */
 	@FXML
 	void initialize() {
-		roleCombo.setItems(FXCollections.observableArrayList("Worker", "Delivery","Customer Specialist", "Customer Service"));
+		roleCombo.setItems(FXCollections.observableArrayList("worker", "Delivery","customer specialist", "customer service", "Marketing"));
+		roleCombo.getSelectionModel().selectFirst();
 	}
 }

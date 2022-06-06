@@ -20,31 +20,38 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * @author Evgeny
- * Only user with the Worker role can get to this screen, can update the catalog.
+ * @author Evgeny Only user with the Worker role can get to this screen, can
+ *         update the catalog.
  */
 public class WorkerScreenController {
 
-	@FXML
-	private Button Logout;
+	   @FXML
+	    private Button Logout;
 
-	@FXML
-	private Text accountType;
+	    @FXML
+	    private Text accountType;
 
-	@FXML
-	private ImageView avatarImg;
+	    @FXML
+	    private ImageView avatarImg;
 
-	@FXML
-	private ImageView catalogImage;
+	    @FXML
+	    private ImageView catalogImage;
 
-	@FXML
-	private Button updateCatalog;
+	    @FXML
+	    private Button surveyAnswers;
 
-	@FXML
-	private Text userName;
+	    @FXML
+	    private ImageView surveyImg;
+
+	    @FXML
+	    private Button updateCatalog;
+
+	    @FXML
+	    private Text userName;
 
 	/**
 	 * User can log out of the system and return to the Login screen.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -64,6 +71,7 @@ public class WorkerScreenController {
 
 	/**
 	 * User can update the catalog, items data,catalog type.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -80,6 +88,19 @@ public class WorkerScreenController {
 
 	}
 
+	@FXML
+	void btnSurveyAnswers(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerSurvey.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
+		Scene scene = new Scene(parent);
+		Stage answerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		answerStage.setTitle("Survey Answers");
+		answerStage.setScene(scene);
+		answerStage.show();
+		answerStage.centerOnScreen();
+	}
+
 	/**
 	 * Initialization of data on screen.
 	 */
@@ -91,6 +112,10 @@ public class WorkerScreenController {
 		avatarImg.setImage(personImage);
 		Image catalogImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Catalog.png")));
 		catalogImage.setImage(catalogImg);
+		Image surveyImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/satiComplaint.png")));
+		surveyImg.setImage(surveyImage);
+		
+		
 
 	}
 }

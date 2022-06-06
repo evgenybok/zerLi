@@ -97,6 +97,10 @@ public class ManagerScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Edits the role of workers
+	 * @param event
+	 */
 	@FXML
 	void btnEditRole(MouseEvent event) {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -209,6 +213,9 @@ public class ManagerScreenController {
 		viewReportsImg.setImage(viewRepImage);
 		Image editImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
 		editImg.setImage(editImage);
+		Image roleImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
+		roleImg.setImage(roleImage);
+		
 		userName.setText(LoginScreenController.user.getUsername());
 		try {
 			chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
