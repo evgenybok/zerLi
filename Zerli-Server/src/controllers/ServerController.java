@@ -292,6 +292,10 @@ public class ServerController extends JFrame {
 		System.exit(1);
 
 	}
+	/**
+	 * @author Evgeny
+	 * Running thread to create report every month automatically
+	 */
 	class ReportTime implements Runnable {
 		@Override
 		public void run() {
@@ -347,6 +351,10 @@ public class ServerController extends JFrame {
 		}
 
 	}
+	/**
+	 * @author Evgeny
+	 * Running thread to create quarterly report every month automatically
+	 */
 	class QuartReport implements Runnable
 	{
 

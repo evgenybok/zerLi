@@ -99,6 +99,10 @@ public class StoresQuery {
 		return stores;
 	}
 	
+	/**
+	 * Returns store id numbers from stores DB table
+	 * @return all store id numbers
+	 */
 	public static ArrayList<String> GetStoresIdinList()
 	{
 		String query = "SELECT IDstore FROM zerli.stores;";
