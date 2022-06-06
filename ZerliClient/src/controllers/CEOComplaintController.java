@@ -79,7 +79,18 @@ public class CEOComplaintController {
 
 	@FXML
 	void btnComplaint(MouseEvent event) {
-
+		if(Complaints.isSelected())
+		{
+			ComplaintYear.getSelectionModel().selectLast();
+			ComplaintQuart.getSelectionModel().selectFirst();
+			PickStore.getSelectionModel().selectFirst();
+		}
+		else if(!Complaints.isSelected())
+		{
+			ComplaintYear.getSelectionModel().clearSelection();
+			ComplaintQuart.getSelectionModel().clearSelection();
+			PickStore.getSelectionModel().clearSelection();
+		}
 	}
 
 	@FXML
@@ -97,6 +108,8 @@ public class CEOComplaintController {
 			Year = ComplaintYear.getValue();
 
 		}
+		if(!Complaints.isSelected())
+			return;
 		try {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Parent parent = FXMLLoader

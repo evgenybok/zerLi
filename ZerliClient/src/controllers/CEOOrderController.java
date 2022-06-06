@@ -77,7 +77,18 @@ public class CEOOrderController {
 
 	@FXML
 	void btnOrders(MouseEvent event) {
-
+		if(Orders.isSelected())
+		{
+			OrderYear.getSelectionModel().selectLast();
+			OrderMonth.getSelectionModel().selectFirst();
+			PickStore.getSelectionModel().selectFirst();
+		}
+		else if(!Orders.isSelected())
+		{
+			OrderYear.getSelectionModel().clearSelection();
+			OrderMonth.getSelectionModel().clearSelection();
+			PickStore.getSelectionModel().clearSelection();
+		}
 	}
 
 	@FXML
@@ -95,6 +106,8 @@ public class CEOOrderController {
 			Year = OrderYear.getValue();
 
 		}
+		if(!Orders.isSelected())
+			return;
 
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOOrderReport.fxml")));
