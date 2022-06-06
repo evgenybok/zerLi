@@ -285,6 +285,13 @@ public class ReportQuery {
 
     }
 
+	/**
+	 * generates a graph of complaints made in the selected quarter
+	 * @param StoreID store ID number
+	 * @param Quarter quarter number
+	 * @param Year year
+	 * @return graph of complaints
+	 */
 	public static ArrayList<String> GetComplaintGraphStatistics(String StoreID, String Quarter, String Year) {
 		String query = "SELECT * FROM zerli.complaintreport WHERE StoreID= '" + StoreID + "' AND QuarterNumber='"
 				+ Quarter + "' AND Year='" + Year + "';";
@@ -312,6 +319,12 @@ public class ReportQuery {
 		return complaintGraphStats;
 	}
 
+	/**
+	 * Creates the report on orders based on given store id number,month and year
+	 * @param StoreID store ID number
+	 * @param Month month
+	 * @param Year year
+	 */
 	public static void CreateOrderReports(String StoreID, String Month, String Year) {
 		String query1 = "INSERT INTO zerli.orderreport (Week1,Week2,Week3,Week4,StoreID,Month,Year) VALUES('" + 0
 				+ "','" + 0 + "','" + 0 + "','" + 0 + "','" + StoreID + "','" + Month + "','" + Year + "');";
@@ -356,6 +369,12 @@ public class ReportQuery {
 
 	}
 
+	/**
+	 * @param StoreID store id number
+	 * @param Month month
+	 * @param Year year
+	 * @return graph statistics for the selected details
+	 */
 	public static ArrayList<String> GetOrderGraphStatistics(String StoreID, String Month, String Year) {
 
 		String query = "SELECT * FROM zerli.orderreport WHERE StoreID= '" + StoreID + "' AND Month='" + Month
@@ -386,6 +405,12 @@ public class ReportQuery {
 		return GraphStats;
 	}
 
+	/**
+	 * @param StoreID store id number
+	 * @param Quarter quarter
+	 * @param Year year
+	 * @return list of data based on selected quarter
+	 */
 	public static ArrayList<String> GetIncomeQuarterGraphStatistics(String StoreID, String Quarter, String Year) {
 
 		ArrayList<String> arraylist = new ArrayList<>();
