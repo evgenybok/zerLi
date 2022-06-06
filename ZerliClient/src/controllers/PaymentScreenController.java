@@ -42,6 +42,8 @@ import javafx.stage.StageStyle;
 import logic.Account;
 import logic.Order;
 
+
+
 /**
  * @author Evgeny
  * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.
@@ -52,7 +54,8 @@ public class PaymentScreenController {
 	double totalPrice = Double.parseDouble(CartController.totalItemsPrice.getText().substring(1));
 	double totalPriceAfterDeliveryFee;
 	boolean DeliveryFlag = false, DeliveryExpressFlag = false;
-
+	public static String phoneNumber;
+	
 	@FXML
 	private TextField Adress;
 
@@ -376,6 +379,7 @@ public class PaymentScreenController {
 					sb.append(CustomerScreenController.userID);
 					chat.accept(new Message(MessageType.UPDATE_USED_REFUND, sb.toString()));
 				}
+				phoneNumber=phone;
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();

@@ -74,12 +74,15 @@ public class DeliverySelfOrderController {
 			try {
 				if(!(list==null)) {
 				for (int i = 0; i < list.size(); i++) {
+					if(list.get(i).getOrderID()==(Integer.parseInt(orderIDtext.getText())))
+					{
 						FXMLLoader fxmlLoader = new FXMLLoader();
 						fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
 						HBox hBox = fxmlLoader.load();
 						SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
 						singleSelfDeliveryController.setData(list.get(i));
 						DeliveryLayout.getChildren().add(hBox);
+					}
 					}
 				}
 			} catch (Exception e) {
