@@ -299,12 +299,6 @@ public class PaymentScreenController {
 		date = accountCreditDetails.get(0).getExpiryDate();
 		CustomerCVV = accountCreditDetails.get(0).getCVV();
 	}
-	
-	private boolean CheckTime() {
-		Date currDate = new Date(System.currentTimeMillis());
-		Calendar supplyDateCalendar = Calendar.getInstance();
-		supplyDateCalendar.setTime(currDate);
-	}
 
 	/**
 	 * Finishes the payment and adds the order to the DB based on the parameters entered.
