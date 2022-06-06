@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="571.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SurveyReportController">
+   <center>
+      <AnchorPane prefHeight="674.0" prefWidth="836.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="767.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="402.0" text="Survey Report">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="37.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="673.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="242.0" text="Welcome to Zerli">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="31.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView glyphName="LEAF" size="40" wrappingWidth="46.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-1.0" layoutY="109.0" prefHeight="79.0" prefWidth="768.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="250.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="-1.0" layoutY="80.0" prefHeight="308.0" prefWidth="818.0">
+               <children>
+                  <VBox prefHeight="267.0" prefWidth="174.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Survey Number:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="32.0" prefWidth="174.0" />
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Average Scores:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="136.0" text="Question 1:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Question 2:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Question 3:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Question 4:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Question 5:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="34.0" prefWidth="164.0" text="Question 6:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="267.0" prefWidth="183.0">
+                     <children>
+                        <Label fx:id="surveyNumber" prefHeight="34.0" prefWidth="164.0" text="Number">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <Label fx:id="avgQ1" prefHeight="34.0" prefWidth="69.0" text="avgQ1">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="avgQ2" prefHeight="34.0" prefWidth="164.0" text="avgQ2">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="avgQ3" prefHeight="34.0" prefWidth="164.0" text="avgQ3">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="avgQ4" prefHeight="34.0" prefWidth="164.0" text="avgQ4">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="avgQ5" prefHeight="34.0" prefWidth="164.0" text="avgQ5">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="avgQ6" prefHeight="34.0" prefWidth="164.0" text="avgQ6">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="267.0" prefWidth="415.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="350.0" text="Conclusions &amp; Recommendations" underline="true">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="31.0" prefWidth="334.0" />
+                        <TextArea fx:id="textConclusion" prefHeight="242.0" prefWidth="415.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="-19.0" layoutY="517.0" prefHeight="88.0" prefWidth="855.0" spacing="200.0">
+               <children>
+                  <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="Back">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="save" mnemonicParsing="false" onMouseClicked="#btnSave" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="Save">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+            <TextField fx:id="path" layoutX="370.0" layoutY="441.0" prefHeight="34.0" prefWidth="413.0" promptText="C:\Reports\SurveyNumber.pdf" />
+            <Label layoutX="371.0" layoutY="424.0" text="Choose path and file name: (for example: C:\Reports\SurveyNumber.pdf)" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

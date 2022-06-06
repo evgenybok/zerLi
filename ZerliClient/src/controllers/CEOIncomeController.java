@@ -133,6 +133,9 @@ public class CEOIncomeController {
 			QuarterlyQuarter2.setDisable(true);
 			QuarterlyStore1.setDisable(true);
 			QuarterlyStore2.setDisable(true);
+			MonthlyYear.getSelectionModel().selectLast();
+			MonthlyMonth.getSelectionModel().selectFirst();
+			MonthlyStore.getSelectionModel().selectFirst();
 		} else {
 			Quarterly_Store1.setDisable(false);
 			Quarterly_Store2.setDisable(false);
@@ -144,6 +147,9 @@ public class CEOIncomeController {
 			QuarterlyQuarter2.setDisable(false);
 			QuarterlyStore1.setDisable(false);
 			QuarterlyStore2.setDisable(false);
+			MonthlyYear.getSelectionModel().clearSelection();
+			MonthlyMonth.getSelectionModel().clearSelection();
+			MonthlyStore.getSelectionModel().clearSelection();
 		}
 
 	}
@@ -157,12 +163,17 @@ public class CEOIncomeController {
 			MonthlyYear.setDisable(true);
 			MonthlyStore.setDisable(true);
 			MonthlyMonth.setDisable(true);
+			Quarterly_Year1.getSelectionModel().selectLast();
+			QuarterlyQuarter1.getSelectionModel().selectFirst();
+			QuarterlyStore1.getSelectionModel().selectFirst();
 		} else {
 			Monthly.setDisable(false);
 			MonthlyYear.setDisable(false);
 			MonthlyStore.setDisable(false);
 			MonthlyMonth.setDisable(false);
-
+			Quarterly_Year1.getSelectionModel().clearSelection();
+			QuarterlyQuarter1.getSelectionModel().clearSelection();
+			QuarterlyStore1.getSelectionModel().clearSelection();
 		}
 
 	}
@@ -177,12 +188,17 @@ public class CEOIncomeController {
 			MonthlyYear.setDisable(true);
 			MonthlyStore.setDisable(true);
 			MonthlyMonth.setDisable(true);
+			Quarterly_Year2.getSelectionModel().selectLast();
+			QuarterlyQuarter2.getSelectionModel().selectFirst();
+			QuarterlyStore2.getSelectionModel().selectFirst();
 		} else {
 			Monthly.setDisable(false);
 			MonthlyYear.setDisable(false);
 			MonthlyStore.setDisable(false);
 			MonthlyMonth.setDisable(false);
-
+			Quarterly_Year2.getSelectionModel().clearSelection();
+			QuarterlyQuarter2.getSelectionModel().clearSelection();
+			QuarterlyStore2.getSelectionModel().clearSelection();
 		}
 
 	}
@@ -224,14 +240,21 @@ public class CEOIncomeController {
 			Year2 = quarterlyYear;
 
 		}
+		if(FlagMonth==0 && FlagStore1==0 && FlagStore2==0)
+			return;
 
-		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOIncomeReport.fxml")));
-		parent.getStylesheets().add("/css/styleNew.css");
-		Scene scene = new Scene(parent);
-		Stage OrderReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		OrderReportStage.setScene(scene);
-		OrderReportStage.show();
+		try {
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOIncomeReport.fxml")));
+			parent.getStylesheets().add("/css/styleNew.css");
+			Scene scene = new Scene(parent);
+			Stage OrderReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			OrderReportStage.setScene(scene);
+			OrderReportStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
