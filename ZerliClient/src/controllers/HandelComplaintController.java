@@ -52,10 +52,13 @@ public class HandelComplaintController {
 	private ImageView avatarImg;
 
 	@FXML
+	private ImageView searchImg;
+
+	@FXML
 	private Text userName;
-	
 
 	public static VBox staticComplaintLayout;
+
 	/**
 	 * Sends the user back to the customer service main screen
 	 * 
@@ -82,7 +85,7 @@ public class HandelComplaintController {
 	@SuppressWarnings({ "unchecked" })
 	@FXML
 	void initialize() {
-		staticComplaintLayout=ComplaintLayout;
+		staticComplaintLayout = ComplaintLayout;
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());
@@ -112,8 +115,8 @@ public class HandelComplaintController {
 				{
 					chat.accept(new Message(MessageType.UPDATE_REMINDER_FOR_HANDLER, comp.getOrderID()));
 					JOptionPane.showMessageDialog(null,
-							"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!", "Information",
-							JOptionPane.INFORMATION_MESSAGE);
+							"complaint for order " + comp.getOrderID() + " is waiting more than 24 hours!",
+							"Information", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		} catch (Exception e1) {

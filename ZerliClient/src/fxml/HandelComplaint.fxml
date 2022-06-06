@@ -160,7 +160,7 @@
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#Serach" prefHeight="57.0" prefWidth="65.0" style="-fx-background-color: transparent;">
                            <graphic>
-                              <ImageView fitHeight="57.0" fitWidth="50.0" onMouseClicked="#Serach" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="searchImg" fitHeight="57.0" fitWidth="50.0" onMouseClicked="#Serach" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/images/icons8-search-50.png" />
                                  </image>

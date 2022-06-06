@@ -60,6 +60,13 @@ public class AcceptDeliveryScreenController {
 
     @FXML
     private ImageView avatarImg;
+    
+    @FXML
+    private ImageView searchImg;
+
+    @FXML
+    private ImageView searchImg2;
+
 
 	/**
      * @param event
