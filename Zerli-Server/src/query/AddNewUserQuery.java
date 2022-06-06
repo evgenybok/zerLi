@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import logic.Account;
-import logic.SingleDelivery;
 import logic.SingleUser;
 import logic.User;
 

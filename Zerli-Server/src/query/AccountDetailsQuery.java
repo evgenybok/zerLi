@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import logic.Account;
-import logic.SingleOrder;
 
 /**
  * @author Evgeny this class contains account details related queries based on

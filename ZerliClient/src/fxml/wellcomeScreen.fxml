@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WelcomeScreenController">
    <children>
       <HBox alignment="BOTTOM_CENTER" prefHeight="88.0" prefWidth="600.0">
          <children>
@@ -42,7 +41,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="226.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" text="Get Started">
+            <Button fx:id="getStarted" mnemonicParsing="false" onMouseClicked="#btnGetStarted" prefHeight="79.0" prefWidth="226.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../../../git/zerLi/ZerliClient/images/css/styleNew.css" text="Get Started">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="34.0" />
                </font>

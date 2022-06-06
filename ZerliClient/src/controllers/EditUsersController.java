@@ -3,10 +3,8 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
@@ -26,8 +24,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.SingleDelivery;
-import logic.SingleManageOrder;
 import logic.SingleUser;
 
 /**

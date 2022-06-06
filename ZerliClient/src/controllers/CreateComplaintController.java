@@ -3,12 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -29,7 +24,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Complain;
-import logic.SingleComplaint;
 
 /**
  * @author Evgeny Customer service worker can fill a complaint made by a

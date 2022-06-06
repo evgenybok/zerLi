@@ -2,7 +2,6 @@ package controllers;
 
 import static controllers.IPScreenController.chat;
 
-import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;

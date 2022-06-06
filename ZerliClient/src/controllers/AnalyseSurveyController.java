@@ -27,7 +27,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logic.SingleOrder;
 import logic.SurveyAnswer;
 
 public class AnalyseSurveyController {

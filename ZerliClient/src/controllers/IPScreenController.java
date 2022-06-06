@@ -91,7 +91,7 @@ public class IPScreenController {
 			Platform.exit();
 			System.exit(0);
 		}
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/wellcomeScreen.fxml")));
 		parent.getStylesheets().clear();
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
