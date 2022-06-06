@@ -88,6 +88,11 @@ public class WorkerScreenController {
 
 	}
 
+	/**
+	 *User can fill the customer's answers to the survey and add them to the DB here.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnSurveyAnswers(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();

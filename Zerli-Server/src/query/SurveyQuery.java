@@ -81,6 +81,11 @@ public class SurveyQuery {
 		}
 		return answers;
 	}
+	/**
+	 * Retrieves the survey questions from the DB
+	 * @param surveyNum survey number
+	 * @return
+	 */
 	public static ArrayList<String> GetSurveyQues(String surveyNum) {
 		ArrayList<String> ques = new ArrayList<>();
 		String query = "SELECT * FROM zerli.survey WHERE SurveyNumber=" + surveyNum + ";";
@@ -106,6 +111,10 @@ public class SurveyQuery {
 		}
 		return ques;
 	}
+	/**
+	 * Updates DB and adds the customer's answers to the survey
+	 * @param ans user answers for the survey
+	 */
 	public static void UpdateSurveyAns(String ans)
 	{
 		String[] answers = ans.split("@");
