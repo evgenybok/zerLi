@@ -37,16 +37,18 @@ import query.SurveyQuery;
 import query.complaintQuery;
 
 /**
- * @author Evgeny
- * This class Analyses the messages sent from the client and handles them accordingly.
+ * @author Evgeny This class Analyses the messages sent from the client and
+ *         handles them accordingly.
  *
  */
 public class AnalyzeMessageFromClient {
 
 	/**
-	 * @param receivedMessage - Type: used in switch case, Answer:sent to the server later, data:object of data which is sent and received.
-	 * @param client - OCSF client information.
-	 * @return based on case from Type in receivedMessage, handles the case and sends a response to the server.
+	 * @param receivedMessage - Type: used in switch case, Answer:sent to the server
+	 *                        later, data:object of data which is sent and received.
+	 * @param client          - OCSF client information.
+	 * @return based on case from Type in receivedMessage, handles the case and
+	 *         sends a response to the server.
 	 */
 	public static Message parsing(Message receivedMessage, ConnectionToClient client) {
 		User user;
@@ -74,7 +76,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.EXIT, receivedMessage.getMessageAnswer(), null);
 
 		case LOGIN:
-			
+
 			try {
 				user = Query.Login((User) receivedMessage.getMessageData());
 				if (user.isLoggedIn()) {
@@ -83,8 +85,7 @@ public class AnalyzeMessageFromClient {
 				} else if (user.isExists() && !user.isLoggedIn()) {
 					receivedMessage.setMessageData("Logged In");
 					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
-				}
-				else {
+				} else {
 					receivedMessage.setMessageData("Wrong");
 					receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				}
@@ -289,7 +290,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_USERID_BY_ORDERID:
 			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
 			try {
@@ -594,7 +595,6 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS_BY_ORDERID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
-
 		case GET_SURVEY_ANSWERS:
 			try {
 				receivedMessage.setMessageData(SurveyQuery.GetSurveyAnswers());
@@ -650,7 +650,7 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.GET_USERS_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		case GET_MANAGER_ORDERS:
-			singleManageOrder = GetOrderQuery.GetManagerOrders((String)receivedMessage.getMessageData());
+			singleManageOrder = GetOrderQuery.GetManagerOrders((String) receivedMessage.getMessageData());
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(singleManageOrder);
@@ -713,7 +713,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_WORKERS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case UPDATE_ROLE_BY_MANAGER:
 			try {
 				AccountDetailsQuery.UpdateRoleByManager((String) receivedMessage.getMessageData());
@@ -724,10 +724,11 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_ROLE_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_STORE_ID_BY_ORDER_ID:
 			try {
-				receivedMessage.setMessageData(GetOrderQuery.GetStoreIDByOrderID((String) receivedMessage.getMessageData()));
+				receivedMessage
+						.setMessageData(GetOrderQuery.GetStoreIDByOrderID((String) receivedMessage.getMessageData()));
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
@@ -735,10 +736,10 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_STORE_ID_BY_ORDER_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_ALL_COMPLAINTS:
 			try {
-				receivedMessage.setMessageData((ArrayList<Complain>)complaintQuery.GetAllComplaints());
+				receivedMessage.setMessageData((ArrayList<Complain>) complaintQuery.GetAllComplaints());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
@@ -746,10 +747,10 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.GET_ALL_COMPLAINTS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case UPDATE_REMINDER_FOR_HANDLER:
 			try {
-				complaintQuery.UpdateReminder((int)receivedMessage.getMessageData());
+				complaintQuery.UpdateReminder((int) receivedMessage.getMessageData());
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 			} catch (Exception e) {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
@@ -778,7 +779,7 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_ORDERS_AMOUNT, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case GET_SURVEY_QUS_BY_SURVEYNUM:
 			question = SurveyQuery.GetSurveyQues((String) receivedMessage.getMessageData());
 			try {
@@ -800,12 +801,13 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.UPDATE_SURVEY_ANS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-			
+
 		case INCOME_QUARTER_GRAPH:
-			ArrayList<String>GraphArrIncome=new ArrayList<>();
-			ArrayList<String>GraphArrIncome2=new ArrayList<>();
+			ArrayList<String> GraphArrIncome = new ArrayList<>();
+			ArrayList<String> GraphArrIncome2 = new ArrayList<>();
 			GraphArrIncome = (ArrayList<String>) receivedMessage.getMessageData();
-			GraphArrIncome2=ReportQuery.GetIncomeQuarterGraphStatistics(GraphArrIncome.get(0), GraphArrIncome.get(1), GraphArrIncome.get(2));
+			GraphArrIncome2 = ReportQuery.GetIncomeQuarterGraphStatistics(GraphArrIncome.get(0), GraphArrIncome.get(1),
+					GraphArrIncome.get(2));
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(GraphArrIncome2);
@@ -817,10 +819,11 @@ public class AnalyzeMessageFromClient {
 					receivedMessage.getMessageData());
 
 		case COMPLAINT_GRAPH_STATISTICS:
-			ArrayList<String>ComplaintArr=new ArrayList<>();
-			ArrayList<String>ComplaintArr2=new ArrayList<>();
+			ArrayList<String> ComplaintArr = new ArrayList<>();
+			ArrayList<String> ComplaintArr2 = new ArrayList<>();
 			ComplaintArr = (ArrayList<String>) receivedMessage.getMessageData();
-			GraphArr2=ReportQuery.GetComplaintGraphStatistics(ComplaintArr.get(0), ComplaintArr.get(1), ComplaintArr.get(2));
+			GraphArr2 = ReportQuery.GetComplaintGraphStatistics(ComplaintArr.get(0), ComplaintArr.get(1),
+					ComplaintArr.get(2));
 			try {
 				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
 				receivedMessage.setMessageData(GraphArr2);
@@ -831,7 +834,20 @@ public class AnalyzeMessageFromClient {
 			return new Message(MessageType.COMPLAINT_GRAPH_STATISTICS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
-
+		case ORDER_GRAPH_STATISTICS:
+			ArrayList<String> GraphArr_1 = new ArrayList<>();
+			ArrayList<String> GraphArr_2 = new ArrayList<>();
+			GraphArr_1 = (ArrayList<String>) receivedMessage.getMessageData();
+			GraphArr_2 = ReportQuery.GetOrderGraphStatistics(GraphArr_1.get(0), GraphArr_1.get(1), GraphArr_1.get(2));
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(GraphArr_2);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.ORDER_GRAPH_STATISTICS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 
 		default:// ;
 

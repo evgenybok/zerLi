@@ -124,16 +124,7 @@
                         <Font name="Cambria Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ComplaintRep" alignment="BOTTOM_CENTER" layoutX="115.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Complaint" textFill="#004d00">
-                     <styleClass>
-                        <String fx:value="add-btn" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                     <font>
-                        <Font name="Cambria Bold" size="22.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="CreateRep" alignment="BOTTOM_CENTER" layoutX="484.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#btnCreate" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Create Report" textFill="#004d00">
+                  <Button fx:id="ComplaintRep" alignment="BOTTOM_CENTER" layoutX="284.0" layoutY="475.0" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Complaint" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -169,24 +160,19 @@
                         <HBox prefHeight="122.0" prefWidth="115.0" />
                      </children>
                   </HBox>
-                  <ImageView fitHeight="108.0" fitWidth="149.0" layoutX="517.0" layoutY="198.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="ordersImg" fitHeight="108.0" fitWidth="149.0" layoutX="517.0" layoutY="198.0" onMouseClicked="#btnOrders" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/report-icon-13315.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="110.0" fitWidth="96.0" layoutX="170.0" layoutY="197.0" onMouseClicked="#btnIncome" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="incomeImg" fitHeight="110.0" fitWidth="96.0" layoutX="170.0" layoutY="197.0" onMouseClicked="#btnIncome" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/225-2259206_mansfield-sales-order-sku-transparent-background-report-icon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="108.0" fitWidth="149.0" layoutX="530.0" layoutY="472.0" onMouseClicked="#btnCreate" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="complaintImg" fitHeight="122.0" fitWidth="117.0" layoutX="326.0" layoutY="475.0" onMouseClicked="#btnComplaint" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/WhatsApp%20Image%202022-05-10%20at%2019.49.21.jpeg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="122.0" fitWidth="117.0" layoutX="160.0" layoutY="475.0" onMouseClicked="#btnComplaint" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/images/WhatsApp%20Image%202022-05-10%20at%2019.49.20.jpeg" />
+                        <Image url="@../../images/images/reports1.jpeg" />
                      </image>
                   </ImageView>
                </children>

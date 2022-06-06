@@ -18,9 +18,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOComplaintController">
    <children>
-      <BorderPane prefHeight="800.0" prefWidth="1234.0">
+      <BorderPane prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="325.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -99,7 +99,7 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="800.0" prefWidth="917.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="100.0" prefWidth="767.0">
                      <children>

@@ -22,11 +22,6 @@ import logic.SingleDelivery;
 public class SingleDeliveryController {
 	public static String order_id;
 	public static String customersupplydate;
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
 
 	@FXML
 	private Button Confirm;

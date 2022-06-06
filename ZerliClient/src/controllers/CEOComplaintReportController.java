@@ -23,7 +23,10 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CEOComplaintReportController {
@@ -50,6 +53,12 @@ public class CEOComplaintReportController {
 	private Button Back;
 
 	@FXML
+	private ImageView avatarImg;
+
+	@FXML
+	private Text userName;
+
+	@FXML
 	private BarChart<String, Number> BarChart;
 
 	@FXML
@@ -68,6 +77,9 @@ public class CEOComplaintReportController {
 
 	@FXML
 	void initialize() throws IOException {
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
+		userName.setText(LoginScreenController.user.getUsername());
 		ArrayList<String> arrComplaint = new ArrayList<>();
 		ArrayList<String> StoreName1 = new ArrayList<>();
 		ArrayList<String> complaint_Graph_Stats = new ArrayList<>();

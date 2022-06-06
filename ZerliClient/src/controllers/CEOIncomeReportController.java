@@ -33,6 +33,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -88,6 +89,11 @@ public class CEOIncomeReportController {
 
 	@FXML
 	void initialize() {
+		Image complaintImage = new Image(Objects.requireNonNull(getClass()
+				.getResourceAsStream("/images/10-106521_report-png-transparent-background-png-download.png")));
+		reportImg.setImage(complaintImage);
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		avatarImg.setImage(personImage);
 		double maxWeek = 0;
 		double minWeek = Double.MAX_VALUE;
 		double maxWeek2 = 0;

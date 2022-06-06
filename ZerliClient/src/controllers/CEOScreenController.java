@@ -3,9 +3,7 @@ package controllers;
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import communication.Message;
 import communication.MessageType;
@@ -15,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,40 +22,41 @@ import javafx.stage.Stage;
 public class CEOScreenController {
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
-	private Text userName;
-
-	@FXML
 	private Text AccountType;
-
-	@FXML
-	private Text AccountStatus;
-
-	@FXML
-	private Button Logout;
-
-	@FXML
-	private Button IncomeRep;
-
-	@FXML
-	private Button OrdersRep;
 
 	@FXML
 	private Button ComplaintRep;
 
 	@FXML
-	private Button CreateRep;
+	private Button IncomeRep;
+
+	@FXML
+	private Button Logout;
+
+	@FXML
+	private Button OrdersRep;
+
+	@FXML
+	private ImageView avatarImg;
+
+	@FXML
+	private ImageView complaintImg;
+
+	@FXML
+	private ImageView incomeImg;
+
+	@FXML
+	private ImageView ordersImg;
+
+	@FXML
+	private Text userName;
 
 	@FXML
 	void btnComplaint(MouseEvent event) throws IOException {
 
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOComplaintScreen.fxml")));
+		Parent parent = FXMLLoader
+				.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOComplaintScreen.fxml")));
 		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -113,12 +114,18 @@ public class CEOScreenController {
 	@FXML
 	void initialize() {
 		try {
-
-			AccountStatus.setText("CONFIRMED");
 			userName.setText(LoginScreenController.user.getUsername());
-
+			Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+			avatarImg.setImage(personImage);
+			Image ordersImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/report-icon-13315.png")));
+			ordersImg.setImage(ordersImage);
+			Image incomeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/225-2259206_mansfield-sales-order-sku-transparent-background-report-icon.png")));
+			incomeImg.setImage(incomeImage);
+			Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/reports1.jpeg")));
+			complaintImg.setImage(complaintImage);
 		} catch (NullPointerException e) {
-		};
+		}
+		;
 	}
 
 }
