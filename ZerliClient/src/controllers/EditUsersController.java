@@ -71,6 +71,11 @@ public class EditUsersController {
 	@FXML
 	private Text userName;
 
+	/**
+	 * Returns the user back to the branch manager main screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -84,6 +89,10 @@ public class EditUsersController {
 		managerScreen.centerOnScreen();
 	}
 
+	/**
+	 * Searches for a specific user by user ID number
+	 * @param event
+	 */
 	@FXML
 	void btnSearch(MouseEvent event) {
 		ArrayList<SingleUser> order = new ArrayList<>();
@@ -101,6 +110,7 @@ public class EditUsersController {
 		}
 		order = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
 		try {
+			if (!order.isEmpty()) {
 			for (int i = 0; i < order.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleUser.fxml"));
@@ -108,6 +118,7 @@ public class EditUsersController {
 				SingleUserController singleUserController = fxmlLoader.getController();
 				singleUserController.setData(order.get(i));
 				UsersLayout.getChildren().add(hBox);
+			}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -130,6 +141,7 @@ public class EditUsersController {
 		chat.accept(new Message(MessageType.GET_USERS_BY_ID, null));
 		list = (ArrayList<SingleUser>) AnalyzeMessageFromServer.getData();
 		try {
+			if (!list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleUser.fxml"));
@@ -137,6 +149,7 @@ public class EditUsersController {
 				SingleUserController singleUserController = fxmlLoader.getController();
 				singleUserController.setData(list.get(i));
 				UsersLayout.getChildren().add(hBox);
+			}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

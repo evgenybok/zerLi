@@ -28,6 +28,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.SingleWorker;
 
+/**
+ * @author Evgeny
+ * Updates the role of workers, only the manager can access this screen.
+ */
 public class EditWorkerRoleController {
 
 	@FXML
@@ -63,6 +67,10 @@ public class EditWorkerRoleController {
     @FXML
     private ImageView avatarImg;
 
+	/**
+	 * Returns the user back to the branch manager main screen.
+	 * @param event
+	 */
 	@FXML
 	void btnBack(MouseEvent event) {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -81,6 +89,10 @@ public class EditWorkerRoleController {
 		}
 	}
 
+	/**
+	 * Searches for a specific worker using worker ID number
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSearch(MouseEvent event) {
@@ -116,6 +128,9 @@ public class EditWorkerRoleController {
 
 	}
 
+	/**
+	 * Initializes data shown on screen.
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {

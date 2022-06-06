@@ -23,6 +23,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.SingleWorker;
 
+/**
+ * @author Evgeny
+ * Branch manager can update the roles of workers on this screen.
+ */
 public class SingleWorkerController {
 
     @FXML
@@ -44,6 +48,10 @@ public class SingleWorkerController {
     private Label role;
 
 
+    /**
+     * Updates in DB the role of the chosen worker to a new selected role
+     * @param event
+     */
     @FXML
     void btnUpdateRole(MouseEvent event) {
 
@@ -79,6 +87,10 @@ public class SingleWorkerController {
 		}
     }
 
+	/**
+	 * Sets data on single worker on screen
+	 * @param singleWorker
+	 */
 	public void setData(SingleWorker singleWorker) {
 		UserID.setText(singleWorker.getID());
 		FirstName.setText(singleWorker.getFirstName());
