@@ -97,18 +97,18 @@ public class CartController {
 		Stage stage;
 		try {
 			stage = CustomCatalogController.customCatalogStage;
-			stage.hide();
+			stage.close();
 		} catch (Exception e) {
 		}
 
 		try {
 			stage = CatalogController.premadeCatalogStage;
-			stage.hide();
+			stage.close();
 		} catch (Exception e) {
 		}
         try {
             stage = CustomerScreenController.customerScreenStage;
-            stage.hide();
+            stage.close();
         } catch (Exception e) {
         }
     	((Node) event.getSource()).getScene().getWindow().hide();
