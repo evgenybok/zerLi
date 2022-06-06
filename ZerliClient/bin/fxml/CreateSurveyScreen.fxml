@@ -132,7 +132,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="214.0" prefWidth="846.0">
                      <children>
-                        <Label prefHeight="46.0" prefWidth="637.0" text=" Please Wirte Survey question:">
+                        <Label prefHeight="46.0" prefWidth="751.0" text=" Please Wirte Survey question:">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="40.0" />
                            </font>

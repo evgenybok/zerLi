@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AcceptDeliveryScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1411.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AcceptDeliveryScreenController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="355.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="801.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
+            <VBox prefHeight="801.0" prefWidth="342.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -100,9 +100,9 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="800.0" prefWidth="1166.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="1089.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="800.0" prefWidth="854.0" style="-fx-background-color: e6ffcc;">
+            <VBox prefHeight="800.0" prefWidth="1230.0" style="-fx-background-color: e6ffcc;">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -168,7 +168,7 @@
                                        <children>
                                           <Button mnemonicParsing="false" onMouseClicked="#SearchByStoreID" style="-fx-background-color: transparent;">
                                              <graphic>
-                                                <ImageView fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByStoreID" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="searchImg" fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByStoreID" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../images/images/icons8-search-50.png" />
                                                    </image>
@@ -205,7 +205,7 @@
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <Button mnemonicParsing="false" onMouseClicked="#SearchByOrderID" prefHeight="53.0" prefWidth="81.0" style="-fx-background-color: transparent;">
                                        <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="searchImg2" fitHeight="45.0" fitWidth="62.0" onMouseClicked="#SearchByOrderID" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../images/images/icons8-search-50.png" />
                                              </image>
