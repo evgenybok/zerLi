@@ -554,6 +554,51 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case COMPLAINT_REPORT:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case COMPLAINT_GRAPH_STATISTICS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case ORDERS_REPORT:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case ORDER_GRAPH_STATISTICS:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
+		case INCOME_QUARTER_GRAPH:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
+
 		default:
 			break;
 		}

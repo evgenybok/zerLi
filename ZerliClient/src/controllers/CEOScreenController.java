@@ -19,10 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- * @author Evgeny
- * Only user with the CEO role can get to this screen, can view various reports and create a new report.
- */
 public class CEOScreenController {
 
 	@FXML
@@ -56,7 +52,16 @@ public class CEOScreenController {
 	private Button CreateRep;
 
 	@FXML
-	void btnComplaint(MouseEvent event) {
+	void btnComplaint(MouseEvent event) throws IOException {
+
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOComplaintScreen.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
 
 	}
 
@@ -65,35 +70,24 @@ public class CEOScreenController {
 
 	}
 
-	/**
-	 * Shows the chosen area and date income report.
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnIncome(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
-		parent.getStylesheets().add("css/styleNew.css");
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOIncomeScreen.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Customer");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
 	}
 
-	/**
-	 * CEO logs out and returns to login screen.
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnLogout(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginScreen.fxml")));
-		parent.getStylesheets().add("css/styleNew.css");
+		parent.getStylesheets().add("/css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		loginStage.setTitle("Login Screen");
@@ -103,18 +97,24 @@ public class CEOScreenController {
 	}
 
 	@FXML
-	void btnOrders(MouseEvent event) {
+	void btnOrders(MouseEvent event) throws IOException {
+
+		((Node) event.getSource()).getScene().getWindow().hide();
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOOrderScreen.fxml")));
+		parent.getStylesheets().add("/css/styleNew.css");
+		Scene scene = new Scene(parent);
+		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		customerStage.setScene(scene);
+		customerStage.show();
+		customerStage.centerOnScreen();
 
 	}
 
 	@FXML
 	void initialize() {
 		try {
-			/*chat.accept(new Message(MessageType.GET_ACCOUNT_DETAILS, LoginScreenController.user.getID()));
-			@SuppressWarnings("unchecked")
-			ArrayList<String> account = (ArrayList<String>) AnalyzeMessageFromServer.getData();
-			AccountStatus.setText(account.get(5)); // *** AccountStatus text field is null!!*/
-			//AccountStatus.setText("CONFIRMED");
+
+			AccountStatus.setText("CONFIRMED");
 			userName.setText(LoginScreenController.user.getUsername());
 
 		} catch (NullPointerException e) {

@@ -107,223 +107,331 @@ public class ReportQuery {
 	 * Creates quarterly complaint report.
 	 * @throws SQLException
 	 */
-	public static void CreateComplaintQuarterReports(String StoreID, String Quarter, String Year) throws SQLException {
-		String query, query1, query2;
-		query = "INSERT INTO zerli.complaintreport (StoreID,QuarterNumber,Year,GotRefund,DidntGotRefund) VALUES('"
-				+ StoreID + "','" + Quarter + "','" + Year + "','" + 0 + "','" + 0 + "');";
+    public static void CreateComplaintQuarterReports(String StoreID, String Quarter, String Year) throws SQLException {
+        String query, query1, query2;
+        query = "INSERT INTO zerli.complaintreport (StoreID,QuarterNumber,Year,Month1,Month2,Month3) VALUES('" + StoreID + "','" + Quarter + "','" + Year + "','" + 0 + "','" + 0 + "','" + 0 + "');";
 
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			return;
-		}
-		;
 
-		switch (Quarter) {
-		case "01":
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE  Refund!='" + null + "'AND StoreID='"
-					+ StoreID + "' AND year(Date)='" + Year
-					+ "' AND (month(Date)='01' OR month(Date)='02' OR month(Date)='03');";
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            return;
+        }
+        ;
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+        switch (Quarter) {
+            case "01":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '01'AND '03' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-				query2 = "Update complaintreport SET GotRefund ='" + count_Compliant + "' WHERE StoreID='" + StoreID
-						+ "' AND Quarter='01' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        String new_month = "Month" + month;
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='01' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			} catch (SQLException e) {
-				return;
-			}
+                    }
 
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE  Refund ='" + null + "'AND StoreID='"
-					+ StoreID + "' AND year(Date)='" + Year
-					+ "' AND (month(Date)='01' OR month(Date)='02' OR month(Date)='03');";
+                } catch (SQLException e) {
+                    return;
+                }
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
 
-				query2 = "Update complaintreport SET DidntGotRefund ='" + count_Compliant + "' WHERE StoreID='"
-						+ StoreID + "' AND Quarter='01' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                break;
+            case "02":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '04'AND '06' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-			} catch (SQLException e) {
-				return;
-			}
+                try {
 
-			break;
-		case "02":
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        String new_month = "Month" + month;
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='02' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE StoreID='" + StoreID
-					+ "' AND year(Date)='" + Year + "' AND (month(Date)='04' OR month(Date)='05' OR month(Date)='06');";
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+                    }
 
-				query2 = "Update complaintreport SET GotRefund ='" + count_Compliant + "' WHERE StoreID='" + StoreID
-						+ "' AND Quarter='02' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                } catch (SQLException e) {
+                    return;
+                }
 
-			} catch (SQLException e) {
-				return;
-			}
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE  Refund ='" + null + "'AND StoreID='"
-					+ StoreID + "' AND year(Date)='" + Year
-					+ "' AND (month(Date)='04' OR month(Date)='05' OR month(Date)='06');";
+                break;
+            case "03":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '07'AND '09' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
 
-				query2 = "Update complaintreport SET DidntGotRefund ='" + count_Compliant + "' WHERE StoreID='"
-						+ StoreID + "' AND Quarter='02' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        String new_month = "Month" + month;
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='03' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			} catch (SQLException e) {
-				return;
-			}
+                    }
 
-			break;
-		case "03":
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE StoreID='" + StoreID
-					+ "' AND year(Date)='" + Year + "' AND (month(Date)='07' OR month(Date)='08' OR month(Date)='09');";
+                } catch (SQLException e) {
+                    return;
+                }
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+                break;
+            case "04":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '10'AND '12' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-				query2 = "Update complaintreport SET GotRefund ='" + count_Compliant + "' WHERE StoreID='" + StoreID
-						+ "' AND Quarter='03' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        String new_month = "Month" + month;
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='04' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			} catch (SQLException e) {
-				return;
-			}
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE  Refund ='" + null + "'AND StoreID='"
-					+ StoreID + "' AND year(Date)='" + Year
-					+ "' AND (month(Date)='07' OR month(Date)='08' OR month(Date)='09');";
+                    }
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+                } catch (SQLException e) {
+                    return;
+                }
 
-				query2 = "Update complaintreport SET DidntGotRefund ='" + count_Compliant + "' WHERE StoreID='"
-						+ StoreID + "' AND Quarter='03' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                break;
 
-			} catch (SQLException e) {
-				return;
-			}
+            default:
+        }
 
-			break;
-		case "04":
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE StoreID='" + StoreID
-					+ "' AND year(Date)='" + Year + "' AND (month(Date)='10' OR month(Date)='11' OR month(Date)='12');";
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+    }
 
-				query2 = "Update complaintreport SET GotRefund ='" + count_Compliant + "' WHERE StoreID='" + StoreID
-						+ "' AND Quarter='04' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
 
-			} catch (SQLException e) {
-				return;
-			}
-			query = "SELECT COUNT(*) as count_compliant FROM zerli.complaint WHERE  Refund ='" + null + "'AND StoreID='"
-					+ StoreID + "' AND year(Date)='" + Year
-					+ "' AND (month(Date)='10' OR month(Date)='11' OR month(Date)='12');";
+    public static ArrayList<String> GetComplaintGraphStatistics(String StoreID, String Quarter, String Year) {
+        String query = "SELECT * FROM zerli.complaintreport WHERE StoreID= '" + StoreID + "' AND QuarterNumber='" + Quarter + "' AND Year='" + Year + "';";
+        ArrayList<String> complaintGraphStats = new ArrayList<>();
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String count_Compliant = null;
-				while (rs1.next()) {
-					count_Compliant = rs1.getString("count_compliant");
-				}
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String month1 = rs.getString("Month1");
+                String month2 = rs.getString("Month2");
+                String month3 = rs.getString("Month3");
+                String currentQuarter = rs.getString("QuarterNumber");
 
-				query2 = "Update complaintreport SET DidntGotRefund ='" + count_Compliant + "' WHERE StoreID='"
-						+ StoreID + "' AND Quarter='04' AND Year='" + Year + "';";
-				try {
-					PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
-					st2.executeUpdate();
-				} catch (SQLException e) {
-					return;
-				}
+                complaintGraphStats.add(currentQuarter);
+                complaintGraphStats.add(month1);
+                complaintGraphStats.add(month2);
+                complaintGraphStats.add(month3);
+            }
 
-			} catch (SQLException e) {
-				return;
-			}
+        } catch (SQLException e) {
+            return null;
+        }
 
-			break;
-		}
+        return complaintGraphStats;
+    }
 
-	}
+    public static void CreateOrderReports(String StoreID, String Month, String Year) {
+        String query1 = "INSERT INTO zerli.orderreport (Week1,Week2,Week3,Week4,StoreID,Month,Year) VALUES('" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + StoreID + "','" + Month + "','" + Year + "');";
+
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query1);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            return;
+        }
+        ;
+
+
+        String query = "SELECT FLOOR((DayOfMonth(OrderDate)-1)/7)+1\n" +
+                " as week_of_year, COUNT(*) as Amount \n" +
+                "FROM zerli.orders\n" +
+                "where StoreID= '" + StoreID + "' AND month(OrderDate)='" + Month + "' AND year(OrderDate)='" + Year + "' \n" +
+                "group by FLOOR((DayOfMonth(OrderDate)-1)/7)+1 \n" +
+                "Order BY week_of_year;";
+
+        try {
+            PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+            ResultSet rs1 = st1.executeQuery();
+            while (rs1.next()) {
+                String week = rs1.getString("week_of_year");
+                String amount = rs1.getString("Amount");
+                String newWeek = "Week" + week;
+
+                String query2 = "Update orderreport SET " + newWeek + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND Month='" + Month + "' AND Year='" + Year + "';";
+                System.out.println(query2);
+                try {
+                    PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query2);
+                    st2.executeUpdate();
+                } catch (SQLException e) {
+                    return;
+                }
+
+            }
+        } catch (SQLException e) {
+            return;
+
+        }
+        ;
+
+    }
+
+    public static ArrayList<String> GetOrderGraphStatistics(String StoreID, String Month, String Year) {
+
+        String query = "SELECT * FROM zerli.orderreport WHERE StoreID= '" + StoreID + "' AND Month='" + Month + "' AND Year='" + Year + "';";
+        ArrayList<String> GraphStats = new ArrayList<>();
+
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String Week1 = rs.getString("Week1");
+                String Week2 = rs.getString("Week2");
+                String Week3 = rs.getString("Week3");
+                String Week4 = rs.getString("Week4");
+                String currentMonth = rs.getString("Month");
+
+                GraphStats.add(currentMonth);
+                GraphStats.add(Week1);
+                GraphStats.add(Week2);
+                GraphStats.add(Week3);
+                GraphStats.add(Week4);
+            }
+
+        } catch (SQLException e) {
+            return null;
+        }
+
+        return GraphStats;
+    }
+
+
+    public static ArrayList<String> GetIncomeQuarterGraphStatistics(String StoreID, String Quarter, String Year) {
+
+        ArrayList<String> arraylist=new ArrayList<>();
+        String query;
+        switch (Quarter) {
+            case "01":
+                query = "SELECT Month as month , (Week1 + Week2 + Week3 + Week4)as total FROM zerli.incomereport WHERE Month='01' OR Month='02' OR Month='03' AND StoreID='" + StoreID + "' AND year(Year)='" + Year + "' OR Month='03' ORDER BY month;";
+
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String total = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        total = rs1.getString("total");
+                        arraylist.add(total);
+                    }
+
+                } catch (SQLException e) {
+                    return null;
+                };
+
+                return arraylist;
+
+
+            case "02":
+                query = "SELECT Month as month , (Week1 + Week2 + Week3 + Week4)as total FROM zerli.incomereport WHERE Month='04' OR Month='05' OR Month='06' AND StoreID='" + StoreID + "' AND year(Year)='" + Year + "' OR Month='06' ORDER BY month;";
+
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String total = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        total = rs1.getString("total");
+                        arraylist.add(total);
+                    }
+
+                } catch (SQLException e) {
+                    return null;
+                };
+
+                return arraylist;
+
+            case "03":
+                query = "SELECT Month as month , (Week1 + Week2 + Week3 + Week4)as total FROM zerli.incomereport WHERE Month='07' OR Month='08' OR Month='09' AND StoreID='" + StoreID + "' AND year(Year)='" + Year + "' OR Month='09' ORDER BY month;";
+
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String total = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        total = rs1.getString("total");
+                        arraylist.add(total);
+                    }
+
+                } catch (SQLException e) {
+                    return null;
+                };
+
+                return arraylist;
+            case "04":
+                query = "SELECT Month as month , (Week1 + Week2 + Week3 + Week4)as total FROM zerli.incomereport WHERE Month='10' OR Month='11' OR Month='12' AND StoreID='" + StoreID + "' AND year(Year)='" + Year + "' OR Month='12' ORDER BY month;";
+
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String total = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        total = rs1.getString("total");
+                        arraylist.add(total);
+                    }
+
+                } catch (SQLException e) {
+                    return null;
+                };
+
+                return arraylist;
+
+            default:
+                return null;
+        }
+    }
 }

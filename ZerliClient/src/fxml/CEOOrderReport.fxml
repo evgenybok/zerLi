@@ -1,55 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="886.0" prefWidth="877.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-   <children>
-      <ImageView fitHeight="886.0" fitWidth="883.0" pickOnBounds="true">
-         <image>
-            <Image url="@../074c98d738286b384fb05842c05dc66d.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutX="352.0" layoutY="51.0" prefHeight="38.0" prefWidth="194.0" text="Order Report" underline="true">
-         <font>
-            <Font name="System Bold" size="26.0" />
-         </font>
-      </Label>
-      <ComboBox layoutX="114.0" layoutY="162.0" prefWidth="150.0" promptText="Choose Store" />
-      <ComboBox layoutX="305.0" layoutY="162.0" prefWidth="150.0" promptText="Choose Item" />
-      <StackedAreaChart layoutX="69.0" layoutY="262.0" prefHeight="557.0" prefWidth="739.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: f2f2f2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOOrderReportController">
+   <top>
+      <HBox prefHeight="119.0" prefWidth="1200.0" style="-fx-background-color: #e6ffcc;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="119.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="170.0" text="Order Report">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="119.0" prefWidth="1033.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="119.0" prefWidth="654.0">
+                     <children>
+                        <Label fx:id="branchLabel" alignment="TOP_LEFT" prefHeight="59.0" prefWidth="222.0" text="Akko Branch Report">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#004d00" glyphName="LEAF" size="40" wrappingWidth="46.0" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <LineChart fx:id="lineChart" prefHeight="520.0" prefWidth="973.0" title="Chart Of July Month" BorderPane.alignment="CENTER">
         <xAxis>
-          <NumberAxis autoRanging="false" label="Days" side="BOTTOM" style="-fx-tick-label-font-size: White;" tickLabelFill="RED" tickUnit="8.0" upperBound="31.0">
-               <tickLabelFont>
-                  <Font size="16.0" />
-               </tickLabelFont>
-            </NumberAxis>
+          <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis autoRanging="false" side="LEFT" tickLabelFill="RED" tickUnit="20.0" upperBound="200.0">
-               <tickLabelFont>
-                  <Font size="16.0" />
-               </tickLabelFont></NumberAxis>
+          <NumberAxis prefHeight="455.0" prefWidth="64.0" side="LEFT" />
         </yAxis>
-      </StackedAreaChart>
-      <Button layoutX="35.0" layoutY="826.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="88.0" text="Back">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Button>
-      <Button layoutX="547.0" layoutY="130.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="131.0" text="Open Report">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <ComboBox layoutX="114.0" layoutY="119.0" prefWidth="150.0" promptText="Choose Month" />
-      <ComboBox layoutX="304.0" layoutY="119.0" prefWidth="150.0" promptText="Choose Year" />
-   </children>
-</AnchorPane>
+      </LineChart>
+   </center>
+   <bottom>
+      <HBox prefHeight="161.0" prefWidth="1200.0" style="-fx-background-color: #e6ffcc;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="216.0" text="Best Week">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="BestWeek" alignment="CENTER" editable="false" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: tranparent;">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="161.0" prefWidth="100.0" />
+            <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="218.0" text="Worst Week">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="WorstWeek" alignment="CENTER" editable="false" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="161.0" prefWidth="100.0" />
+            <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="229.0" text="Total Orders">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="TotalOrders" alignment="CENTER" editable="false" prefHeight="49.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <Pane prefHeight="1.0" prefWidth="0.0" style="-fx-background-color: black;" />
+            <VBox prefHeight="161.0" prefWidth="287.0">
+               <children>
+                  <HBox prefHeight="161.0" prefWidth="589.0">
+                     <children>
+                        <VBox prefHeight="161.0" prefWidth="255.0" />
+                        <VBox alignment="CENTER" prefHeight="161.0" prefWidth="335.0">
+                           <children>
+                              <Button fx:id="Back" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="63.0" prefWidth="157.0" stylesheets="@../../images/css/styleNew.css" text="Back">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="add-btn" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></HBox>
+   </bottom>
+</BorderPane>

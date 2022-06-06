@@ -95,8 +95,8 @@ public class AddCustomerController {
 		String password = Password.getText();
 		String role = "customer";
 		String Status = "Active";
-		if(Userid.equals(null) || firstname.equals(null) || lastname.equals(null) || creditnum.equals(null) || expire.equals(null) || cvv.equals(null) || mail.equals(null)
-				|| phone.equals(null) || username.equals(null) || password.equals(null) || role.equals(null) || Status.equals(null)) {
+		if(Userid=="" || firstname=="" || lastname=="" || creditnum=="" || expire==""|| cvv=="" || mail==""
+				|| phone=="" || username=="" || password=="" || role=="" || Status=="") {
 			JOptionPane.showMessageDialog(null, "One or more of the fields are empty!!", "Info",
 					JOptionPane.INFORMATION_MESSAGE);
 			return;

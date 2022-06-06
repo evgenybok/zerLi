@@ -1,6 +1,5 @@
 package controllers;
 
-
 import static controllers.IPScreenController.chat;
 
 import java.io.IOException;
@@ -30,199 +29,279 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * @author Evgeny
- * Branch manager can select month and year and report type or complaint year and quarter
+ * @author Evgeny Branch manager can select month and year and report type or
+ *         complaint year and quarter
  */
-public class ReportsController  {
-	  @FXML
-	    private Button View;
-    @FXML
-    private ResourceBundle resources;
+public class ReportsController {
+	@FXML
+	private Button View;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private CheckBox ComplaintCu;
+	@FXML
+	private CheckBox ComplaintCu;
 
-    @FXML
-    private CheckBox Monthly;
-    
-    @FXML
-    private Button Back;
+	@FXML
+	private CheckBox Monthly;
 
-    @FXML
-    private Text accountType;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private Text userName;
-    
-    @FXML
-    private ImageView avatarImg;
-    
-    @FXML
-    private ComboBox<String> ComplaintQuart;
+	@FXML
+	private Text accountType;
 
-    @FXML
-    private ComboBox<String> ComplaintYear;
-    
-    @FXML
-    private ComboBox<String> MonthlyMonth;
+	@FXML
+	private Text userName;
 
-    @FXML
-    private ComboBox<String> MonthlyReport;
+	@FXML
+	private ImageView avatarImg;
 
-    @FXML
-    private ComboBox<String> MonthlyYear;
+	@FXML
+	private ComboBox<String> ComplaintQuart;
 
-    int FlagMonth=0,FlagComplaint=0;
-    public static String StoreID;
-    public static String Month;
-    public static String Year;
+	@FXML
+	private ComboBox<String> ComplaintYear;
 
-    /**
-     * Sends the user back to the branch manager main screen
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    void btnBack(MouseEvent event) throws IOException {
-    	((Node) event.getSource()).getScene().getWindow().hide();
+	@FXML
+	private ComboBox<String> MonthlyMonth;
+
+	@FXML
+	private ComboBox<String> MonthlyReport;
+
+	@FXML
+	private ComboBox<String> MonthlyYear;
+
+	int FlagMonth = 0, FlagComplaint = 0;
+	public static String StoreID;
+	public static String Month;
+	public static String Year;
+	public static String Quarter;
+
+	/**
+	 * Sends the user back to the branch manager main screen
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
+	@FXML
+	void btnBack(MouseEvent event) throws IOException {
+		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
-		Stage deliveryDetailsStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		deliveryDetailsStage.setTitle("Delivery Details");
-		deliveryDetailsStage.setScene(scene);
-		deliveryDetailsStage.show();
-		deliveryDetailsStage.centerOnScreen();
-    }
-    /**
-     * Opens the selected report with the selected data.
-     * @param event
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    @FXML
-    void btnView(MouseEvent event) throws IOException, InterruptedException {
+		Stage managerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		managerStage.setTitle("Delivery Details");
+		managerStage.setScene(scene);
+		managerStage.show();
+		managerStage.centerOnScreen();
+	}
 
-            if (FlagMonth == 1) {
-                String monthlyReport = MonthlyReport.getValue();
-                String monthlyMonth = MonthlyMonth.getValue();
-                String monthlyYear = MonthlyYear.getValue();
+	/**
+	 * Opens the selected report with the selected data.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@FXML
+	void btnView(MouseEvent event) throws IOException, InterruptedException {
 
-                ArrayList<String> arr = new ArrayList<>();
-                String ID = LoginScreenController.user.getID();//Here we have the manager ID.
+		if (FlagMonth == 1) {
+			if (MonthlyReport.getValue().equals("Income")) {
+				String monthlyReport = "Income";
+				String monthlyMonth = MonthlyMonth.getValue();
+				String monthlyYear = MonthlyYear.getValue();
 
-                try {
-                    chat.accept(new Message(MessageType.GET_STORE_ID_BY_WORKER_ID, ID));
-                    if (AnalyzeMessageFromServer.getData().equals(null))
-                        return;
+				ArrayList<String> arr = new ArrayList<>();
+				String ID = LoginScreenController.user.getID();// Here we have the manager ID.
 
-                } catch (Exception e) {
-                    return;
-                }
-                ;
-                String Store = (String) AnalyzeMessageFromServer.getData();
-                StoreID = Store;
-                Month = monthlyMonth;
-                Year = monthlyYear;
+				try {
+					chat.accept(new Message(MessageType.GET_STORE_ID_BY_WORKER_ID, ID));
+					if (AnalyzeMessageFromServer.getData().equals(null))
+						return;
 
-                arr.add(Store);
-                arr.add(monthlyMonth);
-                arr.add(monthlyYear);
+				} catch (Exception e) {
+					return;
+				}
+				;
+				String Store = (String) AnalyzeMessageFromServer.getData();
+				StoreID = Store;
+				Month = monthlyMonth;
+				Year = monthlyYear;
 
+				arr.add(Store);
+				arr.add(monthlyMonth);
+				arr.add(monthlyYear);
 
-                chat.accept(new Message(MessageType.INCOME_REPORT, arr));
+				chat.accept(new Message(MessageType.INCOME_REPORT, arr));
 
-                ((Node) event.getSource()).getScene().getWindow().hide();
-                Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
-                parent.getStylesheets().add("/css/styleNew.css");
-                Scene scene = new Scene(parent);
-                Stage IncomeReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                IncomeReportStage.setTitle("Income-Report");
-                IncomeReportStage.setScene(scene);
-                IncomeReportStage.show();
+				((Node) event.getSource()).getScene().getWindow().hide();
+				Parent parent = FXMLLoader
+						.load(Objects.requireNonNull(getClass().getResource("/fxml/IncomeReport.fxml")));
+				parent.getStylesheets().add("/css/styleNew.css");
+				Scene scene = new Scene(parent);
+				Stage IncomeReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				IncomeReportStage.setTitle("Income-Report");
+				IncomeReportStage.setScene(scene);
+				IncomeReportStage.show();
 
-            }
-            else if(FlagComplaint==0){
-                JOptionPane.showMessageDialog(null, "Please Check one of the boxes111", "Error", JOptionPane.ERROR_MESSAGE);
+			} else if (MonthlyReport.getValue().equals("Orders")) {
 
-        }
+				String monthlyReport = "Orders";
+				String monthlyMonth = MonthlyMonth.getValue();
+				String monthlyYear = MonthlyYear.getValue();
 
+				ArrayList<String> arr = new ArrayList<>();
+				String ID = LoginScreenController.user.getID();// Here we have the manager ID.
 
-    }
+				try {
+					chat.accept(new Message(MessageType.GET_STORE_ID_BY_WORKER_ID, ID));
+					if (AnalyzeMessageFromServer.getData().equals(null))
+						return;
 
+				} catch (Exception e) {
+					return;
+				}
+				;
+				String Store = (String) AnalyzeMessageFromServer.getData();
+				StoreID = Store;
+				Month = monthlyMonth;
+				Year = monthlyYear;
 
-    /**
-     * Checkbox for the complaint, disables other checkboxes.
-     * @param event
-     */
-    @FXML
-    void btnComplaint(MouseEvent event) {
-        FlagComplaint=1;
-        FlagMonth=0;
-    	if(ComplaintCu.isSelected()) {
+				arr.add(Store);
+				arr.add(monthlyMonth);
+				arr.add(monthlyYear);
 
-            Monthly.setDisable(true);
-    		MonthlyYear.setDisable(true);
-    		MonthlyReport.setDisable(true);
-    		MonthlyMonth.setDisable(true);
-    	}
-    	else {
-            Monthly.setDisable(false);
-            MonthlyYear.setDisable(false);
-            MonthlyReport.setDisable(false);
-            MonthlyMonth.setDisable(false);
-        }
-    }
+				chat.accept(new Message(MessageType.ORDERS_REPORT, arr));
 
-    /**
-     *  Checkbox for the month of report, disables other checkboxes.
-     * @param event
-     */
-    @FXML
-    void btnMonthly(MouseEvent event) {
-        FlagMonth=1;
-        FlagComplaint=0;
-    	if(Monthly.isSelected()) {
+				((Node) event.getSource()).getScene().getWindow().hide();
+				Parent parent = FXMLLoader
+						.load(Objects.requireNonNull(getClass().getResource("/fxml/OrderReport.fxml")));
+				parent.getStylesheets().add("/css/styleNew.css");
+				Scene scene = new Scene(parent);
+				Stage OrderReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				OrderReportStage.setTitle("Order-Report");
+				OrderReportStage.setScene(scene);
+				OrderReportStage.show();
 
-    		ComplaintCu.setDisable(true);
-            ComplaintQuart.setDisable(true);
-            ComplaintYear.setDisable(true);
-    	}
-    	else {
-            ComplaintCu.setDisable(false);
-            ComplaintYear.setDisable(false);
-            ComplaintQuart.setDisable(false);
-        }
-    }
-    /**
-     * Initializes data shown on screen
-     */
-    @FXML
-    void initialize() {
+			} else {
+				JOptionPane.showMessageDialog(null, "Choose Report Type", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} else if (FlagComplaint == 0) {
+			JOptionPane.showMessageDialog(null, "Please Check one of the boxes", "Error", JOptionPane.ERROR_MESSAGE);
+
+		}
+		if (FlagComplaint == 1) {
+			String complaintYear = ComplaintYear.getValue();
+			String complaintQuarter = ComplaintQuart.getValue();
+
+			ArrayList<String> arr2 = new ArrayList<>();
+			String ID2 = LoginScreenController.user.getID();// Here we have the manager ID.
+
+			try {
+				chat.accept(new Message(MessageType.GET_STORE_ID_BY_WORKER_ID, ID2));
+				if (AnalyzeMessageFromServer.getData().equals(null))
+					return;
+
+			} catch (Exception e) {
+				return;
+			}
+
+			String Store2 = (String) AnalyzeMessageFromServer.getData();
+			StoreID = Store2;
+			Quarter = complaintQuarter;
+			Year = complaintYear;
+			arr2.add(Store2);
+			arr2.add(complaintQuarter);
+			arr2.add(complaintYear);
+			chat.accept(new Message(MessageType.COMPLAINT_REPORT, arr2));
+
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Parent parent = FXMLLoader
+					.load(Objects.requireNonNull(getClass().getResource("/fxml/ComplaintReport.fxml")));
+			parent.getStylesheets().add("/css/styleNew.css");
+			Scene scene = new Scene(parent);
+			Stage complaintReport = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			complaintReport.setTitle("Complaint-Report");
+			complaintReport.setScene(scene);
+			complaintReport.show();
+
+		}
+
+	}
+
+	/**
+	 * Checkbox for the complaint, disables other checkboxes.
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void btnComplaint(MouseEvent event) {
+		FlagComplaint = 1;
+		FlagMonth = 0;
+		if (ComplaintCu.isSelected()) {
+
+			Monthly.setDisable(true);
+			MonthlyYear.setDisable(true);
+			MonthlyReport.setDisable(true);
+			MonthlyMonth.setDisable(true);
+		} else {
+			Monthly.setDisable(false);
+			MonthlyYear.setDisable(false);
+			MonthlyReport.setDisable(false);
+			MonthlyMonth.setDisable(false);
+		}
+	}
+
+	/**
+	 * Checkbox for the month of report, disables other checkboxes.
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void btnMonthly(MouseEvent event) {
+		FlagMonth = 1;
+		FlagComplaint = 0;
+		if (Monthly.isSelected()) {
+
+			ComplaintCu.setDisable(true);
+			ComplaintQuart.setDisable(true);
+			ComplaintYear.setDisable(true);
+		} else {
+			ComplaintCu.setDisable(false);
+			ComplaintYear.setDisable(false);
+			ComplaintQuart.setDisable(false);
+		}
+	}
+
+	/**
+	 * Initializes data shown on screen
+	 */
+	@FXML
+	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
-    	userName.setText(LoginScreenController.user.getUsername());
-        MonthlyYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018",
-                "2019", "2020", "2021", "2022"));
-        MonthlyMonth.setItems(FXCollections.observableArrayList("01", "02", "03", "04", "05", "06", "07", "08", "09",
-                "10", "11", "12"));
-        MonthlyReport.setItems(FXCollections.observableArrayList("Income", "Orders"));
-        ComplaintYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018",
+		userName.setText(LoginScreenController.user.getUsername());
+		MonthlyYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016",
+				"2017", "2018", "2019", "2020", "2021", "2022"));
+		MonthlyMonth.setItems(FXCollections.observableArrayList("01", "02", "03", "04", "05", "06", "07", "08", "09",
+				"10", "11", "12"));
+		MonthlyReport.setItems(FXCollections.observableArrayList("Income", "Orders"));
+		ComplaintYear.setItems(FXCollections.observableArrayList("2010", "2011", "2012", "2013", "2014", "2015", "2016",
+				"2017", "2018",
 
-                    "2019", "2020", "2021", "2022"));
-        ComplaintQuart.setItems(FXCollections.observableArrayList("01", "02", "03", "04"));
-        MonthlyYear.getSelectionModel().selectFirst();
-        MonthlyMonth.getSelectionModel().selectFirst();
-        MonthlyReport.getSelectionModel().selectFirst();
-        ComplaintYear.getSelectionModel().selectFirst();
-        ComplaintQuart.getSelectionModel().selectFirst();
-        userName.setText(LoginScreenController.user.getUsername());//set The username to the specific branchManager.
+				"2019", "2020", "2021", "2022"));
+		ComplaintQuart.setItems(FXCollections.observableArrayList("01", "02", "03", "04"));
+		MonthlyYear.getSelectionModel().selectLast();
+		MonthlyMonth.getSelectionModel().selectFirst();
+		MonthlyReport.getSelectionModel().selectFirst();
+		ComplaintYear.getSelectionModel().selectLast();
+		ComplaintQuart.getSelectionModel().selectFirst();
+		userName.setText(LoginScreenController.user.getUsername());// set The username to the specific branchManager.
 
-    }
-
+	}
 
 }
-

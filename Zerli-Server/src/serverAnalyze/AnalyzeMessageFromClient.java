@@ -166,7 +166,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-			return new Message(MessageType.GET_PREMADE_ITEMS, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.GET_SELFASSEMBLY_ITEMS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case UPDATE_CATALOG:
@@ -249,7 +249,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-			return new Message(MessageType.INSERT_NEW_ORDER, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.UPDATE_USED_REFUND, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case GET_STORE_ID:
@@ -287,9 +287,9 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-
 			return new Message(MessageType.GET_ORDER_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
+			
 		case GET_USERID_BY_ORDERID:
 			storeID = complaintQuery.GetUserIDbyOrderNumberQuery((String) receivedMessage.getMessageData());
 			try {
@@ -299,6 +299,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
+			return new Message(MessageType.GET_USERID_BY_ORDERID, receivedMessage.getMessageAnswer(), null);
 
 		case CANCEL_ORDER:
 			try {
@@ -309,7 +310,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-			return new Message(MessageType.DELETE_ITEM, receivedMessage.getMessageAnswer(), null);
+			return new Message(MessageType.CANCEL_ORDER, receivedMessage.getMessageAnswer(), null);
 
 		case INSERT_NEW_COMPLAIN:
 			try {
@@ -347,7 +348,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 
-			return new Message(MessageType.GET_SURVEY_NUMBER, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.CHECK_EXIST_QOMPLAIN, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 		case CHECK_ORDER_BY_USERID:
 
@@ -390,7 +391,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			return new Message(MessageType.INCOME_REPORT, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.GRAPH_STATISTICS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case GET_STORE_NAME_BY_ID:
@@ -403,7 +404,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageData(null);
 			}
 			;
-			return new Message(MessageType.GET_STORE_NAME, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.GET_STORE_NAME_BY_ID, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 
 		case INSERT_NEW_SURVEY:
@@ -721,7 +722,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			return new Message(MessageType.UPDATE_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.UPDATE_ROLE_BY_MANAGER, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 			
 		case GET_STORE_ID_BY_ORDER_ID:
@@ -775,7 +776,7 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			return new Message(MessageType.CANCEL_ORDER_STATUS_BY_MANAGER, receivedMessage.getMessageAnswer(),
+			return new Message(MessageType.UPDATE_ORDERS_AMOUNT, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
 			
 		case GET_SURVEY_QUS_BY_SURVEYNUM:
@@ -797,7 +798,40 @@ public class AnalyzeMessageFromClient {
 				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
 				receivedMessage.setMessageData(null);
 			}
-			;
+			return new Message(MessageType.UPDATE_SURVEY_ANS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+			
+		case INCOME_QUARTER_GRAPH:
+			ArrayList<String>GraphArrIncome=new ArrayList<>();
+			ArrayList<String>GraphArrIncome2=new ArrayList<>();
+			GraphArrIncome = (ArrayList<String>) receivedMessage.getMessageData();
+			GraphArrIncome2=ReportQuery.GetIncomeQuarterGraphStatistics(GraphArrIncome.get(0), GraphArrIncome.get(1), GraphArrIncome.get(2));
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(GraphArrIncome2);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.INCOME_QUARTER_GRAPH, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
+		case COMPLAINT_GRAPH_STATISTICS:
+			ArrayList<String>ComplaintArr=new ArrayList<>();
+			ArrayList<String>ComplaintArr2=new ArrayList<>();
+			ComplaintArr = (ArrayList<String>) receivedMessage.getMessageData();
+			GraphArr2=ReportQuery.GetComplaintGraphStatistics(ComplaintArr.get(0), ComplaintArr.get(1), ComplaintArr.get(2));
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(GraphArr2);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.COMPLAINT_GRAPH_STATISTICS, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
+
+
 
 		default:// ;
 

@@ -9,21 +9,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: f2f2f2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOIncomeReportController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: f2f2f2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderReportController">
    <top>
       <HBox prefHeight="119.0" prefWidth="1200.0" style="-fx-background-color: #e6ffcc;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="119.0" prefWidth="235.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="170.0" text=" Income Report">
+                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="170.0" text="Order Report">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -34,12 +32,7 @@
                <children>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="119.0" prefWidth="654.0">
                      <children>
-                        <ImageView fitHeight="135.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/images/10-106521_report-png-transparent-background-png-download.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="branchLabel" alignment="CENTER" prefHeight="27.0" prefWidth="590.0" text="Akko Branch Report">
+                        <Label fx:id="branchLabel" alignment="TOP_LEFT" prefHeight="59.0" prefWidth="222.0" text="Akko Branch Report">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -72,7 +65,7 @@
          <children>
             <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <Label fx:id="BestweekOrMonth" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="216.0" text="Best Week">
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="216.0" text="Best Week">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -93,7 +86,7 @@
             <VBox prefHeight="161.0" prefWidth="100.0" />
             <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <Label fx:id="WorstweekOrMonth" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="218.0" text="Worst Week">
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="218.0" text="Worst Week">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -114,7 +107,7 @@
             <VBox prefHeight="161.0" prefWidth="100.0" />
             <VBox prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="229.0" text="Total Sales (ILS)">
+                  <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="229.0" text="Total Orders">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -122,7 +115,7 @@
                         <Insets bottom="40.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="TotalSales" alignment="CENTER" editable="false" prefHeight="49.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                  <TextField fx:id="TotalOrders" alignment="CENTER" editable="false" prefHeight="49.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="19.0" />
                      </font>
@@ -148,13 +141,6 @@
                                     <String fx:value="add-btn" />
                                     <String fx:value="shadow" />
                                  </styleClass>
-                                 <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/images/Avatar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
                               </Button>
                            </children>
                         </VBox>
