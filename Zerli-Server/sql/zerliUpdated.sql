@@ -40,7 +40,7 @@ CREATE TABLE `account_details` (
 
 LOCK TABLES `account_details` WRITE;
 /*!40000 ALTER TABLE `account_details` DISABLE KEYS */;
-INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259',0,'Active',4),('0002','4580817918278719','07/2026','195',271,'Active',0),('0003','4444123444441234','02/2023','233',0,'Active',0);
+INSERT INTO `account_details` VALUES ('0001','4580534842970046','09/2030','259',0,'Active',5),('0002','4580817918278719','07/2026','195',296,'Frozen',0),('0003','4444123444441234','02/2023','233',0,'Active',0);
 /*!40000 ALTER TABLE `account_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ CREATE TABLE `complaint` (
 
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
-INSERT INTO `complaint` VALUES ('5000','0001','1','Bad service','Handled',19,'2000','2022-06-04 00:00:00'),('5000','0001','3','Flowers arrived messed up','WaitForHandle',0,'2000','2022-06-03 00:00:00'),('5000','0002','5','Bad service','Handled',26,'2000','2022-06-04 01:00:00'),('5000','0002','9','Bad service','WaitForHandle',0,'2004','2022-06-04 00:00:00');
+INSERT INTO `complaint` VALUES ('5000','0001','1','Bad service','Handled',19,'2000','2022-06-04 00:00:00'),('5000','0001','3','Flowers arrived messed up','WaitForHandle',0,'2000','2022-06-03 00:00:00'),('5000','0002','5','Bad service','Handled',26,'2000','2022-06-04 01:00:00'),('5000','0002','9','Bad service','Handled',25,'2004','2022-06-04 00:00:00');
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,8 +85,9 @@ CREATE TABLE `complaintreport` (
   `StoreID` varchar(45) NOT NULL,
   `QuarterNumber` varchar(45) NOT NULL,
   `Year` varchar(45) NOT NULL,
-  `GotRefund` varchar(45) DEFAULT NULL,
-  `DidntGotRefund` varchar(45) DEFAULT NULL,
+  `Month1` varchar(45) NOT NULL,
+  `Month2` varchar(45) NOT NULL,
+  `Month3` varchar(45) NOT NULL,
   PRIMARY KEY (`StoreID`,`QuarterNumber`,`Year`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,6 +98,7 @@ CREATE TABLE `complaintreport` (
 
 LOCK TABLES `complaintreport` WRITE;
 /*!40000 ALTER TABLE `complaintreport` DISABLE KEYS */;
+INSERT INTO `complaintreport` VALUES ('2000','02','2022','2','3','5');
 /*!40000 ALTER TABLE `complaintreport` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +153,7 @@ CREATE TABLE `incomereport` (
 
 LOCK TABLES `incomereport` WRITE;
 /*!40000 ALTER TABLE `incomereport` DISABLE KEYS */;
-INSERT INTO `incomereport` VALUES ('430.0','1500.0','750.0','960.0','01','2022','2000'),('498.0','1500.0','500.0','960.0','02','2022','2000'),('980.0','250.0','1230.0','1610.0','03','2022','2000'),('780.0','250.0','1230.0','1310.0','04','2022','2000'),('780.0','250.0','1230.0','1922.0','05','2022','2000'),('1780.0','0','0','0','06','2022','2000');
+INSERT INTO `incomereport` VALUES ('0','0','0','0','01','2010','2000'),('430.0','1500.0','750.0','960.0','01','2022','2000'),('498.0','1500.0','500.0','960.0','02','2022','2000'),('980.0','250.0','1230.0','1610.0','03','2022','2000'),('780.0','250.0','1230.0','1310.0','04','2022','2000'),('780.0','250.0','1230.0','1922.0','05','2022','2000'),('1780.0','0','0','0','06','2022','2000');
 /*!40000 ALTER TABLE `incomereport` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,6 +211,35 @@ LOCK TABLES `iteminorder` WRITE;
 /*!40000 ALTER TABLE `iteminorder` DISABLE KEYS */;
 INSERT INTO `iteminorder` VALUES (0,200,10000,1),(1,200,10001,3),(2,1,10100,1),(3,1,10101,5);
 /*!40000 ALTER TABLE `iteminorder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orderreport`
+--
+
+DROP TABLE IF EXISTS `orderreport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orderreport` (
+  `Week1` varchar(45) NOT NULL,
+  `Week2` varchar(45) NOT NULL,
+  `Week3` varchar(45) NOT NULL,
+  `Week4` varchar(45) NOT NULL,
+  `Month` varchar(45) NOT NULL,
+  `Year` varchar(45) NOT NULL,
+  `StoreID` varchar(45) NOT NULL,
+  PRIMARY KEY (`Month`,`Year`,`StoreID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderreport`
+--
+
+LOCK TABLES `orderreport` WRITE;
+/*!40000 ALTER TABLE `orderreport` DISABLE KEYS */;
+INSERT INTO `orderreport` VALUES ('2','1','2','2','01','2022','2000'),('2','4','2','2','02','2022','2000'),('2','1','2','2','03','2022','2001'),('3','3','2','1','04','2022','2001'),('2','1','2','2','05','2022','2000');
+/*!40000 ALTER TABLE `orderreport` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -360,7 +391,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('cu1','cu1',0,'0001','Nir','Mir','customer','0252621154','nir@gmail.com'),('cu2','cu2',0,'0002','Dan','Ban','customer','0522151487','dan@gmail.com'),('yo','yo',0,'0003','yoyo','lolo','customer','0505050505','yoyololo@gmail.com'),('mn1','mn1',0,'1000','evgeny','vexler','branch manager','0454848455','mn1@gmail.com'),('mn2','mn2',0,'1001','evgeny','boka','branch manager','0521514485','mn2@gmail.com'),('mn3','mn3',0,'1002','amit','shitrit','branch manager','0507812237','mn3@gmail.com'),('mn4','mn4',0,'1003','amr','jarrar','branch manager','0523741829','mn4@gmail.com'),('mn5','mn5',0,'1004','elad','elad','branch manager','0541238967','mn5@gmail.com'),('mn6','mn6',0,'1005','shaked','arish','branch manager','0548912234','mn6@gmail.com'),('worker1','worker1',0,'2000','Tinki','Winky','worker','0522656444','worker1@gmail.com'),('worker2','worker2',0,'2001','Dipsy','Dipsy','worker','0554488778','worker1@gmail.com'),('de','de',0,'2222','Lala','Lala','Delivery','0522221153','delivery@gmail.com'),('market','market',0,'3000','Po','Po','Marketing','0558859595','market@gmail.com'),('sp','sp',0,'4000','Tor','Tor','customer specialist','0559448488','sp@gmail.com'),('sv','sv',0,'5000','Yo','Lo','customer service','0559484848','sv@gmail.com'),('ceo','ceo',0,'6000','elad','elad','ceo','0555448478','ceo@gmail.com');
+INSERT INTO `users` VALUES ('cu1','cu1',1,'0001','Nir','Mir','customer','0252621154','nir@gmail.com'),('cu2','cu2',0,'0002','Dan','Ban','customer','0522151487','dan@gmail.com'),('yo','yo',0,'0003','yoyo','lolo','customer','0505050505','yoyololo@gmail.com'),('mn1','mn1',0,'1000','evgeny','vexler','branch manager','0454848455','mn1@gmail.com'),('mn2','mn2',0,'1001','evgeny','boka','branch manager','0521514485','mn2@gmail.com'),('mn3','mn3',0,'1002','amit','shitrit','branch manager','0507812237','mn3@gmail.com'),('mn4','mn4',0,'1003','amr','jarrar','branch manager','0523741829','mn4@gmail.com'),('mn5','mn5',0,'1004','elad','elad','branch manager','0541238967','mn5@gmail.com'),('mn6','mn6',0,'1005','shaked','arish','branch manager','0548912234','mn6@gmail.com'),('worker1','worker1',0,'2000','Tinki','Winky','worker','0522656444','worker1@gmail.com'),('worker2','worker2',0,'2001','Dipsy','Dipsy','worker','0554488778','worker1@gmail.com'),('de','de',0,'2222','Lala','Lala','Delivery','0522221153','delivery@gmail.com'),('market','market',0,'3000','Po','Po','Marketing','0558859595','market@gmail.com'),('sp','sp',0,'4000','Tor','Tor','customer specialist','0559448488','sp@gmail.com'),('sv','sv',0,'5000','Yo','Lo','customer service','0559484848','sv@gmail.com'),('ceo','ceo',0,'6000','elad','elad','ceo','0555448478','ceo@gmail.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -373,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-06 14:35:04
+-- Dump completed on 2022-06-06 23:22:26
