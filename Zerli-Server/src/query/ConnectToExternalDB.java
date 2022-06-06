@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Evgeny
+ * Retrieve zerli user data using external DB
+ */
 public class ConnectToExternalDB {
 	private static Connection connExternalDB;
 	private static Connection conn;
@@ -17,6 +21,10 @@ public class ConnectToExternalDB {
 		connExternalDB = connection;
 	}
 
+	/**
+	 * External DB used to store users data
+	 * @return users data from external DB
+	 */
 	public static ResultSet getDataFromExternalDB() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -30,6 +38,9 @@ public class ConnectToExternalDB {
 		return rs;
 	}
 
+	/**
+	 * Inserts tables to zerli DB to allow users to connect
+	 */
 	public static void insertToZerliDB() {
 		ResultSet rs = getDataFromExternalDB();
 		try {

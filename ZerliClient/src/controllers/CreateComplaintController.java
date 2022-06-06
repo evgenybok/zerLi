@@ -86,7 +86,6 @@ public class CreateComplaintController {
 	 * @param event
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
 	@FXML
 	void btnSubmit(MouseEvent event) throws IOException {
 		checkIfFieldIsEmpty();
@@ -138,8 +137,8 @@ public class CreateComplaintController {
 	/**
 	 * Gets user id number with the given order number
 	 * 
-	 * @param OrderNumber
-	 * @return
+	 * @param OrderNumber order serial number
+	 * @return string of user id number
 	 */
 	public String getUserID(String OrderNumber) {
 		try {
@@ -180,8 +179,8 @@ public class CreateComplaintController {
 	/**
 	 * Checking if given order has a complaint
 	 * 
-	 * @param orderid
-	 * @return
+	 * @param orderid order id number
+	 * @return true if exists, false otherwise.
 	 */
 	public boolean checkIfHaveExistComplaint(String orderid) {
 		try {
@@ -203,9 +202,9 @@ public class CreateComplaintController {
 	/**
 	 * Checks if there is an order number with given order number and user id.
 	 * 
-	 * @param userid
-	 * @param orderid
-	 * @return
+	 * @param userid user id number
+	 * @param orderid order id number
+	 * @return true if exists, false otherwise
 	 */
 	public boolean checkIfThisUserHaveChoosenOrder(String userid, String orderid) {
 		String str = userid + "@" + orderid;

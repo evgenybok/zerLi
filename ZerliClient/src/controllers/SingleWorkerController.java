@@ -57,7 +57,8 @@ public class SingleWorkerController {
 
     	String role = roleCombo.getValue();
 		String updateDetails = role + "@" + UserID.getText();
-		if(!(role.equals("worker")) &&!(role.equals("Delivery") && !(role.equals("customer specialist")) && !(role.equals("customer service")) && !(role.equals("Marketing"))))
+		if(!(role.equals("worker")) &&!(role.equals("Delivery")) && !(role.equals("customer specialist")) && 
+				!(role.equals("customer service")) && !(role.equals("Marketing")))
 		{
 			JOptionPane.showMessageDialog(null, "Wrong user role selected!", "Error",
 					JOptionPane.ERROR_MESSAGE);

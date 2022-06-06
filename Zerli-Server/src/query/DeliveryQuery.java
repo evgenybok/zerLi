@@ -215,12 +215,15 @@ public class DeliveryQuery {
 					String handelerId = rs.getString("HandelerId");
 					String customerSupplyDate = rs.getString("CustomerSupplyDate");
 					String derliverySupplyDate= rs.getString("DerliverySupplyDate");
+					if(Integer.toString(Orderid).equals(orderid))
+					{
 					list.add(new SingleSelfDelivery(Orderid,handelerId,customerSupplyDate,derliverySupplyDate));
+					return list;
+					}
 					}
 			} catch (SQLException e) {
-				return null;
 			}
-			return list;
+			return null;
 	}
 	
 }

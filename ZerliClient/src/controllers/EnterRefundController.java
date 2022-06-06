@@ -42,7 +42,6 @@ public class EnterRefundController {
     	String us= SingleComplaintController.user_id;
     	String or= SingleComplaintController.order_id;
     	String res = refund + "@" + us + "@" +or ;
-    	System.out.println(" res is      " +res);
     	try {
 			chat.accept(new Message(MessageType.UPDATE_REFUND, res));
 			if (AnalyzeMessageFromServer.getData().equals(null)) 

@@ -40,7 +40,7 @@ public class ItemController {
 
     /**
      * Sets the item labels based on given item data.
-     * @param item
+     * @param item selected item data
      */
 	public void setData(Item item) {
 

@@ -114,8 +114,8 @@ public class LoginScreenController {
 
 	/**
 	 * Moves to various screen based on the user's role.
-	 * @param Role
-	 * @return
+	 * @param Role user role
+	 * @return fxml file to open
 	 */
 	public String caseRoleScreen(String Role) {
 		switch (Role) {

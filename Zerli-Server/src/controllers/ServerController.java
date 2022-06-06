@@ -236,6 +236,7 @@ public class ServerController extends JFrame {
 		ConnectedClients.getItems().clear();
 		ConnectedClients.refresh();
 		addText("Server Disconnected");
+		importData.setDisable(true);
 
 	}
 
@@ -252,9 +253,9 @@ public class ServerController extends JFrame {
 			ConnectToExternalDB.connectionToExternalDB(connExternalDB);
 			ConnectToExternalDB.getDataFromExternalDB();
 			ConnectToExternalDB.insertToZerliDB();
-			console.appendText("Successfully imported the external database");
+			addText("Successfully imported the external database");
 		} catch (Exception e) {
-			console.appendText("No data in the externalDB!");
+			addText("No data in the externalDB!");
 		}
 		;
 

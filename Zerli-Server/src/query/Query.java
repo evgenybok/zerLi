@@ -217,21 +217,22 @@ public class Query {
 
 	/**
 	 * Retrieves all workers from the DB
+	 * 
 	 * @return Arraylist of logic SingleWorker containing only workers.
 	 */
 	public static ArrayList<SingleWorker> GetWorkers() {
-		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery' OR Role = 'customer specialist' OR Role = 'customer service';";
+		String query = "SELECT * FROM zerli.users WHERE Role = 'worker' OR Role = 'Delivery'"
+				+ " OR Role = 'customer specialist' OR Role = 'customer service' OR Role = 'Marketing';";
 		ArrayList<SingleWorker> workers = new ArrayList<SingleWorker>();
 		try {
 			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
-			while(rs.next())
-			{
-				String id=rs.getString("id");
-				String firstname=rs.getString("FirstName");
-				String lastname=rs.getString("LastName");
-				String role=rs.getString("Role");
-				workers.add(new SingleWorker(id,firstname,lastname,role));
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String firstname = rs.getString("FirstName");
+				String lastname = rs.getString("LastName");
+				String role = rs.getString("Role");
+				workers.add(new SingleWorker(id, firstname, lastname, role));
 			}
 		} catch (SQLException e) {
 		}

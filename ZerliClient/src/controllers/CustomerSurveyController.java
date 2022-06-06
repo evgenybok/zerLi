@@ -117,17 +117,13 @@ public class CustomerSurveyController {
 		workerStage.centerOnScreen();
     }
 
+    /**
+     * Submits customer's answers to the survey and saves them in the DB
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void btnSubmit(MouseEvent event) throws IOException {
-    /*	ArrayList<String> list =  new ArrayList<>();
-    	list.add(Combo1.getValue());
-    	list.add(Combo2.getValue());
-    	list.add(Combo3.getValue());
-    	list.add(Combo4.getValue());
-    	list.add(Combo5.getValue());
-    	list.add(Combo6.getValue());
-    	*/
-    	
     	String ans =EnumNum.getText() +"@"+ Combo1.getValue() + "@"+Combo2.getValue()+ "@"+Combo3.getValue()+ "@"+Combo4.getValue()
     	+ "@"+Combo5.getValue()+ "@"+Combo6.getValue();
     	try {
@@ -180,6 +176,9 @@ public class CustomerSurveyController {
 		e.printStackTrace();
 	}
     }
+    /**
+     * @return number of the next survey number.
+     */
     public String getSurveyNumber()
     {
     	String temp;
@@ -198,6 +197,9 @@ public class CustomerSurveyController {
 		temp=String.valueOf(i);
 		return temp;
     } 
+    /**
+     * @return list of survey questions retrieved from the DB.
+     */
     public ArrayList<String> setQuestion(){
 		ArrayList<String> list = new ArrayList<>();
 		try {
