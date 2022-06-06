@@ -3,12 +3,15 @@ package controllers;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -34,7 +37,11 @@ import mainserver.EchoServer;
 import mainserver.ServerConnection;
 import query.ConnectToDB;
 import query.ConnectToExternalDB;
+import query.GetOrderQuery;
 import query.Query;
+import query.ReportQuery;
+import query.StoresQuery;
+import query.complaintQuery;
 
 /**
  * @author Evgeny
@@ -42,6 +49,12 @@ import query.Query;
  */
 @SuppressWarnings({ "unused", "serial" })
 public class ServerController extends JFrame {
+	Runnable r = new ReportTime();
+	public static boolean flag=true;
+	Thread t = new Thread(r);
+	Runnable r2 = new QuartReport();
+	public static boolean flag2=true;
+	Thread t2 = new Thread(r2);
 	private EchoServer echoServer;
 	private Connection conn = null;
 	private Connection connExternalDB = null;
@@ -190,12 +203,19 @@ public class ServerController extends JFrame {
 				DBName.setDisable(true);
 				Port.setDisable(true);
 				importData.setDisable(false);
+
 				Query.DisconnectAll(); // Disconnects all currently logged in users.
 			} catch (Exception e) {
 				Disconnect.setDisable(true);
 				Connect.setDisable(false);
 			}
 			;
+		}
+		try {
+			t.start();
+			t2.start();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -271,6 +291,121 @@ public class ServerController extends JFrame {
 		stage.close();
 		System.exit(1);
 
+	}
+	class ReportTime implements Runnable {
+		@Override
+		public void run() {
+			while(true)
+			{
+				Date today = new Date();
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(today);
+				calendar.add(Calendar.MONTH, 1);
+				calendar.set(Calendar.DAY_OF_MONTH, 1);
+				calendar.add(Calendar.DATE, -1);
+				Date lastDayOfMonth = calendar.getTime();
+				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String Today =  sdf.format(today);
+				String lastdayOfMonth =  sdf.format(lastDayOfMonth);
+				if(!Today.equals(lastdayOfMonth))
+				{
+					try {
+						Thread.sleep(1000*86400);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+				{ 	
+					flag=true;
+					if(flag==true)
+					{
+						flag=false;
+						String date[]= Today.split("-",3);
+						ArrayList<String> list =StoresQuery.GetStoresIdinList();
+						for(int i=0;i<list.size();i++)
+						{
+							ReportQuery.CreateIncomeReports(list.get(i),date[1],date[0]);
+						}
+						//here we need to create the other monthly reports
+						for(int i=0;i<list.size();i++)
+						{
+							ReportQuery.CreateOrderReports(list.get(i),date[1],date[0]);
+						}
+					}
+					
+					try {
+						Thread.sleep(1000*86400);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//return;
+				}
+			}
+		}
+
+	}
+	class QuartReport implements Runnable
+	{
+
+		@Override
+		public void run() {
+			
+			while(true)
+			{
+				Date t = new Date();
+				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String today = sdf.format(t);
+				String str[] = today.split("-",3);
+				String quar = str[1] + "-" + str[2];
+				String quar2 = "03-31";
+				String qurter=null;
+				if(str[1].equals("01") || str[1].equals("02") || str[1].equals("03")) qurter = "01";
+				if(str[1].equals("04") || str[1].equals("05") || str[1].equals("06")) qurter = "02";
+				if(str[1].equals("07") || str[1].equals("08") || str[1].equals("09")) qurter = "03";
+				if(str[1].equals("10") || str[1].equals("11") || str[1].equals("12")) qurter = "04";
+				if(quar.equals("03-31") || quar.equals("06-30") || quar.equals("09-30")  || quar.equals("12-30"))
+				{
+					flag2=true;
+					if(flag2)
+					{
+						flag2=false;
+						ArrayList<String> list =StoresQuery.GetStoresIdinList();
+						for(int i=0;i<list.size();i++)
+						{
+							try {
+								ReportQuery.CreateComplaintQuarterReports(list.get(i),quar,str[0]);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+					
+					try {
+						Thread.sleep(1000*86400);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					try {
+						Thread.sleep(1000*86400);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
+				
+		}
+		
+		
 	}
 
 }

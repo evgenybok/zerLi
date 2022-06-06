@@ -106,146 +106,184 @@ public class ReportQuery {
 	 * @throws SQLException
 	 */
 	public static void CreateComplaintQuarterReports(String StoreID, String Quarter, String Year) throws SQLException {
-		String query, query1, query2;
-		query = "INSERT INTO zerli.complaintreport (StoreID,QuarterNumber,Year,Month1,Month2,Month3) VALUES('" + StoreID
-				+ "','" + Quarter + "','" + Year + "','" + 0 + "','" + 0 + "','" + 0 + "');";
+        String query, query1, query2;
+        query = "INSERT INTO zerli.complaintreport (StoreID,QuarterNumber,Year,Month1,Month2,Month3) VALUES('" + StoreID + "','" + Quarter + "','" + Year + "','" + 0 + "','" + 0 + "','" + 0 + "');";
+        System.out.println(query);
 
-		try {
-			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			return;
-		}
-		;
+        try {
+            PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            return;
+        }
+        ;
 
-		switch (Quarter) {
-		case "01":
-			query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID
-					+ "'AND month(Date) between '01'AND '03' AND year(Date)='" + Year + "' "
-					+ "Group BY month order by month;";
+        switch (Quarter) {
+            case "01":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '01'AND '03' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String month = null;
-				String amount = null;
-				while (rs1.next()) {
-					month = rs1.getString("month");
-					amount = rs1.getString("amount");
-					String new_month = "Month" + month;
-					String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='"
-							+ StoreID + "' AND QuarterNumber='01' AND Year='" + Year + "';";
-					try {
-						PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
-						st2.executeUpdate();
-					} catch (SQLException e) {
-						return;
-					}
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        String new_month = "Month" + month;
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='01' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-				}
+                    }
 
-			} catch (SQLException e) {
-				return;
-			}
+                } catch (SQLException e) {
+                    return;
+                }
 
-			break;
-		case "02":
-			query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID
-					+ "'AND month(Date) between '04'AND '06' AND year(Date)='" + Year + "' "
-					+ "Group BY month order by month;";
 
-			try {
+                break;
+            case "02":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '04'AND '06' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String month = null;
-				String amount = null;
-				while (rs1.next()) {
-					month = rs1.getString("month");
-					amount = rs1.getString("amount");
-					String new_month = "Month" + month;
-					String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='"
-							+ StoreID + "' AND QuarterNumber='02' AND Year='" + Year + "';";
-					try {
-						PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
-						st2.executeUpdate();
-					} catch (SQLException e) {
-						return;
-					}
+                try {
 
-				}
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                    	String new_month;
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        if(month.equals("4"))
+                        {
+                        	 new_month = "Month1";
+                        }
+                        else
+                        {
+                        	  if(month.equals("5"))
+                              {
+                              	 new_month = "Month2";
+                              }
+                        	  else
+                        	  {
+                        		  new_month = "Month3";
+                        	  }
+                        }
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='02' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			} catch (SQLException e) {
-				return;
-			}
+                    }
 
-			break;
-		case "03":
-			query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID
-					+ "'AND month(Date) between '07'AND '09' AND year(Date)='" + Year + "' "
-					+ "Group BY month order by month;";
+                } catch (SQLException e) {
+                    return;
+                }
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String month = null;
-				String amount = null;
-				while (rs1.next()) {
+                break;
+            case "03":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '07'AND '09' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-					month = rs1.getString("month");
-					amount = rs1.getString("amount");
-					String new_month = "Month" + month;
-					String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='"
-							+ StoreID + "' AND QuarterNumber='03' AND Year='" + Year + "';";
-					try {
-						PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
-						st2.executeUpdate();
-					} catch (SQLException e) {
-						return;
-					}
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                    	String new_month;
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        if(month.equals("7"))
+                        {
+                        	 new_month = "Month1";
+                        }
+                        else
+                        {
+                        	  if(month.equals("8"))
+                              {
+                              	 new_month = "Month2";
+                              }
+                        	  else
+                        	  {
+                        		  new_month = "Month3";
+                        	  }
+                        }
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='03' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-				}
+                    }
+                } catch (SQLException e) {
+                    return;
+                }
 
-			} catch (SQLException e) {
-				return;
-			}
+                break;
+            case "04":
+                query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID + "'AND month(Date) between '10'AND '12' AND year(Date)='" + Year + "' " +
+                        "Group BY month order by month;";
 
-			break;
-		case "04":
-			query = "SELECT Month(Date)as month,count(OrderID)as amount FROM zerli.complaint WHERE sotreID='" + StoreID
-					+ "'AND month(Date) between '10'AND '12' AND year(Date)='" + Year + "' "
-					+ "Group BY month order by month;";
+                try {
+                    PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
+                    ResultSet rs1 = st1.executeQuery();
+                    String month = null;
+                    String amount = null;
+                    while (rs1.next()) {
+                    	String new_month;
+                        month = rs1.getString("month");
+                        amount = rs1.getString("amount");
+                        if(month.equals("10"))
+                        {
+                        	 new_month = "Month1";
+                        }
+                        else
+                        {
+                        	  if(month.equals("11"))
+                              {
+                              	 new_month = "Month2";
+                              }
+                        	  else
+                        	  {
+                        		  new_month = "Month3";
+                        	  }
+                        }
+                        
+                        String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='" + StoreID + "' AND QuarterNumber='04' AND Year='" + Year + "';";
+                        try {
+                            PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
+                            st2.executeUpdate();
+                        } catch (SQLException e) {
+                            return;
+                        }
 
-			try {
-				PreparedStatement st1 = ConnectToDB.conn.prepareStatement(query);
-				ResultSet rs1 = st1.executeQuery();
-				String month = null;
-				String amount = null;
-				while (rs1.next()) {
-					month = rs1.getString("month");
-					amount = rs1.getString("amount");
-					String new_month = "Month" + month;
-					String query_2 = "Update complaintreport SET " + new_month + " ='" + amount + "' WHERE StoreID='"
-							+ StoreID + "' AND QuarterNumber='04' AND Year='" + Year + "';";
-					try {
-						PreparedStatement st2 = ConnectToDB.conn.prepareStatement(query_2);
-						st2.executeUpdate();
-					} catch (SQLException e) {
-						return;
-					}
+                    }
 
-				}
+                } catch (SQLException e) {
+                    return;
+                }
 
-			} catch (SQLException e) {
-				return;
-			}
+                break;
 
-			break;
+            default:
+        }
 
-		default:
-		}
 
-	}
+    }
 
 	public static ArrayList<String> GetComplaintGraphStatistics(String StoreID, String Quarter, String Year) {
 		String query = "SELECT * FROM zerli.complaintreport WHERE StoreID= '" + StoreID + "' AND QuarterNumber='"

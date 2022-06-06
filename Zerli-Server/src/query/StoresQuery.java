@@ -98,5 +98,23 @@ public class StoresQuery {
 		}
 		return stores;
 	}
+	
+	public static ArrayList<String> GetStoresIdinList()
+	{
+		String query = "SELECT IDstore FROM zerli.stores;";
+		ArrayList<String> stores = new ArrayList<>();
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String storeID = rs.getString("IDstore");
+				stores.add(storeID);
+			}
+			
+		} catch (SQLException e) {
+			return null;
+		}
+		return stores;
+	}
 }
 

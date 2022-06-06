@@ -97,15 +97,18 @@ public class CEOComplaintController {
 			Year = ComplaintYear.getValue();
 
 		}
-
-		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader
-				.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOComplaintReport.fxml")));
-		parent.getStylesheets().add("/css/styleNew.css");
-		Scene scene = new Scene(parent);
-		Stage OrderReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		OrderReportStage.setScene(scene);
-		OrderReportStage.show();
+		try {
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Parent parent = FXMLLoader
+					.load(Objects.requireNonNull(getClass().getResource("/fxml/CEOComplaintReport.fxml")));
+			parent.getStylesheets().add("/css/styleNew.css");
+			Scene scene = new Scene(parent);
+			Stage OrderReportStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			OrderReportStage.setScene(scene);
+			OrderReportStage.show();
+		} catch (Exception e) {
+			return;
+		}
 
 	}
 
