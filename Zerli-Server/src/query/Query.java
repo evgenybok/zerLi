@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import communication.MessageAnswer;
 import logic.Item;
-import logic.Order;
-import logic.SingleOrder;
 import logic.SingleWorker;
 import logic.User;
 

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -32,14 +33,17 @@ import javafx.stage.StageStyle;
 import mainserver.EchoServer;
 import mainserver.ServerConnection;
 import query.ConnectToDB;
+import query.ConnectToExternalDB;
 import query.Query;
 
 @SuppressWarnings({ "unused", "serial" })
 public class ServerController extends JFrame {
 	private EchoServer echoServer;
 	private Connection conn = null;
+	private Connection connExternalDB = null;
 	public Stage stage;
 	final public static int DEFAULT_PORT = 5555;
+	private String externalDBpath = "jdbc:mysql://localhost/externaldb?serverTimezone=IST";
 
 	@FXML
 	private Button CloseApp;
@@ -86,6 +90,9 @@ public class ServerController extends JFrame {
 
 	@FXML
 	private ImageView ServerImage;
+
+	@FXML
+	private Button importData;
 
 	public Button getDisconnect() {
 		return Disconnect;
@@ -150,9 +157,14 @@ public class ServerController extends JFrame {
 			password = DBPassword.getText().toString();
 			dbName = DBName.getText().toString();
 			try {
-				Connection connection = ConnectToDB.connect(username, password, dbName);
+				conn = ConnectToDB.connect(username, password, dbName);
 				Disconnect.setDisable(false);
 				Connect.setDisable(true);
+				DBUser.setDisable(true);
+				DBPassword.setDisable(true);
+				DBName.setDisable(true);
+				Port.setDisable(true);
+				importData.setDisable(false);
 				Query.DisconnectAll(); // Disconnects all currently logged in users.
 			} catch (Exception e) {
 				Disconnect.setDisable(true);
@@ -187,6 +199,22 @@ public class ServerController extends JFrame {
 		ConnectedClients.refresh();
 		addText("Server Disconnected");
 
+	}
+
+	// get info from external database
+	@FXML
+	void btnImportData(MouseEvent event) {
+		try {
+			connExternalDB = ConnectToDB.connect(DBUser.getText().toString(), DBPassword.getText().toString(),
+					externalDBpath);
+			ConnectToExternalDB.connectionToDB(conn);
+			ConnectToExternalDB.connectionToExternalDB(connExternalDB);
+			ConnectToExternalDB.getDataFromExternalDB();
+			ConnectToExternalDB.insertToZerliDB();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No data in the externalDB!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		;
 	}
 
 	@FXML

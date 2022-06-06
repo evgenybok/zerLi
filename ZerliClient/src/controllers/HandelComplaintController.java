@@ -63,7 +63,6 @@ public class HandelComplaintController {
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		chat.accept(new Message(MessageType.LOGOUT, LoginScreenController.user));
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/CustomerService.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);

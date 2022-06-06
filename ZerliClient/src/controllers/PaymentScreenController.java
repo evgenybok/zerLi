@@ -465,17 +465,13 @@ public class PaymentScreenController {
 	 * @param deliveryFee
 	 */
 	void changeAmount(Double deliveryFee) {
-		/*
-		 * if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) { totalPrice *=
-		 * 0.8; String.format("{0:0.00}", totalPrice); System.out.println(totalPrice); }
-		 */
 		totalPriceAfterDeliveryFee = totalPrice + deliveryFee;
 		double temp = totalPrice - CustomerScreenController.accountZerliCredit;
 		double toReduce = 0;
 		if (temp < 0) {
 			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
 				totalPriceAfterDeliveryFee *= 0.8;
-				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee);
 			}
 			toReduce = CustomerScreenController.accountZerliCredit + temp;
 			amountToPay.setText("\u20AA" + Double.toString(totalPriceAfterDeliveryFee - toReduce) + " ("
@@ -485,7 +481,7 @@ public class PaymentScreenController {
 		} else {
 			if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
 				totalPriceAfterDeliveryFee *= 0.8;
-				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee * 100) / 100;
+				totalPriceAfterDeliveryFee = Math.floor(totalPriceAfterDeliveryFee);
 			}
 			amountToPay.setText("\u20AA"
 					+ Double.toString(totalPriceAfterDeliveryFee - CustomerScreenController.accountZerliCredit) + " ("
