@@ -84,6 +84,7 @@ public class AcceptDeliveryScreenController {
 
 			ArrayList<SingleDelivery> list = (ArrayList<SingleDelivery>) AnalyzeMessageFromServer.getData();
 			try {
+				if(!(list==null)) {
 				for (int i = 0; i < list.size(); i++) {
 					FXMLLoader fxmlLoader = new FXMLLoader();
 					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
@@ -91,7 +92,7 @@ public class AcceptDeliveryScreenController {
 					SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
 					singleDeliveryController.setData(list.get(i));
 					DeliveryLayout.getChildren().add(hBox);
-
+				}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -122,6 +123,8 @@ public class AcceptDeliveryScreenController {
 
 			ArrayList<SingleDelivery> list = (ArrayList<SingleDelivery>) AnalyzeMessageFromServer.getData();
 			try {
+				if(!(list==null))
+				{
 				for (int i = 0; i < list.size(); i++) {
 					FXMLLoader fxmlLoader = new FXMLLoader();
 					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
@@ -129,7 +132,7 @@ public class AcceptDeliveryScreenController {
 					SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
 					singleDeliveryController.setData(list.get(i));
 					DeliveryLayout.getChildren().add(hBox);
-
+				}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -173,6 +176,8 @@ public class AcceptDeliveryScreenController {
 		chat.accept(new Message(MessageType.GET_SINGLE_DELIVERY, null));
 		list = (ArrayList<SingleDelivery>) AnalyzeMessageFromServer.getData();
 		try {
+			if(!(list==null))
+			{
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
@@ -180,7 +185,7 @@ public class AcceptDeliveryScreenController {
 				SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
 				singleDeliveryController.setData(list.get(i));
 				DeliveryLayout.getChildren().add(hBox);
-
+			}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

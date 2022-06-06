@@ -26,8 +26,7 @@ import javafx.stage.Stage;
 import logic.SingleSelfDelivery;
 
 /**
- * @author Evgeny
- * Delivery user can view the orders he delivered here.
+ * @author Evgeny Delivery user can view the orders he delivered here.
  */
 public class DeliverySelfOrderController {
 
@@ -51,6 +50,7 @@ public class DeliverySelfOrderController {
 
 	/**
 	 * Shows the selected order in the table.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -72,14 +72,15 @@ public class DeliverySelfOrderController {
 
 			ArrayList<SingleSelfDelivery> list = (ArrayList<SingleSelfDelivery>) AnalyzeMessageFromServer.getData();
 			try {
+				if(!(list==null)) {
 				for (int i = 0; i < list.size(); i++) {
-					FXMLLoader fxmlLoader = new FXMLLoader();
-					fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
-					HBox hBox = fxmlLoader.load();
-					SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
-					singleSelfDeliveryController.setData(list.get(i));
-					DeliveryLayout.getChildren().add(hBox);
-
+						FXMLLoader fxmlLoader = new FXMLLoader();
+						fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+						HBox hBox = fxmlLoader.load();
+						SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
+						singleSelfDeliveryController.setData(list.get(i));
+						DeliveryLayout.getChildren().add(hBox);
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -90,6 +91,7 @@ public class DeliverySelfOrderController {
 
 	/**
 	 * Sends the user back to the Delivery main screen.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -127,13 +129,16 @@ public class DeliverySelfOrderController {
 		chat.accept(new Message(MessageType.VIEW_SELF_DELIVERY_DETAILS, LoginScreenController.user.getID()));
 		list = (ArrayList<SingleSelfDelivery>) AnalyzeMessageFromServer.getData();
 		try {
-			for (int i = 0; i < list.size(); i++) {
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("/fxml/singleSelfDelivery.fxml"));
-				HBox hBox = fxmlLoader.load();
-				SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
-				singleSelfDeliveryController.setData(list.get(i));
-				DeliveryLayout.getChildren().add(hBox);
+			if(!(list==null)) {
+				for (int i = 0; i < list.size(); i++) {
+
+					FXMLLoader fxmlLoader = new FXMLLoader();
+					fxmlLoader.setLocation(getClass().getResource("/fxml/singleSelfDelivery.fxml"));
+					HBox hBox = fxmlLoader.load();
+					SingleSelfDeliveryController singleSelfDeliveryController = fxmlLoader.getController();
+					singleSelfDeliveryController.setData(list.get(i));
+					DeliveryLayout.getChildren().add(hBox);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

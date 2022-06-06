@@ -67,6 +67,10 @@ public class AccountDetailsQuery {
 
 	}
 
+	/**
+	 * Updates the amount of orders made by the given user in logic account.
+	 * @param account
+	 */
 	public static void UpdateOrdersAmount(Account account) {
 		int ordersAmount = account.getOrdersAmount() + 1;
 		String query = ("UPDATE account_details SET OrdersAmount=" + ordersAmount + " WHERE User_ID = '"

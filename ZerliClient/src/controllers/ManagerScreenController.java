@@ -97,6 +97,10 @@ public class ManagerScreenController {
 		customerStage.centerOnScreen();
 	}
 
+	/**
+	 * Edits the role of workers
+	 * @param event
+	 */
 	@FXML
 	void btnEditRole(MouseEvent event) {
 		((Node) event.getSource()).getScene().getWindow().hide();

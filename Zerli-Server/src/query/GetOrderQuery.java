@@ -271,6 +271,11 @@ public class GetOrderQuery {
 		}
 	}
 
+	/**
+	 * Retrieves from the DB all of the given managers orders using his ID
+	 * @param bmID
+	 * @return Arraylist of SingleManageOrder logic containing manager orders.
+	 */
 	public static ArrayList<SingleManageOrder> GetManagerOrders(String bmID) {
 		String query = ("SELECT * FROM zerli.stores;");
 		String tempStoreID = null;
@@ -309,6 +314,7 @@ public class GetOrderQuery {
 	}
 
 	/**
+	 * Updates order status to Approved in DB given an order ID number
 	 * @param OrderId
 	 */
 	public static void UpdateOrderStatusByManager(String OrderId) {
@@ -322,6 +328,10 @@ public class GetOrderQuery {
 		}
 	}
 
+	/**
+	 * Updates order status to Cancelled in DB given an order ID number
+	 * @param OrderId
+	 */
 	public static void CancelOrderStatusByManager(String OrderId) {
 		String query = ("UPDATE zerli.orders SET Status='Cancelled' WHERE OrderNumber=" + OrderId + ";");
 		try {
@@ -368,6 +378,11 @@ public class GetOrderQuery {
 
 	}
 	
+	/**
+	 * Retrieves store ID number given order ID number
+	 * @param orderID
+	 * @return String store ID number
+	 */
 	public static String GetStoreIDByOrderID(String orderID)
 	{
 		String query = ("SELECT * FROM zerli.orders WHERE OrderNumber=" + "'orderID';");

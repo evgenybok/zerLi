@@ -117,13 +117,18 @@ public class ManagerOrdersController {
 		}
 		order = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
 		try {
+			if(!(order==null)) {
 			for (int i = 0; i < order.size(); i++) {
+				if(order.get(i).getStatus().equals("Pending"))
+				{
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleOrderBranchMn.fxml"));
 				HBox hBox = fxmlLoader.load();
 				SingleManageOrdersController singleManageOrdersController = fxmlLoader.getController();
 				singleManageOrdersController.setData(order.get(i));
 				OrdersLayout.getChildren().add(hBox);
+				}
+			}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,6 +154,7 @@ public class ManagerOrdersController {
 		chat.accept(new Message(MessageType.GET_MANAGER_ORDERS, LoginScreenController.user.getID().toString()));
 		list = (ArrayList<SingleManageOrder>) AnalyzeMessageFromServer.getData();
 		try {
+			if(!(list==null)) {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleOrderBranchMn.fxml"));
@@ -156,7 +162,7 @@ public class ManagerOrdersController {
 				SingleManageOrdersController singleManageOrdersController = fxmlLoader.getController();
 				singleManageOrdersController.setData(list.get(i));
 				OrdersLayout.getChildren().add(hBox);
-
+			}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

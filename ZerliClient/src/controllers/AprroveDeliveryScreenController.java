@@ -26,6 +26,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.SingleSelfDelivery;
 
+/**
+ * @author Evgeny
+ * Confirmation screen for the chosen delivery to approve.
+ */
 public class AprroveDeliveryScreenController {
 
 	@FXML
@@ -40,11 +44,20 @@ public class AprroveDeliveryScreenController {
 	@FXML
 	private Button yesBtn;
 
+	/**
+	 * When choosing not to confirm the delivery
+	 * @param event
+	 */
 	@FXML
 	void NoClick(MouseEvent event) {
 		((Node) event.getSource()).getScene().getWindow().hide();
 	}
 
+	/**
+	 * when choosing to confirm the delivery, updates DB
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void YesClick(MouseEvent event) throws IOException {
 
@@ -58,7 +71,6 @@ public class AprroveDeliveryScreenController {
 			return;
 		}
 		;
-		// @@@@@ Change the SCREEN TWELL TO IVGENI2
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date date = new Date();
 		String currdate = formatter.format(date);
@@ -93,6 +105,12 @@ public class AprroveDeliveryScreenController {
 	void initialize() {
 	}
 
+	/**
+	 * Calculates deserved refund
+	 * @param supply
+	 * @param curr
+	 * @param orderid
+	 */
 	public void difBetweenDate(String supply, String curr, int orderid) {
 		Date time1;
 		try {

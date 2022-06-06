@@ -52,14 +52,15 @@ public class CustomerServiceScreenController {
 	@FXML
 	private Text userName;
 
+
+	@FXML
+	private ImageView writeImg;
+
     /**
      * moves to a new screen where the user can create a new complaint after recieving it from the customer.
      * @param event
      * @throws IOException
      */
-	@FXML
-	private ImageView writeImg;
-
 	@FXML
 	void btnComp(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
@@ -132,6 +133,9 @@ public class CustomerServiceScreenController {
 		surveyScreen.centerOnScreen();
 	}
 
+	/**
+	 * Initializes data shown on screen
+	 */
 	@FXML
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));

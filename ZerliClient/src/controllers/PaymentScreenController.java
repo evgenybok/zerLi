@@ -504,6 +504,10 @@ public class PaymentScreenController {
 		if (DeliveryFlag) {
 			return "Delivery";
 		}
+		else if(DeliveryExpressFlag)
+		{
+			return "Express";
+		}
 		return "PickUp";
 	}
 
