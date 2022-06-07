@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WorkerScreenController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="435.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="800.0" prefWidth="353.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
@@ -69,9 +69,9 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text=" Store Worker" textAlignment="CENTER" wrappingWidth="190.13671875">
+                        <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text=" Store Worker" textAlignment="CENTER" wrappingWidth="190.13671875">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -103,7 +103,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="767.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Store Worker Screen">
+                  <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Store Worker Screen" textFill="#004d00">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -149,7 +149,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Button fx:id="surveyAnswers" mnemonicParsing="false" onMouseClicked="#btnSurveyAnswers" prefHeight="111.0" prefWidth="427.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../../../../Desktop/Zerli%20jars/shake/project/ZerliClient/images/css/styleNew.css" text="     Survey Answers">
+                  <Button fx:id="surveyAnswers" mnemonicParsing="false" onMouseClicked="#btnSurveyAnswers" prefHeight="111.0" prefWidth="427.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="     Survey Answers">
                      <graphic>
                         <ImageView fx:id="surveyImg" fitHeight="95.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                            <image>

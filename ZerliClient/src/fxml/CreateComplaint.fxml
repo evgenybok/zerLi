@@ -16,9 +16,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateComplaintController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="435.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="800.0" prefWidth="353.0">
+            <VBox prefHeight="800.0" prefWidth="435.0">
                <children>
                   <VBox prefHeight="800.0" prefWidth="353.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                      <children>
@@ -72,9 +72,9 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                            <children>
-                              <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Service" textAlignment="CENTER" wrappingWidth="190.13671875">
+                              <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Service" textAlignment="CENTER" wrappingWidth="240.13671875">
                                  <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                  </font>
                               </Text>
                            </children>
@@ -116,7 +116,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="548.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="483.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli">
                            <font>
@@ -164,7 +164,7 @@
             </HBox>
             <HBox prefHeight="68.0" prefWidth="847.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <VBox prefHeight="59.0" prefWidth="84.0" />
+                  <VBox prefHeight="68.0" prefWidth="56.0" />
                   <VBox alignment="TOP_CENTER" prefHeight="59.0" prefWidth="226.0" style="-fx-background-radius: 30;">
                      <children>
                         <TextField fx:id="userNameField" prefHeight="32.0" prefWidth="226.0" style="-fx-background-radius: 10;" />
@@ -173,7 +173,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="59.0" prefWidth="184.0" />
+                  <VBox prefHeight="68.0" prefWidth="160.0" />
                   <VBox alignment="TOP_CENTER" prefHeight="59.0" prefWidth="226.0">
                      <HBox.margin>
                         <Insets />

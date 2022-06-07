@@ -20,7 +20,7 @@
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="325.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -74,7 +74,7 @@
                      <children>
                         <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text="CEO" textAlignment="CENTER" wrappingWidth="206.4700927734375">
                            <font>
-                              <Font name="Cambria" size="28.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -86,7 +86,7 @@
                      <children>
                         <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="Back" textFill="#004d00">
                            <font>
-                              <Font name="Cambria Bold" size="18.0" />
+                              <Font name="Cambria Bold" size="28.0" />
                            </font>
                            <styleClass>
                               <String fx:value="add-btn" />
@@ -101,9 +101,13 @@
          <center>
             <AnchorPane prefHeight="800.0" prefWidth="917.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="767.0">
+                  <HBox prefHeight="100.0" prefWidth="875.0">
                      <children>
+<<<<<<< Upstream, based on branch 'CommitHere' of https://github.com/evgenybok/zerLi.git
                         <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="588.0" text="Complaints Reports">
+=======
+                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="598.0" text=" Complaints Reports" textFill="#004d00">
+>>>>>>> a0d4a68 last one
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="37.0" />
                            </font>
@@ -155,7 +159,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="353.0">
                            <children>
-                              <CheckBox fx:id="Complaints" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="63.0" prefWidth="278.0" text="Complaints">
+                              <CheckBox fx:id="Complaints" mnemonicParsing="false" onMouseClicked="#btnComplaint" prefHeight="63.0" prefWidth="278.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Complaints">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
@@ -199,12 +203,12 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="307.0">
                            <children>
-                              <ComboBox fx:id="ComplaintYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="ComplaintYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
                            </children>
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="240.0">
                            <children>
-                              <ComboBox fx:id="ComplaintQuart" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="ComplaintQuart" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
                            </children>
                            <HBox.margin>
                               <Insets right="30.0" />
@@ -215,24 +219,20 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                            <children>
-                              <ComboBox fx:id="PickStore" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="PickStore" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutY="607.0" prefHeight="187.0" prefWidth="855.0">
-                     <children>
-                        <Button fx:id="View" mnemonicParsing="false" onMouseClicked="#btnView" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="View">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="add-btn" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <Button fx:id="View" layoutX="350.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#btnView" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="View">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
                </children>
             </AnchorPane>
          </center>

@@ -12,6 +12,7 @@ import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -95,8 +96,9 @@ public class CustomerSurveyController {
 
     @FXML
     private ImageView survImage;
+    @FXML
+    private ComboBox<String> surveyNum;
     
-    private String res;
 
 
     /**
@@ -155,61 +157,67 @@ public class CustomerSurveyController {
     	this.UserName.setText(LoginScreenController.user.getUsername()); // userName
         Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
     	PersonImage.setImage(personImage);
+    	Image surveyimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/satiComplaint.png")));
+    	survImage.setImage(surveyimage);
         Combo1.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
         Combo2.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
         Combo3.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
         Combo4.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
         Combo5.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
         Combo6.setItems(FXCollections.observableArrayList("1", "2","3","4","5","6","7","8","9","10"));
-        res = getSurveyNumber();
-        EnumNum.setText(res);
-       try {
-		ArrayList<String> list = setQuestion();
-		   Question1.setText(list.get(0));
-		   Question2.setText(list.get(1));
-		   Question3.setText(list.get(2));
-		   Question4.setText(list.get(3));
-		   Question5.setText(list.get(4));
-		   Question6.setText(list.get(5));
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+        ArrayList<String> surveyNumList = new ArrayList<>();
+        surveyNumList = getSurveyNumber();
+        surveyNum.setItems(FXCollections.observableArrayList(surveyNumList));
+       // EnumNum.setText(res);
+
     }
     /**
      * @return number of the next survey number.
      */
-    public String getSurveyNumber()
-    {
-    	String temp;
+    public ArrayList<String> getSurveyNumber(){
+    	ArrayList<String> list = new ArrayList<>();
     	try {
-			chat.accept(new Message(MessageType.GET_SURVEY_NUMBER,null));
+			chat.accept(new Message(MessageType.GET_SURVEY_NUMBERS_COMBO,null));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return null;
 
 		} catch (Exception e) {
 			return null;
 		}
-		;
-		temp = (String)AnalyzeMessageFromServer.getData();
-		int i=Integer.parseInt(temp);  
-		i--;
-		temp=String.valueOf(i);
-		return temp;
-    } 
+    	list = (ArrayList<String>)AnalyzeMessageFromServer.getData();
+    	return list;
+    }
+    
+    	
     /**
      * @return list of survey questions retrieved from the DB.
      */
     public ArrayList<String> setQuestion(){
 		ArrayList<String> list = new ArrayList<>();
 		try {
-			chat.accept(new Message(MessageType.GET_SURVEY_QUS_BY_SURVEYNUM,res));
+			chat.accept(new Message(MessageType.GET_SURVEY_QUS_BY_SURVEYNUM,surveyNum.getValue()));
 			if (AnalyzeMessageFromServer.getData().equals(null)) // Incorrect username / password
 				return null;
 		} catch (Exception e) {
 			return null;
 		};
 		list = (ArrayList<String>)AnalyzeMessageFromServer.getData();
+		
 		return list;
+    }
+    @FXML
+    public void SelectSurveyNumber(ActionEvent event) {
+      try {
+    		ArrayList<String> list = setQuestion();
+    		   Question1.setText(list.get(0));
+    		   Question2.setText(list.get(1));
+    		   Question3.setText(list.get(2));
+    		   Question4.setText(list.get(3));
+    		   Question5.setText(list.get(4));
+    		   Question6.setText(list.get(5));
+    	} catch (Exception e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
     }
 }

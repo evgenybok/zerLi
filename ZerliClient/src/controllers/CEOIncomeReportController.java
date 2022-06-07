@@ -104,9 +104,9 @@ public class CEOIncomeReportController {
 	@FXML
 	void initialize() {
 		Image complaintImage = new Image(Objects.requireNonNull(getClass()
-				.getResourceAsStream("/images/10-106521_report-png-transparent-background-png-download.png")));
+				.getResourceAsStream("/images/imageofreport.png")));
 		reportImg.setImage(complaintImage);
-		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
+		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backArrow.png")));
 		avatarImg.setImage(personImage);
 		double maxWeek = 0;
 		double minWeek = Double.MAX_VALUE;
@@ -419,7 +419,7 @@ public class CEOIncomeReportController {
 
 			BarChart.getData().add(series);
 			BarChart.getData().add(series2);
-
+			
 		}
 
 	}

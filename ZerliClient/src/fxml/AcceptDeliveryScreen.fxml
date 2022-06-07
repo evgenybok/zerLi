@@ -106,7 +106,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox prefHeight="72.0" prefWidth="831.0">
+                        <HBox prefHeight="96.0" prefWidth="1056.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="371.0">
                                  <children>
@@ -120,7 +120,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="631.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="96.0" prefWidth="687.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli" textFill="#004d00">
                                        <font>

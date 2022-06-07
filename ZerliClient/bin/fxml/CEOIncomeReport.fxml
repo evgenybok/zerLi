@@ -36,7 +36,7 @@
                      <children>
                         <ImageView fx:id="reportImg" fitHeight="135.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/images/10-106521_report-png-transparent-background-png-download.png" />
+                              <Image url="@../../images/images/imageofreport.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="branchLabel" alignment="CENTER" prefHeight="42.0" prefWidth="590.0" text="Akko Branch Report">
@@ -141,7 +141,7 @@
                                  <graphic>
                                     <ImageView fx:id="avatarImg" fitHeight="50.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../images/images/Avatar.png" />
+                                          <Image url="@../../images/images/backArrow.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

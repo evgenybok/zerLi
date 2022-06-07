@@ -178,7 +178,7 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="screen-back" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <VBox.margin>
@@ -389,6 +389,10 @@
                      </children>
                   </HBox>
                </children>
+               <styleClass>
+                  <String fx:value="screen-back" />
+                  <String fx:value="body" />
+               </styleClass>
             </VBox>
          </center>
       </BorderPane>

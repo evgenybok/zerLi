@@ -16,11 +16,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< Upstream, based on branch 'CommitHere' of https://github.com/evgenybok/zerLi.git
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOOrderController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1297.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CEOOrderController">
+>>>>>>> a0d4a68 last one
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="800.0" prefWidth="363.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="800.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -74,7 +78,7 @@
                      <children>
                         <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text="CEO" textAlignment="CENTER" wrappingWidth="206.4700927734375">
                            <font>
-                              <Font name="Cambria" size="28.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -84,7 +88,7 @@
                         <Insets top="100.0" />
                      </VBox.margin>
                      <children>
-                        <VBox prefHeight="202.0" prefWidth="206.0">
+                        <VBox alignment="CENTER" prefHeight="202.0" prefWidth="206.0">
                            <children>
                               <Button fx:id="Back" mnemonicParsing="false" onMouseClicked="#btnBack" prefHeight="70.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="Back">
                                  <font>
@@ -94,18 +98,6 @@
                                     <String fx:value="add-btn" />
                                     <String fx:value="shadow" />
                                  </styleClass>
-                              </Button>
-                              <Button fx:id="View" mnemonicParsing="false" onMouseClicked="#btnView" prefHeight="79.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="View">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="add-btn" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
                               </Button>
                            </children>
                         </VBox>
@@ -119,7 +111,11 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="861.0">
                      <children>
+<<<<<<< Upstream, based on branch 'CommitHere' of https://github.com/evgenybok/zerLi.git
                         <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="336.0" text="Orders Report">
+=======
+                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="336.0" text="Order Report">
+>>>>>>> a0d4a68 last one
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="37.0" />
                            </font>
@@ -188,12 +184,20 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="307.0">
                            <children>
-                              <ComboBox fx:id="OrderYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="OrderYear" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="smallcomboBox" />
+                                 </styleClass></ComboBox>
                            </children>
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="240.0">
                            <children>
-                              <ComboBox fx:id="OrderMonth" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="OrderMonth" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="smallcomboBox" />
+                                 </styleClass></ComboBox>
                            </children>
                            <HBox.margin>
                               <Insets right="30.0" />
@@ -201,18 +205,16 @@
                         </VBox>
                         <VBox prefHeight="54.0" prefWidth="236.0">
                            <children>
-                              <ComboBox fx:id="PickStore" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" />
+                              <ComboBox fx:id="PickStore" prefHeight="51.0" prefWidth="225.0" style="-fx-background-radius: 30; -fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="smallcomboBox" />
+                                 </styleClass></ComboBox>
                            </children>
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="-1.0" layoutY="316.0" prefHeight="62.0" prefWidth="852.0">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="353.0" />
-                        <VBox prefHeight="56.0" prefWidth="568.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="-1.0" layoutY="376.0" prefHeight="39.0" prefWidth="856.0">
@@ -233,6 +235,15 @@
                         <VBox alignment="BOTTOM_CENTER" prefHeight="46.0" prefWidth="281.0" />
                      </children>
                   </HBox>
+                  <Button fx:id="View" layoutX="320.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#btnView" prefHeight="79.0" prefWidth="175.0" stylesheets="@../../images/css/styleNew.css" text="View">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
                </children>
             </AnchorPane>
          </center>

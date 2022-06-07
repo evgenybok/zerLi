@@ -42,10 +42,10 @@
                            <children>
                               <Label layoutX="57.0" text="Custom Bouquet Name:" textFill="#004d00">
                                  <font>
-                                    <Font name="Cambria" size="16.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="customName" layoutX="236.0" layoutY="-3.0" promptText="Type here" />
+                              <TextField fx:id="customName" layoutX="236.0" layoutY="-3.0" promptText="Type here" style="-fx-background-color: e6ffcc; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
                            </children>
                         </Pane>
                         <VBox alignment="CENTER" prefHeight="657.0" prefWidth="335.0" styleClass="chosen-zerli-cart" stylesheets="@../../images/css/styleNew.css">
@@ -199,7 +199,7 @@
                   </VBox>
                </left>
                <center>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="screen-back" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <VBox.margin>
@@ -257,7 +257,7 @@
                                     </VBox>
                                     <ImageView fx:id="ClockImage" fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../images/images/pngaaa.com-372753.png" />
+                                          <Image url="@../../images/images/stopwatch-icon-6.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="20.0" />
@@ -410,6 +410,10 @@
                            </children>
                         </HBox>
                      </children>
+                     <styleClass>
+                        <String fx:value="screen-back" />
+                        <String fx:value="body" />
+                     </styleClass>
                   </VBox>
                </center>
             </BorderPane>

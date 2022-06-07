@@ -202,22 +202,22 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="934.0" spacing="5.0" style="-fx-background-color: d3d3d3;">
                            <children>
-                              <Label fx:id="UserID" prefHeight="29.0" prefWidth="143.0" text="  User ID">
+                              <Label fx:id="UserID" prefHeight="29.0" prefWidth="136.0" text="  User ID">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="FirstName" prefHeight="29.0" prefWidth="146.0" text="First Name">
+                              <Label fx:id="FirstName" prefHeight="29.0" prefWidth="135.0" text="First Name">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="LastName" prefHeight="29.0" prefWidth="138.0" text="Last Name">
+                              <Label fx:id="LastName" prefHeight="29.0" prefWidth="125.0" text="Last Name">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="Status" prefHeight="29.0" prefWidth="125.0" text="Status">
+                              <Label fx:id="Status" prefHeight="29.0" prefWidth="150.0" text="Status">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>

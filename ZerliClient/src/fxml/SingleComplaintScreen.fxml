@@ -11,17 +11,17 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="947.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
          <children>
-            <Label fx:id="userID" prefHeight="30.0" prefWidth="86.0" text="UserID">
+            <Label fx:id="userID" prefHeight="30.0" prefWidth="98.0" text=" UserID">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="orderID" prefHeight="30.0" prefWidth="96.0" text="OrderID">
+            <Label fx:id="orderID" prefHeight="30.0" prefWidth="90.0" text="OrderID">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <Label fx:id="description" prefHeight="30.0" prefWidth="559.0" text="Complaint Description">

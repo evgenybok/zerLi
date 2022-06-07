@@ -11,13 +11,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeliveryLoginScreenController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="349.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="435.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="804.0" prefWidth="442.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
@@ -33,7 +32,6 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <Line endX="329.3431396484375" endY="-16.322040557861328" startX="-104.94975280761719" startY="-15.61270523071289" stroke="#004d00" strokeWidth="5.0" />
                   <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
                      <children>
                         <Label prefHeight="42.0" prefWidth="172.0" text="Welcome back!" textAlignment="CENTER">
@@ -74,7 +72,7 @@
                      <children>
                         <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery" textAlignment="CENTER" wrappingWidth="153.13671875">
                            <font>
-                              <Font name="Cambria Bold" size="25.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -110,16 +108,16 @@
          <children>
             <AnchorPane prefHeight="800.0" prefWidth="771.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <Button alignment="BOTTOM_CENTER" layoutX="123.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#AcceptOrder" prefHeight="189.0" prefWidth="480.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Accept Order" textFill="#004d00">
+                  <Button alignment="BOTTOM_CENTER" layoutX="205.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#AcceptOrder" prefHeight="148.0" prefWidth="358.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="Accept Order" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
                      </styleClass>
                      <font>
-                        <Font name="Cambria Bold" size="20.0" />
+                        <Font name="Cambria Bold" size="25.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" layoutX="123.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#ViewMyOrder" prefHeight="189.0" prefWidth="480.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="View My Order" textFill="#004d00">
+                  <Button alignment="BOTTOM_CENTER" layoutX="205.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#ViewMyOrder" prefHeight="148.0" prefWidth="358.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css" text="View My Order" textFill="#004d00">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
@@ -130,9 +128,9 @@
                   </Button>
                   <HBox prefHeight="100.0" prefWidth="767.0">
                      <children>
-                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text="Delivery Screen">
+                        <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text="Delivery Screen" textFill="#004d00">
                            <font>
-                              <Font name="Cambria" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="5.0" />
@@ -142,7 +140,7 @@
                            <children>
                               <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli">
                                  <font>
-                                    <Font name="Cambria" size="25.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                  </font>
                               </Label>
                               <FontAwesomeIconView glyphName="LEAF" size="40" wrappingWidth="46.0" />
@@ -150,12 +148,12 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ImageView fx:id="accImg" fitHeight="119.0" fitWidth="140.0" layoutX="299.0" layoutY="193.0" onMouseClicked="#AcceptOrder" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="accImg" fitHeight="98.0" fitWidth="102.0" layoutX="335.0" layoutY="199.0" onMouseClicked="#AcceptOrder" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/Delivery1.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="viewIMG" fitHeight="125.0" fitWidth="114.0" layoutX="300.0" layoutY="415.0" onMouseClicked="#ViewMyOrder" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="viewIMG" fitHeight="94.0" fitWidth="99.0" layoutX="337.0" layoutY="414.0" onMouseClicked="#ViewMyOrder" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/images/Delivery2.png" />
                      </image>

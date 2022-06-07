@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateSurveyController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="435.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="800.0" prefWidth="256.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
@@ -70,9 +70,9 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Service" textAlignment="CENTER" wrappingWidth="190.13671875">
+                        <Text fx:id="accountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Service" textAlignment="CENTER" wrappingWidth="247.13671875">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -108,7 +108,7 @@
                      <children>
                         <HBox prefHeight="72.0" prefWidth="887.0">
                            <children>
-                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Customer Service Screen">
+                              <Label alignment="TOP_LEFT" prefHeight="47.0" prefWidth="298.0" text=" Customer Service Screen" textFill="#004d00">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -116,7 +116,7 @@
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="591.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="53.0" prefWidth="508.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="41.0" prefWidth="211.0" text="Welcome to Zerli">
                                        <font>
@@ -130,26 +130,19 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="214.0" prefWidth="846.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="102.0" prefWidth="847.0">
                      <children>
                         <Label prefHeight="46.0" prefWidth="751.0" text=" Please Wirte Survey question:">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="40.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="92.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/images/icons8-survey-100.png" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="225.0" />
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="199.0" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="101.0" prefWidth="846.0">
+                  <HBox prefHeight="88.0" prefWidth="847.0">
                      <children>
                         <Label prefHeight="27.0" prefWidth="181.0" text="Survey Number:">
                            <HBox.margin>
@@ -169,7 +162,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <HBox prefHeight="70.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
+                  <HBox prefHeight="70.0" prefWidth="888.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="67.0" prefWidth="209.0">
                            <children>
@@ -182,7 +175,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="67.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques1" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;">
+                              <TextField fx:id="Ques1" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -204,7 +197,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="67.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques2" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;">
+                              <TextField fx:id="Ques2" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -226,7 +219,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques3" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;">
+                              <TextField fx:id="Ques3" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -248,7 +241,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques4" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;">
+                              <TextField fx:id="Ques4" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -270,7 +263,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques5" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;">
+                              <TextField fx:id="Ques5" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: e6ffcc;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -292,7 +285,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="505.0">
                            <children>
-                              <TextField fx:id="Ques6" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;">
+                              <TextField fx:id="Ques6" prefHeight="39.0" prefWidth="457.0" promptText="Write here you question..." style="-fx-background-color: ffffff;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

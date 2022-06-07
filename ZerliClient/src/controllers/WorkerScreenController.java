@@ -48,6 +48,8 @@ public class WorkerScreenController {
 
 	    @FXML
 	    private Text userName;
+	    @FXML
+	    private ImageView survImage;
 
 	/**
 	 * User can log out of the system and return to the Login screen.
@@ -119,6 +121,6 @@ public class WorkerScreenController {
 		surveyImg.setImage(surveyImage);
 		
 		
-
+		
 	}
 }

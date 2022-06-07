@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -10,13 +11,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="paneback" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerSurveyController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="350.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="400.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="800.0" prefWidth="350.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
@@ -32,7 +32,6 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <Line endX="260.5" startX="-100.0" strokeWidth="5.0" />
                   <VBox prefHeight="429.0" prefWidth="405.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <HBox alignment="CENTER" prefHeight="35.0" prefWidth="435.0">
@@ -75,7 +74,7 @@
                            <children>
                               <Text fx:id="AccountType" fill="#004d00" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Worker" textAlignment="CENTER" wrappingWidth="229.13671875">
                                  <font>
-                                    <Font name="Cambria" size="25.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                  </font>
                               </Text>
                            </children>
@@ -129,7 +128,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="888.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="129.0" prefWidth="834.0">
                <children>
                   <Label prefHeight="46.0" prefWidth="320.0" text=" Survey Question ">
                      <font>
@@ -138,7 +137,7 @@
                   </Label>
                   <ImageView fx:id="survImage" fitHeight="92.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/images/icons8-survey-100.png" />
+                        <Image url="@../../images/images/satiComplaint.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="225.0">
@@ -163,123 +162,148 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></HBox>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="834.0">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="834.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="234.0" text="Number Of Survey:">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="EnumNum" prefHeight="31.0" prefWidth="31.0" text="10">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
-                     </font>
-                  </Label>
+                  <ComboBox fx:id="surveyNum" onAction="#SelectSurveyNumber" prefHeight="36.0" prefWidth="97.0" style="-fx-background-color: ffffff; -fx-background-radius: 10;" stylesheets="@../../images/css/styleNew.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="smallcomboBox" />
+                     </styleClass>
+                  </ComboBox>
                </children>
             </HBox>
-            <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
+            <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;" stylesheets="@../../images/css/styleNew.css">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1020.0">
                      <children>
                         <Label fx:id="Question1" text="Question 1:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="456.0">
                      <children>
-                        <ComboBox fx:id="Combo1" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo1" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1020.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <Label fx:id="Question2" text="Question 2:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <ComboBox fx:id="Combo2" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo2" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1020.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <Label fx:id="Question3" text="Question 3:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <ComboBox fx:id="Combo3" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo3" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1020.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <Label fx:id="Question4" text="Question 4:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <ComboBox fx:id="Combo4" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo4" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0" style="-fx-background-color: ffffff;">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1020.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <Label fx:id="Question5" text="Question 5:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <ComboBox fx:id="Combo5" prefWidth="150.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo5" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
             <HBox prefHeight="67.0" prefWidth="888.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="963.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1020.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
                         <Label fx:id="Question6" text="Question 6:">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                            </font></Label>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="456.0" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <ComboBox fx:id="Combo6" prefWidth="150.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css" />
+                        <ComboBox fx:id="Combo6" prefHeight="42.0" prefWidth="121.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" stylesheets="@../../images/css/styleNew.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="smallcomboBox" />
+                           </styleClass></ComboBox>
                      </children>
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="175.0" prefWidth="834.0">
+            <HBox alignment="CENTER" prefHeight="146.0" prefWidth="834.0">
                <children>
                   <Button fx:id="submit" mnemonicParsing="false" onMouseClicked="#btnSubmit" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Submit">
                      <font>

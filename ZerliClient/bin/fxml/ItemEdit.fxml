@@ -66,12 +66,15 @@
                <children>
                   <HBox prefHeight="21.0" prefWidth="227.0" spacing="7.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="44.0" text="itemID:">
+                        <Label prefHeight="25.0" prefWidth="83.0" text="itemID:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="id" prefHeight="25.0" prefWidth="129.0" promptText="ID">
+                        <TextField fx:id="id" prefHeight="25.0" prefWidth="129.0" promptText="ID" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -87,46 +90,61 @@
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </CheckBox>
                         <CheckBox fx:id="selfCheckBox" mnemonicParsing="false" onMouseClicked="#selfSelected" text="Self Assembly">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </CheckBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="227.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="65.0" text="ImagePath:">
+                        <Label prefHeight="25.0" prefWidth="123.0" text="ImagePath:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="imagePath" prefHeight="25.0" prefWidth="132.0" promptText="Image Path">
+                        <TextField fx:id="imagePath" prefHeight="25.0" prefWidth="132.0" promptText="Image Path" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                            <HBox.margin>
                               <Insets left="1.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="36.0" prefWidth="227.0">
+                  <HBox prefHeight="27.0" prefWidth="328.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="66.0" text="ItemName:">
+                        <Label prefHeight="25.0" prefWidth="123.0" text="ItemName:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="name" prefHeight="25.0" prefWidth="138.0" promptText="Name" />
+                        <TextField fx:id="name" prefHeight="25.0" prefWidth="138.0" promptText="Name" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="36.0" prefWidth="227.0">
+                  <HBox prefHeight="30.0" prefWidth="328.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="57.0" text="ItemPrice:">
+                        <Label prefHeight="25.0" prefWidth="114.0" text="ItemPrice:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="price" promptText="Price">
+                        <TextField fx:id="price" promptText="Price" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
@@ -135,41 +153,49 @@
                   </HBox>
                   <HBox prefHeight="31.0" prefWidth="227.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="59.0" text="ItemColor:">
+                        <Label prefHeight="25.0" prefWidth="115.0" text="ItemColor:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="color" promptText="Color">
+                        <TextField fx:id="color" promptText="Color" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                            <HBox.margin>
                               <Insets left="6.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="25.0" prefWidth="227.0">
+                  <HBox prefHeight="28.0" prefWidth="308.0">
                      <children>
-                        <CheckBox fx:id="checkBoxSale" mnemonicParsing="false" onMouseClicked="#onSaleSelected" text="On Sale">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </CheckBox>
+                        <VBox alignment="CENTER" prefHeight="28.0" prefWidth="147.0">
+                           <children>
+                              <CheckBox fx:id="checkBoxSale" mnemonicParsing="false" onMouseClicked="#onSaleSelected" text="On Sale">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="28.0" prefWidth="95.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="94.0" text="SalePrice:">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField fx:id="salePrice" prefHeight="20.0" prefWidth="149.0" promptText="Sale Price" style="-fx-background-color: ffffff; -fx-background-radius: 10;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="28.0" prefWidth="227.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="54.0" text="SalePrice:">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="salePrice" prefHeight="20.0" prefWidth="149.0" promptText="Sale Price">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
+                  <HBox prefHeight="28.0" prefWidth="227.0" />
                </children>
             </VBox>
             <VBox prefHeight="423.0" prefWidth="324.0">

@@ -19,6 +19,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -52,6 +54,10 @@ public class IncomeReportController {
 	private TextField TotalSales;
 	@FXML
 	private Label branchLabel;
+	@FXML
+    private ImageView backImage;
+	@FXML
+    private ImageView reportImage;
 
 	/**
 	 * Sends the user back to the branch manager main screen.
@@ -61,12 +67,12 @@ public class IncomeReportController {
 	@FXML
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReportsNew.fxml")));
 		parent.getStylesheets().add("css/styleNew.css");
 
 		Scene scene = new Scene(parent);
 		Stage customerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		customerStage.setTitle("Branch Manager Screen");
+		customerStage.setTitle("Reports Screen");
 		customerStage.setScene(scene);
 		customerStage.show();
 		customerStage.centerOnScreen();
@@ -119,7 +125,10 @@ public class IncomeReportController {
 		series.getData().add(new XYChart.Data("Week3", Double.parseDouble(Graph_Stats.get(3))));
 		series.getData().add(new XYChart.Data("Week4", Double.parseDouble(Graph_Stats.get(4))));
 		lineChart.getData().add(series);
-
+		Image backarrow = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backArrow.png")));
+		backImage.setImage(backarrow);
+		Image reportimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/imageofreport.png")));
+		reportImage.setImage(reportimage);
 	}
 
 }

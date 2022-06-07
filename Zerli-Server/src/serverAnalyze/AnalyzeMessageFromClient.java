@@ -65,6 +65,7 @@ public class AnalyzeMessageFromClient {
 		ArrayList<SingleUser> singleUser;
 		ArrayList<SingleManageOrder> singleManageOrder;
 		ArrayList<String> question;
+		ArrayList<String> surveyNum;
 		switch (receivedMessage.getMessageType()) {
 
 		case CONFIRM_IP:
@@ -848,7 +849,18 @@ public class AnalyzeMessageFromClient {
 			}
 			return new Message(MessageType.ORDER_GRAPH_STATISTICS, receivedMessage.getMessageAnswer(),
 					receivedMessage.getMessageData());
-
+			
+		case GET_SURVEY_NUMBERS_COMBO:
+			surveyNum = SurveyQuery.GetSurveyNumbers();
+			try {
+				receivedMessage.setMessageAnswer(MessageAnswer.SUCCEED);
+				receivedMessage.setMessageData(surveyNum);
+			} catch (Exception e) {
+				receivedMessage.setMessageAnswer(MessageAnswer.NOT_SUCCEED);
+				receivedMessage.setMessageData(null);
+			}
+			return new Message(MessageType.GET_SURVEY_NUMBERS_COMBO, receivedMessage.getMessageAnswer(),
+					receivedMessage.getMessageData());
 		default:// ;
 
 			return new Message(MessageType.ERROR, null);

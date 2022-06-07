@@ -33,6 +33,7 @@ public class SurveyQuery {
 		}
 		lastSurveyNumber++;
 		String temp= String.valueOf(lastSurveyNumber); 
+		
 		return temp;
 	}
 	/**
@@ -146,6 +147,24 @@ public class SurveyQuery {
 			return;
 		}
 		return;
+	}
+	public static ArrayList<String> GetSurveyNumbers()
+	{
+		ArrayList<String> list = new ArrayList<>();
+		try
+		{
+			String sql = "SELECT SurveyNumber FROM zerli.survey";
+			PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				 int survnum= rs.getInt("SurveyNumber");  // list of survey numbers
+				 String temp= String.valueOf(survnum);
+				 list.add(temp);
+			}
+		}catch (SQLException e) {
+			return null;
+		}	
+		return list;
 	}
 	
 	

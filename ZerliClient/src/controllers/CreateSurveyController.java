@@ -55,7 +55,7 @@ public class CreateSurveyController {
 	@FXML
 	private Button Submit;
 
-	@FXML
+	 @FXML
 	private Text SurveyNumber;
 
 	@FXML
@@ -152,6 +152,7 @@ public class CreateSurveyController {
 		}
 		;
 		temp = (String) AnalyzeMessageFromServer.getData();
+		System.out.println(temp);
 		return temp;
 	}
 

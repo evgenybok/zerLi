@@ -79,3 +79,9 @@ background: url(https://github.com/evgenybok/zerLi/blob/285d2fd9408e2a3ac2cf63de
 .transparentTwo{
 	-fx-background-color: rgba(0,0,0,0);
 }
+.newcomboBox{
+	-fx-font-size : 15pt;
+}
+.smallcomboBox{
+	-fx-font-size : 13pt;
+}

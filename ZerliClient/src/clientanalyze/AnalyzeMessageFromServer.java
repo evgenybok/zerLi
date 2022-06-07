@@ -598,6 +598,14 @@ public class AnalyzeMessageFromServer {
 				res = null;
 			}
 			return;
+		case GET_SURVEY_NUMBERS_COMBO:
+			if (receivedMessage.getMessageAnswer() == MessageAnswer.SUCCEED) {
+				res = receivedMessage.getMessageData();
+
+			} else {
+				res = null;
+			}
+			return;
 
 		default:
 			break;
