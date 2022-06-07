@@ -71,6 +71,9 @@ public class ManagerOrdersController {
 	@FXML
 	private Text userName;
 
+    @FXML
+    private ImageView addImg;
+
 	/**
 	 * Sends the manager back to the branch manager screen.
 	 * @param event
