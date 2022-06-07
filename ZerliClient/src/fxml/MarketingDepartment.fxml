@@ -18,7 +18,7 @@
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1210.0">
          <left>
-            <VBox prefHeight="810.0" prefWidth="366.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="810.0" prefWidth="435.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox prefHeight="807.0" prefWidth="360.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                      <children>
@@ -74,7 +74,7 @@
                            <children>
                               <Text fx:id="accountType" strokeType="OUTSIDE" strokeWidth="0.0" text="Marketing Department" textAlignment="CENTER" wrappingWidth="293.13671875">
                                  <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                    <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                  </font>
                               </Text>
                            </children>
@@ -129,7 +129,7 @@
                   <HBox alignment="BOTTOM_CENTER" prefHeight="102.0" prefWidth="846.0" />
                   <HBox alignment="CENTER" prefHeight="125.0" prefWidth="846.0">
                      <children>
-                        <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="313.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="     Manage Sales">
+                        <Button fx:id="updateCatalog" mnemonicParsing="false" onMouseClicked="#btnUpdateCatalog" prefHeight="111.0" prefWidth="313.0" style="-fx-background-color: ffffff; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="  Manage Sales">
                            <graphic>
                               <ImageView fx:id="catalogImage" fitHeight="95.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
