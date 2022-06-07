@@ -9,7 +9,6 @@ import java.util.Objects;
 import clientanalyze.AnalyzeMessageFromServer;
 import communication.Message;
 import communication.MessageType;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -41,8 +40,6 @@ public class ManagerScreenController {
 	@FXML
 	private Button addCustomer;
 
-	@FXML
-	private FontAwesomeIconView addImg;
 
 	@FXML
 	private ImageView avatarImg;
@@ -74,6 +71,9 @@ public class ManagerScreenController {
 	@FXML
 	private Button editRole;
 
+    @FXML
+    private ImageView addImg;
+    
 	/**
 	 * Registers a new user to the system.
 	 * 
@@ -205,6 +205,8 @@ public class ManagerScreenController {
 		viewReportsImg.setImage(viewRepImage);
 		Image editImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
 		editImg.setImage(editImage);
+		Image addImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
+		addImg.setImage(addImage);
 		Image roleImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/account.png")));
 		roleImg.setImage(roleImage);
 		
