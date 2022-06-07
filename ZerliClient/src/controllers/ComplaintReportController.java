@@ -102,6 +102,13 @@ public class ComplaintReportController {
 		chat.accept(new Message(MessageType.COMPLAINT_GRAPH_STATISTICS, arrComplaint));
 		complaint_Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 
+		if (complaint_Graph_Stats == null) {
+			minComplaint=0;
+			MinComplaints.setText(String.valueOf(minComplaint));
+			MaxComplaints.setText(String.valueOf(minComplaint));
+			return;
+		}
+		
 		try {
 			for (int i = 1; i < complaint_Graph_Stats.size(); i++) {
 				if (Integer.valueOf(complaint_Graph_Stats.get(i)) > maxComplaint) {
@@ -116,13 +123,18 @@ public class ComplaintReportController {
 			e.printStackTrace();
 		}
 
-		MaxComplaints.setText(String.valueOf(maxComplaint));
-		MinComplaints.setText(String.valueOf(minComplaint));
-		TotalComplaints.setText(String.valueOf(total));
-		series1.getData().add(new XYChart.Data("Month1", Integer.parseInt(complaint_Graph_Stats.get(1))));
-		series1.getData().add(new XYChart.Data("Month2", Integer.parseInt(complaint_Graph_Stats.get(2))));
-		series1.getData().add(new XYChart.Data("Month3", Integer.parseInt(complaint_Graph_Stats.get(3))));
-		BarChart.getData().add(series1);
+		try {
+			MaxComplaints.setText(String.valueOf(maxComplaint));
+			MinComplaints.setText(String.valueOf(minComplaint));
+			TotalComplaints.setText(String.valueOf(total));
+			series1.getData().add(new XYChart.Data("Month1", Integer.parseInt(complaint_Graph_Stats.get(1))));
+			series1.getData().add(new XYChart.Data("Month2", Integer.parseInt(complaint_Graph_Stats.get(2))));
+			series1.getData().add(new XYChart.Data("Month3", Integer.parseInt(complaint_Graph_Stats.get(3))));
+			BarChart.getData().add(series1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }

@@ -103,8 +103,7 @@ public class CEOIncomeReportController {
 	 */
 	@FXML
 	void initialize() {
-		Image complaintImage = new Image(Objects.requireNonNull(getClass()
-				.getResourceAsStream("/images/imageofreport.png")));
+		Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/imageofreport.png")));
 		reportImg.setImage(complaintImage);
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backArrow.png")));
 		avatarImg.setImage(personImage);

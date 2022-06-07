@@ -55,7 +55,10 @@
       </Label>
       <VBox alignment="CENTER" prefHeight="50.0" prefWidth="181.0">
          <children>
-            <Button fx:id="Confirm" mnemonicParsing="false" onMouseClicked="#ConfirmBtn" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" text="confirm" />
+            <Button fx:id="Confirm" mnemonicParsing="false" onMouseClicked="#ConfirmBtn" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="confirm">
+               <font>
+                  <Font size="22.0" />
+               </font></Button>
          </children>
       </VBox>
    </children>

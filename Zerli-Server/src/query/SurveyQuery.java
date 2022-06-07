@@ -22,18 +22,17 @@ public class SurveyQuery {
 		int lastSurveyNumber=0;
 		try
 		{
-			String sql = "SELECT MAX(SurveyNumber) AS SurveyNumber FROM survey";
-			PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				lastSurveyNumber = rs.getInt("SurveyNumber");  // access the max value
+			String sql = "SELECT * FROM zerli.survey";
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				lastSurveyNumber++;
 			}
 		}catch (SQLException e) {
 			return null;
 		}
 		lastSurveyNumber++;
 		String temp= String.valueOf(lastSurveyNumber); 
-		
 		return temp;
 	}
 	/**
@@ -156,7 +155,7 @@ public class SurveyQuery {
 			String sql = "SELECT SurveyNumber FROM zerli.survey";
 			PreparedStatement ps = ConnectToDB.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				 int survnum= rs.getInt("SurveyNumber");  // list of survey numbers
 				 String temp= String.valueOf(survnum);
 				 list.add(temp);

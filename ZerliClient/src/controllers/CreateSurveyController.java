@@ -152,7 +152,6 @@ public class CreateSurveyController {
 		}
 		;
 		temp = (String) AnalyzeMessageFromServer.getData();
-		System.out.println(temp);
 		return temp;
 	}
 

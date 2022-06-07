@@ -322,6 +322,11 @@ public class PaymentScreenController {
 			String storeid = getStoreId();
 			Date orderDate = new Date();
 			String orderDateString = convertToDate(orderDate.toString());
+			if(DateSupply.getValue()==null)
+			{
+					JOptionPane.showMessageDialog(null, "Date format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+			}
 			String su = DateSupply.getValue().toString();
 			if (!checkSupplyTime()) // Checking if supply time values are right
 			{

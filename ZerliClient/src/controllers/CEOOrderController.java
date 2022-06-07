@@ -60,6 +60,10 @@ public class CEOOrderController {
 
 	@FXML
 	private ImageView avatarImg;
+	 @FXML
+	 private ImageView backarrow;
+	 @FXML
+	 private ImageView report;
 
 	public static String StoreID;
 	public static String Month;
@@ -142,6 +146,10 @@ public class CEOOrderController {
 	 */
 	@FXML
 	void initialize() {
+		Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/imageofreport.png")));
+		report.setImage(complaintImage);
+		Image arrow = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backArrow.png")));
+		backarrow.setImage(arrow);
 		userName.setText(LoginScreenController.user.getUsername()); // userName
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);

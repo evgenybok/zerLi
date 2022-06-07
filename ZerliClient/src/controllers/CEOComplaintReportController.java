@@ -59,6 +59,10 @@ public class CEOComplaintReportController {
 
 	@FXML
 	private BarChart<String, Number> BarChart;
+	@FXML
+    private ImageView backarrow;
+	@FXML
+    private ImageView report;
 
 	/** 
 	 * Sends the user back to the CEO complaint screen
@@ -85,6 +89,10 @@ public class CEOComplaintReportController {
 	 */
 	@FXML
 	void initialize() {
+		Image complaintImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/imageofreport.png")));
+		report.setImage(complaintImage);
+		Image arrow = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backArrow.png")));
+		backarrow.setImage(arrow);
 		ArrayList<String> arrComplaint = new ArrayList<>();
 		ArrayList<String> StoreName1 = new ArrayList<>();
 		ArrayList<String> complaint_Graph_Stats = new ArrayList<>();
@@ -109,6 +117,9 @@ public class CEOComplaintReportController {
 		complaint_Graph_Stats = (ArrayList<String>) AnalyzeMessageFromServer.getData();
 
 		if (complaint_Graph_Stats == null) {
+			minComplaint=0;
+			MinComplaints.setText(String.valueOf(minComplaint));
+			MaxComplaints.setText(String.valueOf(minComplaint));
 			return;
 		}
 

@@ -229,6 +229,53 @@
                            </font>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="78.0" prefWidth="1056.0" style="-fx-background-color: d3d3d3;">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="119.0" text=" Order Id">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="102.0" text="Store Id">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="184.0" text="Supply Date">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="122.0" text="Address">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="115.0" text="Reciver">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="107.0" text="Phone">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="213.0" text="Supply Type">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="136.0" text="Action">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </HBox>
                   <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                      <content>
