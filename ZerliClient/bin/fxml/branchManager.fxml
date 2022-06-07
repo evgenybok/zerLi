@@ -185,7 +185,6 @@
                               <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                            </font>
                         </Label>
-                        <FontAwesomeIconView glyphName="LEAF" size="40" wrappingWidth="46.0" />
                      </children>
                   </HBox>
                </children>
