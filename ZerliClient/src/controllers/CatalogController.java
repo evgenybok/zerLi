@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Timer;
 
 import javax.swing.JOptionPane;
 
@@ -109,6 +110,9 @@ public class CatalogController {
     @FXML
     private Label lblMyCart;
 
+    @FXML
+    private Label msgLabel;
+    
 	@FXML
 	public static Stage premadeCatalogStage;
 
@@ -124,6 +128,22 @@ public class CatalogController {
 	ArrayList<Item> items = new ArrayList<>();
 	static int premadeBouquetNumber = 0;
 
+
+	@FXML
+    void buttonClick(MouseEvent event)
+    {
+        if(event.getClickCount()==1)
+        {
+
+            for(Node ap : grid.getChildren())
+            {
+            if(ap.isFocused() || scroll.isFocused())
+            {
+                msgLabel.setVisible(true);
+            }
+            }
+        }
+    }
 	/**
 	 * closes current screen and opens the customer screen.
 	 * @param event
@@ -285,10 +305,16 @@ public class CatalogController {
 			}
 			AddToCartBtn.setDisable(true);
 			premadeBouquetNumber++;
-			JOptionPane.showMessageDialog(null, "Added the bouquet(s) to the cart!", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
 			AmountLabel.setText("0");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule( new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 		}
+		
 	}
 
 	/**
@@ -404,6 +430,7 @@ public class CatalogController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		msgLabel.setVisible(false);
 		grid.getChildren().clear();
 		addToCart = AddToCartBtn;
 		AddToCartBtn.setDisable(true);

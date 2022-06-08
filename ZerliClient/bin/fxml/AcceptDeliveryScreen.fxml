@@ -16,13 +16,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1411.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AcceptDeliveryScreenController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="355.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="800.0" prefWidth="318.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="801.0" prefWidth="342.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
+            <VBox prefHeight="801.0" prefWidth="327.0" styleClass="right-bar" stylesheets="@../../images/css/styleNew.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="49.0" prefWidth="116.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
+                        <Label prefHeight="49.0" prefWidth="116.0" stylesheets="@../../images/css/styleNew.css" text="Zer-Li" textFill="#004d00">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
@@ -46,7 +46,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="435.0">
                      <children>
-                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="shadow" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" text="(Username)" textAlignment="CENTER" wrappingWidth="103.13671875">
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>
@@ -55,7 +55,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="176.0" prefWidth="435.0">
                      <children>
-                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                        <ImageView fx:id="avatarImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/images/Avatar.png" />
                            </image>
@@ -101,7 +101,7 @@
    <right>
       <VBox prefHeight="800.0" prefWidth="1089.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="800.0" prefWidth="1230.0" style="-fx-background-color: e6ffcc;">
+            <VBox prefHeight="800.0" prefWidth="900.0" style="-fx-background-color: e6ffcc;">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -258,17 +258,17 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="27.0" prefWidth="107.0" text="Phone">
+                        <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="107.0" text="Phone">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="27.0" prefWidth="213.0" text="Supply Type">
+                        <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="213.0" text="Supply Type">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="27.0" prefWidth="136.0" text="Action">
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="136.0" text="Action">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -277,7 +277,7 @@
                   </HBox>
                   <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                      <content>
-                        <VBox fx:id="DeliveryLayout" prefHeight="574.0" prefWidth="1163.0" />
+                        <VBox fx:id="DeliveryLayout" prefHeight="547.0" prefWidth="1085.0" />
                      </content>
                   </ScrollPane>
                </children>

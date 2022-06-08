@@ -176,6 +176,11 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
+                              <Label fx:id="msgLabel" text="The item was added to the cart" textAlignment="CENTER" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="90.0" prefWidth="435.0">

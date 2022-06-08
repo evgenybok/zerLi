@@ -65,6 +65,7 @@ public class ComplaintReportController {
 	void btnBack(MouseEvent event) throws IOException {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/branchManager.fxml")));
+		parent.getStylesheets().add("css/styleNew.css");
 		Scene scene = new Scene(parent);
 		Stage complaintStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		complaintStage.setTitle("Branch Manager Screen");

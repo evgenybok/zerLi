@@ -37,8 +37,8 @@ import javafx.stage.Stage;
 import logic.Item;
 
 /**
- * @author Evgeny
- * Shows the custom catalog, here the user can choose which items to add to the cart.
+ * @author Evgeny Shows the custom catalog, here the user can choose which items
+ *         to add to the cart.
  */
 public class CustomCatalogController {
 
@@ -120,11 +120,14 @@ public class CustomCatalogController {
 	@FXML
 	private Label lblSalePrice;
 
-    @FXML
-    private Label lblMyCart;
+	@FXML
+	private Label lblMyCart;
 
 	@FXML
 	private Button viewCustomizedBouquet;
+
+	@FXML
+	private Label msgLabel;
 
 	static Button staticViewCustomizedBouquet;
 
@@ -144,6 +147,7 @@ public class CustomCatalogController {
 
 	/**
 	 * Button to add the selected product and amount to the cart.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -175,24 +179,44 @@ public class CustomCatalogController {
 				viewCustomizedBouquet.setDisable(true);
 				addToCart.setDisable(true);
 			}
-			JOptionPane.showMessageDialog(null, "Added the customized bouquet to the cart!", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			msgLabel.setText("The item was added to the cart");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 		} else {
-			JOptionPane.showMessageDialog(null, "You did not add items for the customized bouquet!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			msgLabel.setText("The item was added to the cart");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 		}
 	}
 
 	/**
-	 * Adds the custom items to a bouquet made of various items which can later be named and added to the cart
+	 * Adds the custom items to a bouquet made of various items which can later be
+	 * named and added to the cart
+	 * 
 	 * @param event
 	 */
 	// @SuppressWarnings({ "unchecked" })
 	@FXML
 	void btnAddToCustomArrangement(MouseEvent event) {
 		if (AmountLabel.getText().equals("0")) {
-			JOptionPane.showMessageDialog(null, "You can not add 0 items to the customized bouquet!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			msgLabel.setText("Cannot add 0 items!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 		} else {
 
 			boolean flag = false;
@@ -250,14 +274,22 @@ public class CustomCatalogController {
 				viewCustomizedBouquet.setDisable(true);
 				addToCart.setDisable(true);
 			}
-			JOptionPane.showMessageDialog(null, "Added the items to the customized bouquet!", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+
+			msgLabel.setText("Added the items!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 			AmountLabel.setText("0");
 		}
 	}
 
 	/**
 	 * closes current screen and opens the customer screen.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -283,6 +315,7 @@ public class CustomCatalogController {
 
 	/**
 	 * Sets selected item field with the data from given item.
+	 * 
 	 * @param item
 	 */
 	private void setSelectedItem(Item item) {
@@ -295,6 +328,7 @@ public class CustomCatalogController {
 
 	/**
 	 * increments the amount of currently shown item to add to the cart.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -311,6 +345,7 @@ public class CustomCatalogController {
 
 	/**
 	 * decrements the amount of currently shown item to add to the cart.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -327,6 +362,7 @@ public class CustomCatalogController {
 
 	/**
 	 * Opens the cart screen to show the user which items are inside his cart.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -351,6 +387,7 @@ public class CustomCatalogController {
 
 	/**
 	 * Opens a new screen in which the user can view his customized bouquet.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -377,6 +414,7 @@ public class CustomCatalogController {
 
 	/**
 	 * Search by color - filters the catalog to match the selected color input.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -432,7 +470,9 @@ public class CustomCatalogController {
 	}
 
 	/**
-	 * Serach by price - filters the current catalog to match the selected price range.
+	 * Serach by price - filters the current catalog to match the selected price
+	 * range.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -476,11 +516,13 @@ public class CustomCatalogController {
 	}
 
 	/**
-	 * Initialization: shows all of the avaliable items from the DB that are self assembly (custom) in the table.
+	 * Initialization: shows all of the avaliable items from the DB that are self
+	 * assembly (custom) in the table.
 	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		msgLabel.setVisible(false);
 		grid.getChildren().clear();
 		staticAddToCart = addToCart;
 		staticViewCustomizedBouquet = viewCustomizedBouquet;

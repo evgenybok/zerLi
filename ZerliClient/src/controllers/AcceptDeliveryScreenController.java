@@ -174,6 +174,10 @@ public class AcceptDeliveryScreenController {
 	void initialize() {
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
+		Image searchImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-search-50.png")));
+		searchImg.setImage(searchImage);
+		searchImg2.setImage(searchImage);
+		
 		userName.setText(LoginScreenController.user.getUsername());
 		InsertToTable();
 	}
@@ -190,7 +194,7 @@ public class AcceptDeliveryScreenController {
 			{
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDelivery.fxml"));
+				fxmlLoader.setLocation(getClass().getResource("/fxml/SingleDeliver.fxml"));
 				HBox hBox = fxmlLoader.load();
 				SingleDeliveryController singleDeliveryController = fxmlLoader.getController();
 				singleDeliveryController.setData(list.get(i));

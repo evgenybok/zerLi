@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingleDeliveryController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingleDeliveryController">
    <children>
-      <Label fx:id="orderid" prefHeight="27.0" prefWidth="84.0" text="order id">
+      <Label fx:id="orderid" prefHeight="27.0" prefWidth="102.0" text="order id">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="20.0" />
          </font>
@@ -17,7 +17,7 @@
             <Insets left="10.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="storeName" prefHeight="24.0" prefWidth="110.0" text="Store Name">
+      <Label fx:id="storeName" prefHeight="24.0" prefWidth="74.0" text="Store">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="20.0" />
          </font>
@@ -53,9 +53,9 @@
             <Font name="Berlin Sans FB Demi Bold" size="20.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="181.0">
+      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="173.0">
          <children>
-            <Button fx:id="Confirm" mnemonicParsing="false" onMouseClicked="#ConfirmBtn" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" styleClass="shadow" stylesheets="@../../images/css/styleNew.css" text="confirm">
+            <Button fx:id="Confirm" mnemonicParsing="false" onMouseClicked="#ConfirmBtn" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: e6ffcc; -fx-background-radius: 30;" text="confirm">
                <font>
                   <Font size="22.0" />
                </font></Button>

@@ -55,9 +55,9 @@ public class OrdersController {
 	@FXML
 	private VBox OrdersLayout;
 
-	@FXML
-	private ImageView Search;
-
+    @FXML
+    private ImageView searchImg;
+    
 	@FXML
 	private ImageView avatarImg;
 
@@ -100,6 +100,10 @@ public class OrdersController {
 	@FXML
 	private Text userName;
 
+    @FXML
+    private Label msgLabel;
+
+
 	List<SingleOrder> Orders = new ArrayList<SingleOrder>();
 	SingleOrder toCancel = new SingleOrder(0, 0, null, null, null, null, 0, null);
 
@@ -133,19 +137,37 @@ public class OrdersController {
 		for (int i = 0; i < Orders.size(); i++) {
 			if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Cancelled")) {
-				JOptionPane.showMessageDialog(null, "This order is already cancelled!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				msgLabel.setText("This order is already cancelled!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule( new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Delivered")) {
-				JOptionPane.showMessageDialog(null, "This order is already delivered!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				msgLabel.setText("This order is already delivered!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule( new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			}
 			else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& Orders.get(i).getStatus().equals("Compensation")) {
-				JOptionPane.showMessageDialog(null, "You have received a compensation for this order!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				msgLabel.setText("You have received a compensation for this order!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule( new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			} else if (Integer.parseInt(cancelOrderNumber.getText()) == Orders.get(i).getOrderNumber()
 					&& (Orders.get(i).getStatus().equals("Approved") || Orders.get(i).getStatus().equals("Pending"))) {
@@ -187,25 +209,42 @@ public class OrdersController {
 						toCancel.setRefund((toCancel.getPrice()) * 0);
 
 					} else {
-						JOptionPane.showMessageDialog(null,
-								"The option to cancel this order has expired, in case you did not receive the order - a refund will be issued to your account",
-								"Info", JOptionPane.INFORMATION_MESSAGE);
+						msgLabel.setText("The option to cancel this order has expired!");
+						msgLabel.setVisible(true);
+						new java.util.Timer().schedule( new java.util.TimerTask() {
+							@Override
+							public void run() {
+								msgLabel.setVisible(false);
+							}
+						}, 2000);
 						return;
 					}
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 				chat.accept(new Message(MessageType.CANCEL_ORDER, toCancel));
-				JOptionPane.showMessageDialog(null, "Order Cancelled Successfully!", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
+				msgLabel.setText("Order Cancelled Successfully!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule( new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				flagExists = true;
 				initialize();
 			}
 		}
 		if (flagExists == false)
-
 		{
-			JOptionPane.showMessageDialog(null, "Wrong Order Number!!!", "Error", JOptionPane.ERROR_MESSAGE);
+			msgLabel.setText("Wrong Order Number!!!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule( new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 			return;
 		}
 	}
@@ -255,6 +294,9 @@ public class OrdersController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void initialize() {
+		msgLabel.setVisible(false);
+		Image searchImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons8-search-50.png")));
+		searchImg.setImage(searchImage);
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());

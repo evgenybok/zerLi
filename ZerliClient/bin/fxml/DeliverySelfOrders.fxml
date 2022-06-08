@@ -196,6 +196,38 @@
                            </font>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: d3d3d3;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="315.0" text="Order number">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="26.0" prefHeight="34.0" prefWidth="168.0" text="Handler ID">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="215.0" text="Order Date">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="215.0" text="Supply Date">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="215.0" text="Status">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </HBox>
                   <ScrollPane prefHeight="577.0" prefWidth="833.0" style="-fx-background-color: transparent;">
                      <content>

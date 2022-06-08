@@ -173,7 +173,7 @@
                                  <children>
                                     <Button mnemonicParsing="false" onMouseClicked="#btnSearch" prefHeight="84.0" prefWidth="84.0" style="-fx-background-color: transparent;">
                                        <graphic>
-                                          <ImageView fx:id="Search" fitHeight="45.0" fitWidth="56.0" onMouseClicked="#btnSearch" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="searchImg" fitHeight="45.0" fitWidth="56.0" onMouseClicked="#btnSearch" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../images/images/icons8-search-50.png" />
                                              </image>
@@ -193,9 +193,17 @@
             </HBox>
             <HBox prefHeight="53.0" prefWidth="833.0">
                <children>
-                  <Label text=" Orders List:">
+                  <Label prefHeight="43.0" prefWidth="256.0" text=" Orders List:">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="msgLabel" alignment="CENTER" prefHeight="43.0" prefWidth="348.0" text="The option to cancel this order has expired!" textFill="RED">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <Button fx:id="cancelOrder" mnemonicParsing="false" onMouseClicked="#btnCancelOrder" prefHeight="34.0" prefWidth="134.0" stylesheets="@../../images/css/styleNew.css" text="Cancel Order" textFill="#004d00">
@@ -207,7 +215,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="520.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                   <TextField fx:id="cancelOrderNumber" prefHeight="25.0" prefWidth="78.0" promptText="No.">

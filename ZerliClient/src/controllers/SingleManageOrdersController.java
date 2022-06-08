@@ -24,8 +24,8 @@ import javafx.stage.Stage;
 import logic.SingleManageOrder;
 
 /**
- * @author Evgeny
- * A single order for the delivery user to view, delivery user can approve orders with status Pending
+ * @author Evgeny A single order for the delivery user to view, delivery user
+ *         can approve orders with status Pending
  */
 public class SingleManageOrdersController {
 
@@ -57,6 +57,7 @@ public class SingleManageOrdersController {
 
 	/**
 	 * Delivery user can approve pending orders.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -78,16 +79,35 @@ public class SingleManageOrdersController {
 			} catch (Exception e) {
 				return;
 			}
-		} else
-			JOptionPane.showMessageDialog(null, "Cannot change the order's status!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+		} else {
+			ManagerOrdersController.staticMsgLabel.setText("Cannot change the order's status!");
+			ManagerOrdersController.staticMsgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					ManagerOrdersController.staticMsgLabel.setVisible(false);
+				}
+			}, 2000);
+		}
 
 		if (Status.getText().equals("Pending")) {
-			JOptionPane.showMessageDialog(null, "Order has been approved", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			ManagerOrdersController.staticMsgLabel.setText("Order has been approved");
+			ManagerOrdersController.staticMsgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					ManagerOrdersController.staticMsgLabel.setVisible(false);
+				}
+			}, 2000);
 		} else if (Status.getText().equals("Cancel Request")) {
-			JOptionPane.showMessageDialog(null, "Order has been cancelled", "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			ManagerOrdersController.staticMsgLabel.setText("Order has been cancelled");
+			ManagerOrdersController.staticMsgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					ManagerOrdersController.staticMsgLabel.setVisible(false);
+				}
+			}, 2000);
 		}
 		Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ManageOrders.fxml")));
 		parent.getStylesheets().add("/css/styleNew.css");
@@ -101,6 +121,7 @@ public class SingleManageOrdersController {
 
 	/**
 	 * Sets data to show on screen
+	 * 
 	 * @param singleManageOrder
 	 */
 	public void setData(SingleManageOrder singleManageOrder) {

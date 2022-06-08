@@ -42,8 +42,8 @@ import logic.Account;
 import logic.Order;
 
 /**
- * @author Evgeny
- * Checkout screen where the user can choose the specifics of his delivery,address,personal information and payment method.
+ * @author Evgeny Checkout screen where the user can choose the specifics of his
+ *         delivery,address,personal information and payment method.
  */
 public class PaymentScreenController {
 	String userID = LoginScreenController.user.getID();
@@ -52,7 +52,7 @@ public class PaymentScreenController {
 	double totalPriceAfterDeliveryFee;
 	boolean DeliveryFlag = false, DeliveryExpressFlag = false;
 	public static String phoneNumber;
-	
+
 	@FXML
 	private TextField Adress;
 
@@ -137,11 +137,15 @@ public class PaymentScreenController {
 	@FXML
 	private Label lblZerLiCredit;
 
+	@FXML
+	private Label msgLabel;
+
 	private double refundUsed = 0;
 	private double finalPriceToPay = 0;
 
 	/**
 	 * closes current screen and opens the Cart screen.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -161,6 +165,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Marks the selection of delivery and disables all others.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -184,6 +189,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Marks the selection of pickup and disables all others.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -210,6 +216,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Marks the selection of express delivery and disables all others.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -252,6 +259,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Gets the store name from the DB.
+	 * 
 	 * @param event
 	 */
 	@SuppressWarnings("unchecked")
@@ -298,23 +306,77 @@ public class PaymentScreenController {
 	}
 
 	/**
-	 * Finishes the payment and adds the order to the DB based on the parameters entered.
+	 * Finishes the payment and adds the order to the DB based on the parameters
+	 * entered.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void btnPay(MouseEvent event) throws IOException {
+		if (StoreName.getSelectionModel().isEmpty()) {
+			msgLabel.setText("Store name was not chosen!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
+			return;
+		}
+		if (Adress.getText().isEmpty()) {
+			msgLabel.setText("Address field is empty!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
+			return;
+		}
+		if (ReciverName.getText().isEmpty()) {
+			msgLabel.setText("Receiver name field is empty!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
+			return;
+		}
+		if (!PickUpBox.isSelected() && !DeliveryBox.isSelected() && !ExpPick.isSelected()) {
+			msgLabel.setText("Delivery method was not selected!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
+			return;
+		}
+		
 
 		CheckPayDetailsNoEmpty();
 		String adress, reciverName, phone, cvv;
-		if (DeliveryFlag) {
+		if (DeliveryFlag || DeliveryExpressFlag) {
 			adress = Adress.getText();
 		} else {
 			adress = null;
 		}
 		cvv = CVV.getText();
 		if (!cvv.equals(CustomerCVV)) {
-			JOptionPane.showMessageDialog(null, "CVV Number Is Wrong!!", "Error", JOptionPane.ERROR_MESSAGE);
+			msgLabel.setText("CVV Number Is Wrong!");
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 			return;
 		} else {
 			Order.orderCount++;
@@ -322,41 +384,68 @@ public class PaymentScreenController {
 			String storeid = getStoreId();
 			Date orderDate = new Date();
 			String orderDateString = convertToDate(orderDate.toString());
-			if(DateSupply.getValue()==null)
-			{
-					JOptionPane.showMessageDialog(null, "Date format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
+			if (DateSupply.getValue() == null) {
+				msgLabel.setText("Date format is wrong!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule(new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
+				return;
 			}
+		
 			String su = DateSupply.getValue().toString();
 			if (!checkSupplyTime()) // Checking if supply time values are right
 			{
-				JOptionPane.showMessageDialog(null, "Date format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+				msgLabel.setText("Date format is wrong!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule(new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			}
 			String tu = SupplyTime.getText(); // change
-			for(int i=0;i<tu.length();i++)
-			{
-				char ch=tu.charAt(i);
-				System.out.println(ch);
-				
-				if(i==2 && tu.charAt(i)!=':')
-				{
-					JOptionPane.showMessageDialog(null, "Time format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+			for (int i = 0; i < tu.length(); i++) {
+				if (i == 2 && tu.charAt(i) != ':') {
+					msgLabel.setText("Time format is wrong!");
+					msgLabel.setVisible(true);
+					new java.util.Timer().schedule(new java.util.TimerTask() {
+						@Override
+						public void run() {
+							msgLabel.setVisible(false);
+						}
+					}, 2000);
 					return;
-				}
-				else if(!(tu.charAt(i)>='0' && tu.charAt(i)<='9') &&i!=2)
-				{
-					JOptionPane.showMessageDialog(null, "Time format is wrong!", "Error", JOptionPane.ERROR_MESSAGE);
+				} else if (!(tu.charAt(i) >= '0' && tu.charAt(i) <= '9') && i != 2) {
+					msgLabel.setText("Time format is wrong!");
+					msgLabel.setVisible(true);
+					new java.util.Timer().schedule(new java.util.TimerTask() {
+						@Override
+						public void run() {
+							msgLabel.setVisible(false);
+						}
+					}, 2000);
 					return;
 				}
 			}
 			String supplyDateTime;
-			if(change(su, tu)==null)
-			{
-				JOptionPane.showMessageDialog(null, "Delivery takes at least 3 hours.", "Error", JOptionPane.ERROR_MESSAGE);
+			if (change(su, tu) == null) {
+				msgLabel.setText("Delivery takes at least 3 hours!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule(new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			}
-			supplyDateTime=change(su, tu);
+			supplyDateTime = change(su, tu);
 			if (DeliveryFlag) {
 				Date currDate = new Date(System.currentTimeMillis());
 				Calendar currentCalendar = Calendar.getInstance();
@@ -369,8 +458,14 @@ public class PaymentScreenController {
 
 					Date x = supplyDateCalendar.getTime();
 					if (x.before(currentCalendar.getTime())) {
-						JOptionPane.showMessageDialog(null, "Delivery takes at least 3 hours.", "Error",
-								JOptionPane.ERROR_MESSAGE);
+						msgLabel.setText("Delivery takes at least 3 hours!");
+						msgLabel.setVisible(true);
+						new java.util.Timer().schedule(new java.util.TimerTask() {
+							@Override
+							public void run() {
+								msgLabel.setVisible(false);
+							}
+						}, 2000);
 						return;
 					}
 
@@ -386,8 +481,14 @@ public class PaymentScreenController {
 			reciverName = ReciverName.getText();
 			phone = Phone.getText();
 			if (phone.length() != 10) {
-				JOptionPane.showMessageDialog(null, "Phone number must be 10 digits!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				msgLabel.setText("Phone number must be 10 digits!");
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule(new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			}
 			Order order = new Order(Order.orderCount, finalPriceToPay, greeting, storeid, orderDateString,
@@ -403,7 +504,7 @@ public class PaymentScreenController {
 					sb.append(CustomerScreenController.userID);
 					chat.accept(new Message(MessageType.UPDATE_USED_REFUND, sb.toString()));
 				}
-				phoneNumber=phone;
+				phoneNumber = phone;
 				/* Empty the current cart in checkout */
 				CatalogController.selectedProducts.clear();
 				CatalogController.itemToAmount.clear();
@@ -433,6 +534,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Checks if the supply time entered is valid.
+	 * 
 	 * @return true if valid, false otherwise.
 	 */
 	boolean checkSupplyTime() {
@@ -443,33 +545,59 @@ public class PaymentScreenController {
 			temp = temp.substring(0, 2) + ":" + temp.substring(3, 5);
 		}
 		String[] time = temp.split(":");
-		int hour = Integer.parseInt(time[0]);
-		int minutes = Integer.parseInt(time[1]);
-		if (((hour >= 0 && hour <= 23) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
-			return true;
-		else
+		int hour;
+		int minutes;
+		try {
+			hour = Integer.parseInt(time[0]);
+			minutes = Integer.parseInt(time[1]);
+			if (((hour >= 0 && hour <= 23) && (minutes >= 0 && minutes < 60)) && time[1].length() == 2)
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
 			return false;
+		}
 	}
+
 	/**
 	 * Checking for empty fields input
 	 */
 	void CheckPayDetailsNoEmpty() {
-
+		msgLabel.setText("One or more fields are empty!");
 		if (DeliveryFlag == true) {
 			if (Adress.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				msgLabel.setVisible(true);
+				new java.util.Timer().schedule(new java.util.TimerTask() {
+					@Override
+					public void run() {
+						msgLabel.setVisible(false);
+					}
+				}, 2000);
 				return;
 			}
 		}
 		if (ReciverName.getText().isEmpty() || Phone.getText().isEmpty() || CVV.getText().isEmpty()) {
-			// need to put msg that Reciver Name is empty
-			JOptionPane.showMessageDialog(null, "One or more fields are empty!", "Error", JOptionPane.ERROR_MESSAGE);
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
+			msgLabel.setVisible(true);
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					msgLabel.setVisible(false);
+				}
+			}, 2000);
 			return;
 		}
 	}
+
 	/**
 	 * Gets store ID from the DB.
+	 * 
 	 * @return store ID number
 	 */
 	private String getStoreId() {
@@ -490,6 +618,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Chanages order amount based on the refund avaliable in the account.
+	 * 
 	 * @param deliveryFee
 	 */
 	void changeAmount(Double deliveryFee) {
@@ -522,14 +651,13 @@ public class PaymentScreenController {
 
 	/**
 	 * Checking supply method.
+	 * 
 	 * @return String pickup / delivery.
 	 */
 	private String CheckWhichSupplyMethod() {
 		if (DeliveryFlag) {
 			return "Delivery";
-		}
-		else if(DeliveryExpressFlag)
-		{
+		} else if (DeliveryExpressFlag) {
 			return "Express";
 		}
 		return "PickUp";
@@ -537,6 +665,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Calculating the supply date
+	 * 
 	 * @return new supply date.
 	 */
 	public Date calSupplyDate() {
@@ -558,6 +687,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Converts string to the given format
+	 * 
 	 * @param mydate received date to convert
 	 * @return date with the given format
 	 */
@@ -570,8 +700,11 @@ public class PaymentScreenController {
 
 	/*
 	 * changes the date and time's format
+	 * 
 	 * @param date
+	 * 
 	 * @param time
+	 * 
 	 * @return new date and time format
 	 */
 	public String change(String date, String time) {
@@ -588,6 +721,7 @@ public class PaymentScreenController {
 	// for secure payment
 	/**
 	 * Hides the credit card number except for the final 4 digits.
+	 * 
 	 * @param number credit card number
 	 * @return new partially hidden credit card number
 	 */
@@ -601,6 +735,7 @@ public class PaymentScreenController {
 
 	/**
 	 * Checking delivery type.
+	 * 
 	 * @return String express / regular delivery.
 	 */
 	private String CheckExpressDelivery() {
@@ -615,6 +750,7 @@ public class PaymentScreenController {
 	 */
 	@FXML
 	void initialize() {
+		msgLabel.setVisible(false);
 		if (CustomerScreenController.fullAcc.getOrdersAmount() == 0) {
 			discount.setVisible(true);
 		} else

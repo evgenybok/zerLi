@@ -68,6 +68,9 @@ public class CustomItemViewController{
 	@FXML
 	private Button btnSave;
 
+    @FXML
+    private Label msgLabel;
+
 	public static Text totalPriceText;
 	static GridPane staticGrid;
 	static Text staticTotalItemPrice;
@@ -117,9 +120,14 @@ public class CustomItemViewController{
 			CustomCatalogController.staticViewCustomizedBouquet.setDisable(true);
 			CustomCatalogController.staticAddToCart.setDisable(true);
 		}
-		Stage stage = (Stage) btnSave.getScene().getWindow();
-		stage.close();
-		JOptionPane.showMessageDialog(null, "Bouquet updated successfuly!", "Update", JOptionPane.PLAIN_MESSAGE);
+
+		msgLabel.setVisible(true);
+		new java.util.Timer().schedule( new java.util.TimerTask() {
+			@Override
+			public void run() {
+				msgLabel.setVisible(false);
+			}
+		}, 2000);
 	}
 
 	/**
@@ -127,6 +135,7 @@ public class CustomItemViewController{
 	 */
 	@FXML
 	void initialize() {
+		msgLabel.setVisible(false);
 		staticGrid=grid;
 		staticTotalItemPrice=totalItemPrice;
 		totalPrice = CustomCatalogController.totalPrice;

@@ -191,6 +191,11 @@
                               <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                            </font>
                         </Label>
+                        <Label fx:id="msgLabel" alignment="CENTER" prefHeight="43.0" prefWidth="440.0" text="The option to cancel this order has expired!" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />

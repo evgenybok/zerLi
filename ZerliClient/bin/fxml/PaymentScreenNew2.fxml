@@ -320,15 +320,17 @@
          <right>
             <VBox prefHeight="600.0" prefWidth="420.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="89.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
+                  <HBox prefHeight="59.0" prefWidth="420.0" styleClass="shadow" stylesheets="@../../images/css/styleNew.css">
                      <children>
-                        <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="163.0" />
                         <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="262.0">
                            <children>
-                              <Label text=" Payment">
+                              <Label prefHeight="32.0" prefWidth="134.0" text=" Payment">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets left="140.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
@@ -465,7 +467,7 @@
                         <VBox alignment="CENTER" prefHeight="24.0" prefWidth="135.0" />
                      </children>
                   </HBox>
-                  <VBox prefHeight="106.0" prefWidth="420.0">
+                  <VBox prefHeight="96.0" prefWidth="420.0">
                      <children>
                         <HBox prefHeight="27.0" prefWidth="420.0">
                            <children>
@@ -517,6 +519,15 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="420.0">
+                     <children>
+                        <Label fx:id="msgLabel" alignment="CENTER" prefHeight="20.0" prefWidth="371.0" text="Label" textAlignment="CENTER" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox fillHeight="false" prefHeight="77.0" prefWidth="420.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="341.0">

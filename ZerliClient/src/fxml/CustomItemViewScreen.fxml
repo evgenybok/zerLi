@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomItemViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomItemViewController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="710.0" styleClass="paneback" stylesheets="@../../images/css/styleNew.css">
          <left>
@@ -87,11 +87,19 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="160.13671875">
+                  <Text fx:id="totalItemPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="152.13671875">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
+                  <Label fx:id="msgLabel" prefHeight="20.0" prefWidth="211.0" text="Bouquet updated successfully!" textFill="RED">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                   <Button fx:id="btnSave" mnemonicParsing="false" onMouseClicked="#clkSave" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Save" textAlignment="CENTER">
                      <font>
                         <Font size="16.0" />
@@ -101,7 +109,7 @@
                         <URL value="@../../images/css/styleNew.css" />
                      </stylesheets>
                      <HBox.margin>
-                        <Insets left="150.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="close" mnemonicParsing="false" onMouseClicked="#btnClose" style="-fx-background-radius: 20;" styleClass="newbuttom" text="Close" textAlignment="CENTER">
@@ -113,7 +121,7 @@
                         <URL value="@../../images/css/styleNew.css" />
                      </stylesheets>
                      <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="15.0" />
                      </HBox.margin>
                   </Button>
                </children>

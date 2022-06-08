@@ -74,6 +74,10 @@ public class ManagerOrdersController {
     @FXML
     private ImageView addImg;
 
+    @FXML
+    private Label msgLabel;
+    
+    public static Label staticMsgLabel;
 	/**
 	 * Sends the manager back to the branch manager screen.
 	 * @param event
@@ -144,6 +148,8 @@ public class ManagerOrdersController {
 	 */
 	@FXML
 	void initialize() {
+		staticMsgLabel=msgLabel;
+		msgLabel.setVisible(false);
 		Image personImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Avatar.png")));
 		avatarImg.setImage(personImage);
 		userName.setText(LoginScreenController.user.getUsername());
