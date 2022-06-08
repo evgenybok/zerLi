@@ -1,9 +1,12 @@
 package query;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import logic.User;
 import ocsf.server.ConnectionToClient;
 
 /**
@@ -12,8 +15,16 @@ import ocsf.server.ConnectionToClient;
  *
  */
 public class LoginQuery {
+	public Connection conn;
+	
+	
 
-    /**
+    public LoginQuery(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+
+	/**
      * @param loginInfo - username,password of user
      * @param client - OCSF client information
      * updates login status in DB of given user when logging in.
@@ -52,5 +63,26 @@ public class LoginQuery {
         }
         return null;
     }
+    
+    public User ExistenceCheck(String username, String password) {
+		String query = ("SELECT * FROM users WHERE UserName='" + username + "' AND Password='" + password + "';");
+		User user = null;
+		try {
+			PreparedStatement st = ConnectToDB.conn.prepareStatement(query);
+			ResultSet rs=st.executeQuery();
+			if (rs.next()) {
+				String UserName = rs.getString("UserName");
+				String Password = rs.getString("Password");
+				boolean Loggedin = rs.getBoolean("LoggedIn");
+				String Role = rs.getString("Role");
+				if (!Loggedin) { // If the user is dissconnected, update selected user connection status.
+					user = new User(UserName, Password, Role);
+					Query.Login(user);
+				}
+			}
+		} catch (SQLException e) {
+		}
+		return user;
+	}
 
 }

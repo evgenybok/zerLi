@@ -1,6 +1,9 @@
 package mainserver;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import communication.Message;
 import controllers.ServerController;
@@ -21,7 +24,8 @@ import serverAnalyze.AnalyzeMessageFromClient;
 
 public class EchoServer extends AbstractServer {
     // Class variables *************************************************
-
+	public static Connection conn;
+	
     /**
      * The default port to listen on.
      */
@@ -93,5 +97,22 @@ public class EchoServer extends AbstractServer {
     }
     
 
+	public void MySqlConnection() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Driver definition succeed");/// change for the testunit
+		} catch (Exception ex) {
+			System.out.println("Driver definition failed");
+		}
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/zerli?serverTimezone=IST", "root", "ekzit123");
+			System.out.println("SQL connection succeed");
+		} catch (SQLException ex) {/* handle any errors */
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+    
 }
 //End of EchoServer class

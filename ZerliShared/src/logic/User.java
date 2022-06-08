@@ -43,6 +43,13 @@ public class User implements Serializable {
 		Role=role;
 	}
 	
+	public User(String username, String password, String role)
+	{
+		Username=username;
+		Password=password;
+		Role=role;
+	}
+	
 	public User(String username, String password) {
 		super();
 		Username = username;
